@@ -1,9 +1,9 @@
 from .db import db
-from models.member import Member
+# from models.member import Member
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
-
+#TODO - add firstName/lastName to model
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     # relationship
     members = db.relationship(
-        'Member', back_populate='members', cascade="all, delete-orphan")
+        'Member', back_populates='members', cascade="all, delete-orphan")
 
     @property
     def password(self):

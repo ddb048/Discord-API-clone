@@ -11,4 +11,4 @@ class Message(db.Model):
     created_at = db.Column(db.DateTime(),nullable = False ,server_default = func.now())
     updated_at = db.Column(db.DateTime(), nullable = False, onupdate = func.now(), default = func.now())
  #relationship
-    server = db.relationship('Server', back_populate='messages')
+    server = db.relationship('Server', back_populates='messages')
