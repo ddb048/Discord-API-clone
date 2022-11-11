@@ -1,7 +1,7 @@
 """create all tables
 
 Revision ID: fae99b641f34
-Revises: 
+Revises:
 Create Date: 2022-11-10 22:40:45.839211
 
 """
@@ -34,6 +34,7 @@ def upgrade():
     sa.Column('preview_image', sa.String(length=255), nullable=True),
     sa.Column('private', sa.Boolean(), nullable=True),
     sa.Column('is_DM', sa.Boolean(), nullable=True),
+    sa.Column('server_description', sa.String(length=2000), nullable=True),
     sa.Column('owner_id', sa.Integer(), nullable=True, foreign_key=True),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),
