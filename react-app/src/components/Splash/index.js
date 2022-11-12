@@ -1,5 +1,5 @@
 import React from "react";
-
+import '../../../../Images';
 import './index.css';
 import { Link } from 'react-router-dom';
 
@@ -13,6 +13,9 @@ return (
             can spend time together.
             A place that makes it easy to talk every day and hang out often. Within a safe and accepting space.
         </p>
+        <img src="Images/discord-splash-1a.png" alt='clouds' />
+        <img src="Images/discord-splash-1b.png" alt='people - left?' />
+        
     </div>
     <div className="Splash-detail odd">
         <div className="sub-title">Create an Invite-Only Place Where You Belong</div>
