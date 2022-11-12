@@ -6,7 +6,6 @@ class Message(db.Model):
     __tablename__ = 'messages'
     id = db.Column(db.Integer, primary_key=True)
     message_body = db.Column(db.String(255), nullable=False)
-    is_voice = db.Column(db.Boolean, nullable=False)
     owner_id = db.Column(db.Integer, ForeignKey("users.id"))
     channel_id = db.Column(db.Integer, ForeignKey("channels.id"))
     server_id = db.Column(db.Integer, ForeignKey('servers.id'))

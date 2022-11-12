@@ -1,18 +1,18 @@
 from app.models import db, Message
 def seed_messages():
-  # member 1 in Pride Eye(private) channel 
+  # member 1 in Pride Eye(private) channel
   msg1=Message(
     message_body='Hey there, friend! How are you?',
     server_id= 10,
     channel_id=19,
     owner_id=10
-    ),
+    )
   # member 2 in Pride Eye(private) channel
   msg2=Message(
     message_body="I'm good, just relaxing. How's it going?",
     server_id=10,
     channel_id=19,
-    owner_10=17
+    owner_id=17
     )
   # member 1 in Pride Eye(private) channel
   msg3=Message(
