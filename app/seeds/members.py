@@ -41,7 +41,7 @@ def seed_members():
   mem7= Member(
     user_id=7,
     server_id=7,
-    roles='Owner',
+    roles='Owner'
     )
 
   mem8= Member(

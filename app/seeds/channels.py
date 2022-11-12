@@ -5,68 +5,68 @@ def seed_channels():
     name="welcome",
     is_voice=False,
     description="Welcome all new members",
-    server_id=1,
+    server_id=1
     )
   channel2 = Channel(
     name="general",
     is_voice=False,
     description="General chat",
-    server_id=1,
+    server_id=1
     )
   channel3 = Channel(
     name="welcome",
     is_voice=False,
     description="Welcome all new members",
-    server_id=2,
+    server_id=2
     )
   channel4 = Channel(
     name="general",
     is_voice=False,
     description="General chat",
-    server_id=2,
+    server_id=2
     )
   channel5 = Channel(
     name="welcome",
     is_voice=False,
     description="Welcome all new members",
-    server_id=3,
+    server_id=3
     )
   channel6 = Channel(
     name="general",
     is_voice=False,
     description="General chat",
-    server_id=3,
+    server_id=3
     )
   channel7 = Channel(
     name="welcome",
     is_voice=False,
     description="Welcome all new members",
-    server_id=4,
+    server_id=4
     ),
   channel8 = Channel(
     name="general",
     is_voice=False,
     description="General chat",
-    server_id=4,
+    server_id=4
     )
 
   channel9 = Channel(
     name="welcome",
     is_voice=False,
     description="Welcome all new members",
-    server_id=5,
+    server_id=5
     )
   channel10 = Channel(
     name="general",
     is_voice=False,
     description="General chat",
-    server_id=5,
+    server_id=5
     )
   channel11 = Channel(
     name="welcome",
     is_voice=False,
     description="Welcome all new members",
-    server_id=6,
+    server_id=6
     )
   channel12 = Channel(
     name="general",
@@ -122,12 +122,7 @@ def seed_channels():
     description="General chat",
     server_id=10
     )
-  # channel21 = Channel(
-  #   name='direct messages',
-  #   is_voice=False,
-  #   description='',
-  #   server_id=
-  #   )
+
   db.session.add(channel1)
   db.session.add(channel2)
   db.session.add(channel3)
