@@ -25,5 +25,4 @@ class Channel(db.Model):
             'server_id':self.owner_id
         }
 
-    messages = db.relationship('Message', back_populates = 'channels')
-
+    messages = db.relationship('Message', back_populates = 'channels', cascade="all,delete")
