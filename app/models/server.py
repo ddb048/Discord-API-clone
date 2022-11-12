@@ -2,6 +2,7 @@ from .member import Member
 from .user import User
 from .db import db
 from sqlalchemy.sql import func
+from sqlalchemy import ForeignKey
 
 class Server(db.Model):
     __tablename__ = 'servers'
@@ -12,7 +13,7 @@ class Server(db.Model):
     private = db.Column(db.Boolean)
     is_DM = db.Column(db.Boolean)
     server_description = db.Column(db.String(255))
-    owner_id = db.Column(db.Integer, foreign_key=True)
+    owner_id = db.Column(db.Integer, ForeignKey("owners.id"))
     created_at = db.Column(db.DateTime(), nullable=False,server_default=func.now())
     updated_at = db.Column(db.DateTime(), nullable=False,onupdate=func.now(), default=func.now())
  #relationship
