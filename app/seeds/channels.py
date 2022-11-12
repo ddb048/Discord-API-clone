@@ -42,14 +42,13 @@ def seed_channels():
     is_voice=False,
     description="Welcome all new members",
     server_id=4
-    ),
+    )
   channel8 = Channel(
     name="general",
     is_voice=False,
     description="General chat",
     server_id=4
     )
-
   channel9 = Channel(
     name="welcome",
     is_voice=False,

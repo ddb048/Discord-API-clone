@@ -1,4 +1,4 @@
-from app.models import db, Member, Roles
+from app.models import db, Member
 # REVIEW  do i need to import Roles?
 
 def seed_members():
