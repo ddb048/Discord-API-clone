@@ -13,3 +13,12 @@ class Channel(db.Model):
     updated_at = db.Column(db.DateTime(), nullable=False,onupdate=func.now(), default=func.now())
  #relationship
     servers = db.relationship('Server', back_populates = 'channels')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'is_voice': self.is_voice,
+            'description': self.description,
+            'server_id':self.owner_id
+        }
