@@ -1,6 +1,6 @@
 from app.models import db, Message
 def seed_messages():
-  # member 1 in Pride Eye(private) channel
+  # member 1 in Pride Eye(private) channel 
   msg1=Message(
     message_body='Hey there, friend! How are you?',
     server_id= 10,
