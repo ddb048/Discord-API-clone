@@ -7,7 +7,7 @@ from flask_wtf import FlaskForm
 def channel_exists(form, field):
     name = field.data
     server_name = Channel.query.filter(Channel.name == name).first()
-    if name:
+    if server_name:
         raise ValidationError('Channel with this name is already in use')
 
 class new_channel(FlaskForm):
@@ -16,4 +16,3 @@ class new_channel(FlaskForm):
     description = StringField('Description')
     is_voice = BooleanField('Direct massege', default = False)
     server_id = IntegerField('Belong to server')
-
