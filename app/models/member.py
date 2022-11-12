@@ -22,5 +22,5 @@ class Member(db.Model):
    server_id = db.Column(db.ForeignKey("servers.id"), primary_key=True)
    created_at = db.Column(db.DateTime(), nullable=False,server_default=func.now())
    updated_at = db.Column(db.DateTime(), nullable=False,onupdate=func.now(), default=func.now())
-   server = db.relationship('Server', back_populates='users')
-   user = db.relationship('User', back_populates='servers')
+   servers = db.relationship('Server', back_populates='users')
+   users = db.relationship('User', back_populates='servers')
