@@ -8,6 +8,8 @@ class User(db.Model, UserMixin):
     __tablename__ = 'users'
 #TODO - add columns for first name and last name
     id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(32))
+    last_name = db.Column(db.String(32))
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
