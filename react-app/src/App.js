@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
+import NavBar from './components/Navbar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
@@ -13,6 +13,8 @@ import { authenticate } from './store/session';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+
+  const session = useSelector((state) => state.session);
 
   useEffect(() => {
     (async () => {
@@ -27,8 +29,15 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <Route exact path='/'>
+        {session.user && <Redirect to='/servers/@me' />}
+        <NavBar />
+      </Route>
+
       <Switch>
+        <Route path='/' exact={true} >
+          <Splash />
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
@@ -41,8 +50,8 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path='/' exact={true} >
-          <Splash />
+        <Route path='/servers'>
+          <h1>servers</h1>
         </Route>
       </Switch>
     </BrowserRouter>
