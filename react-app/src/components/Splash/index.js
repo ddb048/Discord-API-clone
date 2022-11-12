@@ -1,5 +1,6 @@
 import React from "react";
 import signup_login from "../../Images/discord-signup-login.png";
+import splash_1a from "../../Images/discord-splash-1a.png";
 import './index.css';
 import { Link } from 'react-router-dom';
 
@@ -13,7 +14,7 @@ function Splash() {
                     can spend time together.
                     A place that makes it easy to talk every day and hang out often. Within a safe and accepting space.
                 </p>
-                <img src="Images/discord-splash-1a.png" alt='clouds' />
+                <img src={splash_1a} alt='clouds' />
                 <img src="Images/discord-splash-1b.png" alt='people - left?' />
 
             </div>
