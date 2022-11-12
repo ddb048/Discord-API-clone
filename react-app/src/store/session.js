@@ -101,8 +101,8 @@ export const signUp = (username, email, password) => async (dispatch) => {
 }
 
 /**********************REDUCER********************************** */
-let initialState={}
-export default function reducer(state = initialState, action) {
+let initialState = {}
+export default function sessionReducer(state = initialState, action) {
     switch (action.type) {
         case SET_USER:
             return { user: action.payload }
