@@ -6,7 +6,7 @@ from sqlalchemy.sql import func
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
-
+#TODO - add columns for first name and last name
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime(), nullable=False,onupdate=func.now(), default=func.now())
     # relationship
     servers = db.relationship(
-        'Server', secondary=Member, back_populates='users', cascade="all, delete-orphan")
+        'Server', secondary="Member", back_populates='users', cascade="all, delete-orphan")
 
     @property
     def password(self):
@@ -28,6 +28,7 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+#TODO - add remaining columns to dictionary which match the backend
     def to_dict(self):
         return {
             'id': self.id,
