@@ -17,6 +17,7 @@ class Roles(enum.Enum):
 class Member(db.Model):
    __tablename__= 'members'
 
+   id = db.Column(db.Integer, primary_key=True)
    roles = db.Column(db.Enum(Roles, values_callable=lambda x: [str(user.value) for user in Roles]), nullable=False)
    user_id = db.Column(db.Integer, db.ForeignKey("users.id")),
    server_id = db.Column(db.Integer, db.ForeignKey("servers.id"))
