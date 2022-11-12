@@ -17,10 +17,9 @@ class Roles(enum.Enum):
 class Member(db.Model):
    __tablename__= 'members'
 
-   id = db.Column(db.Integer, primary_key=True)
    roles = db.Column(db.Enum(Roles, values_callable=lambda x: [str(user.value) for user in Roles]), nullable=False)
-   user_id = db.Column(db.ForeignKey("users.id")),
-   server_id = db.Column(db.ForeignKey("servers.id"))
+   user_id = db.Column(db.ForeignKey("users.id"), primary_key=True)
+   server_id = db.Column(db.ForeignKey("servers.id"), primary_key=True)
    created_at = db.Column(db.DateTime(), nullable=False,server_default=func.now())
    updated_at = db.Column(db.DateTime(), nullable=False,onupdate=func.now(), default=func.now())
    server = db.relationship('Server', back_populates='users')
