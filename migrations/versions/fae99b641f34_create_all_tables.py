@@ -64,9 +64,9 @@ def upgrade():
     )
     op.create_table('messages',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('chat_name', sa.String(), nullable=False),
+    sa.Column('message_body', sa.String(length=255), nullable=False),
     sa.Column('is_voice', sa.Boolean(), nullable=False),
-    sa.Column('description', sa.String(length=2000), nullable=True),
+    sa.Column('description', sa.String(length=255), nullable=True),
     sa.Column('server_id', sa.Integer(), nullable=True),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),

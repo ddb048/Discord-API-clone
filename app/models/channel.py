@@ -14,3 +14,4 @@ class Channel(db.Model):
     updated_at = db.Column(db.DateTime(), nullable=False,onupdate=func.now(), default=func.now())
  #relationship
     servers = db.relationship('Server', back_populates = 'channels')
+    messages = db.relationhip('Message', back_populates = 'channels')
