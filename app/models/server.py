@@ -13,7 +13,7 @@ class Server(db.Model):
     private = db.Column(db.Boolean)
     is_DM = db.Column(db.Boolean)
     server_description = db.Column(db.String(255))
-    owner_id = db.Column(db.Integer, ForeignKey("owners.id"))
+    owner_id = db.Column(db.Integer, ForeignKey("users.id"))
     created_at = db.Column(db.DateTime(), nullable=False,server_default=func.now())
     updated_at = db.Column(db.DateTime(), nullable=False,onupdate=func.now(), default=func.now())
  #relationship
