@@ -7,6 +7,7 @@ from ..forms.new_server_form import New_server
 servers_routes = Blueprint('servers', __name__)
 
 
+# SECTION - Get all channels by server id
 @servers_routes.route('/<int:id>/channels')
 @login_required
 def get_channels(id):
@@ -46,10 +47,10 @@ def user_servers():
     return {'servers': res}, 200
 
 
-#SECTION - get single server
+# SECTION - get single server
 @servers_routes.route('/<int:id>')
 def server(id):
-    server=Server.query.get(int(id))
+    server = Server.query.get(int(id))
     if server:
         return server.to_dict(), 200
     else:
@@ -57,7 +58,6 @@ def server(id):
             'message': 'server not found',
             'Status code': 404
         }, 404
-
 
 
 # SECTION - Create a new server
@@ -135,19 +135,18 @@ def update_server(id):
         }, 404
 
 
-
-#SECTION - delete a serve
+# SECTION - delete a serve
 # TODO - error handling needs to be added
 @servers_routes.route('/@me/<int:id>', methods=['DELETE'])
 @login_required
 def delete_server(id):
-    server=Server.query.get(int(id))
+    server = Server.query.get(int(id))
     if server:
         db.session.delete(server)
         db.session.commit()
         return {
             'message': 'Server successfully deleted',
-            'Status code':302
+            'Status code': 302
         }, 302
     else:
         return {
