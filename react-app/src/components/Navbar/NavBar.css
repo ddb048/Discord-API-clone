@@ -1,0 +1,26 @@
+.splash-navbar-container{
+  background-color: #404eed;
+  /* border: 1px dashed; */
+  padding: 20px 20px;
+
+}
+.splash-nav-box{
+  display: grid;
+  box-sizing: border-box;
+  grid-template-columns: repeat(3, 1fr);
+}
+.splash-logo-left{
+  /* border: 1px solid wheat; */
+}
+.splash-mid-links{
+  display: flex;
+  /* border: 1px solid wheat; */
+
+}
+.splash-logout-right{
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 37px;
+  /* border: 1px solid wheat; */
+
+}
