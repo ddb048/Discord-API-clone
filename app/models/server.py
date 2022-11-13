@@ -25,8 +25,16 @@ class Server(db.Model):
         return {
             'id': self.id,
             'name': self.name,
+            'Server_description':self.server_description,
             'preview_image': self.preview_image,
             'private': self.private,
             'is_DM': self.is_DM,
-            'owner_id':self.owner_id
+            'owner_id':self.owner_id,
+            'created_at':self.created_at,
+            'updated_at':self.updated_at,
+            "messages": [message.mess_to_dict() for message in self.messages],
+            'mess_count':len(self.messages),
+            'num_member':len(self.users),
+            'members':[user.user_id for user in self.users ],
+            'channels':[channel.id for channel in self.channels]
         }
