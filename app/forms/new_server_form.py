@@ -1,23 +1,15 @@
 from app.models import Server
-from wtforms.validators import DataRequired, Email, ValidationError
-from wtforms import StringField,BooleanField,IntegerField
+from wtforms.validators import DataRequired
+from wtforms import StringField,BooleanField,IntegerField,TextAreaField
 from flask_wtf import FlaskForm
 
 
-def server_exists(form, field):
-    name = field.data
-    server_name = Server.query.filter(Server.name == name).first()
-    if name:
-        raise ValidationError('Server with this name is already in use')
 
-class new_server(FlaskForm):
+class New_server(FlaskForm):
 
-    name = StringField('Server name', validators=[DataRequired(),server_exists()])
+    name = StringField('Server Name', validators=[DataRequired()])
     preview_image = StringField('Image')
     private = BooleanField('Private')
-    is_DM = BooleanField('Direct massege', default = False)
-    owner_id = IntegerField('Server master', default = current_user.id)
-
-
-
-    
+    server_description=TextAreaField('Description')
+    is_DM = BooleanField('Direct Message', default = False)
+    owner_id = IntegerField('Server Owner')
