@@ -35,52 +35,59 @@ function Splash() {
 						<img id="right-people" src={splash_1c} alt="people on the right" />
 					</div>
 				</div>
-				<div>
 					<div className="Splash-detail odd">
 						<div className="row">
-							<img id='splash2'src={splash_2} alt="" />
-							<div className="sub-title">
-								Create an Invite-Only Place Where You Belong
-								<p className="sub-subtext">
-									Q-Cord servers are organized into topic-based channels where
-									you can collaborate, share, and just talk about your day
-									without clogging up a group chat.
-								</p>
+							<img id="splash2" src={splash_2} alt="" />
+							<div className="description-right">
+								<h2 className="sub-title">
+									Create an Invite-Only Place Where You Belong
+								</h2>
+									<p className="sub-subtext">
+										Q-Cord servers are organized into topic-based channels where
+										you can collaborate, share, and just talk about your day
+										without clogging up a group chat.
+									</p>
 							</div>
 						</div>
 					</div>
 					<div className="Splash-detail even">
 						<div className="row">
-							<img id='splash3'src={splash_3} alt="" />
-							<div className="sub-title">Where Hanging Out is Easy</div>
-							<p className="sub-subtext">
-								Grab a seat in a voice channel when youre free. Friends in your
-								server can see youre around and instantly pop in to talk without
-								having to call.
-							</p>
+							<img id="splash3" src={splash_3} alt="" />
+							<div className="description-left">
+								<div className="sub-title">Where Hanging Out is Easy</div>
+								<div className="sub-subtext">
+									Grab a seat in a voice channel when youre free. Friends in
+									your server can see youre around and instantly pop in to talk
+									without having to call.
+								</div>
+							</div>
 						</div>
 					</div>
 					<div className="Splash-detail odd">
 						<div className="row">
-							<img id='splash4' src={splash_4} alt="" />
-							<div className="sub-title">From few to a Fandom</div>
-							<p className="sub-subtext">
-								Get any community running with moderation tools and custom
-								member access. Give members special powers, set up private
-								channels, and more!
-							</p>
+							<img id="splash4" src={splash_4} alt="" />
+							<div className="description-right">
+								<div className="sub-title">From few to a Fandom</div>
+								<div className="sub-subtext">
+									Get any community running with moderation tools and custom
+									member access. Give members special powers, set up private
+									channels, and more!
+								</div>
+							</div>
 						</div>
 					</div>
 					<div className="Splash-detail even">
 						<div className="row">
-							<img id='splash5' src={splash_5} alt="" />
-							<div className="sub-title">Reliable tech for staying close</div>
-							<p className="sub-subtext">
-								Low-latency voice feels like youre in the same room!
-							</p>
+							<div className="description">
+								<h2 className="bottom-sub-title">Reliable tech for staying close</h2>
+								<p className="bottom-sub-subtext">
+									Low-latency voice feels like youre in the same room!
+								</p>
+							</div>
+							<img id="splash5" src={splash_5} alt="" />
 						</div>
 					</div>
-				</div>
+
 				<div className="Splash-footer"></div>
 			</div>
 		</div>
