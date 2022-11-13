@@ -3,6 +3,10 @@ import signup_login from '../../Images/discord-signup-login.png';
 import splash_1a from '../../Images/discord-splash-1a.png';
 import splash_1b from '../../Images/discord-splash-1b.png';
 import splash_1c from '../../Images/discord-splash-1c.png';
+import splash_2 from '../../Images/discord-splash-2.png';
+import splash_3 from '../../Images/discord-splash-3.png';
+import splash_4 from '../../Images/discord-splash-4.png';
+import splash_5 from '../../Images/discord-splash-5.png';
 import './index.css';
 import { Link } from 'react-router-dom';
 
@@ -33,20 +37,21 @@ function Splash() {
 				</div>
 				<div>
 					<div className="Splash-detail odd">
-					<div className='row'>
-						
-					</div>
-						<div className="sub-title">
-							Create an Invite-Only Place Where You Belong
-							<p className="sub-subtext">
-								Q-Cord servers are organized into topic-based channels where you
-								can collaborate, share, and just talk about your day without
-								clogging up a group chat.
-							</p>
+						<div className="row">
+							<img id='splash2'src={splash_2} alt="" />
+							<div className="sub-title">
+								Create an Invite-Only Place Where You Belong
+								<p className="sub-subtext">
+									Q-Cord servers are organized into topic-based channels where
+									you can collaborate, share, and just talk about your day
+									without clogging up a group chat.
+								</p>
+							</div>
 						</div>
 					</div>
-					<div className="details-container grey">
-						<div className="Splash-detail even">
+					<div className="Splash-detail even">
+						<div className="row">
+							<img id='splash3'src={splash_3} alt="" />
 							<div className="sub-title">Where Hanging Out is Easy</div>
 							<p className="sub-subtext">
 								Grab a seat in a voice channel when youre free. Friends in your
@@ -56,18 +61,24 @@ function Splash() {
 						</div>
 					</div>
 					<div className="Splash-detail odd">
-						<div className="sub-title">From few to a Fandom</div>
-						<p className="sub-subtext">
-							Get any community running with moderation tools and custom member
-							access. Give members special powers, set up private channels, and
-							more!
-						</p>
+						<div className="row">
+							<img id='splash4' src={splash_4} alt="" />
+							<div className="sub-title">From few to a Fandom</div>
+							<p className="sub-subtext">
+								Get any community running with moderation tools and custom
+								member access. Give members special powers, set up private
+								channels, and more!
+							</p>
+						</div>
 					</div>
 					<div className="Splash-detail even">
-						<div className="sub-title">Reliable tech for staying close</div>
-						<p className="sub-subtext">
-							Low-latency voice feels like youre in the same room!
-						</p>
+						<div className="row">
+							<img id='splash5' src={splash_5} alt="" />
+							<div className="sub-title">Reliable tech for staying close</div>
+							<p className="sub-subtext">
+								Low-latency voice feels like youre in the same room!
+							</p>
+						</div>
 					</div>
 				</div>
 				<div className="Splash-footer"></div>

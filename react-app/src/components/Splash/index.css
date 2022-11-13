@@ -70,6 +70,18 @@
     left:59%; */
 }
 
+#splash2{
+
+}
+#splash3{
+
+}
+#splash4{
+
+}
+#splash5{
+    
+}
 .title {
     /* z-index: 3;
     border: 1px solid black;
@@ -95,6 +107,12 @@
     font-style: normal;
     font-size: 20px;
     /* font-weight: 100; */
+}
+
+.row{
+    padding-top: 56px;
+    padding-bottom: 56px;
+    /* transition: opacity .6s .1s,transform .6s ease, .6s ease; */
 }
 .odd{
     width: 100%;
