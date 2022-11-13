@@ -15,3 +15,14 @@ class Message(db.Model):
     servers = db.relationship('Server', back_populates='messages')
     users = db.relationship('User', back_populates='messages')
     channels = db.relationship('Channel', back_populates='messages')
+
+    def mess_to_dict(self):
+      return{
+            'id':self.id,
+            'message_body':self.message_body,
+            'owner_id':self.owner_id,
+            'channel_id':self.channel_id,
+            'server_id':self.server_id,
+            'created_at':self.created_at,
+            'updated_at':self.updated_at
+        }
