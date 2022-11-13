@@ -17,7 +17,7 @@ class Server(db.Model):
     created_at = db.Column(db.DateTime(), nullable=False,server_default=func.now())
     updated_at = db.Column(db.DateTime(), nullable=False,onupdate=func.now(), default=func.now())
  #relationship
-    users = db.relationship('Member', back_populates='servers')
+    users = db.relationship('Member', back_populates='servers', cascade="all, delete")
     messages = db.relationship('Message', back_populates='servers', cascade="all,delete")
     channels = db.relationship('Channel', back_populates='servers', cascade="all,delete")
 
