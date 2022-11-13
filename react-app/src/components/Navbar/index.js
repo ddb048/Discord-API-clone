@@ -1,36 +1,42 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
-
+import './NavBar.css'
 const NavBar = () => {
   return (
+    <div className='splash-navbar-container'>
     <nav>
-      <ul>
-        <li>
+      <div className='splash-nav-box'>
+        <div className='splash-logo-left'>
           <NavLink to='/' exact={true} activeClassName='active'>
-            Home
+            Q-CORD
           </NavLink>
-        </li>
-        <li>
+        </div>
+        <div className='splash-mid-links'>
+        <div>
           <NavLink to='/login' exact={true} activeClassName='active'>
             Login
           </NavLink>
-        </li>
-        <li>
+        </div>
+        <div>
           <NavLink to='/sign-up' exact={true} activeClassName='active'>
             Sign Up
           </NavLink>
-        </li>
-        <li>
+        </div>
+        <div>
           <NavLink to='/users' exact={true} activeClassName='active'>
             Users
           </NavLink>
-        </li>
-        <li>
+        </div>
+        </div>
+        <div className='splash-logout-right'>
+        <div>
           <LogoutButton />
-        </li>
-      </ul>
+        </div>
+        </div>
+      </div>
     </nav>
+    </div>
   );
 }
 
