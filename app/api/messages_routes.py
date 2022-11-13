@@ -1,12 +1,23 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
-from app.models import Message, db
+from app.models import Channel,Message, db
 from app.forms import New_message
 from .auth_routes import validation_errors_to_error_messages
 messages_routes = Blueprint('messages',__name__)
 
 # NOTE - Get all messages by channel id (similar to get channel by id)
-
+@messages_routes.route('/<int:channel_id>')
+@login_required
+def get_messages(channel_id):
+    messages = Message.query.filter_by(channel_id = int(channel_id))
+    print('============>', messages)
+    if messages:
+       
+        return [message.mess_to_dict() for message in messages], 200
+    return {
+        'errors': "channel not found",
+        'status code': 404
+    }, 404
 
 # NOTE Create and Update a message
 @messages_routes.route('<int:server_id>/<int:channel_id>', methods = ['POST'])
@@ -28,7 +39,7 @@ def create_message(server_id,channel_id):
          
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-
+# NOTE update a message
 @messages_routes.route('<int:server_id>/<int:channel_id>/<int:message_id>', methods=['PUT'])
 def message_update(server_id,channel_id,message_id):
     message = Message.query.get(message_id)
