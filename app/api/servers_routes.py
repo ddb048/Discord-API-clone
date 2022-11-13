@@ -6,7 +6,7 @@ from ..forms.new_server_form import New_server
 servers_routes = Blueprint('servers', __name__)
 
 
-# SECTION -  - Get all server/ Discoveries
+# SECTION -  - Get all servers/ Discoveries
 # TODO - error handling needs to be added
 @servers_routes.route('/')
 def servers():
@@ -16,7 +16,7 @@ def servers():
     return {'servers': [server.to_dict() for server in servers]}
 
 
-# SECTION - Get all sever that are_owned by curr_user
+# SECTION - Get all servers that are_owned by curr_user
 #           and curr_user is_member.
 # TODO - error handling needs to be added
 @servers_routes.route('/@me')
@@ -34,6 +34,20 @@ def user_servers():
         elif id in server['members']:
             res.append(server)
     return {'servers': res}, 200
+
+
+#SECTION - get single server
+@servers_routes.route('/<int:id>')
+def server(id):
+    server=Server.query.get(int(id))
+    if server:
+        return server.to_dict(), 200
+    else:
+        return {
+            'message': 'server not found',
+            'Status code': 404
+        }, 404
+
 
 
 # SECTION - Create a new server
