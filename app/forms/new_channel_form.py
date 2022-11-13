@@ -4,15 +4,10 @@ from wtforms import StringField,BooleanField,IntegerField
 from flask_wtf import FlaskForm
 
 
-def channel_exists(form, field):
-    name = field.data
-    server_name = Channel.query.filter(Channel.name == name).first()
-    if server_name:
-        raise ValidationError('Channel with this name is already in use')
 
-class new_channel(FlaskForm):
+class New_channel(FlaskForm):
 
-    name = StringField('Server name', validators=[DataRequired(),channel_exists()])
+    name = StringField('Server name', validators=[DataRequired()])
     description = StringField('Description')
     is_voice = BooleanField('Direct massege', default = False)
     server_id = IntegerField('Belong to server')

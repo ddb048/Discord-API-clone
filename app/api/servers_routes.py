@@ -1,9 +1,19 @@
-from flask import Blueprint, jsonify, request, redirect
+from flask import Blueprint, request, redirect
 from flask_login import login_required, current_user
 from app.models import Member, Server, Channel, db
+from .auth_routes import validation_errors_to_error_messages
 from ..forms.new_server_form import New_server
 
 servers_routes = Blueprint('servers', __name__)
+
+
+@servers_routes.route('/<int:id>/channels')
+@login_required
+def get_channels(id):
+
+    channels = Channel.query.filter(Channel.server_id == int(id)).all()
+
+    return {'channels': [channel.to_dict() for channel in channels]}
 
 
 # SECTION -  - Get all servers/ Discoveries
@@ -99,10 +109,7 @@ def create_server():
 
         return server.to_dict(), 200
     else:
-        return {
-            'message': 'unable to add server',
-            'code': 404
-        }, 404
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 # SECTION - update a server
@@ -119,6 +126,7 @@ def update_server(id):
 
             db.session.commit()
             return server.to_dict(), 201
+        return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
     else:
         return {
@@ -137,7 +145,6 @@ def delete_server(id):
     if server:
         db.session.delete(server)
         db.session.commit()
-        redirect('/@me')
         return {
             'message': 'Server successfully deleted',
             'Status code':302
