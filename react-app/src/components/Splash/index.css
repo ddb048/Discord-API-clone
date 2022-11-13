@@ -1,3 +1,118 @@
+/* css for the whole splash page */
+.Splash-container {
+    height:100%;
+    overflow-x: hidden;
+}
+
+/* css for the splash title  */
 .Splash-title {
     background-color: rgb(64, 78, 237);
+    /* width:100%; */
+    /* position: relative; */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 500px;
+    /* overflow: hidden; */
+    padding-top: 56px;
+    /* padding-bottom: 56px; */
+}
+.splash-text-container{
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: repeat(3, 1fr);
+    /* border: 1px solid black; */
+    /* padding-top: 56px;
+    padding-bottom: 56px; */
+    z-index:1;
+    width:100%;
+    /* gap: 0 30px; */
+    /* padding:0 24px; */
+}
+.splash-body{
+    grid-column: 2;
+    text-align: center;
+    /* border: 1px solid pink; */
+    /* width: 500px; */
+}
+.splash-text{
+    color: white;
+}
+.splash-title-imgs{
+    z-index: 0;
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+/* css for splash title img - clouds */
+#clouds {
+    z-index: 1;
+    position: absolute;
+    top:-144%;
+    /* left:50%; */
+    margin-left: -459px;
+
+}
+
+#left-people{
+    position:absolute;
+    z-index: 1;
+    top:-95px;
+
+
+}
+#right-people{
+    z-index: 1;
+    position: absolute;
+    top: -40%;
+    left: 68%;
+    /* top: -350px;
+    left:59%; */
+}
+
+.title {
+    /* z-index: 3;
+    border: 1px solid black;
+    position: absolute;
+    top: 50%; */
+    left: 20%;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Seymour One', sans-serif;
+    font-size: 45px;
+    /* font-weight: 800; */
+    /* color: white; */
+}
+
+.subtext {
+    /* z-index: 3; */
+    /* border: 1px solid black;
+    position: absolute;
+    top: 60%;
+    left: 48%;
+    transform: translate(-50%,-50%);
+    color: white; */
+    font-family: adelle-sans, sans-serif;
+    font-style: normal;
+    font-size: 20px;
+    /* font-weight: 100; */
+}
+.odd{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.even{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.sub-title{
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Seymour One', sans-serif;
+}
+.sub-subtext{
+    font-family: adelle-sans, sans-serif;
+    font-style: normal;
 }
