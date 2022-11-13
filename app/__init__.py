@@ -10,7 +10,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.servers_routes import servers_routes
 from .api.channel_routes import channel_routes
-from api.messages_routes
+from .api.messages_routes import messages_routes
 
 from .seeds import seed_commands
 
