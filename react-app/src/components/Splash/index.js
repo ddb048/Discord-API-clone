@@ -186,7 +186,7 @@ function Splash() {
 										to={{ pathname: 'https://www.linkedin.com/in/moran-even/' }}
 										target="_blank"
 									>
-										<i className="fa-brands fa-linkedin"></i>
+										<i class="fa-brands fa-linkedin"></i>
 									</Link>
 								</div>
 							</div>
