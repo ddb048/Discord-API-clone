@@ -25,3 +25,11 @@ class Member(db.Model):
    updated_at = db.Column(db.DateTime(), nullable=False,onupdate=func.now(), default=func.now())
    servers = db.relationship('Server', back_populates='users')
    users = db.relationship('User', back_populates='servers')
+
+
+   def to_dict(self):
+    return{
+        'role':self.roles.value,
+        'user_id':self.user_id,
+        'server_id':self.server_id,
+    }
