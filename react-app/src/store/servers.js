@@ -1,4 +1,4 @@
-// NOTE do we need csrf on the fronend side?
+// NOTE do we need csrf on the fronend side? * DAVID SAYS NO
 
 /********************TYPES******************* */
 
