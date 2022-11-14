@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import Splash from './components/Splash'
+import Servers from './components/Servers';
 import { authenticate } from './store/session';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
       <Route exact path='/'>
         {session.user && <Redirect to='/servers/@me' />}
         <NavBar />
+
       </Route>
 
       <Switch>
@@ -50,8 +52,8 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path='/servers'>
-          <h1>servers</h1>
+        <Route path='/servers/@me'>
+          <Servers />
         </Route>
       </Switch>
     </BrowserRouter>
