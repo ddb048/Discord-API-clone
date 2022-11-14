@@ -10,9 +10,8 @@ messages_routes = Blueprint('messages',__name__)
 @login_required
 def get_messages(channel_id):
     messages = Message.query.filter_by(channel_id = int(channel_id))
-    print('============>', messages)
     if messages:
-       
+
         return [message.mess_to_dict() for message in messages], 200
     return {
         'errors': "channel not found",
@@ -25,7 +24,7 @@ def get_messages(channel_id):
 def create_message(server_id,channel_id):
     form = New_message()
     form['csrf_token'].data = request.cookies['csrf_token']
-   
+
     if form.validate_on_submit():
             message = Message()
             form.populate_obj(message)
@@ -35,8 +34,8 @@ def create_message(server_id,channel_id):
             db.session.add(message)
             db.session.commit()
             return message.mess_to_dict()
-                 
-         
+
+
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # NOTE update a message
@@ -53,7 +52,7 @@ def message_update(server_id,channel_id,message_id):
                 message.owner_id = int(current_user.id)
                 db.session.commit()
                 return message.mess_to_dict()
-        
+
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
@@ -69,4 +68,3 @@ def delete_message(message_id):
         return {"message": "Message successfully seleted", "status code": 302}, 302
     return {"message": "Message not found",
             "status code": 404}, 404
-   
