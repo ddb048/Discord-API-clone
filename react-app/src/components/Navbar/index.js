@@ -1,43 +1,65 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
-import './NavBar.css'
+import './NavBar.css';
 const NavBar = () => {
-  return (
-    <div className='splash-navbar-container'>
-    <nav>
-      <div className='splash-nav-box'>
-        <div className='splash-logo-left'>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Q-CORD
-          </NavLink>
-        </div>
-        <div className='splash-mid-links'>
-        <div>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
-        </div>
-        <div>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-        </div>
-        <div>
-          <NavLink to='/discover' exact={true} activeClassName='active'>
-            Discover
-          </NavLink>
-        </div>
-        </div>
-        <div className='splash-logout-right'>
-        <div>
-          <LogoutButton />
-        </div>
-        </div>
-      </div>
-    </nav>
-    </div>
-  );
-}
+	const history = useHistory();
+	const login = () => {
+		history.push('/login');
+	};
+
+	return (
+		<div className="splash-navbar-container">
+			<nav>
+				<div className="splash-nav-box">
+					<div className="splash-logo-left">
+          <div className='link-button'>
+						<NavLink className="link-text" to="/" exact={true} activeClassName="active">
+							Q-CORD
+						</NavLink>
+          </div>
+					</div>
+					<div className="splash-mid-links">
+						<div className='link-button'>
+							<NavLink
+								className="link-text"
+								to="/discover"
+								exact={true}
+								activeClassName="active"
+							>
+								Discover
+							</NavLink>
+						</div>
+						<div className='link-button'>
+							<NavLink
+								className="link-text"
+								to="/safety"
+								exact={true}
+								activeClassName="active"
+							>
+								Safety
+							</NavLink>
+						</div>
+						<div className='link-button'>
+							<NavLink
+								className="link-text"
+								to="/support"
+								exact={true}
+								activeClassName="active"
+							>
+								Support
+							</NavLink>
+						</div>
+					</div>
+					<div className="splash-login-right">
+						<button className="login-button" onClick={login}>
+							Log in
+						</button>
+					</div>
+				</div>
+			</nav>
+		</div>
+	);
+};
 
 export default NavBar;
