@@ -97,15 +97,15 @@ function Splash() {
 					<div className='footer-title'>Languages Used</div>
 					<div className='language-button-div'>
 					<Link className='language-button' to={{pathname:'https://www.python.org/doc'}} target='_blank'>
-					<i class="fa-brands fa-python"></i>
+					<i className="fa-brands fa-python"></i>
 					</Link>
 
 				<Link className='language-button' to={{pathname:'https://reactjs.org/'}} target='_blank'>
-				<i class="fa-brands fa-react"></i>
+				<i className="fa-brands fa-react"></i>
 					</Link><Link className='language-button' to={{pathname:'https://nodejs.org/en/docs/'}} target='_blank'>
-					<i class="fa-brands fa-node-js"></i>
+					<i className="fa-brands fa-node-js"></i>
 					</Link><Link className='language-button' to={{pathname:'https://developer.mozilla.org/en-US/docs/Glossary/HTML5'}} target='_blank'>
-					<i class="fa-brands fa-html5"></i>
+					<i className="fa-brands fa-html5"></i>
 					</Link>
 					</div>
 					</div>
@@ -127,7 +127,7 @@ function Splash() {
 									}}
 									target="_blank"
 								>
-									<i class="fa-brands fa-linkedin"></i>
+									<i className="fa-brands fa-linkedin"></i>
 								</Link>
 							</div>
 						</div>
@@ -149,7 +149,7 @@ function Splash() {
 								}}
 								target="_blank"
 							>
-								<i class="fa-brands fa-linkedin"></i>
+								<i className="fa-brands fa-linkedin"></i>
 							</Link>
 							</div>
 						</div>
@@ -169,7 +169,7 @@ function Splash() {
 								to={{ pathname: '' }}
 								target="_blank"
 							>
-								<i class="fa-brands fa-linkedin"></i>
+								<i className="fa-brands fa-linkedin"></i>
 							</Link>
 							</div>
 						</div>
