@@ -1,5 +1,6 @@
-from app.models import db, Server
- 
+from app.models import db, Server, environment, SCHEMA
+
+
 def seed_servers():
   server1 = Server(
     name='Genderqueer',
@@ -97,11 +98,16 @@ def seed_servers():
   db.session.commit()
 
 
-    # Uses a raw SQL query to TRUNCATE the users table.
-# SQLAlchemy doesn't have a built in function to do this
-# TRUNCATE Removes all the data from the table, and RESET IDENTITY
-# resets the auto incrementing primary key, CASCADE deletes any
-# dependent entities
+# Uses a raw SQL query to TRUNCATE or DELETE the servers table. SQLAlchemy doesn't
+# have a built in function to do this. With postgres in production TRUNCATE
+# removes all the data from the table, and RESET IDENTITY resets the auto
+# incrementing primary key, CASCADE deletes any dependent entities.  With
+# sqlite3 in development you need to instead use DELETE to remove all data and
+# it will reset the primary keys for you as well.
 def undo_servers():
-    db.session.execute('TRUNCATE servers RESTART IDENTITY CASCADE;')
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.servers RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute("DELETE FROM servers")
+
     db.session.commit()

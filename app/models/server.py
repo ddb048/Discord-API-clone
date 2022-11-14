@@ -3,6 +3,7 @@ from .user import User
 from .db import db
 from sqlalchemy.sql import func
 from sqlalchemy import ForeignKey
+from sqlalchemy.schema import Index
 
 class Server(db.Model):
     __tablename__ = 'servers'
@@ -20,6 +21,8 @@ class Server(db.Model):
     users = db.relationship('Member', back_populates='servers', cascade="all, delete")
     messages = db.relationship('Message', back_populates='servers', cascade="all,delete")
     channels = db.relationship('Channel', back_populates='servers', cascade="all,delete")
+
+
 
     def to_dict(self):
         return {
@@ -39,4 +42,4 @@ class Server(db.Model):
             'channels':[channel.id for channel in self.channels]
         }
 
-  
+# Index('servers_owner_id_members_roles_idx', Server.owner_id, Member.roles)
