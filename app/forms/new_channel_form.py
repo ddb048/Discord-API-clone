@@ -9,5 +9,4 @@ class New_channel(FlaskForm):
 
     name = StringField('Server name', validators=[DataRequired()])
     description = StringField('Description')
-    is_voice = BooleanField('Direct message', default = False)
-    server_id = IntegerField('Belong to server')
+    is_voice = BooleanField('Voice Channel', default = False)
