@@ -12,4 +12,3 @@ class New_server(FlaskForm):
     private = BooleanField('Private')
     server_description=TextAreaField('Description')
     is_DM = BooleanField('Direct Message', default = False)
-    owner_id = IntegerField('Server Owner')
