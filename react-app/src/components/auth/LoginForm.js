@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
-import login_background from '../../Images/discord-signup-login.png';
 import './LoginForm.css';
 const LoginForm = () => {
 	const [errors, setErrors] = useState([]);
@@ -34,7 +33,7 @@ const LoginForm = () => {
 	return (
 		<>
 			<div className="form-container">
-			<div className="background" />
+				<div className="background" />
 				<form className='form-card' onSubmit={onLogin}>
 					<div>
 						{errors.map((error, ind) => (
@@ -42,9 +41,9 @@ const LoginForm = () => {
 						))}
 					</div>
 					<div>
-          <div>
-						<label htmlFor="email">Email</label>
-          </div>
+						<div>
+							<label htmlFor="email">Email</label>
+						</div>
 						<input
 							name="email"
 							type="text"
@@ -54,9 +53,9 @@ const LoginForm = () => {
 						/>
 					</div>
 					<div>
-          <div>
-						<label htmlFor="password">Password</label>
-          </div>
+						<div>
+							<label htmlFor="password">Password</label>
+						</div>
 						<input
 							name="password"
 							type="password"
@@ -65,9 +64,9 @@ const LoginForm = () => {
 							onChange={updatePassword}
 						/>
 					</div>
-          <div>
+					<div>
 						<button type="submit">Login</button>
-          </div>
+					</div>
 				</form>
 			</div>
 		</>
