@@ -42,4 +42,4 @@ class Server(db.Model):
             'channels':[channel.id for channel in self.channels]
         }
 
-Index('servers_owner_id_members_roles_idx', Server.owner_id, Member.roles)
+# Index('servers_owner_id_members_roles_idx', Server.owner_id, Member.roles)
