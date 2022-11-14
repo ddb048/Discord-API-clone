@@ -15,7 +15,6 @@ function Splash() {
 		<div className="Splash-container">
 			<div>
 				<div className="Splash-title">
-					<div className="header"></div>
 					<div className="splash-text-container">
 						<div className="splash-body">
 							<div className="splash-text">
@@ -166,7 +165,7 @@ function Splash() {
 							</Link>
 							<Link
 								className="contact-button"
-								to={{ pathname: '' }}
+								to={{ pathname: 'https://www.linkedin.com/in/david-burch-26b92b226/' }}
 								target="_blank"
 							>
 								<i className="fa-brands fa-linkedin"></i>

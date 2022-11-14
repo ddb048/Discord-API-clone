@@ -5,6 +5,10 @@
 
 }
 
+/* media screen sizing for  */
+@media screen and (min-width: 1024px) {
+    
+}
 /* css for the splash title  */
 .Splash-title {
     background-color: rgb(64, 78, 237);
