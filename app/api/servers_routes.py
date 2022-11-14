@@ -17,6 +17,79 @@ def get_channels(id):
     return {'channels': [channel.to_dict() for channel in channels]}
 
 
+# SECTION - Get all members of a server
+@servers_routes.route('/<int:id>/members')
+# @login_required
+def get_all_member(id):
+    member = Member.query.filter_by(server_id=int(id)).all()
+    if len(member):
+        res = []
+        for x in member:
+            res.append(x.users.to_dict())
+        return res, 200
+    else:
+        return {
+            "message": 'no members found',
+            'Status code': 404
+        }, 404
+
+
+# SECTION - Add a user to a server
+@servers_routes.route('/<int:server_id>/members/<int:user_id>', methods=['POST'])
+@login_required
+def add_a_member(user_id, server_id):
+    member = Member(
+        roles='Pending',
+        user_id=user_id,
+        server_id=server_id
+    )
+    db.session.add(member)
+    db.session.commit()
+    print('====>', member.to_dict())
+    print('ROLES====>', member.roles)
+    return member.to_dict()
+
+
+# SECTION -  Update roles
+@servers_routes.route('/<int:server_id>/members/<int:user_id>', methods=["PUT"])
+@login_required
+def update_role(server_id, user_id):
+    member_server_list = Member.query.filter_by(user_id=int(user_id)).all()
+    member = None
+    for x in member_server_list:
+        print('====>', x)
+        if x.server_id == server_id:
+         member=x
+    member.roles='Member'
+    db.session.commit()
+
+    return member.to_dict()
+
+
+
+# SECTION - Remove a user from a server
+@servers_routes.route('/<int:server_id>/members/<int:user_id>', methods=["DELETE"])
+@login_required
+def delete_user_from_server(server_id,user_id):
+    member_server_list = Member.query.filter_by(user_id=int(user_id)).all()
+    member = None
+    if len(member_server_list):
+      for x in member_server_list:
+        if x.server_id == server_id:
+         member=x
+      db.session.delete(member)
+      db.session.commit()
+      return{
+        'message': 'Member removed',
+        'Status code':404
+      },302
+    else:
+        return {
+            'message': 'User is not a member of this server',
+            'Status code': 404
+        }, 404
+
+
 # SECTION -  - Get all servers/ Discoveries
 # TODO - error handling needs to be added
 @servers_routes.route('/')

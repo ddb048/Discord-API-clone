@@ -38,3 +38,5 @@ class Server(db.Model):
             'members':[user.user_id for user in self.users ],
             'channels':[channel.id for channel in self.channels]
         }
+
+  
