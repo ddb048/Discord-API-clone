@@ -5,4 +5,3 @@ __pycache__/
 .DS_Store
 .vscode/
 Pipfile.lock
-instance/dev.db

@@ -183,7 +183,7 @@ function Splash() {
 									</Link>
 									<Link
 										className="contact-button"
-										to={{ pathname: '' }}
+										to={{ pathname: 'https://www.linkedin.com/in/moran-even/' }}
 										target="_blank"
 									>
 										<i class="fa-brands fa-linkedin"></i>
