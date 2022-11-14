@@ -23,5 +23,5 @@ class Channel(db.Model):
             'is_voice': self.is_voice,
             'description': self.description,
             'server_id':self.server_id,
-            'messages': [message.mess_to_dict() for message in self.messages ]
+            'messages': [message.mess_to_dict() for message in self.messages]
         }
