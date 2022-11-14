@@ -11,16 +11,48 @@
 }
 .splash-logo-left{
   /* border: 1px solid wheat; */
+  display: flex;
+  justify-content: center;
 }
 .splash-mid-links{
   display: flex;
   /* border: 1px solid wheat; */
-
+  justify-content: space-around;
+  font-size: 16px;
 }
-.splash-logout-right{
+.link-button{
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+}
+.link-text{
+  color: white;
+  font-family: adelle-sans, sans-serif;
+  font-style: normal;
+  text-decoration: none;
+}
+
+.link-text:hover{
+  color: white;
+  font-family: adelle-sans, sans-serif;
+  font-style: normal;
+  text-decoration: underline;
+}
+.splash-login-right{
+  display: flex;
+  justify-content: center;
   padding-right: 37px;
   /* border: 1px solid wheat; */
+}
 
+.login-button{
+  background-color: #FFFFFF;
+  border-radius: 40px;
+  font-size: 14px;
+  padding: 7px 16px;
+  border: none;
+}
+.login-button:hover{
+  background-color: #FFFFFF;
+  color: #5865f2;
+  box-shadow: 0px 5px 20px -5px #2228a3;
 }
