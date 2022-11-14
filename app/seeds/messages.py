@@ -1,4 +1,4 @@
-from app.models import db, Message
+from app.models import db, Message, environment, SCHEMA
 def seed_messages():
   # member 1 in Pride Eye(private) channel
   msg1=Message(
@@ -117,6 +117,16 @@ def seed_messages():
 
   db.session.commit()
 
+# Uses a raw SQL query to TRUNCATE or DELETE the messages table. SQLAlchemy doesn't
+# have a built in function to do this. With postgres in production TRUNCATE
+# removes all the data from the table, and RESET IDENTITY resets the auto
+# incrementing primary key, CASCADE deletes any dependent entities.  With
+# sqlite3 in development you need to instead use DELETE to remove all data and
+# it will reset the primary keys for you as well.
 def undo_messages():
-  db.session.execute('TRUNCATE messages RESTART IDENTITY CASCADE;')
-  db.session.commit()
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.messages RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute("DELETE FROM messages")
+
+    db.session.commit()
