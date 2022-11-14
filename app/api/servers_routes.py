@@ -97,7 +97,7 @@ def servers():
     servers = Server.query.all()
     for server in servers:
         print(server.users)
-    return {'servers': [server.to_dict() for server in servers]}
+    return {'Servers': [server.to_dict() for server in servers]}
 
 
 # SECTION - Get all servers that are_owned by curr_user
@@ -117,7 +117,7 @@ def user_servers():
             res.append(server)
         elif id in server['members']:
             res.append(server)
-    return {'servers': res}, 200
+    return {'Servers': res}, 200
 
 
 # SECTION - get single server
