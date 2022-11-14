@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import Splash from './components/Splash'
 import { authenticate } from './store/session';
+import Discover from './components/Discover';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -45,7 +46,7 @@ function App() {
           <SignUpForm />
         </Route>
         <Route path='/discover' exact={true} >
-          <UsersList />
+          <Discover />
         </Route>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
