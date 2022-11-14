@@ -17,8 +17,8 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime(), nullable=False,server_default=func.now())
     updated_at = db.Column(db.DateTime(), nullable=False,onupdate=func.now(), default=func.now())
     # relationship
-    servers = db.relationship('Member', back_populates='users', cascade="all, delete-orphan")
-    messages = db.relationship('Message', back_populates='users')
+    servers = db.relationship('Member', back_populates='users', cascade="all,delete")
+    messages = db.relationship('Message', back_populates='users', cascade="all,delete")
 
     @property
     def password(self):
@@ -36,5 +36,8 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'first name':self.first_name,
+            'last name':self.last_name,
+            'profile picture': self.profile_pic,
         }

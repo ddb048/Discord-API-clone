@@ -1,7 +1,7 @@
 """created updated tables
 
 Revision ID: a500be63bd80
-Revises: 
+Revises:
 Create Date: 2022-11-11 18:26:08.242539
 
 """
@@ -70,7 +70,6 @@ def upgrade():
     op.create_table('messages',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('message_body', sa.String(length=255), nullable=False),
-    sa.Column('is_voice', sa.Boolean(), nullable=False),
     sa.Column('owner_id', sa.Integer(), nullable=True),
     sa.Column('channel_id', sa.Integer(), nullable=True),
     sa.Column('server_id', sa.Integer(), nullable=True),

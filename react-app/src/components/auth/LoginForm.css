@@ -1,0 +1,19 @@
+.background{
+  z-index: -1;
+  background-image: url("../../Images/discord-signup-login.png");
+  height: 942px;
+  border: 1px solid springgreen;
+  background-position: center;
+}
+
+.form-container{
+  /* object-fit: cover; */
+  height: 100%;
+
+}
+
+.form-card{
+  height: 100px;
+  width: 200px;
+  display: grid;
+}

@@ -6,7 +6,6 @@ class Message(db.Model):
     __tablename__ = 'messages'
     id = db.Column(db.Integer, primary_key=True)
     message_body = db.Column(db.String(255), nullable=False)
-    is_voice = db.Column(db.Boolean, nullable=False)
     owner_id = db.Column(db.Integer, ForeignKey("users.id"))
     channel_id = db.Column(db.Integer, ForeignKey("channels.id"))
     server_id = db.Column(db.Integer, ForeignKey('servers.id'))
@@ -16,3 +15,14 @@ class Message(db.Model):
     servers = db.relationship('Server', back_populates='messages')
     users = db.relationship('User', back_populates='messages')
     channels = db.relationship('Channel', back_populates='messages')
+
+    def mess_to_dict(self):
+      return{
+            'id':self.id,
+            'message_body':self.message_body,
+            'owner_id':self.owner_id,
+            'channel_id':self.channel_id,
+            'server_id':self.server_id,
+            'created_at':self.created_at,
+            'updated_at':self.updated_at
+        }
