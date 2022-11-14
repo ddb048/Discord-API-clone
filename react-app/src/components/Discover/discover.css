@@ -1,0 +1,35 @@
+#discover {
+    background: #ffffff;
+    color: black;
+    overflow-x: hidden;
+
+@media screen and (min-width: 1024px) {
+    
+}
+    
+   
+}
+
+#discover-title {
+    font-family: sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    z-index:1;
+
+    
+}
+
+#discover-headr-img {
+        max-width: 100%;
+        z-index:0;
+}
+
+#discover-title-2 {
+    color:white;
+
+
+}
