@@ -1,8 +1,8 @@
-"""created updated tables
+"""updated for loss of ENUM type
 
-Revision ID: a500be63bd80
-Revises:
-Create Date: 2022-11-11 18:26:08.242539
+Revision ID: 2d51b1631b24
+Revises: 
+Create Date: 2022-11-15 14:09:08.133969
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a500be63bd80'
+revision = '2d51b1631b24'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -58,7 +58,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('members',
-    sa.Column('roles', sa.Enum('Pending', 'Owner', 'Member', name='roles'), nullable=False),
+    sa.Column('roles', sa.String(length=50), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('server_id', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=False),
