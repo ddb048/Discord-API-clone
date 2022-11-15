@@ -1,7 +1,7 @@
 /********************TYPES******************* */
 
 const LOAD_MESSAGES = 'messages/LOAD';
-const LOAD_ONE_MESSAGE = 'messages/LOAD_ONE';
+// const LOAD_ONE_MESSAGE = 'messages/LOAD_ONE';
 const CREATE_MESSAGE = 'messages/ADD';
 const REMOVE_MESSAGE = 'messages/REMOVE';
 const EDIT_MESSAGE = 'messages/EDIT';
@@ -11,7 +11,6 @@ const loadMessages = (messages) => ({
     type: LOAD_MESSAGES,
     messages
 })
-
 
 const addMessage = (newMessage) => ({
     type: CREATE_MESSAGE,
@@ -71,7 +70,6 @@ export const updateMessage = (payload) => async dispatch =>{
         return updatedMessage
     }
 }
-
 
 //SECTION - (DELETE)
 export const deleteMessage= (messageId)=> async dispatch =>{
