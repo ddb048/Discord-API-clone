@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import User from './components/User';
 import Splash from './components/Splash'
 import Discover from './components/Discover';
+import OnePageServer from './components/Discover'
 import { authenticate } from './store/session';
 
 function App() {
@@ -43,6 +44,9 @@ function App() {
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path = '/discover/servers/:serverId' exact={true}>
+          <OnePageServer />
         </Route>
         <Route path='/discover' exact={true} >
           <Discover />
