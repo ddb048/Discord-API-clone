@@ -149,6 +149,5 @@ def undo_members():
         db.session.execute(f"TRUNCATE table {SCHEMA}.members RESTART IDENTITY CASCADE;")
     else:
         db.session.execute("DELETE FROM members")
-        db.session.execute("DROP TYPE roles")
 
     db.session.commit()
