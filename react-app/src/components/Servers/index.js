@@ -1,42 +1,60 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, Redirect, useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCurrentUserServers } from '../../store/servers';
-import { getAllChannel } from '../../store/channel';
+import { getAllMembers } from '../../store/member';
+import { getAllChannel, getChannelDetail } from '../../store/channel';
 import LogoutButton from '../auth/LogoutButton';
 // import { getAllMessages } from '../../store/message';
+import { getServerDetails } from '../../store/servers';
 import DM_button from '../../Images/q-cord-button.png';
 import './Servers.css';
+import { compareSync } from 'bcryptjs';
 
 const Servers = () => {
+  const [recipient, setRecipient] = useState({})
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const { channelId } = useParams();
-	const user = useSelector((state) => state.session.user);
-  // console.log('users useSelector >>>>>>>>>', user)
 	// grabbing the state of servers in servers
 	const servers = useSelector((state) => Object.values(state.servers.servers));
-	// grabbing the state of channels in channels
-	const channels = useSelector((state) =>
-		Object.values(state.channels.channels)
-	);
-	// console.log('channels useSelector >>>>', channels);
-	// const { serverId } = useParams();
-	// dispatching to the current user's servers
+  // console.log('THIS IS SERVES USESELECTOR IN ARRAY', servers)
+  const currentUser = useSelector((state) => state.session.user);
+	// console.log('this is current user >>', currentUser)
+
+  const userObj = servers.filter((dm) => dm.is_DM == true);
+  // const userArr = userObj.find((dm) => dm.is_DM == true);
+  console.log('USER ARRAY',userObj)
+
+  // const otherUser2 = userArr.filter(x => x.id != currentUser.id)
+  // const otherUser2 = userArr.filter(x => x.id != currentUser.id)
+  // console.log('OTHER USER 2>>>>', otherUser2)
+  // console.log('USERS',recipient)
+  // console.log('findDM1 >>>>>', DmIsTrue);
+  // useEffect(() => {
+  //   if (!currentUser.id) {
+  //     return;
+  //   }
+  //   (async () => {
+  //     const response = await fetch(`/api/users/${otherUser2.user_id}`);
+  //     const user = await response.json();
+  //     setRecipient(user);
+  //   })();
+  // }, [currentUser.id]);
+	// console.log('members in dm>>>', DmIsTrue);
 
 	useEffect(() => {
 		dispatch(getAllCurrentUserServers());
+		dispatch(getServerDetails(servers.id));
+		dispatch(getChannelDetail(channelId));
+		dispatch(getAllMembers(servers.id));
 		// dispatch(getAllChannel());
 	}, [dispatch]);
 
-	// const logout = () => {
-  //   console.log('logout hit')
-  //   history.push('/');
-  //   // return <Redirect to='/'/>
-	// };
-  if(!user){
-    return <Redirect to='/'/>
-  }
+
+	if (!currentUser) {
+		return <Redirect to="/" />;
+	}
 	return (
 		<div className="servers-page-container">
 			<div className="servers-column-container">
@@ -64,7 +82,6 @@ const Servers = () => {
 											) : (
 												server.name.slice(0, 2)
 											)}
-
 										</div>
 									</div>
 								</NavLink>
@@ -82,24 +99,23 @@ const Servers = () => {
 				</div>
 				<div className="servers-dm-layout">
 					<div>
-						{servers.map(
-							(server) =>
-								server.is_DM && (
-
+						{servers.map((server) =>
+								server.members.id && (
+						<NavLink to={`/channels/${server.id}`}>
 										<div className="servers-dm-name" key={server.id}>
 											#{server.name}
 										</div>
-
-								)
+									</NavLink>
+						)
 						)}
 					</div>
 				</div>
 				<div className="servers-dm-footer">
-        <div className='user-photo-container'>
-        <img className='user-photo' src={user.profile_pic}/>
-        </div>
-					<div className="servers-user test-name">{user.username}</div>
-          <LogoutButton/>
+					<div className="user-photo-container">
+						<img className="user-photo" src={currentUser.profile_pic} />
+					</div>
+					<div className="servers-user test-name">{currentUser.username}</div>
+					<LogoutButton />
 				</div>
 			</div>
 			<div className="servers-messages-container">
