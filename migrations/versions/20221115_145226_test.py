@@ -1,8 +1,8 @@
-"""updated for loss of ENUM type
+"""test
 
-Revision ID: 2d51b1631b24
+Revision ID: f832ad126fa8
 Revises: 
-Create Date: 2022-11-15 14:09:08.133969
+Create Date: 2022-11-15 14:52:26.429412
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '2d51b1631b24'
+revision = 'f832ad126fa8'
 down_revision = None
 branch_labels = None
 depends_on = None
