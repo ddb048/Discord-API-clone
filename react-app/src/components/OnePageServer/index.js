@@ -6,7 +6,7 @@ import { getAllServers } from "../../store/servers";
 import splash_3 from '../../Images/discord-splash-3.png'
 
 function OnePageServer() {
-const servers = useSelector((state) => state.servers);
+const servers = useSelector((state) => state.servers.servers);
 console.log("ONE PAGE SERVERS STATE", servers);
 const dispatch = useDispatch();
 let { serverId } = useParams();

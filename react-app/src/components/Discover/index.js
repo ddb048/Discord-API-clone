@@ -7,7 +7,7 @@ import header from "../../Images/discover-header-png.png";
 import "./discover.css";
 
 function Discover() {
-  const servers = useSelector((state) => state.servers);
+  const servers = useSelector((state) => state.servers.servers);
   console.log("DISCOVER SERVERS STATE", servers);
   const dispatch = useDispatch();
   
