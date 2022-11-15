@@ -115,7 +115,7 @@ export const deleteServer = server => async dispatch => {
 /************************REDUCER************************** */
 
 const initialState = {
-    Servers: {},
+    servers: {},
     OneServer: {}
 
 }

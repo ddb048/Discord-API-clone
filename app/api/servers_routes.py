@@ -117,7 +117,7 @@ def user_servers():
             res.append(server)
         elif id in server['members']:
             res.append(server)
-    return {'Servers': res}, 200
+    return {'servers': res}, 200
 
 
 # SECTION - get single server
