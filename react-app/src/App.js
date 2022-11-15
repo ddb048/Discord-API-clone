@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import Splash from './components/Splash'
 import Servers from './components/Servers';
+import ServerDetail from './components/ServerDetails';
 import { authenticate } from './store/session';
 
 function App() {
@@ -55,6 +56,12 @@ function App() {
         <Route path='/servers/@me'>
           <Servers />
         </Route>
+        <ProtectedRoute path='/servers/:serverId' exact={true}>
+          <Servers />
+        </ProtectedRoute>
+        <ProtectedRoute path='/channels/:channelId' exact={true}>
+          <ServerDetail/>
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

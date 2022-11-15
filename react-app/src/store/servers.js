@@ -57,6 +57,7 @@ export const getAllCurrentUserServers = () => async dispatch => {
     if (response.ok) {
         const servers = await response.json();
         dispatch(loadServers(servers.servers));
+        console.log("this is all servers")
         return servers.servers
     }
 
@@ -130,6 +131,7 @@ const serverReducer = (state = initialState, action) => {
             newState.servers.forEach(server => {
                 newState[server.id] = server
             });
+            console.log('load servers reducer')
             return newState
         };
 
