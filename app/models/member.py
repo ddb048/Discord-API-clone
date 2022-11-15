@@ -18,7 +18,7 @@ class Roles(enum.Enum):
 class Member(db.Model):
    __tablename__= 'members'
 
-   roles = db.Column(db.Enum(Roles, values_callable=lambda x: [str(user.value) for user in Roles]), nullable=False)
+   roles = db.Column(db.String(50), nullable=False)
    user_id = db.Column(ForeignKey("users.id"), primary_key=True)
    server_id = db.Column(ForeignKey("servers.id"), primary_key=True)
    created_at = db.Column(db.DateTime(), nullable=False,server_default=func.now())
@@ -29,7 +29,7 @@ class Member(db.Model):
 
    def to_dict(self):
     return{
-        'role':self.roles.value,
+        'role':self.roles,
         'user_id':self.user_id,
         'server_id':self.server_id,
         'user_info':self.users.to_dict()
