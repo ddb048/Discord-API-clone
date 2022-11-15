@@ -1,0 +1,67 @@
+.background{
+  z-index: -1;
+  background-image: url("../../Images/discord-signup-login.png");
+  height: 942px;
+  border: 1px solid springgreen;
+  background-position: center;
+}
+
+.form-container{
+  z-index: -1;
+  background-image: url("../../Images/discord-signup-login.png");
+  height: 942px;
+  /* border: 1px solid springgreen; */
+  background-position: center;
+  /* object-fit: cover; */
+  height: 100vh;
+  /* border:  red solid 2px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.form-card{
+  height: 100px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  border: solid black 1px;
+  height: 400px;
+  width: 700px;
+  background-color: #36393f;
+  color: aliceblue;
+  gap: 15px;
+  padding: 20px 40px;
+  border-radius: 6px;
+  border:none;
+  justify-content: center;
+}
+
+
+.inp{
+  height: 40px;
+  width: 400px;
+  background-color: #202225;
+  border-radius: 5px;
+  border:none;
+  color: white;
+}
+
+.inp:focus{
+  outline: none;
+}
+
+#subButton{
+  height: 50px;
+  width: 400px;
+  border-radius: 5px;
+  border: none;
+  background-color: #5865f2;
+  color: white;
+  transition: background-color .2s ease;
+}
+
+#subButton:hover{
+  background-color: #373f99;
+}

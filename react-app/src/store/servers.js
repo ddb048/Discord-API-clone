@@ -126,9 +126,9 @@ const serverReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case LOAD_SERVERS: {
-            newState = { ...state , servers: [...action.servers]}
-            newState.servers.forEach(server => {
-                newState[server.id] = server
+            newState = { ...state, servers: {} }
+            action.servers.forEach(server => {
+                newState.servers[server.id] = server
             });
             return newState
         };
@@ -137,12 +137,10 @@ const serverReducer = (state = initialState, action) => {
             oneServer = {};
             newState.servers = { ...state.servers, [action.server.id]: action.server };
             newState.oneServer = { ...action.server };
-
             return newState
         }
         case CREATE_SERVER: {
             newState.servers[action.newServer.id] = action.newServer;
-
             return newState;
 
         };

@@ -1,0 +1,171 @@
+/* styles user landing page layout */
+.servers-page-container{
+  width:100%;
+  height: 600px;
+  /* grid-template-columns: repeat(4, fr);
+  display: grid;
+  grid-template-areas:
+  'server channels messages active'; */
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid blue; */
+}
+/* styles div for all servers container */
+.servers-column-container{
+  /* grid-area: server; */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  width:75px;
+  /* border:1px solid green; */
+  padding: 15px 0;
+  background-color: #202225;
+}
+/* styles container for dm button */
+.dm-button-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  content: '';
+  border-bottom: 1px solid white;
+  padding: 0 15px;
+  padding-bottom: 10px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 0;
+}
+/* styles dm button */
+.dm-button{
+  width:40px;
+  height: 40px;
+  border-radius: 40px;
+  border: none;
+  background-color: #5865f2;
+  object-fit: contain;
+}
+.dm-button:hover{
+  border-radius: 15px;
+}
+/* syles the div holding all server buttons */
+.servers-photo-container{
+  padding: 10px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid green; */
+}
+/* className='servers-channel-name' */
+/* styles server button */
+.servers-photo{
+  width: 40px;
+  height: 40px;
+  border: none;
+  /* border: 1px solid white; */
+  object-fit: cover;
+  border-radius: 40px;
+  background-color: #36393f;
+  /* color: white; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* styles hovering effect on server button */
+.servers-photo:hover{
+  border-radius: 15px;
+  background-color: #5865f2;
+}
+/* styles div holding all channels list */
+.servers-dms-container{
+  /* grid-area: channels; */
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  /* border: 1px solid green; */
+  width:240px;
+  background-color: #2f3136;
+  /* border: 1px solid white */
+}
+
+.servers-dm-layout{
+  display: flex;
+
+  /* align-items: flex-start; */
+  /* width: 100%; */
+  /* border: 1px solid pink; */
+  flex-direction: row;
+  height: 85%;
+}
+.servers-dm-name{
+  width: 230px;
+  display: flex;
+  justify-content: flex-start;
+  color: white;
+  list-style: none;
+  padding: 15px 10px;
+  /* border: 1px solid pink; */
+}
+.servers-dm-footer{
+  display: flex;
+  /* border: 1px solid purple; */
+  justify-content: space-around;
+  align-items: center;
+  height: 50px;
+}
+.user-photo{
+  width: 38px;
+  height: 38px;
+  /* border: 1px solid white; */
+  object-fit:cover;
+  border-radius: 48px;
+  background-color: #36393f;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.servers-user{
+  /* border: 1px solid purple; */
+
+}
+/* styles div holding all messages */
+.servers-messages-container{
+  /* border: 1px solid blue; */
+  width: 1172px;
+  background-color: #36393f;
+  border-right: 1px solid white;
+}
+
+/* styles layout of the messages */
+.servers-messages{
+  /* border: 1px solid black; */
+}
+
+/* styles div for active container  NOTE idk why its not hitting this*/
+.servers-active-container{
+  /* border: 1px solid black; */
+  background-color: #36393f;
+  width: 420px;
+}
+/* styles div containing direct messages title */
+.servers-title-container{
+  border-bottom: 1px solid white;
+}
+/* styles direct message title */
+.servers-title{
+  height: 50px;
+  color: white;
+  font-size: 18px;
+  font-family: adelle-sans, sans-serif;
+  font-style: normal;
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
+/* div for the h1 placeholders, can be removed once page is completely styled */
+.test-name{
+  color: white;
+  /* border-bottom: 1px solid white; */
+  font-size: 12px;
+}
