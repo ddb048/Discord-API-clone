@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../store/session';
 import './LoginForm.css';
 const LoginForm = () => {
@@ -33,7 +33,7 @@ const LoginForm = () => {
 	return (
 		<>
 			<div className="form-container">
-				<div className="background" />
+				{/* <div className="background" /> */}
 				<form className='form-card' onSubmit={onLogin}>
 					<div>
 						{errors.map((error, ind) => (
@@ -47,9 +47,10 @@ const LoginForm = () => {
 						<input
 							name="email"
 							type="text"
-							placeholder="Email"
+							// placeholder="Email"
 							value={email}
 							onChange={updateEmail}
+							className='inp'
 						/>
 					</div>
 					<div>
@@ -59,13 +60,18 @@ const LoginForm = () => {
 						<input
 							name="password"
 							type="password"
-							placeholder="Password"
+							// placeholder="Password"
 							value={password}
 							onChange={updatePassword}
+							className='inp'
 						/>
 					</div>
 					<div>
-						<button type="submit">Login</button>
+						<button id='subButton' type="submit">Login</button>
+					</div>
+					<div>
+						need an account?
+						<Link to={'/sign-up'}>Register</Link>
 					</div>
 				</form>
 			</div>
