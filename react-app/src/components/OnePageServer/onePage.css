@@ -1,0 +1,147 @@
+#upper {
+    box-sizing: border-box;
+    background-color: blue;
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height:200px;
+    position: relative;
+    top:0;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  
+}
+
+#header-links {
+    box-sizing: border-box;
+    width: 200px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+
+#links {
+    position:relative;
+    top: -80px;
+    text-decoration: none;
+    color: white;
+    font-weight: 400;
+    
+    
+
+}
+
+#upper-img {
+    max-width: 80%;
+    position:absolute;
+    top: 20%;
+    max-height: 300px;
+
+    
+}
+
+#lower-div {
+    background-color: white;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display:flex;
+    flex-direction: column;
+    margin-left: 10%;
+
+}
+
+#bold-title {
+    font-weight: 600;
+    font-size: 28px;
+
+}
+
+#sub-title {
+    font-weight: 200;
+    padding-bottom: 2%;
+    border-bottom: 1px solid rgb(212, 207, 207);
+}
+
+#contant-container {
+    display: flex;
+    flex-direction: row;
+
+}
+
+#in-with-img {
+    box-sizing: border-box;
+    display:flex;
+    flex-direction: row;
+
+}
+
+#bullatin-img {
+    width: 30px;
+    height: 30px;
+    padding: 1%;
+
+}
+
+#footer-div {
+    position:sticky;
+}
+
+#signup {
+    text-decoration: none;
+    box-sizing: border-box;
+    border-radius: 20px;
+    width: 150px;
+    height: 100px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+
+}
+
+#in-footer {
+    background-color: blue;
+    border-radius: 20px;
+    color: white;
+    height: 35px;
+    text-align: center;
+    vertical-align: middle;
+    margin: 1%;
+    font-size: large;
+}
+
+.details-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+height: 500px;
+width: 100%;
+border: 1px solid black;
+}
+
+.details-card {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: 
+    "a.c"
+    ".b.";
+    width: 500px;
+    height:500px
+}
+
+.details-card-text {
+    grid-area: a;
+    border: 1px solid red;
+    
+}
+
+.details-card-photo {
+    grid-area: c;
+    border: 1px
+}
+
+.details-card-bttn {
+    grid-area: b;
+}
