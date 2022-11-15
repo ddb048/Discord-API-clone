@@ -4,7 +4,7 @@ import sessionReducer from './session'
 import serverReducer from './servers';
 const rootReducer = combineReducers({
     session: sessionReducer,
-    Servers: serverReducer,
+    servers: serverReducer,
 });
 
 let enhancer;
