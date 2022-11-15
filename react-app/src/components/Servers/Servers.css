@@ -24,6 +24,7 @@
   justify-content: center;
   border: 1px solid green;
 }
+/* className='servers-channel-name' */
 /* styles server button */
 .servers-photo{
   width: 50px;
@@ -46,6 +47,9 @@
   background-color: #2f3136;
 }
 
+.servers-channel-name{
+  
+}
 /* styles div holding all messages */
 .servers-messages-container{
   border: 1px solid blue;
