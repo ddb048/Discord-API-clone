@@ -98,7 +98,7 @@ export const deleteChannel = (channelId) => async dispatch => {
 
     if (response.ok) {
         const delResponse = await response.json()
-        dispatch(deleteChannel(delResponse))
+        dispatch(deleteChannel(channelId))
         return delResponse
     }
 }
@@ -110,7 +110,7 @@ const initialState = {
     OneChannel: {}
 }
 
-channelReducer = (state = initialState, action) => {
+const channelReducer = (state = initialState, action) => {
     let newState = {}
     let oneChannel;
     switch (action.type) {
@@ -145,3 +145,6 @@ channelReducer = (state = initialState, action) => {
             return state
     }
 }
+
+
+export default channelReducer
