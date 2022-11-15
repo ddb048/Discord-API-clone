@@ -145,8 +145,8 @@ def seed_members():
 # it will reset the primary keys for you as well.
 def undo_members():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.members RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE type {SCHEMA}.roles;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.members RESTART IDENTITY CASCADE;")
     else:
         db.session.execute("DELETE FROM members")
         db.session.execute("DROP TYPE roles")
