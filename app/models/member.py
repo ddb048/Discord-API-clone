@@ -2,17 +2,17 @@
 from .db import db
 # from .user import User
 # from .server import Server
-import enum
+# import enum
 from sqlalchemy.sql import func
 from sqlalchemy import ForeignKey
 
 #REVIEW - take a second look at Enum, when initializing
 #         db we get: ValueError: <enum 'Roles'> is not a valid Enum
 
-class Roles(enum.Enum):
-    PENDING = 'Pending'
-    OWNER = 'Owner'
-    MEMBER = 'Member'
+# class Roles(enum.Enum):
+#     PENDING = 'Pending'
+#     OWNER = 'Owner'
+#     MEMBER = 'Member'
 
 #FIXME -issue migrating
 class Member(db.Model):
