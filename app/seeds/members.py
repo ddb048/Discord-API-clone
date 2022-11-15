@@ -146,7 +146,9 @@ def seed_members():
 def undo_members():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.members RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE type {SCHEMA}.roles;")
     else:
         db.session.execute("DELETE FROM members")
+        db.session.execute("DROP TYPE roles")
 
     db.session.commit()
