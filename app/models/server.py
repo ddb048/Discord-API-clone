@@ -38,7 +38,7 @@ class Server(db.Model):
             "messages": [message.mess_to_dict() for message in self.messages],
             'mess_count':len(self.messages),
             'num_member':len(self.users),
-            'members':[user.user_id for user in self.users ],
+            'members':[user.to_dict() for user in self.users ],
             'channels':[channel.id for channel in self.channels]
         }
 
