@@ -10,7 +10,7 @@ function Discover() {
   const servers = useSelector((state) => state.servers);
   console.log("DISCOVER SERVERS STATE", servers);
   const dispatch = useDispatch();
-  const history = useHistory();
+  
 
   useEffect(() => {
     dispatch(getAllServers());
