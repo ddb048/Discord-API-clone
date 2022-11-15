@@ -1,4 +1,4 @@
-.background{
+.background {
   z-index: -1;
   background-image: url("../../Images/discord-signup-login.png");
   height: 942px;
@@ -6,7 +6,7 @@
   background-position: center;
 }
 
-.form-container{
+.form-container {
   z-index: -1;
   background-image: url("../../Images/discord-signup-login.png");
   height: 942px;
@@ -21,40 +21,38 @@
 
 }
 
-.form-card{
-  height: 100px;
-  width: 200px;
+.form-card {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   border: solid black 1px;
-  height: 400px;
-  width: 700px;
+  height: 500px;
+  width: 800px;
   background-color: #36393f;
   color: aliceblue;
   gap: 50px;
-  padding: 20px 40px;
+  padding: 0px 40px;
   border-radius: 6px;
-  border:none;
+  border: none;
   align-items: center;
 }
 
 
-.inp{
+.inp {
   height: 40px;
   width: 400px;
   background-color: #202225;
   border-radius: 5px;
-  border:none;
+  border: none;
   color: white;
 }
 
-.inp:focus{
+.inp:focus {
   outline: none;
 }
 
-#subButton{
-  height: 50px;
+#subButton {
+  height: 45px;
   width: 400px;
   border-radius: 5px;
   border: none;
@@ -63,21 +61,116 @@
   transition: background-color .2s ease;
 }
 
-#subButton:hover{
+#subButton:hover {
   background-color: #373f99;
 }
 
-#to-signup{
+#to-signup {
   color: rgb(133, 133, 133);
 }
 
-#to-signup > a{
-  color: #0580cd;
+#to-signup>a {
+  color: #05a5cd;
   text-decoration: none;
 }
 
-#form{
+#to-signup>a:hover {
+  text-decoration: underline;
+}
+
+#form {
   display: flex;
   flex-direction: column;
   gap: 15px;
+}
+
+#welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  gap: 0;
+  /* border: solid red 1px; */
+}
+
+
+#welcome>p {
+  color: rgb(133, 133, 133);
+}
+
+#welcome-text {
+  /* border: solid yellow 1px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.text {
+  /* border: blue solid 1px; */
+  height: 35px;
+}
+
+
+.form-card-1 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border: solid black 1px;
+  height: 650px;
+  width: 500px;
+  background-color: #36393f;
+  color: aliceblue;
+  gap: 50px;
+  padding: 0px 40px;
+  border-radius: 6px;
+  border: none;
+  align-items: center;
+}
+
+.form-card-1>form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+
+.inp2 {
+  height: 40px;
+  width: 500px;
+  background-color: #202225;
+  border-radius: 5px;
+  border: none;
+  color: white;
+}
+
+.inp2:focus {
+  outline: none;
+}
+
+#subButton2 {
+  height: 45px;
+  width: 500px;
+  border-radius: 5px;
+  border: none;
+  background-color: #5865f2;
+  color: white;
+  transition: background-color .2s ease;
+}
+
+#subButton2:hover {
+  background-color: #373f99;
+}
+
+#to-signup2 {
+  color: #05a5cd;
+  text-decoration: none;
+}
+
+#to-signup2:hover {
+  text-decoration: underline;
+}
+
+#form label {
+  color: #a2a3a5;
 }
