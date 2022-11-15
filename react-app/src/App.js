@@ -12,6 +12,7 @@ import OnePageServer from './components/OnePageServer'
 import Servers from './components/Servers';
 import ServerDetail from './components/ServerDetails';
 import { authenticate } from './store/session';
+import Safety from './components/SaftyPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -65,6 +66,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/channels/:channelId' exact={true}>
         </ProtectedRoute>
+        <Route path='/safety'>
+          <Safety />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
