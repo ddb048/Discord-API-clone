@@ -94,9 +94,10 @@ const messageReducer=(state=initialState, action)=>{
 
     switch (action.type){
         case LOAD_MESSAGES: {
-            newState={...state, messages:[...action.messages]}
-            newState.messages.forEach(message => {
-                newState[message.id]=message
+            newState={...state, messages:{}}
+
+            action.messages.forEach(message => {
+                newState.messages[message.id]=message
             });
             return newState
         }
