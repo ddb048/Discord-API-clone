@@ -25,17 +25,18 @@
   height: 100px;
   width: 200px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   border: solid black 1px;
   height: 400px;
   width: 700px;
   background-color: #36393f;
   color: aliceblue;
-  gap: 15px;
+  gap: 50px;
   padding: 20px 40px;
   border-radius: 6px;
   border:none;
-  justify-content: center;
+  align-items: center;
 }
 
 
@@ -64,4 +65,19 @@
 
 #subButton:hover{
   background-color: #373f99;
+}
+
+#to-signup{
+  color: rgb(133, 133, 133);
+}
+
+#to-signup > a{
+  color: #0580cd;
+  text-decoration: none;
+}
+
+#form{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }

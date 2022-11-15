@@ -17,6 +17,13 @@ const LoginForm = () => {
 			setErrors(data);
 		}
 	};
+	const log = async (e) => {
+		e.preventDefault()
+		const data = await dispatch(login('demo@aa.io', 'password'))
+		if (data) {
+			setErrors(data);
+		}
+	}
 
 	const updateEmail = (e) => {
 		setEmail(e.target.value);
@@ -33,47 +40,56 @@ const LoginForm = () => {
 	return (
 		<>
 			<div className="form-container">
-				{/* <div className="background" /> */}
-				<form className='form-card' onSubmit={onLogin}>
-					<div>
-						{errors.map((error, ind) => (
-							<div key={ind}>{error}</div>
-						))}
-					</div>
-					<div>
+				<div className="form-card">
+					<form id='form' onSubmit={onLogin}>
 						<div>
-							<label htmlFor="email">Email</label>
+							{errors.map((error, ind) => (
+								<div key={ind}>{error}</div>
+							))}
 						</div>
-						<input
-							name="email"
-							type="text"
-							// placeholder="Email"
-							value={email}
-							onChange={updateEmail}
-							className='inp'
-						/>
-					</div>
-					<div>
 						<div>
-							<label htmlFor="password">Password</label>
+							<div>
+								<label htmlFor="email">Email</label>
+							</div>
+							<input
+								name="email"
+								type="text"
+								// placeholder="Email"
+								value={email}
+								onChange={updateEmail}
+								className='inp'
+							/>
 						</div>
-						<input
-							name="password"
-							type="password"
-							// placeholder="Password"
-							value={password}
-							onChange={updatePassword}
-							className='inp'
-						/>
-					</div>
+						<div>
+							<div>
+								<label htmlFor="password">Password</label>
+							</div>
+							<input
+								name="password"
+								type="password"
+								// placeholder="Password"
+								value={password}
+								onChange={updatePassword}
+								className='inp'
+							/>
+						</div>
+						<div>
+							<button id='subButton' type="submit">Login</button>
+						</div>
+						<div id='to-signup'>
+							Need an account?
+							<Link to={'/sign-up'}> Register</Link>
+						</div>
+						<div>
+							<button
+								onClick={log}
+								id='subButton'>Demo User</button>
+						</div>
+					</form>
 					<div>
-						<button id='subButton' type="submit">Login</button>
+						<h3>Welcome to Q-Cord</h3>
 					</div>
-					<div>
-						need an account?
-						<Link to={'/sign-up'}>Register</Link>
-					</div>
-				</form>
+				</div>
 			</div>
 		</>
 	);
