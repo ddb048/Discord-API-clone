@@ -44,6 +44,7 @@ export const getAllChannel = (serverId) => async dispatch => {
     if (response.ok) {
         const channel = await response.json();
         dispatch(loadChannels(channel.channels))
+        // console.log('channels in thunk',channel.channels)
         return channel.channels
     }
 }
@@ -103,27 +104,35 @@ export const deleteChannel = (channelId) => async dispatch => {
     }
 }
 
+const normalizeArr= ()=>{
 
+}
 /******************************REDUCER*************************** */
 const initialState = {
-    Channels: {},
+    channels: {},
     OneChannel: {}
 }
 
 const channelReducer = (state = initialState, action) => {
     let newState = {}
     let oneChannel;
+    let channels;
     switch (action.type) {
         case LOAD_CHANNELS: {
-            newState = { ...state, channels: [...action.channels] }
-            newState.channels.forEach(channel => {
-                newState[channel.id] = channel
+            // newState = { ...state, channels:[...action.channels] }
+            newState = {...state}
+            channels = {}
+
+            console.log('newstate in channel reducer', action.channels)
+            action.channels.forEach(channel => {
+                channels[channel.id] = channel
             });
+            newState.channels = channels
             return newState
         };
         case LOAD_ONE_CHANNEL: {
             oneChannel = {};
-            newState.channels = { ...state.Channels, [action.channel.id]: action.channel };
+            newState.channels = { ...state.channels, [action.channel.id]: action.channel };
             newState.OneChannel = { ...action.channel }
 
             return newState;
