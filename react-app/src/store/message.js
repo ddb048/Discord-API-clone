@@ -41,15 +41,15 @@ export const getAllMessages = (channelId) => async dispatch => {
 }
 
 //SECTION - (CREATE)
-export const createMessage= (payload) => async dispatch =>{
-    const {serverId, channelId,  message}=payload
-    const response= await fetch(`/api/messages/${serverId}/${channelId}`, {
-        method:'POST',
-        body:JSON.stringify(message)
+export const createMessage = (payload) => async dispatch => {
+    const { serverId, channelId, message } = payload
+    const response = await fetch(`/api/messages/${serverId}/${channelId}`, {
+        method: 'POST',
+        body: JSON.stringify(message)
     })
 
-    if(response.ok){
-        const addedMessage= await response.json()
+    if (response.ok) {
+        const addedMessage = await response.json()
         dispatch(addMessage(addedMessage))
         return addedMessage
     }
@@ -57,57 +57,59 @@ export const createMessage= (payload) => async dispatch =>{
 
 //REVIEW - backend route could be made simpler
 //SECTION - (UPDATE)
-export const updateMessage = (payload) => async dispatch =>{
-    const {serverId, channelId, messageId,  message}=payload
-    const response= await fetch(`/api/messages/${serverId}/${channelId}/${messageId}`,{
-        method:'PUT',
-        body:JSON.stringify(message)
+export const updateMessage = (payload) => async dispatch => {
+    const { serverId, channelId, messageId, message } = payload
+    const response = await fetch(`/api/messages/${serverId}/${channelId}/${messageId}`, {
+        method: 'PUT',
+        body: JSON.stringify(message)
     })
 
-    if(response.ok){
-        const updatedMessage= await response.json()
+    if (response.ok) {
+        const updatedMessage = await response.json()
         dispatch(editMessage(updatedMessage))
         return updatedMessage
     }
 }
 
 //SECTION - (DELETE)
-export const deleteMessage= (messageId)=> async dispatch =>{
-    const response= await fetch(`/api/messages/${messageId}`, {
-        method:'DELETE',
+export const deleteMessage = (messageId) => async dispatch => {
+    const response = await fetch(`/api/messages/${messageId}`, {
+        method: 'DELETE',
     })
 
-    if (response.ok){
-       const deleteMess= await response.json()
-       dispatch(removeMessage(messageId))
-       return deleteMess
+    if (response.ok) {
+        const deleteMess = await response.json()
+        dispatch(removeMessage(messageId))
+        return deleteMess
     }
 }
 
 
 /************************REDUCER************************** */
-const initialState={messages:{}}
-const messageReducer=(state=initialState, action)=>{
-    let newState={}
+const initialState = { messages: {} }
+const messageReducer = (state = initialState, action) => {
+    let newState = {}
 
-    switch (action.type){
+    switch (action.type) {
         case LOAD_MESSAGES: {
-            newState={...state, messages:{}}
+            newState = { ...state, messages: {} }
 
             action.messages.forEach(message => {
-                newState.messages[message.id]=message
+                newState.messages[message.id] = message
             });
             return newState
         }
+        //REVIEW - ANCHOR - FOR CINDY: CREATE_MESSAGE DID NOT HAVE A RETURN> UPDATED TO FIX RENDER
         case CREATE_MESSAGE: {
-            newState.messages[action.newMessage.id]=action.newMessage
-        }
-        case EDIT_MESSAGE:{
-            newState={...state,[action.message.id]: action.message};
+            newState.messages[action.newMessage.id] = action.newMessage
             return newState
         }
-        case REMOVE_MESSAGE:{
-            newState={...state};
+        case EDIT_MESSAGE: {
+            newState = { ...state, [action.message.id]: action.message };
+            return newState
+        }
+        case REMOVE_MESSAGE: {
+            newState = { ...state };
             delete newState[action.messageId]
             return newState
         }

@@ -99,14 +99,14 @@ export const deleteChannel = (channelId) => async dispatch => {
 
     if (response.ok) {
         const delResponse = await response.json()
-        dispatch(deleteChannel(channelId))
+        dispatch(removeChannel(channelId))
         return delResponse
     }
 }
 
-const normalizeArr= ()=>{
+// const normalizeArr = () => {
 
-}
+// }
 /******************************REDUCER*************************** */
 const initialState = {
     channels: {},
@@ -119,9 +119,7 @@ const channelReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_CHANNELS: {
             // newState = { ...state, channels:[...action.channels] }
-            newState = {...state}
-            channels = {}
-
+            newState = { ...state }
             // console.log('newstate in channel reducer', action.channels)
             action.channels.forEach(channel => {
                 channels[channel.id] = channel
@@ -131,8 +129,8 @@ const channelReducer = (state = initialState, action) => {
         };
         case LOAD_ONE_CHANNEL: {
             newState.channels = { ...state.channels, [action.channel.id]: action.channel };
-            console.log('ACTION',action.channel)
-            console.log('NEW STATE',newState)
+            console.log('ACTION', action.channel)
+            console.log('NEW STATE', newState)
             newState.OneChannel = { ...action.channel }
 
             return newState;
