@@ -22,9 +22,13 @@ const Servers = () => {
   const currentUser = useSelector((state) => state.session.user);
 	// console.log('this is current user >>', currentUser)
 
-  const userObj = servers.filter((dm) => dm.is_DM == true);
+  const dmServersArr = servers.filter((dm) => dm.is_DM == true);
   // const userArr = userObj.find((dm) => dm.is_DM == true);
-  console.log('USER ARRAY',userObj)
+  console.log('USER ARRAY',dmServersArr)
+let memberArr=[]
+dmServersArr.forEach(server=>memberArr.push(server.members))
+console.log(memberArr)
+//   const other= dmServersArr.filter(x.members)
 
   // const otherUser2 = userArr.filter(x => x.id != currentUser.id)
   // const otherUser2 = userArr.filter(x => x.id != currentUser.id)
@@ -50,6 +54,7 @@ const Servers = () => {
 		dispatch(getAllMembers(servers.id));
 		// dispatch(getAllChannel());
 	}, [dispatch]);
+
 
 
 	if (!currentUser) {
@@ -99,15 +104,21 @@ const Servers = () => {
 				</div>
 				<div className="servers-dm-layout">
 					<div>
-						{servers.map((server) =>
+						{/* {dmServersArr.map((server) =>
+
+								server.map(member=>(
+									member.profile_pic&&(
+										<img src={member.profile_pic} />
+									)
+								)
 								server.members.id && (
 						<NavLink to={`/channels/${server.id}`}>
 										<div className="servers-dm-name" key={server.id}>
 											#{server.name}
 										</div>
 									</NavLink>
-						)
-						)}
+								))
+						} */}
 					</div>
 				</div>
 				<div className="servers-dm-footer">

@@ -131,14 +131,14 @@ const serverReducer = (state = initialState, action) => {
                 newState.servers[server.id] = server
 
             });
-            
+
             return newState
         };
 
         case LOAD_ONE_SERVER: {
-            oneServer = {};
+            // oneServer = {};
             newState.servers = { ...state.servers, [action.server.id]: action.server };
-            newState.oneServer = { ...action.server };
+            newState.OneServer = { ...action.server };
             return newState
         }
         case CREATE_SERVER: {

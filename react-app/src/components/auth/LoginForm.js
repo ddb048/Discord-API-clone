@@ -19,7 +19,7 @@ const LoginForm = () => {
 	};
 	const log = async (e) => {
 		e.preventDefault()
-		const data = await dispatch(login('demo@aa.io', 'password'))
+		const data = await dispatch(login('lazaro@aa.io', 'password'))
 		if (data) {
 			setErrors(data);
 		}
