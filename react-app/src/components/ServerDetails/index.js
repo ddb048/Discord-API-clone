@@ -37,7 +37,7 @@ const ServerDetail = () => {
 	let currentChannel;
 	if (channelsArray.length && currentChannelId) {
 		currentChannel = channelsArray.find(
-			(channel) => channel.id == currentChannelId
+			(channel) => channel.id === currentChannelId
 		);
 	}
 	const showmsg = (x) => {
@@ -102,7 +102,7 @@ const ServerDetail = () => {
 				</div>
 				<div className="servers-dm-footer">
 					<div className="user-photo-container">
-						<img className="user-photo" src={currentUser.profile_pic} />
+						<img className="user-photo" src={currentUser.profile_pic} alt="" />
 					</div>
 					<div className="servers-user">{currentUser.username}</div>
 					<LogoutButton />
