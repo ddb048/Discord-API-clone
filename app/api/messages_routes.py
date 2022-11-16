@@ -18,7 +18,8 @@ def get_messages(channel_id):
         'status code': 404
     }, 404
 
-# NOTE Create and Update a message
+
+# NOTE Create a message
 @messages_routes.route('<int:server_id>/<int:channel_id>', methods = ['POST'])
 @login_required
 def create_message(server_id,channel_id):
@@ -37,6 +38,7 @@ def create_message(server_id,channel_id):
 
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
 
 # NOTE update a message
 @messages_routes.route('<int:server_id>/<int:channel_id>/<int:message_id>', methods=['PUT'])
