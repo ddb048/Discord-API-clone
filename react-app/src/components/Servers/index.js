@@ -99,8 +99,11 @@ const Servers = () => {
 					);
 				})}
 				<div className="servers-photo-container">
-					<div className="servers-photo">CRG</div>
+					<button className="servers-photo">
+						<i className='fa fa-plus' aria-hidden='true' />
+					</button>
 				</div>
+
 			</div>
 			<div className="servers-dms-container">
 				<div className="servers-title-container">
@@ -152,10 +155,10 @@ const Servers = () => {
 						})
 					)}
 				</div>
-				{showMsg &&(
-				<div>
-					<input placeholder='Message' />
-				</div>
+				{showMsg && (
+					<div>
+						<input placeholder='Message' />
+					</div>
 				)}
 			</div>
 			<div className="servers-active-container">
