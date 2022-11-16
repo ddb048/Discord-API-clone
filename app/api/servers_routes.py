@@ -115,8 +115,10 @@ def user_servers():
         # print("=======>",server['owner_id'])
         if server['owner_id'] == id:
             res.append(server)
-        elif id in server['members']:
+        elif id in [x["user_id"] for x in server['members']]:
             res.append(server)
+        for x in server['members']:
+            print('===========',x)
     return {'servers': res}, 200
 
 
