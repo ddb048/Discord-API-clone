@@ -34,43 +34,46 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Route exact path='/'>
-        {session.user && <Redirect to='/servers/@me' />}
+      <Route exact path="/">
+        {session.user && <Redirect to="/servers/@me" />}
         <NavBar />
-
       </Route>
-      
-        <Footer />
-      
+
       <Switch>
-        <Route path='/' exact={true} >
+        <Route path="/" exact={true}>
           <Splash />
         </Route>
-        <Route path='/login' exact={true}>
+        <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
-        <Route path='/sign-up' exact={true}>
+        <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        <Route path='/discover/servers/:serverId' exact={true}>
+        <Route path="/discover/servers/:serverId" exact={true}>
           <OnePageServer />
         </Route>
-        <Route path='/discover' exact={true} >
+        <Route path="/discover" exact={true}>
+          <NavBar />
           <Discover />
+          <Footer />
         </Route>
-        <ProtectedRoute path='/users/:userId' exact={true} >
+        <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        <Route path='/servers/@me'>
+        <Route path="/servers/@me">
           <Servers />
         </Route>
-        <ProtectedRoute path='/servers/:serverId' exact={true}>
+        <ProtectedRoute path="/servers/:serverId" exact={true}>
           <ServerDetail />
         </ProtectedRoute>
-        <ProtectedRoute path='/channels/:channelId' exact={true}>
-        </ProtectedRoute>
-        <Route path='/safety'>
+        <ProtectedRoute
+          path="/channels/:channelId"
+          exact={true}
+        ></ProtectedRoute>
+        <Route path="/safety">
+          <NavBar />
           <Safety />
+          <Footer />
         </Route>
       </Switch>
     </BrowserRouter>
