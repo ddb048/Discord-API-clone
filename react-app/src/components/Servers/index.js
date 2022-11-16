@@ -11,7 +11,8 @@ import DM_button from '../../Images/q-cord-button.png';
 import './Servers.css';
 
 const Servers = () => {
-	const [recipient, setRecipient] = useState({})
+	const [showMsg, setShowMsg] = useState(false);
+
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const { channelId } = useParams();
@@ -20,7 +21,7 @@ const Servers = () => {
 	// console.log('THIS IS SERVES USESELECTOR IN ARRAY', servers)
 	const currentUser = useSelector((state) => state.session.user);
 	// console.log('this is current user >>', currentUser)
-
+	const isNotDm = servers.filter((dm) => dm.is_DM == false);
 	const dmServersArr = servers.filter((dm) => dm.is_DM == true);
 	// const userArr = userObj.find((dm) => dm.is_DM == true);
 	console.log('USER ARRAY', dmServersArr)
@@ -73,7 +74,7 @@ const Servers = () => {
 						</NavLink>
 					</div>
 				</div>
-				{servers.map((server) => {
+				{isNotDm.map((server) => {
 					return (
 						<>
 							<div className="servers-button-map" key={server.name}>
@@ -109,14 +110,14 @@ const Servers = () => {
 					{memberArr.map((member) => (
 
 						member.user_info.profile_pic && (
-							<NavLink to={`/servers/@me/${member.server_id}`}>
-								<div>
+							<div>
+								<button onClick={()=>setShowMsg(true)}>
 									<div>
 										<img className='user-photo' src={member.user_info.profile_pic} />
 									</div>
 									<div>{member.user_info.username} </div>
-								</div>
-							</NavLink>
+								</button>
+							</div>
 						)
 
 					)
@@ -133,7 +134,7 @@ const Servers = () => {
 			</div>
 			<div className="servers-messages-container">
 				<h1 className="test-name">messages section</h1>
-				{dmMessageArr.length > 0 && (
+				{showMsg && dmMessageArr.length > 0 && (
 					dmMessageArr.map(message => {
 						return (<div>
 							<div>{message.created_at}</div>
