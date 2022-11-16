@@ -139,6 +139,9 @@
   scrollbar-color: grey;
 }
 
+.servers-messages-container::-webkit-scrollbar{
+  display: none;
+}
 /* styles layout of the messages */
 /* .servers-messages{
   border: 1px solid black;
