@@ -44,8 +44,8 @@ export const getAllServers = () => async dispatch => {
 
     if (response.ok) {
         const servers = await response.json();
-        dispatch(loadServers(servers.Servers));
-        return servers.Servers
+        dispatch(loadServers(servers.servers));
+        return servers.servers
     }
 
 }
@@ -56,8 +56,8 @@ export const getAllCurrentUserServers = () => async dispatch => {
 
     if (response.ok) {
         const servers = await response.json();
-        dispatch(loadServers(servers.Servers));
-        return servers.Servers
+        dispatch(loadServers(servers.servers));
+        return servers.servers
     }
 
 }
@@ -115,34 +115,36 @@ export const deleteServer = server => async dispatch => {
 /************************REDUCER************************** */
 
 const initialState = {
-    Servers: {},
+    servers: {},
     OneServer: {}
 
 }
 
-serverReducer = (state = initialState, action) => {
+const serverReducer = (state = initialState, action) => {
     let newState = {}
     let oneServer;
 
     switch (action.type) {
         case LOAD_SERVERS: {
-            newState = { ...state, servers: [...action.servers] }
-            newState.servers.forEach(server => {
-                newState[server.id] = server
+            newState = { ...state, servers: {} }
+            action.servers.forEach(server => {
+                newState.servers[server.id] = server
+
             });
+
             return newState
         };
 
         case LOAD_ONE_SERVER: {
-            oneServer = {};
-            newState.servers = { ...state.Servers, [action.server.id]: action.server };
+            // oneServer = {};
+            newState.servers = { ...state.servers, [action.server.id]: action.server };
+            console.log('action',action)
+            console.log('new state', newState)
             newState.oneServer = { ...action.server };
-
             return newState
         }
         case CREATE_SERVER: {
             newState.servers[action.newServer.id] = action.newServer;
-
             return newState;
 
         };

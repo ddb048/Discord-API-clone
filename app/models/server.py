@@ -39,8 +39,8 @@ class Server(db.Model):
             "messages": [message.mess_to_dict() for message in self.messages],
             'mess_count':len(self.messages),
             'num_member':len(self.users),
-            'members':[user.user_id for user in self.users ],
-            'channels':[channel.id for channel in self.channels]
+            'members':[user.to_dict() for user in self.users ],
+            'channels':[channel.to_dict() for channel in self.channels]
         }
 
 # Index('servers_owner_id_members_roles_idx', Server.owner_id, Member.roles)
