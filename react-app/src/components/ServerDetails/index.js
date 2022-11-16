@@ -6,8 +6,10 @@ import { getAllChannel, getChannelDetail } from '../../store/channel';
 import { getAllMembers } from '../../store/member';
 import DM_button from '../../Images/q-cord-button.png';
 import LogoutButton from '../auth/LogoutButton';
+import { Modal } from '../../context/Modal';
+import ChanelModal from './NewChannelModal';
 import './index.css';
-import { Modal,ModalProvider } from '../../context/Modal';
+
 const ServerDetail = () => {
 	const { serverId, channelId } = useParams();
 	const [showModal , setShowModal] = useState(false)
@@ -38,7 +40,9 @@ const ServerDetail = () => {
 		dispatch(getAllChannel(serverId));
 		dispatch(getChannelDetail(channelId));
 		dispatch(getAllMembers(serverId));
+
 	}, [dispatch, channelId, serverId]);
+
 
 	let currentChannel;
 	// filters current channel id once current state and useEffect are populated
@@ -112,7 +116,7 @@ const ServerDetail = () => {
 					<div className="server-title">CHANNELS</div>
 				</div>
 				<div className="server-channel-layout">
-					<div className='add-channel' onClick={() => setShowModal(true)}> add channel</div>
+					<div className='servers-photo' onClick={() => setShowModal(true)}> <i className='fa fa-plus' aria-hidden='true' /></div>
 					<div>
 						{channelsArray.map((channel) => {
 							return (
@@ -153,6 +157,9 @@ const ServerDetail = () => {
 					messages section
 				</div>
 			</div>
+			{showModal && (<Modal onClose={() => setShowModal(false)}>
+				<ChanelModal serverId={serverId} setShowModal={setShowModal}/>
+			</Modal>)}
 			<div className="server-active-container">
 				<div className="test-name">active section</div>
 			</div>

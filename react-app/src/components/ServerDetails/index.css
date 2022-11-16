@@ -140,11 +140,13 @@
   border-right: 1px solid white;
   overflow: scroll;
   overflow-x: hidden;
-  overflow-width: none;
+
   /* display: flex; */
   /* flex-direction: row; */
 }
-
+.channel-messages-container::-webkit-scrollbar{
+  display: none;
+}
 .channel-message-date{
   border-bottom: 1px solid white;
   font-family: adelle-sans, sans-serif;

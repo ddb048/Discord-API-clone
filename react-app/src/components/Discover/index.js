@@ -10,7 +10,7 @@ import "./discover.css";
 
 function Discover() {
   const servers = useSelector((state) => state.servers.servers);
-  // console.log("DISCOVER SERVERS STATE", servers);
+  console.log("DISCOVER SERVERS STATE", servers);
   const dispatch = useDispatch();
 
 
