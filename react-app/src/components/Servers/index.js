@@ -9,7 +9,6 @@ import LogoutButton from '../auth/LogoutButton';
 import { getServerDetails } from '../../store/servers';
 import DM_button from '../../Images/q-cord-button.png';
 import './Servers.css';
-import { compareSync } from 'bcryptjs';
 
 const Servers = () => {
   const [recipient, setRecipient] = useState({})
@@ -74,7 +73,7 @@ console.log(memberArr)
 					return (
 						<>
 							<div className="servers-button-map" key={server.name}>
-								<NavLink to={`servers/${server.id}`}>
+								<NavLink to={`/servers/${server.id}`}>
 									<div className="servers-photo-container">
 										<div>
 											{' '}
