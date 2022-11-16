@@ -152,9 +152,11 @@ const Servers = () => {
 						})
 					)}
 				</div>
+				{showMsg &&(
 				<div>
 					<input placeholder='Message' />
 				</div>
+				)}
 			</div>
 			<div className="servers-active-container">
 				<h1 className="test-name">active section</h1>
