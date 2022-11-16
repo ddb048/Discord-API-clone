@@ -111,7 +111,7 @@ const Servers = () => {
 
 						member.user_info.profile_pic && (
 							<div>
-								<button onClick={()=>setShowMsg(true)}>
+								<button onClick={() => setShowMsg(true)}>
 									<div>
 										<img className='user-photo' src={member.user_info.profile_pic} />
 									</div>
@@ -133,16 +133,28 @@ const Servers = () => {
 				</div>
 			</div>
 			<div className="servers-messages-container">
-				<h1 className="test-name">messages section</h1>
-				{showMsg && dmMessageArr.length > 0 && (
-					dmMessageArr.map(message => {
-						return (<div>
-							<div>{message.created_at}</div>
-							<div>{message.message_body}</div>
-						</div>
-						)
-					})
-				)}
+				<div>
+					<h1 className="test-name">messages section</h1>
+					{showMsg && dmMessageArr.length > 0 && (
+						dmMessageArr.map(message => {
+							return (
+								<div className='mess-box'>
+									<img className='user-photo' src={message.owner_pic} alt='userPhoto' />
+									<div className='mess'>
+										<div>
+											<h4>{message.owner_name}</h4>
+											{message.created_at}
+										</div>
+										<div>{message.message_body}</div>
+									</div>
+								</div>
+							)
+						})
+					)}
+				</div>
+				<div>
+					<input placeholder='Message' />
+				</div>
 			</div>
 			<div className="servers-active-container">
 				<h1 className="test-name">active section</h1>
