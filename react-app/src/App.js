@@ -12,7 +12,7 @@ import OnePageServer from './components/OnePageServer'
 import Servers from './components/Servers';
 import ServerDetail from './components/ServerDetails';
 import { authenticate } from './store/session';
-import Safety from './components/SaftyPage';
+import Safety from './components/SafetyPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -49,7 +49,7 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <Route path = '/discover/servers/:serverId' exact={true}>
+        <Route path='/discover/servers/:serverId' exact={true}>
           <OnePageServer />
         </Route>
         <Route path='/discover' exact={true} >
@@ -62,7 +62,7 @@ function App() {
           <Servers />
         </Route>
         <ProtectedRoute path='/servers/:serverId' exact={true}>
-          <ServerDetail/>
+          <ServerDetail />
         </ProtectedRoute>
         <ProtectedRoute path='/channels/:channelId' exact={true}>
         </ProtectedRoute>
