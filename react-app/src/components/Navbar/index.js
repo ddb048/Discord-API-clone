@@ -40,14 +40,14 @@ const NavBar = () => {
               </NavLink>
             </div>
             <div className='link-button'>
-              <NavLink
+              {/* <NavLink
                 className="link-text"
                 to="/support"
                 exact={true}
                 activeClassName="active"
               >
                 Support
-              </NavLink>
+              </NavLink> */}
             </div>
           </div>
           <div className="splash-login-right">
