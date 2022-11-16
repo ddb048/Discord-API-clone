@@ -62,8 +62,8 @@ export const getChannelDetail = (channelId) => async dispatch => {
 
 //SECTION - (CREATE)
 //REVIEW - please review backend route to make url more intuitive
-export const createChannel = (request) => async dispatch => {
-    const { newChannel, serverId } = request
+export const createChannel = (newChannel, serverId) => async dispatch => {
+    // const { newChannel, serverId } = request
     const response = await fetch(`/api/channels/${serverId}`, {
         method: 'POST',
         body: JSON.stringify(newChannel)

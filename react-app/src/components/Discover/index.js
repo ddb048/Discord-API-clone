@@ -10,7 +10,7 @@ import "./discover.css";
 
 function Discover() {
   const servers = useSelector((state) => state.servers.servers);
-  // console.log("DISCOVER SERVERS STATE", servers);
+  console.log("DISCOVER SERVERS STATE", servers);
   const dispatch = useDispatch();
 
 
@@ -33,7 +33,7 @@ return (
       </div>
       <div id="conteiner">
         {Object.values(servers).map((server) => (
-          <NavLink id="discover-links" to={`/discover/servers/${server.id}`}>
+          <NavLink key={server.name} id="discover-links" to={`/discover/servers/${server.id}`}>
             <div id="single-server">
               <div id="server-img-div">
                 <img src={server.preview_image} id="single-server-img" />
