@@ -7,8 +7,10 @@ import { getAllMembers } from '../../store/member';
 import DM_button from '../../Images/q-cord-button.png';
 import LogoutButton from '../auth/LogoutButton';
 import './index.css';
+import { Modal,ModalProvider } from '../../context/Modal';
 const ServerDetail = () => {
 	const { serverId, channelId } = useParams();
+	const [showModal , setShowModal] = useState(false)
 	// useState that sets channel id once
 	const [currentChannelId, setCurrentChannelId] = useState();
 	const [showMsg, setShowMsg] = useState(false);
@@ -45,7 +47,7 @@ const ServerDetail = () => {
 			(channel) => channel.id === currentChannelId
 		);
 	}
-	console.log('gello');
+
 	// appends profile_pic to currentChannel
 	// NOTE off by 1 error will be corrected later(changing seed files)
 	if (currentChannel && members) {
@@ -110,6 +112,7 @@ const ServerDetail = () => {
 					<div className="server-title">CHANNELS</div>
 				</div>
 				<div className="server-channel-layout">
+					<div className='add-channel' onClick={() => setShowModal(true)}> add channel</div>
 					<div>
 						{channelsArray.map((channel) => {
 							return (
