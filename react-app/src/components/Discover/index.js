@@ -5,6 +5,7 @@ import { NavLink, useHistory } from "react-router-dom";
 import { getAllServers } from "../../store/servers";
 import header from "../../Images/discover-header-png.png";
 import "./discover.css";
+import NavBar from "../Navbar";
 
 function Discover() {
   const servers = useSelector((state) => state.servers.servers);
@@ -16,9 +17,11 @@ function Discover() {
     dispatch(getAllServers());
   }, [dispatch]);
 
+  
   return (
+    
     <div id="discover">
-      <img id="discover-header-img" src={header} alt="header" />
+     <img id="discover-header-img" src={header} alt="header" />
       <div id="discover-title">
         <h1 id="discover-title-2">FIND YOUR COMMUNITY ON Q_CORD</h1>
         <div id="discover-title-3">
@@ -27,7 +30,7 @@ function Discover() {
       </div>
       <div id="conteiner">
         {Object.values(servers).map((server) => (
-          <NavLink id="a" to={`/discover/servers/${server.id}`}>
+          <NavLink id="discover-links" to={`/discover/servers/${server.id}`}>
             <div id="single-server">
               <div id="server-img-div">
                 <img src={server.preview_image} id="single-server-img" />

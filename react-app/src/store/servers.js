@@ -69,6 +69,7 @@ export const getServerDetails = serverId => async dispatch => {
     if (response.ok) {
         const server = await response.json();
         dispatch(loadOneServer(server))
+
     }
 }
 
@@ -122,11 +123,11 @@ const initialState = {
 
 const serverReducer = (state = initialState, action) => {
     let newState = {}
-    let oneServer;
+    // let oneServer;
 
     switch (action.type) {
         case LOAD_SERVERS: {
-            newState = { ...state, servers: {} }
+            newState = { ...state }
             action.servers.forEach(server => {
                 newState.servers[server.id] = server
 
@@ -138,7 +139,7 @@ const serverReducer = (state = initialState, action) => {
         case LOAD_ONE_SERVER: {
             // oneServer = {};
             newState.servers = { ...state.servers, [action.server.id]: action.server };
-            console.log('action',action)
+            console.log('action', action)
             console.log('new state', newState)
             newState.oneServer = { ...action.server };
             return newState
