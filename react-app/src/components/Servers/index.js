@@ -11,35 +11,39 @@ import DM_button from '../../Images/q-cord-button.png';
 import './Servers.css';
 
 const Servers = () => {
-  const [recipient, setRecipient] = useState({})
+	const [recipient, setRecipient] = useState({})
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const { channelId } = useParams();
 	// grabbing the state of servers in servers
 	const servers = useSelector((state) => Object.values(state.servers.servers));
-  // console.log('THIS IS SERVES USESELECTOR IN ARRAY', servers)
-  const currentUser = useSelector((state) => state.session.user);
+	// console.log('THIS IS SERVES USESELECTOR IN ARRAY', servers)
+	const currentUser = useSelector((state) => state.session.user);
 	// console.log('this is current user >>', currentUser)
 
-  const userObj = servers.filter((dm) => dm.is_DM == true);
-  // const userArr = userObj.find((dm) => dm.is_DM == true);
-  console.log('USER ARRAY',userObj)
+	const dmServersArr = servers.filter((dm) => dm.is_DM == true);
+	// const userArr = userObj.find((dm) => dm.is_DM == true);
+	console.log('USER ARRAY', dmServersArr)
+	let memberArr = []
+	dmServersArr.forEach(server => memberArr.push(...server.members))
+	console.log("------>", memberArr)
+	//   const other= dmServersArr.filter(x.members)
 
-  // const otherUser2 = userArr.filter(x => x.id != currentUser.id)
-  // const otherUser2 = userArr.filter(x => x.id != currentUser.id)
-  // console.log('OTHER USER 2>>>>', otherUser2)
-  // console.log('USERS',recipient)
-  // console.log('findDM1 >>>>>', DmIsTrue);
-  // useEffect(() => {
-  //   if (!currentUser.id) {
-  //     return;
-  //   }
-  //   (async () => {
-  //     const response = await fetch(`/api/users/${otherUser2.user_id}`);
-  //     const user = await response.json();
-  //     setRecipient(user);
-  //   })();
-  // }, [currentUser.id]);
+	// const otherUser2 = userArr.filter(x => x.id != currentUser.id)
+	// const otherUser2 = userArr.filter(x => x.id != currentUser.id)
+	// console.log('OTHER USER 2>>>>', otherUser2)
+	// console.log('USERS',recipient)
+	// console.log('findDM1 >>>>>', DmIsTrue);
+	// useEffect(() => {
+	//   if (!currentUser.id) {
+	//     return;
+	//   }
+	//   (async () => {
+	//     const response = await fetch(`/api/users/${otherUser2.user_id}`);
+	//     const user = await response.json();
+	//     setRecipient(user);
+	//   })();
+	// }, [currentUser.id]);
 	// console.log('members in dm>>>', DmIsTrue);
 
 	useEffect(() => {
@@ -49,6 +53,7 @@ const Servers = () => {
 		dispatch(getAllMembers(servers.id));
 		// dispatch(getAllChannel());
 	}, [dispatch]);
+
 
 
 	if (!currentUser) {
@@ -97,17 +102,15 @@ const Servers = () => {
 					<div className="servers-title">DIRECT MESSAGES</div>
 				</div>
 				<div className="servers-dm-layout">
-					<div>
-						{servers.map((server) =>
-								server.members.id && (
-						<NavLink to={`/channels/${server.id}`}>
-										<div className="servers-dm-name" key={server.id}>
-											#{server.name}
-										</div>
-									</NavLink>
-						)
-						)}
-					</div>
+					{memberArr.map((member) => (
+						<div>
+							member.user_info.profile_pic&&(
+							<img src={member.user_info.profile_pic} />
+							)
+						</div>
+					)
+					)
+					}
 				</div>
 				<div className="servers-dm-footer">
 					<div className="user-photo-container">

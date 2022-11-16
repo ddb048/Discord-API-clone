@@ -32,4 +32,5 @@ class Member(db.Model):
         'role':self.roles.value,
         'user_id':self.user_id,
         'server_id':self.server_id,
+        'user_info':self.users.to_dict()
     }
