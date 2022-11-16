@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, Redirect, useHistory, useParams } from 'react-router-dom';
+import { NavLink, Redirect, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCurrentUserServers } from '../../store/servers';
 import { getAllMembers } from '../../store/member';
@@ -57,7 +57,7 @@ const Servers = () => {
 		dispatch(getChannelDetail(channelId));
 		dispatch(getAllMembers(servers.id));
 		// dispatch(getAllChannel());
-	}, [dispatch]);
+	}, [dispatch, channelId, servers.id]);
 
 
 
@@ -113,7 +113,7 @@ const Servers = () => {
 							<div>
 								<button onClick={() => setShowMsg(true)}>
 									<div>
-										<img className='user-photo' src={member.user_info.profile_pic} />
+										<img className='user-photo' src={member.user_info.profile_pic} alt="" />
 									</div>
 									<div>{member.user_info.username} </div>
 								</button>
@@ -126,7 +126,7 @@ const Servers = () => {
 				</div>
 				<div className="servers-dm-footer">
 					<div className="user-photo-container">
-						<img className="user-photo" src={currentUser.profile_pic} />
+						<img className="user-photo" src={currentUser.profile_pic} alt="" />
 					</div>
 					<div className="servers-user test-name">{currentUser.username}</div>
 					<LogoutButton />
