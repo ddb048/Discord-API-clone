@@ -1,13 +1,12 @@
 
 
-#upper {
+#s-upper {
     background-color: #5865F2;
     display: flex;
     flex-direction: column;
     height: 700px;
     color: white;
     padding: 5%;
-    text-align: left;
     text-align: left;
     align-items: flex-start;
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -73,6 +72,7 @@
     margin-right: 10%;
     margin-top: 10%;
     width:300px;
+    
 
 }
 #b {

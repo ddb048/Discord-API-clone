@@ -1,23 +1,25 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { getAllServers } from "../../store/servers";
 import header from "../../Images/discover-header-png.png";
 import "./discover.css";
+// import NavBar from "../Navbar";
 
 function Discover() {
   const servers = useSelector((state) => state.servers.servers);
   console.log("DISCOVER SERVERS STATE", servers);
   const dispatch = useDispatch();
-  
+
 
   useEffect(() => {
     dispatch(getAllServers());
   }, [dispatch]);
 
-  
+
   return (
+
     <div id="discover">
       <img id="discover-header-img" src={header} alt="header" />
       <div id="discover-title">
@@ -28,10 +30,10 @@ function Discover() {
       </div>
       <div id="conteiner">
         {Object.values(servers).map((server) => (
-          <NavLink id="a" to={`/discover/servers/${server.id}`}>
+          <NavLink id="discover-links" to={`/discover/servers/${server.id}`}>
             <div id="single-server">
               <div id="server-img-div">
-                <img src={server.preview_image} id="single-server-img" />
+                <img src={server.preview_image} id="single-server-img" alt="" />
               </div>
               <div id="single-server-content">
                 <div id="single-server-name">{server.name}</div>
