@@ -25,6 +25,8 @@ class Message(db.Model):
             'owner_id':self.owner_id,
             'channel_id':self.channel_id,
             'server_id':self.server_id,
+            'owner_pic':self.users.profile_pic,
+            'owner_name':self.users.username,
             'created_at':self.created_at,
             'updated_at':self.updated_at
         }

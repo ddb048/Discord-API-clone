@@ -99,8 +99,11 @@ const Servers = () => {
 					);
 				})}
 				<div className="servers-photo-container">
-					<div className="servers-photo">CRG</div>
+					<button className="servers-photo">
+						<i className='fa fa-plus' aria-hidden='true' />
+					</button>
 				</div>
+
 			</div>
 			<div className="servers-dms-container">
 				<div className="servers-title-container">
@@ -133,15 +136,29 @@ const Servers = () => {
 				</div>
 			</div>
 			<div className="servers-messages-container">
-				<h1 className="test-name">messages section</h1>
-				{showMsg && dmMessageArr.length > 0 && (
-					dmMessageArr.map(message => {
-						return (<div>
-							<div>{message.created_at}</div>
-							<div>{message.message_body}</div>
-						</div>
-						)
-					})
+				<div>
+					<h1 className="test-name">messages section</h1>
+					{showMsg && dmMessageArr.length > 0 && (
+						dmMessageArr.map(message => {
+							return (
+								<div className='mess-box'>
+									<img className='user-photo' src={message.owner_pic} alt='userPhoto' />
+									<div className='mess'>
+										<div>
+											<h4>{message.owner_name}</h4>
+											{message.created_at}
+										</div>
+										<div>{message.message_body}</div>
+									</div>
+								</div>
+							)
+						})
+					)}
+				</div>
+				{showMsg && (
+					<div>
+						<input placeholder='Message' />
+					</div>
 				)}
 			</div>
 			<div className="servers-active-container">

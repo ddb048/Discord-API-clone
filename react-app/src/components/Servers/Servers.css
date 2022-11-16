@@ -8,7 +8,7 @@
   'server channels messages active'; */
   display: flex;
   flex-direction: row;
-  /* border: 1px solid blue; */
+  border: 1px solid blue;
 }
 /* styles div for all servers container */
 .servers-column-container{
@@ -134,6 +134,9 @@
   width: 1172px;
   background-color: #36393f;
   border-right: 1px solid white;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: grey;
 }
 
 /* styles layout of the messages */
@@ -167,4 +170,22 @@
   color: white;
   /* border-bottom: 1px solid white; */
   font-size: 12px;
+}
+
+
+.mess{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: rgb(199, 199, 199);
+  /* border: solid red 1px; */
+}
+
+
+.mess-box{
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  padding-top: 30px;
+  padding-left: 50px;
 }
