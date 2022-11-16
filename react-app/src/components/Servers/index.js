@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, Redirect, useHistory, useParams } from 'react-router-dom';
+import { Link, NavLink, Redirect, useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCurrentUserServers } from '../../store/servers';
 import { getAllMembers } from '../../store/member';
@@ -26,7 +26,11 @@ const Servers = () => {
 	console.log('USER ARRAY', dmServersArr)
 	let memberArr = []
 	dmServersArr.forEach(server => memberArr.push(...server.members))
-	console.log("------>", memberArr)
+	// console.log("------>", memberArr)
+	let dmMessageArr = []
+	dmServersArr.forEach(server => dmMessageArr.push(...server.messages))
+	console.log("2222------>", dmMessageArr)
+
 	//   const other= dmServersArr.filter(x.members)
 
 	// const otherUser2 = userArr.filter(x => x.id != currentUser.id)
@@ -103,11 +107,18 @@ const Servers = () => {
 				</div>
 				<div className="servers-dm-layout">
 					{memberArr.map((member) => (
-						<div>
-							member.user_info.profile_pic&&(
-							<img src={member.user_info.profile_pic} />
-							)
-						</div>
+
+						member.user_info.profile_pic && (
+							<NavLink to={`/servers/@me/${member.server_id}`}>
+								<div>
+									<div>
+										<img className='user-photo' src={member.user_info.profile_pic} />
+									</div>
+									<div>{member.user_info.username} </div>
+								</div>
+							</NavLink>
+						)
+
 					)
 					)
 					}
@@ -122,6 +133,15 @@ const Servers = () => {
 			</div>
 			<div className="servers-messages-container">
 				<h1 className="test-name">messages section</h1>
+				{dmMessageArr.length > 0 && (
+					dmMessageArr.map(message => {
+						return (<div>
+							<div>{message.created_at}</div>
+							<div>{message.message_body}</div>
+						</div>
+						)
+					})
+				)}
 			</div>
 			<div className="servers-active-container">
 				<h1 className="test-name">active section</h1>
