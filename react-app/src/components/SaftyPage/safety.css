@@ -1,2 +1,111 @@
 
 
+#upper {
+    background-color: #5865F2;
+    display: flex;
+    flex-direction: column;
+    height: 700px;
+    color: white;
+    padding: 5%;
+    text-align: left;
+    text-align: left;
+    align-items: flex-start;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    
+}
+
+#h1 {
+    margin-top: 10px;
+    text-align: left;
+    font-size: 40px;
+    font-weight: 800;
+}
+
+#h2 {
+    text-align: left;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+#middle {
+    background-color: white;
+    height: 700px;
+    color: black;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#general {
+    width:90%;
+    height:90%;
+    background-color:#F6F6F6;
+    margin: 7%;
+    border-radius: 10px;
+    display:flex;
+    flex-direction: row;
+}
+
+#left {
+    display:flex;
+    flex-direction: column;
+    max-width: 350px;
+    padding: 4%;
+}
+
+#left-title {
+    font-size: 40px;
+    color:  #5865F2;
+    font-weight: 800;
+    padding:4%;
+
+}
+
+#right {
+    display:grid;
+    grid-template-columns: repeat(3,2fr,1fr,2fr);
+    grid-template-rows: repeat(2,1fr);
+    grid-template-areas: 
+    "a.b"
+    "c.d";
+}
+
+#a  {
+    grid-area: a;
+    margin-right: 10%;
+    margin-top: 10%;
+    width:300px;
+
+}
+#b {
+    grid-area: b;
+    margin-left:10%;
+    margin-top: 10%;
+    width:300px;
+}
+#c {
+    grid-area: c;
+    margin-right: 10%;
+    width:300px;
+}
+#d {
+    grid-area: d;
+    width:300px;
+    margin-left:10%;
+}
+
+#blue-title {
+   color:  #5865F2;
+   font-size:15px;
+   font-weight: 500;
+
+}
+
+#black-title {
+    color: black;
+    font-size:20px;
+    font-weight: 300;
+}
+
+#safety-img {
+    max-width:100%;
+    border-radius: 10px;
+}

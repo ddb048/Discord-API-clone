@@ -9,7 +9,6 @@ import LogoutButton from '../auth/LogoutButton';
 import { getServerDetails } from '../../store/servers';
 import DM_button from '../../Images/q-cord-button.png';
 import './Servers.css';
-import { compareSync } from 'bcryptjs';
 
 const Servers = () => {
   const [recipient, setRecipient] = useState({})
