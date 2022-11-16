@@ -7,20 +7,45 @@ import DM_button from '../../Images/q-cord-button.png';
 import LogoutButton from '../auth/LogoutButton';
 import './index.css';
 const ServerDetail = () => {
-	const { serverId,channelId } = useParams();
-
+	const { serverId, channelId } = useParams();
+	const [currentChannelId, setCurrentChannelId] = useState();
+	const [showMsg, setShowMsg] = useState(false);
 	const dispatch = useDispatch();
-  const [currentChannel, setCurrentChannel] = useState([])
 	const servers = useSelector((state) => Object.values(state.servers.servers));
-  const allChannels = useSelector(state => Object.values(state.channels.channels))
+	// console.log('server', servers)
+	const channelsServersArr = servers.filter((dm) => dm.is_DM == false);
+	// console.log(' no dms ', channelsServersArr)
+	const channelsArray = [];
+	channelsServersArr.forEach((channel) =>
+		channelsArray.push(...channel.channels)
+	);
+	// console.log('channels array', channelsArray)
+	// console.log('servers', servers)
+	const allChannels = useSelector((state) =>
+		Object.values(state.channels.channels)
+	);
 
+	console.log('all channels', allChannels);
 	const currentUser = useSelector((state) => state.session.user);
 
 	useEffect(() => {
 		dispatch(getServerDetails(serverId));
-    dispatch(getAllChannel(serverId))
-    dispatch(getChannelDetail(channelId))
-  }, [dispatch]);
+		dispatch(getAllChannel(serverId));
+		dispatch(getChannelDetail(channelId));
+	}, [dispatch]);
+
+	let currentChannel;
+	if (channelsArray.length && currentChannelId) {
+		currentChannel = channelsArray.find(
+			(channel) => channel.id == currentChannelId
+		);
+	}
+	const showmsg = (x) => {
+		setCurrentChannelId(x);
+
+		setShowMsg(true);
+	};
+	console.log('are you channnelll', currentChannelId);
 	return (
 		<div className="servers-page-container">
 			<div className="servers-column-container">
@@ -31,40 +56,48 @@ const ServerDetail = () => {
 						</NavLink>
 					</div>
 				</div>
-				{servers.map((server) => {
-					return (
-						<>
-							<div className="servers-button-column" key={server.name}>
-								<NavLink to={`/servers/${server.id}`}>
-									<div className="servers-photo-container">
-										<div>
-											{' '}
-											{server.preview_image ? (
-												<img
-													className="servers-photo"
-													src={server.preview_image}
-													alt="server img"
-												/>
-											) : (
-												server.name.slice(0, 2)
-											)}
+				{channelsServersArr.length > 0 &&
+					channelsServersArr.map((server) => {
+						return (
+							<>
+								<div className="servers-button-column" key={server.name}>
+									<NavLink to={`/servers/${server.id}`}>
+										<div className="servers-photo-container">
+											<div>
+												{' '}
+												{server.preview_image ? (
+													<img
+														className="servers-photo"
+														src={server.preview_image}
+														alt="server img"
+													/>
+												) : (
+													server.name.slice(0, 2)
+												)}
+											</div>
 										</div>
-									</div>
-								</NavLink>
-							</div>
-						</>
-					);
-				})}
+									</NavLink>
+								</div>
+							</>
+						);
+					})}
 			</div>
 			<div className="server-channels-container">
 				<div className="server-title-container">
 					<div className="server-title">CHANNELS</div>
-          {allChannels.map(channel => channel.name)}
 				</div>
 				<div className="server-channel-layout">
 					<div>
-						<div className="server-channel-name">channel name</div>
-
+						{channelsArray.map((channel) => {
+							return (
+								<button
+									onClick={() => showmsg(channel.id)}
+									className="server-channel-name"
+								>
+									{channel.name}
+								</button>
+							);
+						})}
 					</div>
 				</div>
 				<div className="servers-dm-footer">
@@ -76,7 +109,19 @@ const ServerDetail = () => {
 				</div>
 			</div>
 			<div className="server-messages-container">
-				<h1 className="test-name">messages section</h1>
+				<h1 className="test-name">
+					{showMsg &&
+						currentChannel &&
+						currentChannel.messages.map((msg) => {
+							return (
+								<div>
+									<div> {msg.created_at}</div>
+									<div>{msg.message_body}</div>
+								</div>
+							);
+						})}
+					messages section
+				</h1>
 			</div>
 			<div className="server-active-container">
 				<h1 className="test-name">active section</h1>
