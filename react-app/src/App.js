@@ -13,6 +13,7 @@ import Servers from './components/Servers';
 import ServerDetail from './components/ServerDetails';
 import { authenticate } from './store/session';
 import Safety from './components/SafetyPage';
+import Footer from './components/footer'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -38,7 +39,9 @@ function App() {
         <NavBar />
 
       </Route>
-
+      
+        <Footer />
+      
       <Switch>
         <Route path='/' exact={true} >
           <Splash />
