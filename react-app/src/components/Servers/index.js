@@ -9,9 +9,13 @@ import LogoutButton from '../auth/LogoutButton';
 import { getServerDetails } from '../../store/servers';
 import DM_button from '../../Images/q-cord-button.png';
 import './Servers.css';
+import { io } from 'socket.io-client'
+let socket;
 
 const Servers = () => {
 	const [showMsg, setShowMsg] = useState(false);
+	const [messages,setMessages]=useState([])
+	const [chatInput,setChatInput]=useState('')
 
 	const dispatch = useDispatch();
 	// const history = useHistory();
@@ -32,24 +36,20 @@ const Servers = () => {
 	dmServersArr.forEach(server => dmMessageArr.push(...server.messages))
 	console.log("2222------>", dmMessageArr)
 
-	//   const other= dmServersArr.filter(x.members)
 
-	// const otherUser2 = userArr.filter(x => x.id != currentUser.id)
-	// const otherUser2 = userArr.filter(x => x.id != currentUser.id)
-	// console.log('OTHER USER 2>>>>', otherUser2)
-	// console.log('USERS',recipient)
-	// console.log('findDM1 >>>>>', DmIsTrue);
-	// useEffect(() => {
-	//   if (!currentUser.id) {
-	//     return;
-	//   }
-	//   (async () => {
-	//     const response = await fetch(`/api/users/${otherUser2.user_id}`);
-	//     const user = await response.json();
-	//     setRecipient(user);
-	//   })();
-	// }, [currentUser.id]);
-	// console.log('members in dm>>>', DmIsTrue);
+	useEffect(() => {
+        // open socket connection
+        // create websocket
+        socket = io();
+
+        socket.on("chat", (chat) => {
+            setMessages(messages => [...messages, chat])
+        })
+        // when component unmounts, disconnect
+        return (() => {
+            socket.disconnect()
+        })
+    }, [])
 
 	useEffect(() => {
 		dispatch(getAllCurrentUserServers());
@@ -156,9 +156,13 @@ const Servers = () => {
 					)}
 				</div>
 				{showMsg && (
-					<div>
-						<input placeholder='Message' />
-					</div>
+					<form>
+						<input
+						value={chatInput}
+						onChange={e=>setChatInput(e.target.value)}
+						placeholder='Message' />
+						<button type='submit'>Send</button>
+					</form>
 				)}
 			</div>
 			<div className="servers-active-container">
