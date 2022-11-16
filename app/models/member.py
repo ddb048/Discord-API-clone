@@ -1,5 +1,5 @@
 
-from .db import db
+from .db import db, SCHEMA, environment, add_prefix_for_prod
 # from .user import User
 # from .server import Server
 # import enum
@@ -17,10 +17,11 @@ from sqlalchemy import ForeignKey
 #FIXME -issue migrating
 class Member(db.Model):
    __tablename__= 'members'
-
+   if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
    roles = db.Column(db.String(50), nullable=False)
-   user_id = db.Column(ForeignKey("users.id"), primary_key=True)
-   server_id = db.Column(ForeignKey("servers.id"), primary_key=True)
+   user_id = db.Column(ForeignKey(add_prefix_for_prod("users.id")), primary_key=True)
+   server_id = db.Column(ForeignKey(add_prefix_for_prod("servers.id")), primary_key=True)
    created_at = db.Column(db.DateTime(), nullable=False,server_default=func.now())
    updated_at = db.Column(db.DateTime(), nullable=False,onupdate=func.now(), default=func.now())
    servers = db.relationship('Server', back_populates='users')
