@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, useHistory, useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getServerDetails } from '../../store/servers';
 import { getAllChannel, getChannelDetail } from '../../store/channel';
@@ -13,7 +13,7 @@ const ServerDetail = () => {
 	const dispatch = useDispatch();
 	const servers = useSelector((state) => Object.values(state.servers.servers));
 	// console.log('server', servers)
-	const channelsServersArr = servers.filter((dm) => dm.is_DM == false);
+	const channelsServersArr = servers.filter((dm) => dm.is_DM === false);
 	// console.log(' no dms ', channelsServersArr)
 	const channelsArray = [];
 	channelsServersArr.forEach((channel) =>
