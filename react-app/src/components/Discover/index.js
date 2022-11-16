@@ -16,6 +16,7 @@ function Discover() {
     dispatch(getAllServers());
   }, [dispatch]);
 
+  
   return (
     <div id="discover">
       <img id="discover-header-img" src={header} alt="header" />
