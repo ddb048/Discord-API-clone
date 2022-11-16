@@ -115,7 +115,6 @@ const initialState = {
 
 const channelReducer = (state = initialState, action) => {
     let newState = {}
-    let oneChannel;
     let channels;
     switch (action.type) {
         case LOAD_CHANNELS: {
@@ -123,7 +122,7 @@ const channelReducer = (state = initialState, action) => {
             newState = {...state}
             channels = {}
 
-            console.log('newstate in channel reducer', action.channels)
+            // console.log('newstate in channel reducer', action.channels)
             action.channels.forEach(channel => {
                 channels[channel.id] = channel
             });
@@ -131,8 +130,9 @@ const channelReducer = (state = initialState, action) => {
             return newState
         };
         case LOAD_ONE_CHANNEL: {
-            oneChannel = {};
             newState.channels = { ...state.channels, [action.channel.id]: action.channel };
+            console.log('ACTION',action.channel)
+            console.log('NEW STATE',newState)
             newState.OneChannel = { ...action.channel }
 
             return newState;

@@ -62,10 +62,9 @@ function App() {
           <Servers />
         </Route>
         <ProtectedRoute path='/servers/:serverId' exact={true}>
-          <Servers />
+          <ServerDetail/>
         </ProtectedRoute>
         <ProtectedRoute path='/channels/:channelId' exact={true}>
-          <ServerDetail/>
         </ProtectedRoute>
         <Route path='/safety'>
           <Safety />

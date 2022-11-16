@@ -1,20 +1,21 @@
 from .member import Member
 from .user import User
-from .db import db
+from .db import db, SCHEMA, environment, add_prefix_for_prod
 from sqlalchemy.sql import func
 from sqlalchemy import ForeignKey
 from sqlalchemy.schema import Index
 
 class Server(db.Model):
     __tablename__ = 'servers'
-
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True)
     preview_image = db.Column(db.String(255))
     private = db.Column(db.Boolean)
     is_DM = db.Column(db.Boolean)
     server_description = db.Column(db.String(255))
-    owner_id = db.Column(db.Integer, ForeignKey("users.id"))
+    owner_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("users.id")))
     created_at = db.Column(db.DateTime(), nullable=False,server_default=func.now())
     updated_at = db.Column(db.DateTime(), nullable=False,onupdate=func.now(), default=func.now())
  #relationship
@@ -39,7 +40,7 @@ class Server(db.Model):
             'mess_count':len(self.messages),
             'num_member':len(self.users),
             'members':[user.to_dict() for user in self.users ],
-            'channels':[channel.id for channel in self.channels]
+            'channels':[channel.to_dict() for channel in self.channels]
         }
 
 # Index('servers_owner_id_members_roles_idx', Server.owner_id, Member.roles)
