@@ -138,6 +138,9 @@
   width: 1172px;
   background-color: #36393f;
   border-right: 1px solid white;
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-width: none;
   /* display: flex; */
   /* flex-direction: row; */
 }
@@ -153,11 +156,12 @@
 
 }
 .channel-msg-photo{
-  
+
 }
 .channel-message{
  font-family: adelle-sans, sans-serif;
   font-size: 12px;
+  /* overflow: scroll; */
 }
 .server-active-container{
   /* border: 1px solid black; */
