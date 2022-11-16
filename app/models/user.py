@@ -1,4 +1,4 @@
-from .db import db
+from .db import db, environment, SCHEMA
 from .member import Member
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -6,6 +6,8 @@ from sqlalchemy.sql import func
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 #TODO - add columns for first name and last name
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(32))

@@ -1,15 +1,17 @@
-from .db import db
+from .db import db, environment, SCHEMA
 from sqlalchemy.sql import func
 from sqlalchemy import ForeignKey
 
 
 class Channel(db.Model):
     __tablename__='channels'
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String, nullable = False)
     is_voice = db.Column(db.Boolean, nullable = False)
     description = db.Column(db.String(255))
-    server_id = db.Column(db.Integer, ForeignKey("servers.id"))
+    server_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("servers.id")))
     created_at = db.Column(db.DateTime(), nullable=False,server_default=func.now())
     updated_at = db.Column(db.DateTime(), nullable=False,onupdate=func.now(), default=func.now())
  #relationship
