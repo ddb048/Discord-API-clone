@@ -69,6 +69,7 @@ export const getServerDetails = serverId => async dispatch => {
     if (response.ok) {
         const server = await response.json();
         dispatch(loadOneServer(server))
+        console.log('thunk was hit')
     }
 }
 
@@ -131,13 +132,15 @@ const serverReducer = (state = initialState, action) => {
                 newState.servers[server.id] = server
 
             });
-            
+
             return newState
         };
 
         case LOAD_ONE_SERVER: {
             oneServer = {};
             newState.servers = { ...state.servers, [action.server.id]: action.server };
+            console.log('action',action)
+            console.log('new state', newState)
             newState.oneServer = { ...action.server };
             return newState
         }

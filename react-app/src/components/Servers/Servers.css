@@ -76,14 +76,14 @@
   border-radius: 15px;
   background-color: #5865f2;
 }
-/* styles div holding all channels list */
+/* styles div holding all messages list */
 .servers-dms-container{
   /* grid-area: channels; */
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
   /* border: 1px solid green; */
-  width:240px;
+  width:135px;
   background-color: #2f3136;
   /* border: 1px solid white */
 }
@@ -125,10 +125,9 @@
   justify-content: center;
   align-items: center;
 }
-.servers-user{
-  /* border: 1px solid purple; */
-
-}
+/* .servers-user{
+  border: 1px solid purple;
+} */
 /* styles div holding all messages */
 .servers-messages-container{
   /* border: 1px solid blue; */
@@ -138,9 +137,9 @@
 }
 
 /* styles layout of the messages */
-.servers-messages{
-  /* border: 1px solid black; */
-}
+/* .servers-messages{
+  border: 1px solid black;
+} */
 
 /* styles div for active container  NOTE idk why its not hitting this*/
 .servers-active-container{
