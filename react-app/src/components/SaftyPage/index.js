@@ -1,5 +1,13 @@
 import React from "react";
 import {NavLink} from 'react-router-dom'
+import hummer from '../../Images/safety-hummer.jpeg'
+import yellow from '../../Images/safety-yellow.jpeg'
+import teens from '../../Images/safety-teens.jpeg'
+import shield from '../../Images/safety-shield.jpeg'
+import tools from '../../Images/safety-tools.jpeg'
+import './safety.css'
+
+
 
 function Safety() {
 
@@ -15,8 +23,8 @@ function Safety() {
               Q-cord
             </NavLink>
           </div>
-          <h1> DISCORD SAFETY CENTER</h1>
-          <h2>what is Q-cord</h2>
+          <div id="h1"> DISCORD SAFETY CENTER</div>
+          <div id="h2">what is Q-cord?</div>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -26,7 +34,7 @@ function Safety() {
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
             culpa qui officia deserunt mollit anim id est laborum.
           </p>
-          <h2>Q-cord commitment to a safe and trusted experience</h2>
+          <div id="h2">Q-cord commitment to a safe and trusted experience</div>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -39,30 +47,37 @@ function Safety() {
         </div>
         <div id="middle">
           <div id="general">
-            <div id="left"></div>
+            <div id="left">
+              <div id="left-title">SAFETY</div>
+              <img src={tools} />
+              <div id="left-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam.
+              </div>
+            </div>
             <div id="right">
-              <div>
-                <img />
-                <div id='blue-title'></div>
-                <div id='black-title'></div>
+              <div id="a">
+                <img id="safety-img" src={hummer} />
+                <div id="blue-title">reprehenderit in voluptate</div>
+                <div id="black-title">Excepteur sint occaecat</div>
               </div>
-              <div>
-                 <img />
-                <div id='blue-title'></div>
-                <div id='black-title'></div>
+              <div id="b">
+                <img id="safety-img" src={shield} />
+                <div id="blue-title">voluptate velit esse </div>
+                <div id="black-title"> mollit anim id est</div>
               </div>
-              <div>
-                 <img />
-                <div id='blue-title'></div>
-                <div id='black-title'></div>
+              <div id="c">
+                <img id="safety-img" src={teens} />
+                <div id="blue-title">cupidatat non proident</div>
+                <div id="black-title">voluptate velit esse </div>
               </div>
-              
-              <div>
-                 <img />
-                <div id='blue-title'></div>
-                <div id='black-title'></div>
+
+              <div id="d">
+                <img id="safety-img" src={yellow} />
+                <div id="blue-title">ipsum dolor sit amet</div>
+                <div id="black-title">quis nostrud exercitation</div>
               </div>
-              
             </div>
           </div>
         </div>
