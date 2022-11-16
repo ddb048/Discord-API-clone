@@ -35,7 +35,6 @@ def seed_servers():
     owner_id=4
     )
   server5 = Server(
-    id=5,
     name="Queer Alliance",
     preview_image='https://www.prnewsonline.com/wp-content/uploads/2020/06/shutterstock_1124164049-540x304.jpg',
     server_description="This space is dedicated to non cisgender people, which includes but is not limited to: agender, genderqueer, nonbinary, trans, genderfluid, bigender, multigender, and all of those who fall under the gender expansive umbrella.",
