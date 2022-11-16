@@ -1,17 +1,17 @@
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
-import { useParams, useHistory, NavLink, Redirect} from 'react-router-dom'
-import { getAllServers, getServerDetails } from "../../store/servers";
+import { useParams, NavLink} from 'react-router-dom'
+import { getServerDetails } from "../../store/servers";
 import splash_3 from '../../Images/discord-splash-3.png';
-import "./onePage.css";
 import fun from '../../Images/fun.png'
 import chaty from '../../Images/chaty.png'
 import games from '../../Images/games.png'
-import ideas from '../../Images/games.png'
+// import ideas from '../../Images/games.png'
 import exlamation from '../../Images/exlamation.png'
 import calender from '../../Images/calender.png'
-import '../Splash/index.css'
+import "./onePage.css";
+
 
 function OnePageServer() {
 // const servers = useSelector((state) => state.servers.servers);
@@ -19,7 +19,7 @@ const oneServer = useSelector(state=>state.servers.oneServer);
 console.log("ONE PAGE SERVERS STATE", oneServer);
 const dispatch = useDispatch();
 let { serverId } = useParams();
-const history = useHistory();
+
 
 useEffect(() => {
   // dispatch(getAllServers());
@@ -43,7 +43,7 @@ return (
           Safety
         </NavLink>
       </div>
-      <img id="upper-img" src={oneServer.preview_image} />
+      <img id="upper-img" src={oneServer.preview_image} alt='upper-img'/>
     </div>
     {/* NOTE lower part white */}
     <div id="lower-div">
@@ -52,23 +52,23 @@ return (
 
       <div id="content-container">
         <div id="in-with-img">
-          <img id="bullatin-img" src={calender} />
+          <img id="bullatin-img" src={calender} alt='img' />
           <p>{oneServer.created_at}</p>
         </div>
         <div id="in-with-img">
-          <img id="bullatin-img" src={fun} />
+          <img id="bullatin-img" src={fun} alt='img'/>
           <p>Have fun discussions with other members.</p>
         </div>
         <div id="in-with-img">
-          <img id="bullatin-img" src={games} />
+          <img id="bullatin-img" src={games} alt='img' />
           <p>Meet new people to play the game with</p>
         </div>
         <div id="in-with-img">
-          <img id="bullatin-img" src={exlamation} />
+          <img id="bullatin-img" src={exlamation} alt='img' />
           <p>Post your beautiful fanart and suggestions</p>
         </div>
         <div id="in-with-img">
-          <img id="bullatin-img" src={chaty} />
+          <img id="bullatin-img" src={chaty} alt='img'/>
           <p>
             Find trades, raids, and many other game events going on to complete
             with friends.
@@ -82,7 +82,7 @@ return (
 
     <div className="details-container">
       <div className="details-card">
-        <img className="details-card-photo" src={splash_3} alt="" />
+        <img className="details-card-photo" src={splash_3} alt="img" />
         <div className="ddetails-card-text">
           <div className="sub-title">Where Hanging Out is Easy</div>
           <div className="sub-subtext">

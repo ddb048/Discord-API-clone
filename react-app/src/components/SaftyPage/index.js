@@ -13,7 +13,7 @@ function Safety() {
 
     return (
       <>
-        <div id="upper">
+        <div id="s-upper">
           <div id="header-links">
             <NavLink id="links" to="/discover">
               Discover
