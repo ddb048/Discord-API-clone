@@ -87,17 +87,17 @@
     position:sticky;
 }
 
-#signup {
+.details-card-bttn {
     text-decoration: none;
     box-sizing: border-box;
     border-radius: 20px;
     width: 150px;
-    height: 100px;
+    height: 80px;
     background-color: black;
     color: white;
     text-align: center;
     vertical-align: middle;
-
+    
 }
 
 #in-footer {
@@ -114,10 +114,11 @@
 .details-container {
 display: flex;
 flex-direction: column;
-align-items: center;
-height: 500px;
+/* align-items: center; */
+margin-left:10%;
+height: 600px;
 width: 100%;
-border: 1px solid black;
+
 }
 
 .details-card {
@@ -127,21 +128,23 @@ border: 1px solid black;
     grid-template-areas: 
     "a.c"
     ".b.";
-    width: 500px;
+    width: 50%;
     height:500px
 }
 
 .details-card-text {
     grid-area: a;
-    border: 1px solid red;
     
 }
 
 .details-card-photo {
     grid-area: c;
-    border: 1px
+    border: 1px;
+    
 }
 
 .details-card-bttn {
     grid-area: b;
+    
+    padding: 20% 0;
 }
