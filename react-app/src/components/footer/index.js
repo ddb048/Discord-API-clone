@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from 'react-router-dom'
-import 
+import {useSelector} from 'react-redux'
 
 function Footer () {
+let sessionUser = useSelector(state => state.session.user)
 
 
-
-
+if (sessionUser) return null
+else
     return (
       <>
         <div className="Splash-footer">
@@ -140,3 +141,5 @@ function Footer () {
       </>
     );
 }
+
+export default Footer

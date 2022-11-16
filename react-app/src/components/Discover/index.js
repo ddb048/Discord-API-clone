@@ -10,7 +10,7 @@ import "./discover.css";
 
 function Discover() {
   const servers = useSelector((state) => state.servers.servers);
-  console.log("DISCOVER SERVERS STATE", servers);
+  // console.log("DISCOVER SERVERS STATE", servers);
   const dispatch = useDispatch();
 
 
@@ -18,8 +18,10 @@ function Discover() {
     dispatch(getAllServers());
   }, [dispatch]);
 
-
-
+if (!servers) return null
+else
+return (
+<>
     <div id="discover">
       <img id="discover-header-img" src={header} alt="header" />
      <img id="discover-header-img" src={header} alt="header" />
@@ -45,6 +47,7 @@ function Discover() {
                   {server.num_member} Members
                 </div>
               </div>
+            </div>
             </NavLink>
           ))}
         </div>
