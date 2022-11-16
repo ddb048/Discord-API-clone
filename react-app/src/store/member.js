@@ -2,7 +2,7 @@
 
 
 const LOAD_MEMBERS = 'members/LOAD';
-const LOAD_ONE_MEMBER = 'members/LOAD_ONE';
+// const LOAD_ONE_MEMBER = 'members/LOAD_ONE';
 const CREATE_MEMBER = 'members/ADD';
 const REMOVE_MEMBER = 'members/REMOVE';
 const EDIT_MEMBER = 'members/EDIT';
@@ -15,10 +15,10 @@ const loadMembers = (members) => ({
     members
 })
 
-const loadOneMember = (member) => ({
-    type: LOAD_ONE_MEMBER,
-    member
-})
+// const loadOneMember = (member) => ({
+//     type: LOAD_ONE_MEMBER,
+//     member
+// })
 
 const addMember = (newMember) => ({
     type: CREATE_MEMBER,

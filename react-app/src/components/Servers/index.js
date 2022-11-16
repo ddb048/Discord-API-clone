@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link, NavLink, Redirect, useHistory, useParams } from 'react-router-dom';
+import { NavLink, Redirect, useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCurrentUserServers } from '../../store/servers';
 import { getAllMembers } from '../../store/member';
-import { getAllChannel, getChannelDetail } from '../../store/channel';
+import { getChannelDetail } from '../../store/channel';
 import LogoutButton from '../auth/LogoutButton';
 // import { getAllMessages } from '../../store/message';
 import { getServerDetails } from '../../store/servers';
@@ -14,15 +14,15 @@ const Servers = () => {
 	const [showMsg, setShowMsg] = useState(false);
 
 	const dispatch = useDispatch();
-	const history = useHistory();
+	// const history = useHistory();
 	const { channelId } = useParams();
 	// grabbing the state of servers in servers
 	const servers = useSelector((state) => Object.values(state.servers.servers));
 	// console.log('THIS IS SERVES USESELECTOR IN ARRAY', servers)
 	const currentUser = useSelector((state) => state.session.user);
 	// console.log('this is current user >>', currentUser)
-	const isNotDm = servers.filter((dm) => dm.is_DM == false);
-	const dmServersArr = servers.filter((dm) => dm.is_DM == true);
+	const isNotDm = servers.filter((dm) => dm.is_DM === false);
+	const dmServersArr = servers.filter((dm) => dm.is_DM === true);
 	// const userArr = userObj.find((dm) => dm.is_DM == true);
 	console.log('USER ARRAY', dmServersArr)
 	let memberArr = []
@@ -111,7 +111,7 @@ const Servers = () => {
 
 						member.user_info.profile_pic && (
 							<div>
-								<button onClick={()=>setShowMsg(true)}>
+								<button onClick={() => setShowMsg(true)}>
 									<div>
 										<img className='user-photo' src={member.user_info.profile_pic} />
 									</div>
