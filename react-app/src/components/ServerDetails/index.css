@@ -108,6 +108,7 @@
   list-style: none;
   padding: 15px 10px;
 }
+
 .servers-dm-footer{
   display: flex;
   /* border: 1px solid purple; */
@@ -132,11 +133,18 @@
   font-size: 12px;
   color: white;
 }
-.server-messages-container{
+.channel-messages-container{
   /* border: 1px solid blue; */
   width: 1172px;
   background-color: #36393f;
   border-right: 1px solid white;
+}
+
+.channel-message-date{
+  border-bottom: 1px solid white;
+}
+.channel-message{
+
 }
 .server-active-container{
   /* border: 1px solid black; */
