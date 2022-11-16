@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, Redirect, useHistory, useParams } from 'react-router-dom';
+import { NavLink, Redirect, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCurrentUserServers } from '../../store/servers';
 import { getAllMembers } from '../../store/member';
@@ -57,7 +57,7 @@ const Servers = () => {
 		dispatch(getChannelDetail(channelId));
 		dispatch(getAllMembers(servers.id));
 		// dispatch(getAllChannel());
-	}, [dispatch]);
+	}, [dispatch, channelId, servers.id]);
 
 
 
@@ -99,8 +99,11 @@ const Servers = () => {
 					);
 				})}
 				<div className="servers-photo-container">
-					<div className="servers-photo">CRG</div>
+					<button className="servers-photo">
+						<i className='fa fa-plus' aria-hidden='true' />
+					</button>
 				</div>
+
 			</div>
 			<div className="servers-dms-container">
 				<div className="servers-title-container">
@@ -113,7 +116,7 @@ const Servers = () => {
 							<div>
 								<button onClick={() => setShowMsg(true)}>
 									<div>
-										<img className='user-photo' src={member.user_info.profile_pic} />
+										<img className='user-photo' src={member.user_info.profile_pic} alt="" />
 									</div>
 									<div>{member.user_info.username} </div>
 								</button>
@@ -126,22 +129,36 @@ const Servers = () => {
 				</div>
 				<div className="servers-dm-footer">
 					<div className="user-photo-container">
-						<img className="user-photo" src={currentUser.profile_pic} />
+						<img className="user-photo" src={currentUser.profile_pic} alt="" />
 					</div>
 					<div className="servers-user test-name">{currentUser.username}</div>
 					<LogoutButton />
 				</div>
 			</div>
 			<div className="servers-messages-container">
-				<h1 className="test-name">messages section</h1>
-				{showMsg && dmMessageArr.length > 0 && (
-					dmMessageArr.map(message => {
-						return (<div>
-							<div>{message.created_at}</div>
-							<div>{message.message_body}</div>
-						</div>
-						)
-					})
+				<div>
+					<h1 className="test-name">messages section</h1>
+					{showMsg && dmMessageArr.length > 0 && (
+						dmMessageArr.map(message => {
+							return (
+								<div className='mess-box'>
+									<img className='user-photo' src={message.owner_pic} alt='userPhoto' />
+									<div className='mess'>
+										<div>
+											<h4>{message.owner_name}</h4>
+											{message.created_at}
+										</div>
+										<div>{message.message_body}</div>
+									</div>
+								</div>
+							)
+						})
+					)}
+				</div>
+				{showMsg && (
+					<div>
+						<input placeholder='Message' />
+					</div>
 				)}
 			</div>
 			<div className="servers-active-container">

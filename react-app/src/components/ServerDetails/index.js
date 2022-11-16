@@ -3,49 +3,72 @@ import { NavLink, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getServerDetails } from '../../store/servers';
 import { getAllChannel, getChannelDetail } from '../../store/channel';
+import { getAllMembers } from '../../store/member';
 import DM_button from '../../Images/q-cord-button.png';
 import LogoutButton from '../auth/LogoutButton';
 import './index.css';
 const ServerDetail = () => {
 	const { serverId, channelId } = useParams();
+	// useState that sets channel id once
 	const [currentChannelId, setCurrentChannelId] = useState();
 	const [showMsg, setShowMsg] = useState(false);
 	const dispatch = useDispatch();
 	const servers = useSelector((state) => Object.values(state.servers.servers));
-	// console.log('server', servers)
+	const members = useSelector((state) => state.members.members);
+	console.log('users', members);
 	const channelsServersArr = servers.filter((dm) => dm.is_DM === false);
-	// console.log(' no dms ', channelsServersArr)
+
 	const channelsArray = [];
 	channelsServersArr.forEach((channel) =>
 		channelsArray.push(...channel.channels)
 	);
-	// console.log('channels array', channelsArray)
+	console.log('channels array', channelsArray);
 	// console.log('servers', servers)
 	const allChannels = useSelector((state) =>
 		Object.values(state.channels.channels)
 	);
 
-	console.log('all channels', allChannels);
+	// console.log('all channels', allChannels);
 	const currentUser = useSelector((state) => state.session.user);
 
 	useEffect(() => {
 		dispatch(getServerDetails(serverId));
 		dispatch(getAllChannel(serverId));
 		dispatch(getChannelDetail(channelId));
-	}, [dispatch]);
+		dispatch(getAllMembers(serverId));
+	}, [dispatch, channelId, serverId]);
 
 	let currentChannel;
+	// filters current channel id once current state and useEffect are populated
 	if (channelsArray.length && currentChannelId) {
 		currentChannel = channelsArray.find(
-			(channel) => channel.id == currentChannelId
+			(channel) => channel.id === currentChannelId
 		);
+	}
+	console.log('gello')
+	// appends profile_pic to currentChannel
+// NOTE off by 1 error will be corrected later(changing seed files)
+	if (currentChannel && members) {
+		currentChannel.messages.forEach((msg) => {
+			// console.log('current channellllssss', currentChannel);
+			const msgUser = members[+msg.owner_id];
+			// console.log('how is this working', members[1])
+			// console.log('msgUser bugatti', msgUser)
+			// console.log('this is messsssaggggeeeee', msg)
+			if (msgUser){
+				msg.user_photo = msgUser.profile_pic;
+			}
+			// else{
+			// 	msg.user_photo = 'https://www.nicepng.com/png/detail/970-9704826_tom-brady-face.png'
+			// }
+		});
 	}
 	const showmsg = (x) => {
 		setCurrentChannelId(x);
 
 		setShowMsg(true);
 	};
-	console.log('are you channnelll', currentChannelId);
+
 	return (
 		<div className="servers-page-container">
 			<div className="servers-column-container">
@@ -90,41 +113,45 @@ const ServerDetail = () => {
 					<div>
 						{channelsArray.map((channel) => {
 							return (
-								<button
-									onClick={() => showmsg(channel.id)}
+								<div
 									className="server-channel-name"
+									onClick={() => showmsg(channel.id)}
 								>
 									{channel.name}
-								</button>
+								</div>
 							);
 						})}
 					</div>
 				</div>
 				<div className="servers-dm-footer">
 					<div className="user-photo-container">
-						<img className="user-photo" src={currentUser.profile_pic} />
+						<img className="user-photo" src={currentUser.profile_pic} alt="" />
 					</div>
 					<div className="servers-user">{currentUser.username}</div>
 					<LogoutButton />
 				</div>
 			</div>
-			<div className="server-messages-container">
-				<h1 className="test-name">
+			<div className="channel-messages-container">
+				<div></div>
+				<div className="test-name">
 					{showMsg &&
 						currentChannel &&
 						currentChannel.messages.map((msg) => {
 							return (
-								<div>
-									<div> {msg.created_at}</div>
-									<div>{msg.message_body}</div>
+								<div className="channel-messages-container">
+									<div>
+										<img className="user-photo" src={msg.user_photo} />
+									</div>
+									<div className="channel-message-date"> {msg.created_at}</div>
+									<div className="channel-message">{msg.message_body}</div>
 								</div>
 							);
 						})}
 					messages section
-				</h1>
+				</div>
 			</div>
 			<div className="server-active-container">
-				<h1 className="test-name">active section</h1>
+				<div className="test-name">active section</div>
 			</div>
 		</div>
 	);

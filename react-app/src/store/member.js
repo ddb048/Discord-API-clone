@@ -37,11 +37,13 @@ const editRole = (member) => ({
 
 /*****************************THUNK**************************** */
 export const getAllMembers = (serverId) => async dispatch => {
-    const response = await fetch(`api/servers/${serverId}/members`)
+
+    const response = await fetch(`/api/servers/${serverId}/members`)
 
     if (response.ok) {
         const allMembers = await response.json()
         dispatch(loadMembers(allMembers))
+
         return allMembers
     }
 }
