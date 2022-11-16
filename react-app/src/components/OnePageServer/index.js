@@ -35,13 +35,13 @@ return (
     {/* NOTE upper (blue) div with pic and links */}
     <div id="upper">
       <div id="header-links">
-        <NavLink id="links" to="/discover">
+        {/* <NavLink id="links" to="/discover">
           Discover
         </NavLink>
 
         <NavLink id="links" to="/safety">
           Safety
-        </NavLink>
+        </NavLink> */}
       </div>
       <img id="upper-img" src={oneServer.preview_image} alt='upper-img'/>
     </div>

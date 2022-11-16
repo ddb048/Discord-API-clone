@@ -1,0 +1,89 @@
+.language-button-div{
+    display: flex;
+    gap: 5px;
+}
+.language-button{
+    color: white;
+    font-size: 15px;
+}
+
+.footer-title{
+    /* display: flex;
+    flex-direction: row;
+    align-items: center; */
+    grid-column: span 3;
+    font-family: adelle-sans, sans-serif;
+    color: #5865f2;
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+}
+.contact-card{
+    /* border: 1px solid; */
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#languages{
+    grid-column: 2/span 1;
+}
+#abel{
+    grid-column: 4/span 1;
+}
+#cindy{
+    grid-column: 6/span 1;
+}
+#david{
+    grid-column: 8/span 1;
+}
+#moran{
+    grid-column: 10/span 1;
+}
+.contact-card-line{
+    border-right:.5 px solid white ;
+}
+.contact-text{
+    font-size: 20px;
+    font-family: adelle-sans, sans-serif;
+    color: #4650af;
+}
+
+.contact-button{
+    color: white;
+    font-size: 30px;
+
+}
+.buttons-div{
+    gap: 10px;
+    display: inline-flex;
+}
+
+.contact-box {
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: repeat(12,1fr);
+
+    /* gap: 20px; */
+    /* display: flex;
+    flex-direction: row; */
+    justify-content: center;
+    /* border: 1px solid white; */
+    width: 600px;
+    height: 100%;
+    /* width: 550px; */
+    /* height: 140px; */
+    /* border: 1px solid blue; */
+}
+
+.Splash-footer {
+    /* border: 1px solid black; */
+    height: 380px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #23272a;
+    /* padding-top: 80px; */
+}
