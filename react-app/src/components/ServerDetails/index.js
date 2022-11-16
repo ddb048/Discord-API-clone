@@ -45,9 +45,9 @@ const ServerDetail = () => {
 			(channel) => channel.id === currentChannelId
 		);
 	}
-	console.log('gello')
+	console.log('gello');
 	// appends profile_pic to currentChannel
-// NOTE off by 1 error will be corrected later(changing seed files)
+	// NOTE off by 1 error will be corrected later(changing seed files)
 	if (currentChannel && members) {
 		currentChannel.messages.forEach((msg) => {
 			// console.log('current channellllssss', currentChannel);
@@ -55,7 +55,7 @@ const ServerDetail = () => {
 			// console.log('how is this working', members[1])
 			// console.log('msgUser bugatti', msgUser)
 			// console.log('this is messsssaggggeeeee', msg)
-			if (msgUser){
+			if (msgUser) {
 				msg.user_photo = msgUser.profile_pic;
 			}
 			// else{
@@ -139,11 +139,11 @@ const ServerDetail = () => {
 						currentChannel.messages.map((msg) => {
 							return (
 								<div className="channel-messages-container">
-									<div>
-										<img className="user-photo" src={msg.user_photo} />
-									</div>
 									<div className="channel-message-date"> {msg.created_at}</div>
-									<div className="channel-message">{msg.message_body}</div>
+									<div className="user-container">
+										<img className="user-photo" src={msg.user_photo} />
+										<div className="channel-message">{msg.message_body}</div>
+									</div>
 								</div>
 							);
 						})}
