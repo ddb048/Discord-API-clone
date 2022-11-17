@@ -5,8 +5,8 @@ import os
 # configure cors_allowed_origins
 if os.environ.get('FLASK_ENV') == 'production':
     origins = [
-        'https://q-cord.onrender.com/',
-        'http://q-cord.onrender.com/'
+        # 'https://q-cord.onrender.com/',
+        # 'http://q-cord.onrender.com/'
     ]
 else:
     origins = "*"
