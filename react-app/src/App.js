@@ -14,6 +14,7 @@ import ServerDetail from './components/ServerDetails';
 import { authenticate } from './store/session';
 import Safety from './components/SafetyPage';
 import Footer from './components/footer'
+import ActiveUserRight from './components/ActiveUserRight';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -74,6 +75,9 @@ function App() {
           <NavBar />
           <Safety />
           <Footer />
+        </Route>
+        <Route path = '/active-user'>
+          <ActiveUserRight/>
         </Route>
       </Switch>
     </BrowserRouter>
