@@ -43,7 +43,7 @@ const Servers = () => {
 	let memberArr = []
 	dmServersArr.forEach(server => memberArr.push(...server.members))
 	// console.log("------>", memberArr)
-	let otherMember = memberArr.filter(member => member.user_id !== currentUser.id)
+	let otherMember = memberArr.filter(member => member.user_id != currentUser.id)
 	let dmMessageArr = []
 	dmServersArr.forEach(server => dmMessageArr.push(...server.messages))
 	// console.log("2222------>", dm)
@@ -64,7 +64,7 @@ const Servers = () => {
 		dispatch(getAllMembers(currentServer[0]));
 		dispatch(getAllMessages(currentServer[1]));
 		setMessages(dm)
-	}, [currentServer, dispatch, dm]);
+	}, [currentServer]);
 
 
 	useEffect(() => {
@@ -74,7 +74,7 @@ const Servers = () => {
 		socket.on("DM", (chat) => {
 			// console.log('chat input>>>>>333', chat)
 			setMessages(messages => [...messages, chat])
-			// console.log('data from DM=======>', messages)
+			console.log('data from DM=======>', messages)
 		})
 		// when component unmounts, disconnect
 		return (() => {
