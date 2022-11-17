@@ -6,13 +6,11 @@ import { getAllCurrentUserServers } from '../../store/servers';
 import { getAllMembers } from '../../store/member';
 import { getChannelDetail } from '../../store/channel';
 import LogoutButton from '../auth/LogoutButton';
-import CreateServerFormModal from '../CreateServerModal';
 import CreateServerForm from '../CreateServerForm';
 // import { getAllMessages } from '../../store/message';
 import { getServerDetails } from '../../store/servers';
 import DM_button from '../../Images/q-cord-button.png';
 import './Servers.css';
-import CreateServerModal from '../CreateServerModal';
 
 
 
