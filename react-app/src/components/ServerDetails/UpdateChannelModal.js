@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createChannel, getAllChannel } from '../../store/channel';
+import { updateChannel, deleteChannel, getAllChannel } from '../../store/channel';
 import {
 	getServerDetails,
 	getAllCurrentUserServers,
 } from '../../store/servers';
 import '../../context/Modal.css';
-const ChannelModal = ({ serverId, setShowModal }) => {
+
+// NOTE How do you i pass in channelId
+const UpdateChannelModal = ({ serverId, setShowModal, channelId }) => {
 	serverId = +serverId;
+
 	const serverName = useSelector((state) => state.servers.oneServer);
 	// //console.log('servername >>>>', serverName);
 	const dispatch = useDispatch();
@@ -17,6 +20,12 @@ const ChannelModal = ({ serverId, setShowModal }) => {
 	const [errors, setErrors] = useState([]);
 	const [frontEndErrors, setFrontEndErrors] = useState([]);
 	const [changeColor, setChangeColor] = useState('dark-create-channel-btn');
+  const [showConfirmButton, setShowConfirmButton] = useState(false)
+
+  const confirmDelete = (confirm)=>{
+    setShowConfirmButton(confirm)
+
+  }
 	useEffect(() => {
 		//console.log('use effect ')
 		if (name.length) {
@@ -24,38 +33,52 @@ const ChannelModal = ({ serverId, setShowModal }) => {
 		} else {
 			setChangeColor('dark-create-channel-btn');
 		}
+    if(confirmDelete){
 
-		console.log('this is change color', changeColor);
+    }
 		const errors = [];
 		if (name.length > 10)
 			errors.push('Please provide a channel name less than 32 characters.');
 		setFrontEndErrors(errors);
 	}, [name]);
 
-	const submitNewChannel = (e) => {
+	const submitUpdatedChannel = (e) => {
 		e.preventDefault();
 		setErrors([]);
 		if (name.length > 10)
 			errors.push('Please provide a channel name less than 32 characters.');
 		setErrors(errors);
 
-		const newChannel = {
+		const updateChannelForm = {
 			name,
 			is_voice,
 			description,
 		};
 
 		if (!frontEndErrors.length) {
-			dispatch(createChannel(serverId, newChannel));
-			
+			dispatch(updateChannel(channelId, updateChannelForm));
+      dispatch(getServerDetails(serverId))
 			setShowModal(false);
 		}
 	};
 
+  const handleDeleteChannel = (e) =>{
+    e.preventDefault();
+
+    dispatch(deleteChannel(channelId))
+    dispatch(getServerDetails(serverId))
+    setShowModal(false);
+
+  }
+
+  // const handleUpdateChannel = (e) =>{
+  //   e.preventDefault()
+
+  // }
 	return (
 		<div className="modal">
-			<form className="new-channel-modal-form" onSubmit={submitNewChannel}>
-				<div className="modal-title">Create New Channel</div>
+			<form className="new-channel-modal-form" onSubmit={submitUpdatedChannel}>
+				<div className="modal-title">Update Channel</div>
 				<div className="modal-input-form">
 					<label className="modal-input-label">CHANNEL NAME</label>
 					<div className='new-channel-hash-container'>
@@ -66,7 +89,7 @@ const ChannelModal = ({ serverId, setShowModal }) => {
 						placeholder="new-channel"
 						value={name}
 						onChange={(e) => setName(e.target.value)}
-						required
+
 					/>
 					</div>
 					{/* <div> */}
@@ -84,12 +107,16 @@ const ChannelModal = ({ serverId, setShowModal }) => {
 
 				<div className="create-channel-submit-btn-container">
 					<button className={changeColor} type="submit">
-						Create Channel
+						Update Channel
 					</button>
+          <button className={showConfirmButton ? 'visible':'hide'} onClick={() => confirmDelete(true)}>Delete Channel</button>
+          <button className={showConfirmButton ? 'hide':'visible'} onClick={() => confirmDelete(false)}>Cancel Delete</button>
+          <button className={showConfirmButton ? 'hide':'visible'} onClick={handleDeleteChannel}>Confirm Delete</button>
+
 				</div>
 				</div>
 			</form>
 		</div>
 	);
 };
-export default ChannelModal;
+export default UpdateChannelModal;

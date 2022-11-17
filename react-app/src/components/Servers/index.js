@@ -8,8 +8,8 @@ import LogoutButton from '../auth/LogoutButton';
 // import { getAllMessages } from '../../store/message';
 import { getServerDetails } from '../../store/servers';
 import DM_button from '../../Images/q-cord-button.png';
-import './Servers.css';
 import { io } from 'socket.io-client'
+import './Servers.css';
 let socket;
 
 const Servers = () => {
