@@ -77,17 +77,6 @@ def inject_csrf_token(response):
     return response
 
 
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def react_root(path):
-    """
-    This route will direct to the public directory in our
-    react builds in the production environment for favicon
-    or index.html requests
-    """
-    if path == 'favicon.ico':
-        return app.send_from_directory('public', 'favicon.ico')
-    return app.send_static_file('index.html')
 
 
 @app.route("/api/docs")
@@ -100,6 +89,23 @@ def api_help():
                               app.view_functions[rule.endpoint].__doc__]
                   for rule in app.url_map.iter_rules() if rule.endpoint != 'static'}
     return route_list
+
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def react_root(path):
+    """
+    This route will direct to the public directory in our
+    react builds in the production environment for favicon
+    or index.html requests
+    """
+    if path == 'favicon.ico':
+        return app.send_from_directory('public', 'favicon.ico')
+    return app.send_static_file('index.html')
+
+@app.errorhandler(404)
+def not_found(e):
+    return app.send_static_file('index.html')
 
 
 if __name__ == '__main__':
