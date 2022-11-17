@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, Redirect, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Modal } from '../../context/Modal';
 import { getAllCurrentUserServers } from '../../store/servers';
 import { getAllMembers } from '../../store/member';
 import { getChannelDetail } from '../../store/channel';
 import LogoutButton from '../auth/LogoutButton';
 import CreateServerFormModal from '../CreateServerModal';
+import CreateServerForm from '../CreateServerForm';
 // import { getAllMessages } from '../../store/message';
 import { getServerDetails } from '../../store/servers';
 import DM_button from '../../Images/q-cord-button.png';
@@ -104,7 +106,15 @@ const Servers = () => {
 					);
 				})}
 				<div className="servers-photo-container">
-					<CreateServerModal onClose={() => setShowModal(false)} className="servers-photo" />
+					<div className="servers-photo" onClick={() => setShowModal(true)}>
+						<i className="fa fa-plus" aria-hidden="true" />
+					</div>
+					{showModal && (
+						<Modal onClose={() => setShowModal(false)}>
+							<CreateServerForm />
+						</Modal>
+					)}
+
 				</div>
 			</div>
 			<div className="servers-dms-container">
