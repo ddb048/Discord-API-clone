@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import Channel, db
-from app.forms import New_channel
+from app.forms import NewChannel
 from .auth_routes import validation_errors_to_error_messages
 
 channel_routes = Blueprint('channels', __name__)
@@ -21,15 +21,18 @@ def get_channel(id):
 
 
 # NOTE - create a CHANNEL
-@channel_routes.route('/<int:id>', methods=['POST'])
+# /api/channels/:serverId
+@channel_routes.route('/<int:serverId>', methods=['POST'])
 @login_required
-def create_channel(id):
-    form = New_channel()
+def create_channel(serverId):
+    form = NewChannel()
     form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
         channel = Channel()
         form.populate_obj(channel)
-        channel.server_id = int(id)
+
+        channel.server_id = int(serverId)
 
         db.session.add(channel)
         db.session.commit()
@@ -38,12 +41,12 @@ def create_channel(id):
 
 
 # NOTE - update a CHANNEL
-@channel_routes.route('<int:id>', methods=['PUT'])
+@channel_routes.route('/<int:channelId>', methods=['PUT'])
 @login_required
-def edit_channel(id):
-    channel = Channel.query.get(int(id))
+def edit_channel(channelId):
+    channel = Channel.query.get(int(channelId))
     if channel:
-        form = New_channel()
+        form = NewChannel()
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
             form.populate_obj(channel)
@@ -55,7 +58,7 @@ def edit_channel(id):
 
 
 # NOTE - delete a CHANNEL
-@channel_routes.route('<int:id>', methods=['DELETE'])
+@channel_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_channel(id):
     channel = Channel.query.get(int(id))

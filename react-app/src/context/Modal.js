@@ -12,6 +12,7 @@ export function ModalProvider({ children }) {
         setValue(modalRef.current);
     }, [])
 
+   
     return (
         <>
             <ModalContext.Provider value={value}>
