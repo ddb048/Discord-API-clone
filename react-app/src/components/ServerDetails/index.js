@@ -7,7 +7,7 @@ import { getAllMembers } from '../../store/member';
 import DM_button from '../../Images/q-cord-button.png';
 import LogoutButton from '../auth/LogoutButton';
 import { Modal } from '../../context/Modal';
-import ChanelModal from './NewChannelModal';
+import ChannelModal from './NewChannelModal';
 import './index.css';
 
 const ServerDetail = () => {
@@ -158,7 +158,7 @@ const ServerDetail = () => {
 				</div>
 			</div>
 			{showModal && (<Modal onClose={() => setShowModal(false)}>
-				<ChanelModal serverId={serverId} setShowModal={setShowModal}/>
+				<ChannelModal serverId={serverId} setShowModal={setShowModal}/>
 			</Modal>)}
 			<div className="server-active-container">
 				<div className="test-name">active section</div>

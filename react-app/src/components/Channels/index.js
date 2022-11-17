@@ -1,7 +1,7 @@
-import React,{useState, useEffect} from 'react'
-import { NavLink, useHistory } from 'react-router-dom'
+import React,{useState} from 'react'
+// import { NavLink, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllCurrentUserServers } from '../../store/servers'
+// import { getAllCurrentUserServers } from '../../store/servers'
 import './index.css'
 
 const Channels = () =>{
