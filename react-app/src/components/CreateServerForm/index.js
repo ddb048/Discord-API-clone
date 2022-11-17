@@ -6,7 +6,7 @@ import './server-form.css'
 const CreateServerForm = ({setShowModal}) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [previewImage, setPreviewImage] = useState("");
+  const [preview_image, setPreview_image] = useState("");
   const [isDM, setIsDM] = useState(false);
   const [privateServer, setPrivateServer] = useState()
   const [error, setError] = useState([]);
@@ -28,7 +28,7 @@ const CreateServerForm = ({setShowModal}) => {
     e.preventDefault();
     const newServer = {
       name,
-      previewImage,
+      preview_image,
       server_description:description,
       privateServer,
       isDM
@@ -40,7 +40,7 @@ const CreateServerForm = ({setShowModal}) => {
   const reset = () => {
     setName("");
     setDescription("");
-    setPreviewImage("");
+    setPreview_image("");
     setPrivateServer("");
     setIsDM(false);
   };
@@ -68,8 +68,8 @@ const CreateServerForm = ({setShowModal}) => {
         />
         <input
           type="text"
-          onChange={(e) => setPreviewImage(e.target.value)}
-          value={previewImage}
+          onChange={(e) => setPreview_image(e.target.value)}
+          value={preview_image}
           placeholder="Choose your server image url"
           name="image"
           required
