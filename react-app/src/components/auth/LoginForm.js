@@ -85,7 +85,7 @@ const LoginForm = () => {
 							/>
 						</div>
 						<div>
-							<button id='subButton' type="submit">Login</button>
+							<button className='subButton' type="submit">Login</button>
 						</div>
 						<div id='to-signup'>
 							Need an account?
@@ -94,7 +94,7 @@ const LoginForm = () => {
 						<div>
 							<button
 								onClick={log}
-								id='subButton'>Demo User</button>
+								className='subButton'>Demo User</button>
 						</div>
 					</form>
 					<div>

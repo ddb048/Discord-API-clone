@@ -10,6 +10,7 @@ import { getServerDetails } from '../../store/servers';
 import DM_button from '../../Images/q-cord-button.png';
 import './Servers.css';
 import { io } from 'socket.io-client'
+import { createMessage } from '../../store/message';
 let socket;
 
 const Servers = () => {
@@ -28,28 +29,13 @@ const Servers = () => {
 	const isNotDm = servers.filter((dm) => dm.is_DM === false);
 	const dmServersArr = servers.filter((dm) => dm.is_DM === true);
 	// const userArr = userObj.find((dm) => dm.is_DM == true);
-	console.log('USER ARRAY', dmServersArr)
+	// console.log('USER ARRAY', dmServersArr)
 	let memberArr = []
 	dmServersArr.forEach(server => memberArr.push(...server.members))
 	// console.log("------>", memberArr)
 	let dmMessageArr = []
 	dmServersArr.forEach(server => dmMessageArr.push(...server.messages))
-	console.log("2222------>", dmMessageArr)
-
-
-	useEffect(() => {
-        // open socket connection
-        // create websocket
-        socket = io();
-
-        socket.on("chat", (chat) => {
-            setMessages(messages => [...messages, chat])
-        })
-        // when component unmounts, disconnect
-        return (() => {
-            socket.disconnect()
-        })
-    }, [])
+	// console.log("2222------>", dmMessageArr)
 
 	useEffect(() => {
 		dispatch(getAllCurrentUserServers());
@@ -59,6 +45,34 @@ const Servers = () => {
 		// dispatch(getAllChannel());
 	}, [dispatch, channelId, servers.id]);
 
+	useEffect(() => {
+        // open socket connection
+        // create websocket
+        socket = io();
+        socket.on("DM", (chat) => {
+			console.log('chat input>>>>>333', chatInput)
+            // setMessages(messages => [...messages, chat])
+			console.log('data from DM=======>',chat)
+        })
+        // when component unmounts, disconnect
+        return (() => {
+            socket.disconnect()
+        })
+    }, [])
+
+
+	console.log('chat input>>>>>', chatInput)
+	const submit = async (e) => {
+        e.preventDefault()
+		const payload={
+			
+		}
+		// dispatch(createMessage(payload))
+        if(socket){
+			socket.emit("DM", 'hello');
+		}
+        setChatInput("")
+    }
 
 
 	if (!currentUser) {
@@ -154,14 +168,18 @@ const Servers = () => {
 							)
 						})
 					)}
-				</div>
+				</div >
 				{showMsg && (
-					<form>
+					<form
+					onSubmit={submit}
+					className='message-form'>
 						<input
 						value={chatInput}
 						onChange={e=>setChatInput(e.target.value)}
 						placeholder='Message' />
-						<button type='submit'>Send</button>
+						<button
+						onClick={submit}
+						type='submit'>Send</button>
 					</form>
 				)}
 			</div>

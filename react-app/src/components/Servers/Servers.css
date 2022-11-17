@@ -86,6 +86,7 @@
   width:135px;
   background-color: #2f3136;
   /* border: 1px solid white */
+
 }
 
 .servers-dm-layout{
@@ -191,4 +192,27 @@
   gap: 15px;
   padding-top: 30px;
   padding-left: 50px;
+}
+
+
+.message-form{
+  width: 100%;
+  /* border: red solid 1px; */
+}
+
+.message-form input {
+  width: 93.5%;
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+  color: #36393f;
+}
+.message-form input:active {
+  border: none;
+}
+
+.message-form button{
+  height: 35px;
+  width: 51px;
+  border-radius: 10px;
 }
