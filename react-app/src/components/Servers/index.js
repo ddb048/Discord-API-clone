@@ -11,8 +11,8 @@ import CreateServerForm from '../CreateServerForm';
 // import { getAllMessages } from '../../store/message';
 import { getServerDetails } from '../../store/servers';
 import DM_button from '../../Images/q-cord-button.png';
-import './Servers.css';
 import CreateServerModal from '../CreateServerModal';
+import './Servers.css';
 
 
 
@@ -135,7 +135,7 @@ const Servers = () => {
 													alt="server img"
 												/>
 											) : (
-												server.name.slice(0, 2)
+												server.name.slice(0, 2).toUpperCase()
 											)}
 										</div>
 									</div>
@@ -150,7 +150,7 @@ const Servers = () => {
 					</div>
 					{showModal && (
 						<Modal onClose={() => setShowModal(false)}>
-							<CreateServerForm />
+							<CreateServerForm setShowModal={setShowModal} />
 						</Modal>
 					)}
 

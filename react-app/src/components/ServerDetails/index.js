@@ -12,21 +12,21 @@ import './index.css';
 
 const ServerDetail = () => {
 	const { serverId, channelId } = useParams();
-	const [showModal , setShowModal] = useState(false)
+	const [showModal, setShowModal] = useState(false)
 	// useState that sets channel id once
 	const [currentChannelId, setCurrentChannelId] = useState();
 	const [showMsg, setShowMsg] = useState(false);
 	const dispatch = useDispatch();
 	const servers = useSelector((state) => Object.values(state.servers.servers));
 	const members = useSelector((state) => state.members.members);
-	console.log('users', members);
+	// console.log('users', members);
 	const channelsServersArr = servers.filter((dm) => dm.is_DM === false);
 
 	const channelsArray = [];
 	channelsServersArr.forEach((channel) =>
 		channelsArray.push(...channel.channels)
 	);
-	console.log('channels array', channelsArray);
+	// console.log('channels array', channelsArray);
 	// console.log('servers', servers)
 	const allChannels = useSelector((state) =>
 		Object.values(state.channels.channels)
@@ -35,8 +35,12 @@ const ServerDetail = () => {
 	// console.log('all channels', allChannels);
 	const currentUser = useSelector((state) => state.session.user);
 
+	const onServer = useSelector((state) => (state.servers.oneServer));
+
+	console.log('server details=======>', onServer)
+
 	useEffect(() => {
-		dispatch(getServerDetails(serverId));
+		dispatch(getServerDetails(+serverId));
 		dispatch(getAllChannel(serverId));
 		dispatch(getChannelDetail(channelId));
 		dispatch(getAllMembers(serverId));
@@ -113,7 +117,9 @@ const ServerDetail = () => {
 			</div>
 			<div className="server-channels-container">
 				<div className="server-title-container">
-					<div className="server-title">CHANNELS</div>
+					<div className="server-title">
+						
+					</div>
 				</div>
 				<div className="server-channel-layout">
 					<div className='servers-photo' onClick={() => setShowModal(true)}> <i className='fa fa-plus' aria-hidden='true' /></div>
@@ -158,7 +164,7 @@ const ServerDetail = () => {
 				</div>
 			</div>
 			{showModal && (<Modal onClose={() => setShowModal(false)}>
-				<ChannelModal serverId={serverId} setShowModal={setShowModal}/>
+				<ChannelModal serverId={serverId} setShowModal={setShowModal} />
 			</Modal>)}
 			<div className="server-active-container">
 				<div className="test-name">active section</div>
