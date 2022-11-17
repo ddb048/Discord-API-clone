@@ -8,25 +8,27 @@ import DM_button from '../../Images/q-cord-button.png';
 import LogoutButton from '../auth/LogoutButton';
 import { Modal } from '../../context/Modal';
 import ChannelModal from './NewChannelModal';
+import UpdateChannelModal from './UpdateChannelModal';
 import './index.css';
 
 const ServerDetail = () => {
 	const { serverId, channelId } = useParams();
-	const [showModal , setShowModal] = useState(false)
+	const [showModal, setShowModal] = useState(false);
+	const [modalData, setModalData] = useState([]);
 	// useState that sets channel id once
 	const [currentChannelId, setCurrentChannelId] = useState();
 	const [showMsg, setShowMsg] = useState(false);
 	const dispatch = useDispatch();
 	const servers = useSelector((state) => Object.values(state.servers.servers));
 	const members = useSelector((state) => state.members.members);
-	console.log('users', members);
+	// console.log('users', members);
 	const channelsServersArr = servers.filter((dm) => dm.is_DM === false);
 
 	const channelsArray = [];
 	channelsServersArr.forEach((channel) =>
 		channelsArray.push(...channel.channels)
 	);
-	console.log('channels array', channelsArray);
+	// console.log('channels array', channelsArray);
 	// console.log('servers', servers)
 	const allChannels = useSelector((state) =>
 		Object.values(state.channels.channels)
@@ -35,14 +37,16 @@ const ServerDetail = () => {
 	// console.log('all channels', allChannels);
 	const currentUser = useSelector((state) => state.session.user);
 
+	const onServer = useSelector((state) => (state.servers.oneServer));
+
+	console.log('server details=======>', onServer)
+
 	useEffect(() => {
-		dispatch(getServerDetails(serverId));
+		dispatch(getServerDetails(+serverId));
 		dispatch(getAllChannel(serverId));
 		dispatch(getChannelDetail(channelId));
 		dispatch(getAllMembers(serverId));
-
 	}, [dispatch, channelId, serverId]);
-
 
 	let currentChannel;
 	// filters current channel id once current state and useEffect are populated
@@ -114,9 +118,16 @@ const ServerDetail = () => {
 			<div className="server-channels-container">
 				<div className="server-title-container">
 					<div className="server-title">CHANNELS</div>
+					<div
+						className="add-channel-container"
+						onClick={() => setShowModal(true)}
+					>
+						{' '}
+						<i className="fa fa-plus" aria-hidden="true" />
+					</div>
 				</div>
 				<div className="server-channel-layout">
-					<div className='servers-photo' onClick={() => setShowModal(true)}> <i className='fa fa-plus' aria-hidden='true' /></div>
+					{/* <div className='servers-photo' onClick={() => setShowModal(true)}> <i className='fa fa-plus' aria-hidden='true' /></div> */}
 					<div>
 						{channelsArray.map((channel) => {
 							return (
@@ -125,6 +136,18 @@ const ServerDetail = () => {
 									onClick={() => showmsg(channel.id)}
 								>
 									{channel.name}
+
+									<div
+										className="update-channel-container"
+										onClick={() => setShowModal(true)}
+									>
+										<i className="fa fa-plus" aria-hidden="true" />
+									<div className="gear-name"
+									onClick={() =>setModalData([channel.server_id,channel.id])}
+									>
+
+									</div>
+									</div>
 								</div>
 							);
 						})}
@@ -157,9 +180,20 @@ const ServerDetail = () => {
 					messages section
 				</div>
 			</div>
-			{showModal && (<Modal onClose={() => setShowModal(false)}>
-				<ChannelModal serverId={serverId} setShowModal={setShowModal}/>
-			</Modal>)}
+			{showModal && (
+				<Modal onClose={() => setShowModal(false)}>
+					<ChannelModal serverId={serverId} setShowModal={setShowModal} />
+				</Modal>
+			)}
+			{showModal && (
+										<Modal onClose={() => setShowModal(false)}>
+											<UpdateChannelModal
+												serverId={1}
+												channelId={1}
+												setShowModal={setShowModal}
+											/>
+										</Modal>
+									)}
 			<div className="server-active-container">
 				<div className="test-name">active section</div>
 			</div>

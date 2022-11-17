@@ -1,20 +1,22 @@
 /* styles user landing page layout */
-.servers-page-container{
-  width:100%;
+.servers-page-container {
+  width: 100%;
   height: 600px;
   display: flex;
   flex-direction: row;
 }
+
 /* styles div for all servers container */
-.servers-column-container{
+.servers-column-container {
   display: flex;
   flex-direction: column;
-  width:75px;
+  width: 75px;
   padding: 15px 0;
   background-color: #202225;
 }
+
 /* styles container for dm button */
-.dm-button-container{
+.dm-button-container {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -28,24 +30,26 @@
   margin: 0 auto;
   width: 0;
 }
+
 /* styles dm button */
-.dm-button{
-  width:40px;
+.dm-button {
+  width: 40px;
   height: 40px;
   border-radius: 40px;
   border: none;
   background-color: #5865f2;
   object-fit: contain;
 }
-.dm-button:hover{
+
+.dm-button:hover {
   border-radius: 15px;
 }
-/* styles div that holds server buttons */
-.servers-button-column{
 
-}
+/* styles div that holds server buttons */
+.servers-button-column {}
+
 /* syles the div holding all server buttons */
-.servers-photo-container{
+.servers-photo-container {
   padding: 10px 0;
   width: 100%;
   display: flex;
@@ -53,8 +57,20 @@
   /* border: 1px solid green; */
 }
 
+.add-channel-container{
+  width: 20px;
+  height: 20px;
+  border: none;
+  /* border: 1px solid white; */
+  object-fit: cover;
+  border-radius: 40px;
+  background-color: #36393f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* styles server button */
-.servers-photo{
+.servers-photo {
   width: 40px;
   height: 40px;
   border: none;
@@ -66,41 +82,50 @@
   justify-content: center;
   align-items: center;
 }
+
 /* styles hovering effect on server button */
-.servers-photo:hover{
+.servers-photo:hover {
   border-radius: 15px;
   background-color: #5865f2;
 }
 
 /* styles div holding all messages list */
-.server-channels-container{
+.server-channels-container {
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
   /* border: 1px solid green; */
-  width:135px;
+  width: 135px;
   background-color: #2f3136;
 }
-.server-title-container{
+
+.server-title-container {
   border-bottom: 1px solid white;
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
-.server-title{
+
+.server-title {
   height: 50px;
   color: white;
   font-size: 18px;
   font-family: adelle-sans, sans-serif;
   font-style: normal;
   display: flex;
+  align-items: space-between;
   align-items: center;
-  margin-left: 15px;
+  margin-left: 10px;
 }
-.server-channel-layout{
+
+.server-channel-layout {
   display: flex;
   /* border: 1px solid pink; */
   flex-direction: row;
   height: 85%;
 }
-.server-channel-name{
+
+.server-channel-name {
   width: 230px;
   display: flex;
   justify-content: flex-start;
@@ -109,18 +134,19 @@
   padding: 15px 10px;
 }
 
-.servers-dm-footer{
+.servers-dm-footer {
   display: flex;
   /* border: 1px solid purple; */
   justify-content: space-around;
   align-items: center;
   height: 50px;
 }
-.user-photo{
+
+.user-photo {
   width: 38px;
   height: 38px;
   /* border: 1px solid white; */
-  object-fit:cover;
+  object-fit: cover;
   border-radius: 48px;
   background-color: #36393f;
   color: white;
@@ -128,12 +154,14 @@
   justify-content: center;
   align-items: center;
 }
-.servers-user{
+
+.servers-user {
   font-family: adelle-sans, sans-serif;
   font-size: 12px;
   color: white;
 }
-.channel-messages-container{
+
+.channel-messages-container {
   border: 1px solid blue;
   width: 1172px;
   background-color: #36393f;
@@ -144,29 +172,54 @@
   /* display: flex; */
   /* flex-direction: row; */
 }
-.channel-messages-container::-webkit-scrollbar{
+
+.channel-messages-container::-webkit-scrollbar {
   display: none;
 }
-.channel-message-date{
+
+.channel-message-date {
   border-bottom: 1px solid white;
   font-family: adelle-sans, sans-serif;
   font-size: 12px;
   text-align: center;
 
 }
-.user-container{
+
+/* .user-container{
 
 }
 .channel-msg-photo{
 
-}
-.channel-message{
- font-family: adelle-sans, sans-serif;
+} */
+.channel-message {
+  font-family: adelle-sans, sans-serif;
   font-size: 12px;
   /* overflow: scroll; */
 }
-.server-active-container{
+
+.server-active-container {
   /* border: 1px solid black; */
   background-color: #36393f;
   width: 420px;
 }
+
+.subButton {
+  height: 45px;
+  width: 400px;
+  border-radius: 5px;
+  border: none;
+  background-color: #5865f2;
+  color: white;
+  transition: background-color .2s ease;
+}
+
+.subButton:hover {
+  background-color: #373f99;
+}
+
+
+.update-del {
+  font-size: 10px;
+}
+
+.server-title {}
