@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
-import { Modal } from '../../context/Modal';
+import React, { useState } from "react";
+import { Modal } from "../../context/Modal";
+import CreateServerForm from "../CreateServerForm";
 
-function CreateServerFormModal() {
-    const [showModal, setShowModal] = useState(false);
+function CreateServerModal() {
+  const [showModal, setShowModal] = useState(false);
 
-    return (
-        <>
-            <div className='create-server-button' onClick={() => setShowModal(true)}>Log In</div>
-            {showModal && (
-                <Modal onClose={() => setShowModal(false)}>
-                    <div>Create Server Form</div>
-                </Modal>
-            )}
-        </>
-    );
+  return (
+    <>
+      <button onClick={() => setShowModal(true)}>Submit</button>
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <CreateServerForm />
+        </Modal>
+      )}
+    </>
+  );
 }
 
-export default CreateServerFormModal;
+export default CreateServerModal;
