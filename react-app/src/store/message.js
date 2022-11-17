@@ -42,11 +42,12 @@ export const getAllMessages = (channelId) => async dispatch => {
 
 //SECTION - (CREATE)
 export const createMessage = (payload) => async dispatch => {
-    const { serverId, channelId, message } = payload
+    const { serverId, channelId, message_body } = payload
+    console.log('this is the payload in the thunk', message_body)
     const response = await fetch(`/api/messages/${serverId}/${channelId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(message)
+        body: JSON.stringify({message_body})
     })
 
     if (response.ok) {
