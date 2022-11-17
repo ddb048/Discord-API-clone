@@ -56,7 +56,6 @@ export const getAllCurrentUserServers = () => async dispatch => {
 
     if (response.ok) {
         const servers = await response.json();
-        console.log('this is the f ing res',  servers)
         dispatch(loadServers(servers.servers));
         return servers.servers
     }
@@ -69,7 +68,7 @@ export const getServerDetails = serverId => async dispatch => {
 
     if (response.ok) {
         const server = await response.json();
-        console.log('get server details thunk >>>>>>', server)
+        // console.log('get server details thunk >>>>>>', server)
         dispatch(loadOneServer(server))
 
     }
