@@ -3,18 +3,18 @@ import { Modal } from "../../context/Modal";
 import CreateServerForm from "../CreateServerForm";
 
 function CreateServerModal() {
-  const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
-  return (
-    <>
-      <button onClick={() => setShowModal(true)}>Submit</button>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <CreateServerForm />
-        </Modal>
-      )}
-    </>
-  );
+    return (
+        <div className="servers-photo" onClick={() => setShowModal(true)}>
+            <i className="fa fa-plus" aria-hidden="true" />
+            {showModal && (
+                <Modal onClose={() => setShowModal(false)}>
+                    <CreateServerForm />
+                </Modal>
+            )}
+        </div>
+    );
 }
 
 export default CreateServerModal;
