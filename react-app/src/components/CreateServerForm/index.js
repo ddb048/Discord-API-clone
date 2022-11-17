@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { createServer } from "../../store/servers";
 import './server-form.css'
 
-const CreateServerForm = () => {
+const CreateServerForm = ({setShowModal}) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [previewImage, setPreviewImage] = useState("");
@@ -22,19 +22,20 @@ const CreateServerForm = () => {
     setError(errors);
   }, [name]);
 
-  
+
   const handleSubmit = async (e) => {
     let errors = [];
     e.preventDefault();
     const newServer = {
       name,
       previewImage,
-      description,
+      server_description:description,
       privateServer,
       isDM
-      };
-      return;
-    }
+    };
+    dispatch(createServer(newServer))
+    setShowModal(false)
+  }
 
   const reset = () => {
     setName("");
@@ -83,48 +84,49 @@ const CreateServerForm = () => {
         ></textarea>
         <div id="server-conteiner">
           <label>
-            <input 
-            type='radio' 
-            onChange={(e)=>setIsDM(e.target.value)} 
-            value={isDM} 
-            checked={isDM === true?true:false} 
-            name='boolean' /> True
-            </label>
-            <label>
-            <input 
-            type='radio' 
-            onChange={(e)=>setIsDM(e.target.value)} 
-            value={isDM} 
-            checked={isDM === false?false:true} 
-            name='boolean' /> False
-            </label>
+            <input
+              type='radio'
+              onChange={(e) => setIsDM(e.target.value)}
+              value={isDM}
+              checked={isDM === true ? true : false}
+              name='boolean' /> True
+          </label>
+          <label>
+            <input
+              type='radio'
+              onChange={(e) => setIsDM(e.target.value)}
+              value={isDM}
+              checked={isDM === false ? false : true}
+              name='boolean' /> False
+          </label>
         </div>
 
         <div id="server-conteiner">
           <label>
-            <input 
-            type='radio' 
-            onChange={(e)=>setPrivateServer(e.target.value)} 
-            value={privateServer} 
-            checked={privateServer === true?true:false} 
-            name='boolean' /> True
-            </label>
-            <label>
-            <input 
-            type='radio' 
-            onChange={(e)=>setPrivateServer(e.target.value)} 
-            value={privateServer} 
-            checked={privateServer === false?false:true} 
-            name='boolean' /> False
-            </label>
+            <input
+              type='radio'
+              onChange={(e) => setPrivateServer(e.target.value)}
+              value={privateServer}
+              checked={privateServer === true ? true : false}
+              name='boolean' /> True
+          </label>
+          <label>
+            <input
+              type='radio'
+              onChange={(e) => setPrivateServer(e.target.value)}
+              value={privateServer}
+              checked={privateServer === false ? false : true}
+              name='boolean' /> False
+          </label>
         </div>
-       
+
         <button id="new-server-btn" type="submit" disabled={!!error.length}>
           Submit
         </button>
       </form>
     </div>
-  );}
+  );
+}
 
 
 export default CreateServerForm;
