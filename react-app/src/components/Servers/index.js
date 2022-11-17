@@ -5,6 +5,7 @@ import { getAllCurrentUserServers } from '../../store/servers';
 import { getAllMembers } from '../../store/member';
 import { getChannelDetail } from '../../store/channel';
 import LogoutButton from '../auth/LogoutButton';
+import CreateServerFormModal from '../CreateServerModal';
 // import { getAllMessages } from '../../store/message';
 import { getServerDetails } from '../../store/servers';
 import DM_button from '../../Images/q-cord-button.png';
@@ -115,6 +116,7 @@ const Servers = () => {
 				<div className="servers-photo-container">
 					<button className="servers-photo">
 						<i className='fa fa-plus' aria-hidden='true' />
+						<CreateServerFormModal />
 					</button>
 				</div>
 

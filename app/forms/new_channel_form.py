@@ -1,12 +1,9 @@
-from app.models import Channel
-from wtforms.validators import DataRequired, Email, ValidationError
-from wtforms import StringField,BooleanField,IntegerField
+from wtforms.validators import DataRequired
+from wtforms import (StringField,BooleanField)
 from flask_wtf import FlaskForm
 
+class NewChannel(FlaskForm):
 
-
-class New_channel(FlaskForm):
-
-    name = StringField('Server name', validators=[DataRequired()])
+    name = StringField('Channel name',validators=[DataRequired()])
     description = StringField('Description')
-    is_voice = BooleanField('Voice Channel', default = False)
+    is_voice = BooleanField('Voice Channel')

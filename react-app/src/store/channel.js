@@ -62,13 +62,14 @@ export const getChannelDetail = (channelId) => async dispatch => {
 
 //SECTION - (CREATE)
 //REVIEW - please review backend route to make url more intuitive
-export const createChannel = (newChannel, serverId) => async dispatch => {
-    // const { newChannel, serverId } = request
+export const createChannel = (serverId,newChannel) => async dispatch => {
+   console.log('this newchannel in channel thunnk', newChannel)
     const response = await fetch(`/api/channels/${serverId}`, {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newChannel)
     })
-
+    console.log('this is the response' , response )
     if (response.ok) {
         const addedChannel = await response.json();
         dispatch(addChannel(addedChannel));
@@ -81,6 +82,7 @@ export const updateChannel = (request) => async dispatch => {
     const { update, channelId } = request
     const response = await fetch(`/api/channels/${channelId}`, {
         method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(update)
     })
 
@@ -119,9 +121,10 @@ const channelReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_CHANNELS: {
             // newState = { ...state, channels:[...action.channels] }
+            channels = {}
             newState = { ...state }
-            // console.log('newstate in channel reducer', action.channels)
             action.channels.forEach(channel => {
+                // console.log('id in channel reducer', channel.id === 1)
                 channels[channel.id] = channel
             });
             newState.channels = channels
@@ -129,14 +132,16 @@ const channelReducer = (state = initialState, action) => {
         };
         case LOAD_ONE_CHANNEL: {
             newState.channels = { ...state.channels, [action.channel.id]: action.channel };
-            console.log('ACTION', action.channel)
-            console.log('NEW STATE', newState)
+            // console.log('ACTION', action.channel)
+            // console.log('NEW STATE', newState)
             newState.OneChannel = { ...action.channel }
 
             return newState;
         }
         case CREATE_CHANNEL: {
-            newState.channels[action.newChannel.id] = action.channel;
+            newState.channels = { ...state.channels, [action.channel.id]: action.channel };
+
+            // console.log('new state in create channel', action)
             return newState;
         }
         case EDIT_CHANNEL: {
