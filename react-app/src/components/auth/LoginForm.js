@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../store/session';
 import './LoginForm.css';
+import qrCode from '../../Images/q-cord.png'
 const LoginForm = () => {
 	const [errors, setErrors] = useState([]);
 	const [email, setEmail] = useState('');
@@ -98,7 +99,7 @@ const LoginForm = () => {
 						</div>
 					</form>
 					<div>
-						<h3>Welcome to Q-Cord</h3>
+						<img className='qCode' src={qrCode} />
 					</div>
 				</div>
 			</div>

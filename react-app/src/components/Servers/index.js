@@ -21,6 +21,7 @@ import { createMessage, getAllMessages } from '../../store/message';
 let socket;
 
 const Servers = () => {
+	const [showModal, setShowModal] = useState(false);
 	const [showMsg, setShowMsg] = useState(false);
 	const [messages, setMessages] = useState([])
 	const [chatInput, setChatInput] = useState('')
@@ -89,9 +90,9 @@ const Servers = () => {
 		const payload = {
 			serverId: currentServer[0],
 			channelId: currentServer[1],
-			message: chatInput
+			message_body: chatInput
 		}
-		// dispatch(createMessage(payload))
+		dispatch(createMessage(payload))
 		if (socket) {
 			socket.emit("DM", { owner_name: currentUser.username, owner_pic: currentUser.profile_pic, message_body: chatInput });
 		}
