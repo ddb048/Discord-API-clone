@@ -10,8 +10,8 @@ import CreateServerForm from '../CreateServerForm';
 // import { getAllMessages } from '../../store/message';
 import { getServerDetails } from '../../store/servers';
 import DM_button from '../../Images/q-cord-button.png';
-import CreateServerModal from '../CreateServerModal';
 import './Servers.css';
+
 
 
 import { io } from 'socket.io-client'
