@@ -120,10 +120,8 @@ const channelReducer = (state = initialState, action) => {
     let channels = {}
     switch (action.type) {
         case LOAD_CHANNELS: {
-            // newState = { ...state, channels:[...action.channels] }
             newState = { ...state }
             action.channels.forEach(channel => {
-                // console.log('id in channel reducer', channel.id === 1)
                 channels[channel.id] = channel
             });
             newState.channels = channels
