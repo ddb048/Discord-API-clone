@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, Redirect, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Modal } from '../../context/Modal';
 import { getAllCurrentUserServers } from '../../store/servers';
 import { getAllMembers } from '../../store/member';
 import { getChannelDetail } from '../../store/channel';
 import LogoutButton from '../auth/LogoutButton';
 import CreateServerFormModal from '../CreateServerModal';
+import CreateServerForm from '../CreateServerForm';
 // import { getAllMessages } from '../../store/message';
 import { getServerDetails } from '../../store/servers';
 import DM_button from '../../Images/q-cord-button.png';
 import './Servers.css';
+import CreateServerModal from '../CreateServerModal';
+
+
+
 import { io } from 'socket.io-client'
 import { createMessage, getAllMessages } from '../../store/message';
 let socket;
@@ -120,7 +126,7 @@ const Servers = () => {
 								<NavLink to={`/servers/${server.id}`}>
 									<div className="servers-photo-container">
 										<div>
-											{' '}
+											{" "}
 											{server.preview_image ? (
 												<img
 													className="servers-photo"
@@ -138,12 +144,16 @@ const Servers = () => {
 					);
 				})}
 				<div className="servers-photo-container">
-					<button className="servers-photo">
-						<i className='fa fa-plus' aria-hidden='true' />
-						<CreateServerFormModal />
-					</button>
-				</div>
+					<div className="servers-photo" onClick={() => setShowModal(true)}>
+						<i className="fa fa-plus" aria-hidden="true" />
+					</div>
+					{showModal && (
+						<Modal onClose={() => setShowModal(false)}>
+							<CreateServerForm />
+						</Modal>
+					)}
 
+				</div>
 			</div>
 			<div className="servers-dms-container">
 				<div className="servers-title-container">
@@ -181,9 +191,13 @@ const Servers = () => {
 					{showMsg && dm.length > 0 && (
 						dm.map(message => {
 							return (
-								<div className='mess-box'>
-									<img className='user-photo' src={message.owner_pic} alt='userPhoto' />
-									<div className='mess'>
+								<div className="mess-box">
+									<img
+										className="user-photo"
+										src={message.owner_pic}
+										alt="userPhoto"
+									/>
+									<div className="mess">
 										<div>
 											<h4>{message.owner_name}</h4>
 											{/* {message.created_at} */}
@@ -233,6 +247,7 @@ const Servers = () => {
 			</div>
 		</div >
 	);
-};
+};;
+
 
 export default Servers;
