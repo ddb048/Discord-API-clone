@@ -9,7 +9,7 @@ class Channel(db.Model):
         __table_args__ = {'schema': SCHEMA}
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String, nullable = False)
-    is_voice = db.Column(db.Boolean, nullable = False)
+    is_voice = db.Column(db.Boolean, default=False)
     description = db.Column(db.String(255))
     server_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("servers.id")))
     created_at = db.Column(db.DateTime(), nullable=False,server_default=func.now())
