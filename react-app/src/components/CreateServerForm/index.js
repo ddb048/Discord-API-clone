@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { createServer } from "../../store/servers";
 import './server-form.css'
 
-const CreateServerForm = ({setShowModal}) => {
+const CreateServerForm = ({ setShowModal }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [preview_image, setPreview_image] = useState("");
@@ -24,7 +24,7 @@ const CreateServerForm = ({setShowModal}) => {
 
 
   const handleSubmit = async (e) => {
-    let errors = [];
+    // let errors = [];
     e.preventDefault();
     const newServer = {
       name,

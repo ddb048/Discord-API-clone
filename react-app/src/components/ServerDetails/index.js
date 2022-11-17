@@ -14,10 +14,13 @@ import './index.css';
 const ServerDetail = () => {
 	const { serverId, channelId } = useParams();
 	const [showModal, setShowModal] = useState(false);
-	const [modalData, setModalData] = useState([]);
+	const [updateModal, setUpdateModal] = useState(false);
+	// how to make this work with object
+	const [modalData, setModalData] = useState();
 	// useState that sets channel id once
 	const [currentChannelId, setCurrentChannelId] = useState();
 	const [showMsg, setShowMsg] = useState(false);
+	// const [getChannelId,setGetChannelId]=useState()
 	const dispatch = useDispatch();
 	const servers = useSelector((state) => Object.values(state.servers.servers));
 	const members = useSelector((state) => state.members.members);
@@ -30,9 +33,9 @@ const ServerDetail = () => {
 	);
 	// console.log('channels array.....>>>>>>>', channelsArray);
 	// console.log('servers', servers)
-	const allChannels = useSelector((state) =>
-		Object.values(state.channels.channels)
-	);
+	// const allChannels = useSelector((state) =>
+	// 	Object.values(state.channels.channels)
+	// );
 
 	// console.log('all channels', allChannels);
 	const currentUser = useSelector((state) => state.session.user);
@@ -57,28 +60,26 @@ const ServerDetail = () => {
 	}
 
 	// appends profile_pic to currentChannel
-	// NOTE off by 1 error will be corrected later(changing seed files)
 	if (currentChannel && members) {
 		currentChannel.messages.forEach((msg) => {
-			// console.log('current channellllssss', currentChannel);
 			const msgUser = members[+msg.owner_id];
-			// console.log('how is this working', members[1])
-			// console.log('msgUser bugatti', msgUser)
-			// console.log('this is messsssaggggeeeee', msg)
+
 			if (msgUser) {
 				msg.user_photo = msgUser.profile_pic;
 			}
-			// else{
-			// 	msg.user_photo = 'https://www.nicepng.com/png/detail/970-9704826_tom-brady-face.png'
-			// }
 		});
 	}
 	const showmsg = (x) => {
 		setCurrentChannelId(x);
-
 		setShowMsg(true);
 	};
 
+	const grabChannelId = (a) => {
+		if (a) {
+			setModalData(a);
+			setUpdateModal(true);
+		}
+	};
 	return (
 		<div className="servers-page-container">
 			<div className="servers-column-container">
@@ -127,7 +128,6 @@ const ServerDetail = () => {
 					</div>
 				</div>
 				<div className="server-channel-layout">
-					{/* <div className='servers-photo' onClick={() => setShowModal(true)}> <i className='fa fa-plus' aria-hidden='true' /></div> */}
 					<div>
 						{channelsArray.map((channel) => {
 							return (
@@ -139,14 +139,13 @@ const ServerDetail = () => {
 
 									<div
 										className="update-channel-container"
-										onClick={() => setShowModal(true)}
+										onClick={() => setUpdateModal(true)}
 									>
-										<i className="fa fa-plus" aria-hidden="true" />
-									<div className="gear-name"
-									onClick={() =>setModalData([channel.server_id,channel.id])}
-									>
-
-									</div>
+										<i
+											className="fa fa-plus"
+											aria-hidden="true"
+											onClick={() => grabChannelId(channel.id)}
+										/>
 									</div>
 								</div>
 							);
@@ -171,7 +170,7 @@ const ServerDetail = () => {
 								<div className="channel-messages-container">
 									<div className="channel-message-date"> {msg.created_at}</div>
 									<div className="user-container">
-										<img className="user-photo" src={msg.user_photo} />
+										<img className="user-photo" src={msg.user_photo} alt="" />
 										<div className="channel-message">{msg.message_body}</div>
 									</div>
 								</div>
@@ -185,15 +184,15 @@ const ServerDetail = () => {
 					<ChannelModal serverId={serverId} setShowModal={setShowModal} />
 				</Modal>
 			)}
-			{showModal && (
-										<Modal onClose={() => setShowModal(false)}>
-											<UpdateChannelModal
-												serverId={1}
-												channelId={1}
-												setShowModal={setShowModal}
-											/>
-										</Modal>
-									)}
+			{updateModal && (
+				<Modal onClose={() => setUpdateModal(false)}>
+					<UpdateChannelModal
+						serverId={serverId}
+						channelId={modalData[0]}
+						setUpdateModal={setShowModal}
+					/>
+				</Modal>
+			)}
 			<div className="server-active-container">
 				<div className="test-name">active section</div>
 			</div>
