@@ -7,7 +7,7 @@ import {
 import '../../context/Modal.css';
 
 // NOTE How do you i pass in channelId
-const UpdateChannelModal = ({ serverId, setShowModal, channelId }) => {
+const UpdateChannelModal = ({ serverId, setUpdateModal, channelId }) => {
 	serverId = +serverId;
 
 	// const serverName = useSelector((state) => state.servers.oneServer);
@@ -39,7 +39,7 @@ const UpdateChannelModal = ({ serverId, setShowModal, channelId }) => {
 		if (name.length > 10)
 			errors.push('Please provide a channel name less than 32 characters.');
 		setFrontEndErrors(errors);
-	}, [name]);
+	}, [name, changeColor]);
 
 	const submitUpdatedChannel = (e) => {
 		e.preventDefault();
@@ -56,17 +56,17 @@ const UpdateChannelModal = ({ serverId, setShowModal, channelId }) => {
 
 		if (!frontEndErrors.length) {
 			dispatch(updateChannel(channelId, updateChannelForm));
-			dispatch(getServerDetails(serverId))
-			setShowModal(false);
+      dispatch(getServerDetails(serverId))
+			setUpdateModal(false);
 		}
 	};
 
 	const handleDeleteChannel = (e) => {
 		e.preventDefault();
 
-		dispatch(deleteChannel(channelId))
-		dispatch(getServerDetails(serverId))
-		setShowModal(false);
+    dispatch(deleteChannel(channelId))
+    dispatch(getServerDetails(serverId))
+    setUpdateModal(false);
 
 	}
 
