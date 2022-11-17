@@ -24,7 +24,7 @@ const Servers = () => {
 	// const history = useHistory();
 	const { channelId } = useParams();
 	// const member=useSelector(state =>Object.values(state.members.members))
-	const dm=useSelector(state =>Object.values(state.messages.messages))
+	const dm = useSelector(state => Object.values(state.messages.messages))
 	// grabbing the state of servers in servers
 	const servers = useSelector((state) => Object.values(state.servers.servers));
 	// console.log('THIS IS SERVES USESELECTOR IN ARRAY', servers)
@@ -37,7 +37,7 @@ const Servers = () => {
 	let memberArr = []
 	dmServersArr.forEach(server => memberArr.push(...server.members))
 	// console.log("------>", memberArr)
-	let otherMember=memberArr.filter(member=>member.user_id != currentUser.id)
+	let otherMember = memberArr.filter(member => member.user_id != currentUser.id)
 	let dmMessageArr = []
 	dmServersArr.forEach(server => dmMessageArr.push(...server.messages))
 	// console.log("2222------>", dm)
@@ -51,7 +51,8 @@ const Servers = () => {
 		dispatch(getAllCurrentUserServers());
 	}, [dispatch, channelId, servers.id]);
 
-	useEffect(() => {;
+	useEffect(() => {
+		;
 		dispatch(getServerDetails(currentServer[0]));
 		dispatch(getChannelDetail(currentServer[1]));
 		dispatch(getAllMembers(currentServer[0]));
@@ -86,7 +87,7 @@ const Servers = () => {
 		}
 		// dispatch(createMessage(payload))
 		if (socket) {
-			socket.emit("DM", { owner_name: currentUser.username, owner_pic:currentUser.profile_pic, message_body: chatInput });
+			socket.emit("DM", { owner_name: currentUser.username, owner_pic: currentUser.profile_pic, message_body: chatInput });
 		}
 		setChatInput("")
 	}
@@ -193,6 +194,9 @@ const Servers = () => {
 							)
 						})
 					)}
+				</div >
+
+				<div>
 					{showMsg && messages.length > 0 && (
 						messages.map(x => {
 							return (
@@ -209,7 +213,7 @@ const Servers = () => {
 							)
 						})
 					)}
-				</div >
+				</div>
 				{showMsg && (
 					<form
 						onSubmit={submit}
@@ -227,7 +231,7 @@ const Servers = () => {
 			<div className="servers-active-container">
 				<h1 className="test-name">active section</h1>
 			</div>
-		</div>
+		</div >
 	);
 };
 
