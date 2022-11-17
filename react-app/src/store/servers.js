@@ -68,7 +68,7 @@ export const getServerDetails = serverId => async dispatch => {
 
     if (response.ok) {
         const server = await response.json();
-        console.log('get server details thunk >>>>>>', server)
+        // console.log('get server details thunk >>>>>>', server)
         dispatch(loadOneServer(server))
 
     }

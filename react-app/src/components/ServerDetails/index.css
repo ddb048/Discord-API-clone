@@ -169,12 +169,12 @@
   text-align: center;
 
 }
-.user-container{
+/* .user-container{
 
 }
 .channel-msg-photo{
 
-}
+} */
 .channel-message{
  font-family: adelle-sans, sans-serif;
   font-size: 12px;
@@ -184,4 +184,18 @@
   /* border: 1px solid black; */
   background-color: #36393f;
   width: 420px;
+}
+
+.subButton {
+  height: 45px;
+  width: 400px;
+  border-radius: 5px;
+  border: none;
+  background-color: #5865f2;
+  color: white;
+  transition: background-color .2s ease;
+}
+
+.subButton:hover {
+  background-color: #373f99;
 }
