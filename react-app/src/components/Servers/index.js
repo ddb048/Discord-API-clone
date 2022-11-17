@@ -135,7 +135,7 @@ const Servers = () => {
 													alt="server img"
 												/>
 											) : (
-												server.name.slice(0, 2)
+												server.name.slice(0, 2).toUpperCase()
 											)}
 										</div>
 									</div>
@@ -150,7 +150,7 @@ const Servers = () => {
 					</div>
 					{showModal && (
 						<Modal onClose={() => setShowModal(false)}>
-							<CreateServerForm />
+							<CreateServerForm setShowModal={setShowModal} />
 						</Modal>
 					)}
 
