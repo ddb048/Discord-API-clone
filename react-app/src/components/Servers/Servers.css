@@ -1,7 +1,7 @@
 /* styles user landing page layout */
 .servers-page-container{
   width:100%;
-  /* height: 600px; */
+
   height: 100vh;
   /* grid-template-columns: repeat(4, fr);
   display: grid;
@@ -9,7 +9,7 @@
   'server channels messages active'; */
   display: flex;
   flex-direction: row;
-  /* border: 1px solid blue; */
+
 }
 /* styles div for all servers container */
 .servers-column-container{

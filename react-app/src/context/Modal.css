@@ -7,6 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    /* border:1px solid blue */
 }
 
 #modal-background {
@@ -15,35 +16,138 @@
     right: 0;
     left: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: #0a0a0b;
+    opacity: 80%;
+    border:1px solid red
 }
 
 #modal-content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     position: absolute;
-    background-color: white;
+    background-color: #36393f;
     border-radius: 10px;
-    height: 600px;
-    width: 480px;
+    height: 326px;
+    width: 400px;
+    object-fit: contain;
+    /* border:1px solid blue */
 }
 
 .exit {
     width: 100%;
     justify-content: flex-end;
     display: flex;
+    /* border: 1px solid rebeccapurple */
 
 }
 
 .close-button {
     padding-right: 10px;
-    padding-top: 10px;
-    color: rgb(165, 165, 165);
+    padding-top: 30px;
+    /* padding-bottom: 40px; */
+    color: #777a7f;
     font-weight: bold;
     cursor: pointer;
 }
 
 .close-button:hover {
-    color: rgb(70, 70, 70);
+    color: #c6c7c8;
+}
+/* styling for create channel modal */
+.new-channel-modal-form{
+    /* border: 1px solid green; */
+    display: flex;
+    flex-direction: column;
+    /* gap: 15px; */
+}
+.modal-title{
+    font-family: adelle-sans, sans-serif;
+    color: #ffffff;
+    font-size: 25px;
+    padding-bottom: 15px;
+}
+.modal-input-form{
+
+    gap: 10px;
+
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+.modal-input-label{
+    /* border: 1px solid red; */
+    font-family: adelle-sans, sans-serif;
+    color: #b9bbbe;
+    font-size: 18px;
+    padding-bottom: 2px;
+    padding-top: 4px;
+}
+#modal-DESCRIPTION-label{
+    font-family: adelle-sans, sans-serif;
+    color: #b9bbbe;
+    font-size: 18px;
+
+    padding-top: 4px;
+}
+.modal-input-textbox{
+    /* border: 1px solid blue; */
+    /* width: 100%; */
+    object-fit: contain;
+    color: white;
+    font-size: 18px;
+}
+.new-channel-hash-container{
+    display: flex;
+    flex-direction: row;
+    height: 16px;
+    align-items: center
+}
+.hashtag{
+    display: flex;
+    background-color: #202225;
+    color: #dcddde;
+    height: 27px;
+    padding: 2.2px 14px;
+    align-items: center;
+}
+.modal-input-textbox , input{
+    background-color: #202225;
+    border: none;
+    font-size: 16px;
+    height: 30px;
+    width: 397px;
+}
+#grey-footer{
+    background-color: #2f3136;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    height: 86px;
+}
+.create-channel-submit-btn-container{
+    /* background-color: #2f3136;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px; */
+    height: 86px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.dark-create-channel-btn{
+    background-color: #434a94;
+    color: #888b98;
+    height: 50px;
+    width: 100px;
+    border: none;
+    border-radius: 2px;
+}
+.light-create-channel-btn{
+    background-color: #5865f2;
+    color: white;
+    height: 50px;
+    width: 100px;
+    border: none;
+    border-radius: 2px;
 }
