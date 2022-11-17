@@ -53,6 +53,18 @@
   /* border: 1px solid green; */
 }
 
+.add-channel-container{
+  width: 20px;
+  height: 20px;
+  border: none;
+  /* border: 1px solid white; */
+  object-fit: cover;
+  border-radius: 40px;
+  background-color: #36393f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* styles server button */
 .servers-photo{
   width: 40px;
@@ -83,6 +95,9 @@
 }
 .server-title-container{
   border-bottom: 1px solid white;
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .server-title{
   height: 50px;
@@ -92,7 +107,7 @@
   font-style: normal;
   display: flex;
   align-items: center;
-  margin-left: 15px;
+  margin-left: 10px;
 }
 .server-channel-layout{
   display: flex;
@@ -154,12 +169,12 @@
   text-align: center;
 
 }
-.user-container{
+/* .user-container{
 
 }
 .channel-msg-photo{
 
-}
+} */
 .channel-message{
  font-family: adelle-sans, sans-serif;
   font-size: 12px;
@@ -169,4 +184,18 @@
   /* border: 1px solid black; */
   background-color: #36393f;
   width: 420px;
+}
+
+.subButton {
+  height: 45px;
+  width: 400px;
+  border-radius: 5px;
+  border: none;
+  background-color: #5865f2;
+  color: white;
+  transition: background-color .2s ease;
+}
+
+.subButton:hover {
+  background-color: #373f99;
 }
