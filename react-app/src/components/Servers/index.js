@@ -15,9 +15,9 @@ import CreateServerModal from '../CreateServerModal';
 import './Servers.css';
 
 
-
 import { io } from 'socket.io-client'
 import { createMessage, getAllMessages } from '../../store/message';
+
 let socket;
 
 const Servers = () => {

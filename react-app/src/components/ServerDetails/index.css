@@ -57,6 +57,18 @@
   /* border: 1px solid green; */
 }
 
+.add-channel-container{
+  width: 20px;
+  height: 20px;
+  border: none;
+  /* border: 1px solid white; */
+  object-fit: cover;
+  border-radius: 40px;
+  background-color: #36393f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* styles server button */
 .servers-photo {
   width: 40px;
@@ -89,6 +101,9 @@
 
 .server-title-container {
   border-bottom: 1px solid white;
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .server-title {
@@ -100,8 +115,7 @@
   display: flex;
   align-items: space-between;
   align-items: center;
-  gap: 10px;
-  margin-left: 15px;
+  margin-left: 10px;
 }
 
 .server-channel-layout {
