@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { createServer } from "../../store/servers";
 import './server-form.css'
 
-const CreateServerForm = ({setShowModal}) => {
+const CreateServerForm = ({ setShowModal }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [previewImage, setPreviewImage] = useState("");
@@ -24,12 +24,12 @@ const CreateServerForm = ({setShowModal}) => {
 
 
   const handleSubmit = async (e) => {
-    let errors = [];
+    // let errors = [];
     e.preventDefault();
     const newServer = {
       name,
       previewImage,
-      server_description:description,
+      server_description: description,
       privateServer,
       isDM
     };
@@ -37,13 +37,13 @@ const CreateServerForm = ({setShowModal}) => {
     setShowModal(false)
   }
 
-  const reset = () => {
-    setName("");
-    setDescription("");
-    setPreviewImage("");
-    setPrivateServer("");
-    setIsDM(false);
-  };
+  // const reset = () => {
+  //   setName("");
+  //   setDescription("");
+  //   setPreviewImage("");
+  //   setPrivateServer("");
+  //   setIsDM(false);
+  // };
 
   return (
     <div id="form" className="inputBox">

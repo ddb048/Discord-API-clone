@@ -14,7 +14,7 @@ import './index.css';
 const ServerDetail = () => {
 	const { serverId, channelId } = useParams();
 	const [showModal, setShowModal] = useState(false);
-	const [modalData, setModalData] = useState([]);
+	const [setModalData] = useState([]);
 	// useState that sets channel id once
 	const [currentChannelId, setCurrentChannelId] = useState();
 	const [showMsg, setShowMsg] = useState(false);
@@ -30,9 +30,9 @@ const ServerDetail = () => {
 	);
 	// console.log('channels array', channelsArray);
 	// console.log('servers', servers)
-	const allChannels = useSelector((state) =>
-		Object.values(state.channels.channels)
-	);
+	// const allChannels = useSelector((state) =>
+	// 	Object.values(state.channels.channels)
+	// );
 
 	// console.log('all channels', allChannels);
 	const currentUser = useSelector((state) => state.session.user);
@@ -142,11 +142,11 @@ const ServerDetail = () => {
 										onClick={() => setShowModal(true)}
 									>
 										<i className="fa fa-plus" aria-hidden="true" />
-									<div className="gear-name"
-									onClick={() =>setModalData([channel.server_id,channel.id])}
-									>
+										<div className="gear-name"
+											onClick={() => setModalData([channel.server_id, channel.id])}
+										>
 
-									</div>
+										</div>
 									</div>
 								</div>
 							);
@@ -171,7 +171,7 @@ const ServerDetail = () => {
 								<div className="channel-messages-container">
 									<div className="channel-message-date"> {msg.created_at}</div>
 									<div className="user-container">
-										<img className="user-photo" src={msg.user_photo} />
+										<img className="user-photo" src={msg.user_photo} alt="" />
 										<div className="channel-message">{msg.message_body}</div>
 									</div>
 								</div>
@@ -186,14 +186,14 @@ const ServerDetail = () => {
 				</Modal>
 			)}
 			{showModal && (
-										<Modal onClose={() => setShowModal(false)}>
-											<UpdateChannelModal
-												serverId={1}
-												channelId={1}
-												setShowModal={setShowModal}
-											/>
-										</Modal>
-									)}
+				<Modal onClose={() => setShowModal(false)}>
+					<UpdateChannelModal
+						serverId={1}
+						channelId={1}
+						setShowModal={setShowModal}
+					/>
+				</Modal>
+			)}
 			<div className="server-active-container">
 				<div className="test-name">active section</div>
 			</div>
