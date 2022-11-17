@@ -11,17 +11,20 @@ import { getServerDetails } from '../../store/servers';
 import DM_button from '../../Images/q-cord-button.png';
 import './Servers.css';
 import { io } from 'socket.io-client'
-import { createMessage } from '../../store/message';
+import { createMessage, getAllMessages } from '../../store/message';
 let socket;
 
 const Servers = () => {
 	const [showMsg, setShowMsg] = useState(false);
-	const [messages,setMessages]=useState([])
-	const [chatInput,setChatInput]=useState('')
+	const [messages, setMessages] = useState([])
+	const [chatInput, setChatInput] = useState('')
+	const [currentServer, setCurrentServer] = useState([])
 
 	const dispatch = useDispatch();
 	// const history = useHistory();
 	const { channelId } = useParams();
+	// const member=useSelector(state =>Object.values(state.members.members))
+	const dm=useSelector(state =>Object.values(state.messages.messages))
 	// grabbing the state of servers in servers
 	const servers = useSelector((state) => Object.values(state.servers.servers));
 	// console.log('THIS IS SERVES USESELECTOR IN ARRAY', servers)
@@ -34,47 +37,67 @@ const Servers = () => {
 	let memberArr = []
 	dmServersArr.forEach(server => memberArr.push(...server.members))
 	// console.log("------>", memberArr)
+	let otherMember=memberArr.filter(member=>member.user_id != currentUser.id)
 	let dmMessageArr = []
 	dmServersArr.forEach(server => dmMessageArr.push(...server.messages))
-	// console.log("2222------>", dmMessageArr)
+	// console.log("2222------>", dm)
+	let tes = []
+	dmServersArr.forEach(server => tes.push(...server.messages))
+	// console.log("testtt=====>", tes)
+
+
 
 	useEffect(() => {
 		dispatch(getAllCurrentUserServers());
-		dispatch(getServerDetails(servers.id));
-		dispatch(getChannelDetail(channelId));
-		dispatch(getAllMembers(servers.id));
-		// dispatch(getAllChannel());
 	}, [dispatch, channelId, servers.id]);
 
+	useEffect(() => {;
+		dispatch(getServerDetails(currentServer[0]));
+		dispatch(getChannelDetail(currentServer[1]));
+		dispatch(getAllMembers(currentServer[0]));
+		dispatch(getAllMessages(currentServer[1]));
+		setMessages(dm)
+	}, [currentServer]);
+
+
 	useEffect(() => {
-        // open socket connection
-        // create websocket
-        socket = io();
-        socket.on("DM", (chat) => {
-			console.log('chat input>>>>>333', chatInput)
-            // setMessages(messages => [...messages, chat])
-			console.log('data from DM=======>',chat)
-        })
-        // when component unmounts, disconnect
-        return (() => {
-            socket.disconnect()
-        })
-    }, [])
+		// open socket connection
+		// create websocket
+		socket = io();
+		socket.on("DM", (chat) => {
+			// console.log('chat input>>>>>333', chat)
+			setMessages(messages => [...messages, chat])
+			console.log('data from DM=======>', messages)
+		})
+		// when component unmounts, disconnect
+		return (() => {
+			socket.disconnect()
+		})
+	}, [])
 
 
-	console.log('chat input>>>>>', chatInput)
+	// console.log('chat input>>>>>', chatInput)
 	const submit = async (e) => {
-        e.preventDefault()
-		const payload={
-			
+		e.preventDefault()
+		const payload = {
+			serverId: currentServer[0],
+			channelId: currentServer[1],
+			message: chatInput
 		}
 		// dispatch(createMessage(payload))
-        if(socket){
-			socket.emit("DM", 'hello');
+		if (socket) {
+			socket.emit("DM", { owner_name: currentUser.username, owner_pic:currentUser.profile_pic, message_body: chatInput });
 		}
-        setChatInput("")
-    }
+		setChatInput("")
+	}
 
+
+	function userDm(id) {
+		setShowMsg(true)
+		const server = servers.find(server => server.id === id)
+		const chanId = server.channels[0].id
+		setCurrentServer([id, chanId])
+	}
 
 	if (!currentUser) {
 		return <Redirect to="/" />;
@@ -126,16 +149,16 @@ const Servers = () => {
 					<div className="servers-title">DIRECT MESSAGES</div>
 				</div>
 				<div className="servers-dm-layout">
-					{memberArr.map((member) => (
+					{otherMember.map((member) => (
 
 						member.user_info.profile_pic && (
 							<div>
-								<button onClick={() => setShowMsg(true)}>
+								<div onClick={() => userDm(member.server_id)}>
 									<div>
 										<img className='user-photo' src={member.user_info.profile_pic} alt="" />
 									</div>
 									<div>{member.user_info.username} </div>
-								</button>
+								</div>
 							</div>
 						)
 
@@ -154,17 +177,33 @@ const Servers = () => {
 			<div className="servers-messages-container">
 				<div>
 					<h1 className="test-name">messages section</h1>
-					{showMsg && dmMessageArr.length > 0 && (
-						dmMessageArr.map(message => {
+					{showMsg && dm.length > 0 && (
+						dm.map(message => {
 							return (
 								<div className='mess-box'>
 									<img className='user-photo' src={message.owner_pic} alt='userPhoto' />
 									<div className='mess'>
 										<div>
 											<h4>{message.owner_name}</h4>
-											{message.created_at}
+											{/* {message.created_at} */}
 										</div>
 										<div>{message.message_body}</div>
+									</div>
+								</div>
+							)
+						})
+					)}
+					{showMsg && messages.length > 0 && (
+						messages.map(x => {
+							return (
+								<div className='mess-box'>
+									<img className='user-photo' src={x.owner_pic} alt='userPhoto' />
+									<div className='mess'>
+										<div>
+											<h4>{x.owner_name}</h4>
+											{/* {message.created_at} */}
+										</div>
+										<div>{x.message_body}</div>
 									</div>
 								</div>
 							)
@@ -173,15 +212,15 @@ const Servers = () => {
 				</div >
 				{showMsg && (
 					<form
-					onSubmit={submit}
-					className='message-form'>
+						onSubmit={submit}
+						className='message-form'>
 						<input
-						value={chatInput}
-						onChange={e=>setChatInput(e.target.value)}
-						placeholder='Message' />
+							value={chatInput}
+							onChange={e => setChatInput(e.target.value)}
+							placeholder='Message' />
 						<button
-						onClick={submit}
-						type='submit'>Send</button>
+							onClick={submit}
+							type='submit'>Send</button>
 					</form>
 				)}
 			</div>

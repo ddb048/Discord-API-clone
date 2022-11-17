@@ -6,7 +6,7 @@ function CreateServerFormModal() {
 
     return (
         <>
-            <div className='create-server-button' onClick={() => setShowModal(true)}>Log In</div>
+            <div className='create-server-button' onClick={() => setShowModal(true)}></div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <div>Create Server Form</div>

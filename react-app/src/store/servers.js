@@ -56,6 +56,7 @@ export const getAllCurrentUserServers = () => async dispatch => {
 
     if (response.ok) {
         const servers = await response.json();
+        console.log('this is the f ing res',  servers)
         dispatch(loadServers(servers.servers));
         return servers.servers
     }
