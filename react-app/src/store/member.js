@@ -37,11 +37,13 @@ const editRole = (member) => ({
 
 /*****************************THUNK**************************** */
 export const getAllMembers = (serverId) => async dispatch => {
-    const response = await fetch(`api/servers/${serverId}/members`)
+
+    const response = await fetch(`/api/servers/${serverId}/members`)
 
     if (response.ok) {
         const allMembers = await response.json()
         dispatch(loadMembers(allMembers))
+
         return allMembers
     }
 }
@@ -50,7 +52,9 @@ export const getAllMembers = (serverId) => async dispatch => {
 export const createMember = (payload) => async dispatch => {
     const { serverId, userId } = payload
     const response = await fetch(`/api/servers/${serverId}/members/${userId}`, {
-        method: 'POST'
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
     })
 
     if (response.ok) {
@@ -63,7 +67,9 @@ export const createMember = (payload) => async dispatch => {
 export const updateRoles = (payload) => async dispatch => {
     const { serverId, userId } = payload
     const response = await fetch(`/api/servers/${serverId}/members/${userId}`, {
-        method: 'PUT'
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body:JSON.stringify(payload)
     })
 
     if (response.ok) {

@@ -108,6 +108,7 @@
   list-style: none;
   padding: 15px 10px;
 }
+
 .servers-dm-footer{
   display: flex;
   /* border: 1px solid purple; */
@@ -132,11 +133,37 @@
   font-size: 12px;
   color: white;
 }
-.server-messages-container{
-  /* border: 1px solid blue; */
+.channel-messages-container{
+  border: 1px solid blue;
   width: 1172px;
   background-color: #36393f;
   border-right: 1px solid white;
+  overflow: scroll;
+  overflow-x: hidden;
+
+  /* display: flex; */
+  /* flex-direction: row; */
+}
+.channel-messages-container::-webkit-scrollbar{
+  display: none;
+}
+.channel-message-date{
+  border-bottom: 1px solid white;
+  font-family: adelle-sans, sans-serif;
+  font-size: 12px;
+  text-align: center;
+
+}
+.user-container{
+
+}
+.channel-msg-photo{
+
+}
+.channel-message{
+ font-family: adelle-sans, sans-serif;
+  font-size: 12px;
+  /* overflow: scroll; */
 }
 .server-active-container{
   /* border: 1px solid black; */

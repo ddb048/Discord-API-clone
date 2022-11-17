@@ -12,7 +12,7 @@ def seed_messages():
     message_body="I'm good, just relaxing. How's it going?",
     server_id=10,
     channel_id=19,
-    owner_id=17
+    owner_id=20
     )
   # member 1 in Pride Eye(private) channel
   msg3=Message(
@@ -26,7 +26,7 @@ def seed_messages():
     message_body="Sounds like a great plan, enjoy your night buddy. Let's talk again soon.",
     server_id=10,
     channel_id=19,
-    owner_id=17
+    owner_id=20
     )
   # member 1 in general channel
   msg5=Message(

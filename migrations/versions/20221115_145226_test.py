@@ -1,7 +1,7 @@
 """test
 
 Revision ID: f832ad126fa8
-Revises: 
+Revises:
 Create Date: 2022-11-15 14:52:26.429412
 
 """

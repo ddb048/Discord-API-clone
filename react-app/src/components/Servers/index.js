@@ -1,17 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, Redirect, useHistory, useParams } from 'react-router-dom';
+import { NavLink, Redirect, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Modal } from '../../context/Modal';
 import { getAllCurrentUserServers } from '../../store/servers';
 import { getAllMembers } from '../../store/member';
 import { getChannelDetail } from '../../store/channel';
 import LogoutButton from '../auth/LogoutButton';
+import CreateServerFormModal from '../CreateServerModal';
+import CreateServerForm from '../CreateServerForm';
 // import { getAllMessages } from '../../store/message';
 import { getServerDetails } from '../../store/servers';
 import DM_button from '../../Images/q-cord-button.png';
 import './Servers.css';
+import CreateServerModal from '../CreateServerModal';
+
+
+
+import { io } from 'socket.io-client'
+let socket;
 
 const Servers = () => {
 	const [showMsg, setShowMsg] = useState(false);
+	const [showModal, setShowModal] = useState(true);
+	const [messages, setMessages] = useState([])
+	const [chatInput, setChatInput] = useState('')
 
 	const dispatch = useDispatch();
 	// const history = useHistory();
@@ -24,32 +36,28 @@ const Servers = () => {
 	const isNotDm = servers.filter((dm) => dm.is_DM === false);
 	const dmServersArr = servers.filter((dm) => dm.is_DM === true);
 	// const userArr = userObj.find((dm) => dm.is_DM == true);
-	console.log('USER ARRAY', dmServersArr)
-	let memberArr = []
-	dmServersArr.forEach(server => memberArr.push(...server.members))
+	console.log("USER ARRAY", dmServersArr);
+	let memberArr = [];
+	dmServersArr.forEach((server) => memberArr.push(...server.members));
 	// console.log("------>", memberArr)
-	let dmMessageArr = []
-	dmServersArr.forEach(server => dmMessageArr.push(...server.messages))
-	console.log("2222------>", dmMessageArr)
+	let dmMessageArr = [];
+	dmServersArr.forEach((server) => dmMessageArr.push(...server.messages));
+	console.log("2222------>", dmMessageArr);
 
-	//   const other= dmServersArr.filter(x.members)
 
-	// const otherUser2 = userArr.filter(x => x.id != currentUser.id)
-	// const otherUser2 = userArr.filter(x => x.id != currentUser.id)
-	// console.log('OTHER USER 2>>>>', otherUser2)
-	// console.log('USERS',recipient)
-	// console.log('findDM1 >>>>>', DmIsTrue);
-	// useEffect(() => {
-	//   if (!currentUser.id) {
-	//     return;
-	//   }
-	//   (async () => {
-	//     const response = await fetch(`/api/users/${otherUser2.user_id}`);
-	//     const user = await response.json();
-	//     setRecipient(user);
-	//   })();
-	// }, [currentUser.id]);
-	// console.log('members in dm>>>', DmIsTrue);
+	useEffect(() => {
+		// open socket connection
+		// create websocket
+		socket = io();
+
+		socket.on("chat", (chat) => {
+			setMessages(messages => [...messages, chat])
+		})
+		// when component unmounts, disconnect
+		return (() => {
+			socket.disconnect()
+		})
+	}, [])
 
 	useEffect(() => {
 		dispatch(getAllCurrentUserServers());
@@ -57,8 +65,7 @@ const Servers = () => {
 		dispatch(getChannelDetail(channelId));
 		dispatch(getAllMembers(servers.id));
 		// dispatch(getAllChannel());
-	}, [dispatch]);
-
+	}, [dispatch, channelId, servers.id]);
 
 
 	if (!currentUser) {
@@ -81,7 +88,7 @@ const Servers = () => {
 								<NavLink to={`/servers/${server.id}`}>
 									<div className="servers-photo-container">
 										<div>
-											{' '}
+											{" "}
 											{server.preview_image ? (
 												<img
 													className="servers-photo"
@@ -99,7 +106,15 @@ const Servers = () => {
 					);
 				})}
 				<div className="servers-photo-container">
-					<div className="servers-photo">CRG</div>
+					<div className="servers-photo" onClick={() => setShowModal(true)}>
+						<i className="fa fa-plus" aria-hidden="true" />
+					</div>
+					{showModal && (
+						<Modal onClose={() => setShowModal(false)}>
+							<CreateServerForm />
+						</Modal>
+					)}
+
 				</div>
 			</div>
 			<div className="servers-dms-container">
@@ -107,41 +122,60 @@ const Servers = () => {
 					<div className="servers-title">DIRECT MESSAGES</div>
 				</div>
 				<div className="servers-dm-layout">
-					{memberArr.map((member) => (
-
-						member.user_info.profile_pic && (
-							<div>
-								<button onClick={() => setShowMsg(true)}>
-									<div>
-										<img className='user-photo' src={member.user_info.profile_pic} />
-									</div>
-									<div>{member.user_info.username} </div>
-								</button>
-							</div>
-						)
-
-					)
-					)
-					}
+					{memberArr.map(
+						(member) =>
+							member.user_info.profile_pic && (
+								<div>
+									<button onClick={() => setShowMsg(true)}>
+										<div>
+											<img
+												className="user-photo"
+												src={member.user_info.profile_pic}
+												alt=""
+											/>
+										</div>
+										<div>{member.user_info.username} </div>
+									</button>
+								</div>
+							)
+					)}
 				</div>
 				<div className="servers-dm-footer">
 					<div className="user-photo-container">
-						<img className="user-photo" src={currentUser.profile_pic} />
+						<img className="user-photo" src={currentUser.profile_pic} alt="" />
 					</div>
 					<div className="servers-user test-name">{currentUser.username}</div>
 					<LogoutButton />
 				</div>
 			</div>
 			<div className="servers-messages-container">
-				<h1 className="test-name">messages section</h1>
-				{showMsg && dmMessageArr.length > 0 && (
-					dmMessageArr.map(message => {
-						return (<div>
-							<div>{message.created_at}</div>
-							<div>{message.message_body}</div>
-						</div>
-						)
-					})
+				<div>
+					<h1 className="test-name">messages section</h1>
+					{showMsg &&
+						dmMessageArr.length > 0 &&
+						dmMessageArr.map((message) => {
+							return (
+								<div className="mess-box">
+									<img
+										className="user-photo"
+										src={message.owner_pic}
+										alt="userPhoto"
+									/>
+									<div className="mess">
+										<div>
+											<h4>{message.owner_name}</h4>
+											{message.created_at}
+										</div>
+										<div>{message.message_body}</div>
+									</div>
+								</div>
+							);
+						})}
+				</div>
+				{showMsg && (
+					<div>
+						<input placeholder="Message" />
+					</div>
 				)}
 			</div>
 			<div className="servers-active-container">
@@ -149,6 +183,7 @@ const Servers = () => {
 			</div>
 		</div>
 	);
-};
+};;
+
 
 export default Servers;

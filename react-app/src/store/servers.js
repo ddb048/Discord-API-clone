@@ -1,4 +1,4 @@
-// NOTE do we need csrf on the fronend side? * DAVID SAYS NO
+
 
 /********************TYPES******************* */
 
@@ -68,6 +68,7 @@ export const getServerDetails = serverId => async dispatch => {
 
     if (response.ok) {
         const server = await response.json();
+        console.log('get server details thunk >>>>>>', server)
         dispatch(loadOneServer(server))
 
     }
@@ -77,6 +78,7 @@ export const getServerDetails = serverId => async dispatch => {
 export const createServer = newServer => async dispatch => {
     const response = await fetch('/api/servers/@me', {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newServer)
     });
 
@@ -91,6 +93,7 @@ export const createServer = newServer => async dispatch => {
 export const updateServer = server => async dispatch => {
     const response = await fetch(`/api/servers/@me/${server.id}`, {
         method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(server)
     });
 
@@ -139,8 +142,8 @@ const serverReducer = (state = initialState, action) => {
         case LOAD_ONE_SERVER: {
             // oneServer = {};
             newState.servers = { ...state.servers, [action.server.id]: action.server };
-            console.log('action', action)
-            console.log('new state', newState)
+            // console.log('action', action)
+            // console.log('new state', newState)
             newState.oneServer = { ...action.server };
             return newState
         }

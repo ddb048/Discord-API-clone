@@ -1,6 +1,6 @@
 from app.models import db, Member, environment, SCHEMA
 # REVIEW  do i need to import Roles?
-
+# FIXME add 
 def seed_members():
   mem1= Member(
     user_id=1,
@@ -76,43 +76,43 @@ def seed_members():
 
   mem13= Member(
     user_id=13,
-    server_id=8,
+    server_id=3,
     roles='Member'
     )
 
   mem14= Member(
     user_id=14,
-    server_id=3,
+    server_id=4,
     roles='Member'
     )
   mem15 = Member(
     user_id=15,
-    server_id=4,
+    server_id=5,
     roles='Member'
     )
   mem16 = Member(
     user_id=16,
-    server_id=9,
+    server_id=6,
     roles='Member'
     )
   mem17 = Member(
     user_id=17,
-    server_id=10,
+    server_id=7,
     roles='Member'
     )
   mem18 = Member(
     user_id=18,
-    server_id=5,
+    server_id=8,
     roles='Member'
     )
   mem19 = Member(
     user_id=19,
-    server_id=6,
+    server_id=9,
     roles='Member'
     )
   mem20 = Member(
     user_id=20,
-    server_id=7,
+    server_id=10,
     roles='Member'
     )
   db.session.add(mem1)

@@ -5,6 +5,7 @@ import yellow from '../../Images/safety-yellow.jpeg'
 import teens from '../../Images/safety-teens.jpeg'
 import shield from '../../Images/safety-shield.jpeg'
 import tools from '../../Images/safety-tools.jpeg'
+import bigShield from '../../Images/big-shield.jpeg'
 import './safety.css'
 
 
@@ -14,31 +15,25 @@ function Safety() {
   return (
     <>
       <div id="s-upper">
-        <div id="header-links">
-          <NavLink id="links" to="/discover">
-            Discover
-          </NavLink>
-
-          <NavLink id="links" to="/login">
-            Q-cord
-          </NavLink>
-        </div>
         <div id="h1"> DISCORD SAFETY CENTER</div>
         <div id="h2">what is Q-cord?</div>
-        <p>
+        <div id="big-pic">
+          <img id="big-pic" src={bigShield} alt="" />
+        </div>
+        <p id="safety-text">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-          ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
           aliquip ex ea commodo consequat. Duis aute irure dolor in
           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
         <div id="h2">Q-cord commitment to a safe and trusted experience</div>
-        <p>
+        <p id="safety-text">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-          ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
           aliquip ex ea commodo consequat. Duis aute irure dolor in
           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in

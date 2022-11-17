@@ -45,6 +45,7 @@ export const createMessage = (payload) => async dispatch => {
     const { serverId, channelId, message } = payload
     const response = await fetch(`/api/messages/${serverId}/${channelId}`, {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(message)
     })
 
@@ -61,6 +62,7 @@ export const updateMessage = (payload) => async dispatch => {
     const { serverId, channelId, messageId, message } = payload
     const response = await fetch(`/api/messages/${serverId}/${channelId}/${messageId}`, {
         method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(message)
     })
 
