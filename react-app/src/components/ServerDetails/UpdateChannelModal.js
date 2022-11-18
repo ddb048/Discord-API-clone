@@ -1,21 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateChannel, deleteChannel, getAllChannel } from '../../store/channel';
-import {
-	getServerDetails,
-	getAllCurrentUserServers,
-} from '../../store/servers';
+import { updateChannel, deleteChannel} from '../../store/channel';
+import {getServerDetails} from '../../store/servers';
 import '../../context/Modal.css';
-
+import './UpdateChannelModal.css'
 // NOTE How do you i pass in channelId
-const UpdateChannelModal = ({ serverId, setShowModal, channelId }) => {
+const UpdateChannelModal = ({ serverId, setUpdateModal, channelId }) => {
 	serverId = +serverId;
-
+	console.log('channel id ', channelId)
 	const serverName = useSelector((state) => state.servers.oneServer);
 	// //console.log('servername >>>>', serverName);
 	const dispatch = useDispatch();
 	const [name, setName] = useState('');
-	const [is_voice, setIs_voice] = useState(true);
+	// const [is_voice, setIs_voice] = useState(true);
+	const is_voice=false
 	const [description, setDescription] = useState('');
 	const [errors, setErrors] = useState([]);
 	const [frontEndErrors, setFrontEndErrors] = useState([]);
@@ -24,28 +22,26 @@ const UpdateChannelModal = ({ serverId, setShowModal, channelId }) => {
 
   const confirmDelete = (confirm)=>{
     setShowConfirmButton(confirm)
-
   }
 	useEffect(() => {
-		//console.log('use effect ')
 		if (name.length) {
 			setChangeColor('light-create-channel-btn');
 		} else {
 			setChangeColor('dark-create-channel-btn');
 		}
-    if(confirmDelete){
+    // if(confirmDelete){
 
-    }
+    // }
 		const errors = [];
-		if (name.length > 10)
+		if (name.length > 32)
 			errors.push('Please provide a channel name less than 32 characters.');
 		setFrontEndErrors(errors);
-	}, [name]);
+	}, [name, changeColor]);
 
 	const submitUpdatedChannel = (e) => {
 		e.preventDefault();
 		setErrors([]);
-		if (name.length > 10)
+		if (name.length > 32)
 			errors.push('Please provide a channel name less than 32 characters.');
 		setErrors(errors);
 
@@ -58,7 +54,8 @@ const UpdateChannelModal = ({ serverId, setShowModal, channelId }) => {
 		if (!frontEndErrors.length) {
 			dispatch(updateChannel(channelId, updateChannelForm));
       dispatch(getServerDetails(serverId))
-			setShowModal(false);
+			setUpdateModal(false);
+			console.log('setUpdateModal', setUpdateModal)
 		}
 	};
 
@@ -67,16 +64,13 @@ const UpdateChannelModal = ({ serverId, setShowModal, channelId }) => {
 
     dispatch(deleteChannel(channelId))
     dispatch(getServerDetails(serverId))
-    setShowModal(false);
+    setUpdateModal(false);
 
   }
 
-  // const handleUpdateChannel = (e) =>{
-  //   e.preventDefault()
-
-  // }
 	return (
 		<div className="modal">
+		
 			<form className="new-channel-modal-form" onSubmit={submitUpdatedChannel}>
 				<div className="modal-title">Update Channel</div>
 				<div className="modal-input-form">
@@ -92,7 +86,6 @@ const UpdateChannelModal = ({ serverId, setShowModal, channelId }) => {
 
 					/>
 					</div>
-					{/* <div> */}
 						<label id="modal-DESCRIPTION-label">DESCRIPTION</label>
 						<input
 							className="modal-input-textbox"
@@ -101,17 +94,23 @@ const UpdateChannelModal = ({ serverId, setShowModal, channelId }) => {
 							value={description}
 							onChange={(e) => setDescription(e.target.value)}
 						/>
-					{/* </div> */}
 				</div>
 				<div id='grey-footer'>
 
 				<div className="create-channel-submit-btn-container">
-					<button className={changeColor} type="submit">
+					 {!showConfirmButton && <button className={changeColor + (showConfirmButton ? 'hide':'')} type="submit">
 						Update Channel
-					</button>
-          <button className={showConfirmButton ? 'visible':'hide'} onClick={() => confirmDelete(true)}>Delete Channel</button>
-          <button className={showConfirmButton ? 'hide':'visible'} onClick={() => confirmDelete(false)}>Cancel Delete</button>
-          <button className={showConfirmButton ? 'hide':'visible'} onClick={handleDeleteChannel}>Confirm Delete</button>
+					</button>}
+					<div>
+          <button className={'delete-channel-bttn' + (showConfirmButton ? 'visible':'hide')} onClick={() => confirmDelete(true)}>Delete Channel</button>
+					</div>
+          {showConfirmButton &&(
+						<>
+						<button className={"confirm-channel-bttn"} onClick={() => confirmDelete(false)}>Cancel Delete</button>
+          <button className={"cancel-channel-bttn"} onClick={handleDeleteChannel}>Confirm Delete</button>
+						</>
+					)
+					}
 
 				</div>
 				</div>

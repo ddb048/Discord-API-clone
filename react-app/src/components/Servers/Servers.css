@@ -1,8 +1,8 @@
 /* styles user landing page layout */
-.servers-page-container{
-  width:100%;
-
+.servers-page-container {
+  width: 100%;
   height: 100vh;
+  /* height: 600px; */
   /* grid-template-columns: repeat(4, fr);
   display: grid;
   grid-template-areas:
@@ -11,19 +11,21 @@
   flex-direction: row;
 
 }
+
 /* styles div for all servers container */
-.servers-column-container{
+.servers-column-container {
   /* grid-area: server; */
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
-  width:75px;
+  width: 90px;
   /* border:1px solid green; */
   padding: 15px 0;
   background-color: #202225;
 }
+
 /* styles container for dm button */
-.dm-button-container{
+.dm-button-container {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -37,29 +39,33 @@
   margin: 0 auto;
   width: 0;
 }
+
 /* styles dm button */
-.dm-button{
-  width:40px;
+.dm-button {
+  width: 40px;
   height: 40px;
   border-radius: 40px;
   border: none;
   background-color: #5865f2;
   object-fit: contain;
 }
-.dm-button:hover{
+
+.dm-button:hover {
   border-radius: 15px;
 }
+
 /* syles the div holding all server buttons */
-.servers-photo-container{
+.servers-photo-container {
   padding: 10px 0;
   width: 100%;
   display: flex;
   justify-content: center;
   /* border: 1px solid green; */
 }
+
 /* className='servers-channel-name' */
 /* styles server button */
-.servers-photo{
+.servers-photo {
   width: 40px;
   height: 40px;
   border: none;
@@ -72,25 +78,27 @@
   justify-content: center;
   align-items: center;
 }
+
 /* styles hovering effect on server button */
-.servers-photo:hover{
+.servers-photo:hover {
   border-radius: 15px;
   background-color: #5865f2;
 }
+
 /* styles div holding all messages list */
-.servers-dms-container{
+.servers-dms-container {
   /* grid-area: channels; */
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
   /* border: 1px solid green; */
-  width:135px;
+  width: 135px;
   background-color: #2f3136;
   /* border: 1px solid white */
 
 }
 
-.servers-dm-layout{
+.servers-dm-layout {
   display: flex;
 
   /* align-items: flex-start; */
@@ -99,7 +107,8 @@
   flex-direction: row;
   height: 85%;
 }
-.servers-dm-name{
+
+.servers-dm-name {
   width: 230px;
   display: flex;
   justify-content: flex-start;
@@ -108,18 +117,20 @@
   padding: 15px 10px;
   /* border: 1px solid pink; */
 }
-.servers-dm-footer{
+
+.servers-dm-footer {
   display: flex;
   /* border: 1px solid purple; */
   justify-content: space-around;
   align-items: center;
   height: 50px;
 }
-.user-photo{
+
+.user-photo {
   width: 38px;
   height: 38px;
   /* border: 1px solid white; */
-  object-fit:cover;
+  object-fit: cover;
   border-radius: 48px;
   background-color: #36393f;
   color: white;
@@ -127,11 +138,12 @@
   justify-content: center;
   align-items: center;
 }
+
 /* .servers-user{
   border: 1px solid purple;
 } */
 /* styles div holding all messages */
-.servers-messages-container{
+.servers-messages-container {
   /* border: 1px solid blue; */
   width: 1172px;
   background-color: #36393f;
@@ -141,16 +153,17 @@
   scrollbar-color: grey;
 }
 
-.servers-messages-container::-webkit-scrollbar{
+.servers-messages-container::-webkit-scrollbar {
   display: none;
 }
+
 /* styles layout of the messages */
 /* .servers-messages{
   border: 1px solid black;
 } */
 
 /* styles div for active container  NOTE idk why its not hitting this*/
-.servers-active-container{
+.servers-active-container {
   /* border: 1px solid black; */
     background-color: #36393f;
     width: 420px;
@@ -159,12 +172,14 @@
     flex-direction: column;
 
 }
+
 /* styles div containing direct messages title */
-.servers-title-container{
+.servers-title-container {
   border-bottom: 1px solid white;
 }
+
 /* styles direct message title */
-.servers-title{
+.servers-title {
   height: 50px;
   color: white;
   font-size: 18px;
@@ -174,15 +189,16 @@
   align-items: center;
   margin-left: 15px;
 }
+
 /* div for the h1 placeholders, can be removed once page is completely styled */
-.test-name{
+.test-name {
   color: white;
   /* border-bottom: 1px solid white; */
   font-size: 12px;
 }
 
 
-.mess{
+.mess {
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -191,7 +207,7 @@
 }
 
 
-.mess-box{
+.mess-box {
   display: flex;
   flex-direction: row;
   gap: 15px;
@@ -200,7 +216,7 @@
 }
 
 
-.message-form{
+.message-form {
   width: 100%;
   /* border: red solid 1px; */
 }
@@ -211,12 +227,14 @@
   border-radius: 10px;
   border: none;
   color: #36393f;
+  position: relative;
 }
+
 .message-form input:active {
   border: none;
 }
 
-.message-form button{
+.message-form button {
   height: 35px;
   width: 51px;
   border-radius: 10px;
@@ -257,6 +275,7 @@
     display: flex;
   
 }
+
 .user-img {
   max-width: 100%;
 
@@ -290,3 +309,14 @@
 }
 
 
+.servers-button-map {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  padding-left: 17px;
+}
+
+.cog > i{
+  font-size: 15px;
+}

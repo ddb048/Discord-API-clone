@@ -69,7 +69,7 @@ export const updateRoles = (payload) => async dispatch => {
     const response = await fetch(`/api/servers/${serverId}/members/${userId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body:JSON.stringify(payload)
+        body: JSON.stringify(payload)
     })
 
     if (response.ok) {
@@ -104,26 +104,26 @@ const memberReducer = (state = initialState, action) => {
     let newState = {}
 
     switch (action.type) {
-        case LOAD_MEMBERS: {
+        case LOAD_MEMBERS:
             newState = { ...state, members: {} }
             action.members.forEach(member => {
                 newState.members[member.id] = member
             });
             return newState
-        }
-        case CREATE_MEMBER: {
+
+        case CREATE_MEMBER:
             newState.members[action.newMember.id] = action.newMember
             return newState
-        }
-        case EDIT_MEMBER: {
+
+        case EDIT_MEMBER:
             newState = { ...state, [action.member.id]: action.member }
             return newState
-        }
-        case REMOVE_MEMBER: {
+
+        case REMOVE_MEMBER:
             newState = { ...state };
             delete newState[action.memberId];
             return newState
-        }
+
         default:
             return state
     }

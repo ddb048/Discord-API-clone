@@ -11,13 +11,30 @@ import ChannelModal from './NewChannelModal';
 import UpdateChannelModal from './UpdateChannelModal';
 import './index.css';
 
+import { io } from 'socket.io-client';
+import { createMessage, getAllMessages } from '../../store/message';
+
+let socket;
+
 const ServerDetail = () => {
 	const { serverId, channelId } = useParams();
 	const [showModal, setShowModal] = useState(false);
-	const [modalData, setModalData] = useState([]);
+
+	const [updateModal, setUpdateModal] = useState(false)
+	const [modalData,setModalData] = useState();
+
 	// useState that sets channel id once
 	const [currentChannelId, setCurrentChannelId] = useState();
 	const [showMsg, setShowMsg] = useState(false);
+
+	// useState for websocket listener
+	const [messages, setMessages] = useState([]);
+
+	// sets new chat input in channel messages
+	const [chatInput, setChatInput] = useState('');
+	const allMsgs = useSelector((state) =>
+		Object.values(state.messages.messages)
+	);
 	const dispatch = useDispatch();
 	const servers = useSelector((state) => Object.values(state.servers.servers));
 	const members = useSelector((state) => state.members.members);
@@ -37,16 +54,17 @@ const ServerDetail = () => {
 	// console.log('all channels', allChannels);
 	const currentUser = useSelector((state) => state.session.user);
 
-	const onServer = useSelector((state) => (state.servers.oneServer));
+	const findOneServer = useSelector((state) => state.servers.oneServer);
 
-	// console.log('server details=======>', onServer)
+	console.log('server details=======>', findOneServer);
 
 	useEffect(() => {
-		dispatch(getServerDetails(+serverId));
+		dispatch(getServerDetails(serverId));
 		dispatch(getAllChannel(serverId));
 		dispatch(getChannelDetail(channelId));
 		dispatch(getAllMembers(serverId));
-	}, [dispatch, channelId, serverId]);
+		dispatch(getAllMessages(currentChannelId));
+	}, [dispatch, channelId, serverId, currentChannelId]);
 
 	let currentChannel;
 	// filters current channel id once current state and useEffect are populated
@@ -73,19 +91,60 @@ const ServerDetail = () => {
 			// }
 		});
 	}
+	// used for create a channel?
 	const showmsg = (x) => {
 		setCurrentChannelId(x);
 
 		setShowMsg(true);
 	};
+	// used for update a channel
+	const grabChannelId = (a) => {
+		if (a) {
+			setModalData(a);
+			setUpdateModal(true);
+		}
+	};
+	// websocket listener
+	useEffect(() => {
+		// open socket connection
+		// create websocket
+		socket = io();
+		socket.on('channelMsgs', (chat) => {
+			// console.log('chat input>>>>>333', chat)
+			setMessages((messages) => [...messages, chat]);
+			// console.log('data from DM=======>', messages)
+		});
+		// when component unmounts, disconnect
+		return () => {
+			socket.disconnect();
+		};
+	}, []);
+	// handle chat message submit for websocket
+	const submitChatMsg = async (e) => {
+		e.preventDefault();
+		const payload = {
+			serverId: findOneServer.id,
+			channelId: currentChannelId,
+			message_body: chatInput,
+		};
+		dispatch(createMessage(payload));
+		if (socket) {
+			socket.emit('channelMsgs', {
+				owner_name: currentUser.username,
+				owner_pic: currentUser.profile_pic,
+				message_body: chatInput,
+			});
+		}
+		setChatInput('');
+	};
 
 	return (
-		<div className="servers-page-container">
-			<div className="servers-column-container">
-				<div className="dm-button-container">
+		<div className='servers-page-container'>
+			<div className='servers-column-container'>
+				<div className='dm-button-container'>
 					<div>
-						<NavLink to="">
-							<img className="dm-button" src={DM_button} alt="" />
+						<NavLink to=''>
+							<img className='dm-button' src={DM_button} alt='' />
 						</NavLink>
 					</div>
 				</div>
@@ -93,16 +152,16 @@ const ServerDetail = () => {
 					channelsServersArr.map((server) => {
 						return (
 							<>
-								<div className="servers-button-column" key={server.name}>
+								<div className='servers-button-column' key={server.name}>
 									<NavLink to={`/servers/${server.id}`}>
-										<div className="servers-photo-container">
+										<div className='servers-photo-container'>
 											<div>
 												{' '}
 												{server.preview_image ? (
 													<img
-														className="servers-photo"
+														className='servers-photo'
 														src={server.preview_image}
-														alt="server img"
+														alt='server img'
 													/>
 												) : (
 													server.name.slice(0, 2)
@@ -115,69 +174,106 @@ const ServerDetail = () => {
 						);
 					})}
 			</div>
-			<div className="server-channels-container">
-				<div className="server-title-container">
-					<div className="server-title">CHANNELS</div>
+			<div className='server-channels-container'>
+				<div className='server-title-container'>
+					<div className='server-title'>{}</div>
 					<div
-						className="add-channel-container"
+						className='add-channel-container'
 						onClick={() => setShowModal(true)}
 					>
 						{' '}
-						<i className="fa fa-plus" aria-hidden="true" />
+						<i className='fa fa-plus' aria-hidden='true' />
 					</div>
 				</div>
-				<div className="server-channel-layout">
-					{/* <div className='servers-photo' onClick={() => setShowModal(true)}> <i className='fa fa-plus' aria-hidden='true' /></div> */}
-					<div>
+				<div className='server-channel-layout'>
+					<div className='channel-items'>
 						{channelsArray.map((channel) => {
 							return (
+								<div id='some-name'>
 								<div
-									className="server-channel-name"
+									className='server-channel-name'
 									onClick={() => showmsg(channel.id)}
 								>
 									{channel.name}
 
 									<div
-										className="update-channel-container"
-										onClick={() => setShowModal(true)}
+										className='update-channel-container'
+										onClick={() => setUpdateModal(true)}
 									>
-										<i className="fa fa-plus" aria-hidden="true" />
-									<div className="gear-name"
-									onClick={() =>setModalData([channel.server_id,channel.id])}
-									>
+										<i className='fa fa-plus' aria-hidden='true' onClick={() =>
+												grabChannelId(channel.id)
+											} />
+										<div
+											className='gear-name'
+
+										></div>
 
 									</div>
-									</div>
+								</div>
 								</div>
 							);
 						})}
 					</div>
 				</div>
-				<div className="servers-dm-footer">
-					<div className="user-photo-container">
-						<img className="user-photo" src={currentUser.profile_pic} alt="" />
+				<div className='servers-dm-footer'>
+					<div className='user-photo-container'>
+						<img className='user-photo' src={currentUser.profile_pic} alt='' />
 					</div>
-					<div className="servers-user">{currentUser.username}</div>
+					<div className='servers-user'>{currentUser.username}</div>
 					<LogoutButton />
 				</div>
 			</div>
-			<div className="channel-messages-container">
+			<div className='channel-messages-container'>
 				<div></div>
-				<div className="test-name">
+				<div className='test-name'>
 					{showMsg &&
 						currentChannel &&
 						currentChannel.messages.map((msg) => {
 							return (
-								<div className="channel-messages-container">
-									<div className="channel-message-date"> {msg.created_at}</div>
-									<div className="user-container">
-										<img className="user-photo" src={msg.user_photo} />
-										<div className="channel-message">{msg.message_body}</div>
+								<div className='channel-messages-container'>
+									<div className='user-container'>
+										<img className='user-photo' src={msg.user_photo} />
+										<div className='channel-message'>{msg.message_body}</div>
 									</div>
 								</div>
 							);
 						})}
 					messages section
+					<div>
+						{showMsg &&
+							messages.length > 0 &&
+							messages.map((chat) => {
+								return (
+									<div className='mess-box'>
+										<img
+											className='user-photo'
+											src={chat.owner_pic}
+											alt='userPhoto'
+										/>
+										<div className='mess'>
+											<div>
+												<h4>{chat.owner_name}</h4>
+											</div>
+											<div>{chat.message_body}</div>
+										</div>
+									</div>
+								);
+							})}
+					</div>
+					<div className='channel-input-textbox-container'>
+						{showMsg && (
+							<form onSubmit={submitChatMsg} className='channel-message-form'>
+								<input
+									value={chatInput}
+									onChange={(e) => setChatInput(e.target.value)}
+									placeholder='Message'
+								/>
+								<button onClick={submitChatMsg} type='submit'>
+									Send
+								</button>
+							</form>
+						)}
+					</div>
 				</div>
 			</div>
 			{showModal && (
@@ -185,18 +281,17 @@ const ServerDetail = () => {
 					<ChannelModal serverId={serverId} setShowModal={setShowModal} />
 				</Modal>
 			)}
-			{showModal && (
-										<Modal onClose={() => setShowModal(false)}>
-											<UpdateChannelModal
-												serverId={1}
-												channelId={1}
-												setShowModal={setShowModal}
-											/>
-										</Modal>
-									)}
-			<div className="server-active-container">
-				<div className="test-name">active section</div>
-			</div>
+
+			{updateModal && (
+				<Modal onClose={() => setUpdateModal(false)}>
+					<UpdateChannelModal
+						serverId={serverId}
+						channelId={modalData}
+						setUpdateModal={setUpdateModal}
+					/>
+				</Modal>
+			)}
+
 		</div>
 	);
 };
