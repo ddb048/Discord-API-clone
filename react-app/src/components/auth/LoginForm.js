@@ -99,7 +99,7 @@ const LoginForm = () => {
 						</div>
 					</form>
 					<div>
-						<img className='qCode' src={qrCode} alt="" />
+						<img className='qCode' src={qrCode} />
 					</div>
 				</div>
 			</div>

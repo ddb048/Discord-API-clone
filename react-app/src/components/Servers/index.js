@@ -58,13 +58,12 @@ const Servers = () => {
 	}, [dispatch, channelId, servers.id]);
 
 	useEffect(() => {
-		;
 		dispatch(getServerDetails(currentServer[0]));
 		dispatch(getChannelDetail(currentServer[1]));
 		dispatch(getAllMembers(currentServer[0]));
 		dispatch(getAllMessages(currentServer[1]));
 		setMessages(dm)
-	}, [currentServer]);
+	}, [currentServer, dispatch, dm]);
 
 
 	useEffect(() => {
@@ -74,7 +73,7 @@ const Servers = () => {
 		socket.on("DM", (chat) => {
 			// console.log('chat input>>>>>333', chat)
 			setMessages(messages => [...messages, chat])
-			// console.log('data from DM=======>', messages)
+			console.log('data from DM=======>', messages)
 		})
 		// when component unmounts, disconnect
 		return (() => {
