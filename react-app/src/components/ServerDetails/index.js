@@ -21,7 +21,7 @@ const ServerDetail = () => {
 	const [showModal, setShowModal] = useState(false);
 
 	const [updateModal, setUpdateModal] = useState(false)
-	const [modalData,setModalData] = useState();
+	const [modalData, setModalData] = useState();
 
 	// useState that sets channel id once
 	const [currentChannelId, setCurrentChannelId] = useState();
@@ -32,9 +32,9 @@ const ServerDetail = () => {
 
 	// sets new chat input in channel messages
 	const [chatInput, setChatInput] = useState('');
-	const allMsgs = useSelector((state) =>
-		Object.values(state.messages.messages)
-	);
+	// const allMsgs = useSelector((state) =>
+	// 	Object.values(state.messages.messages)
+	// );
 	const dispatch = useDispatch();
 	const servers = useSelector((state) => Object.values(state.servers.servers));
 	const members = useSelector((state) => state.members.members);
@@ -47,9 +47,9 @@ const ServerDetail = () => {
 	);
 	// console.log('channels array.....>>>>>>>', channelsArray);
 	// console.log('servers', servers)
-	const allChannels = useSelector((state) =>
-		Object.values(state.channels.channels)
-	);
+	// const allChannels = useSelector((state) =>
+	// 	Object.values(state.channels.channels)
+	// );
 
 	// console.log('all channels', allChannels);
 	const currentUser = useSelector((state) => state.session.user);
@@ -176,7 +176,7 @@ const ServerDetail = () => {
 			</div>
 			<div className='server-channels-container'>
 				<div className='server-title-container'>
-					<div className='server-title'>{}</div>
+					<div className='server-title'>{ }</div>
 					<div
 						className='add-channel-container'
 						onClick={() => setShowModal(true)}
@@ -190,26 +190,26 @@ const ServerDetail = () => {
 						{channelsArray.map((channel) => {
 							return (
 								<div id='some-name'>
-								<div
-									className='server-channel-name'
-									onClick={() => showmsg(channel.id)}
-								>
-									{channel.name}
-
 									<div
-										className='update-channel-container'
-										onClick={() => setUpdateModal(true)}
+										className='server-channel-name'
+										onClick={() => showmsg(channel.id)}
 									>
-										<i className='fa fa-plus' aria-hidden='true' onClick={() =>
+										{channel.name}
+
+										<div
+											className='update-channel-container'
+											onClick={() => setUpdateModal(true)}
+										>
+											<i className='fa fa-plus' aria-hidden='true' onClick={() =>
 												grabChannelId(channel.id)
 											} />
-										<div
-											className='gear-name'
+											<div
+												className='gear-name'
 
-										></div>
+											></div>
 
+										</div>
 									</div>
-								</div>
 								</div>
 							);
 						})}
@@ -232,7 +232,7 @@ const ServerDetail = () => {
 							return (
 								<div className='channel-messages-container'>
 									<div className='user-container'>
-										<img className='user-photo' src={msg.user_photo} />
+										<img className='user-photo' src={msg.user_photo} alt="" />
 										<div className='channel-message'>{msg.message_body}</div>
 									</div>
 								</div>
