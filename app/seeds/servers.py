@@ -20,7 +20,7 @@ def seed_servers():
     )
   server3 = Server(
     name="Queer Christians",
-    preview_image="https://i.dlpng.com/static/png/6889926_preview.png",
+    preview_image="https://miro.medium.com/focal/1200/900/57/63/1*Cw0RlhakLqQGxgU4g1mKTg.png",
     server_description="We are a welcoming community for LGBTQ+ Christians looking for a safe space to be themselves! There's also opportunities to play games, get help with school, discuss hobbies, and build new friendships.",
     private=False,
     is_DM=False,
@@ -28,8 +28,8 @@ def seed_servers():
     )
   server4 = Server(
     name="The Drag Haven",
-    preview_image="https://i.dlpng.com/static/png/6889926_preview.png",
-    server_description="Come join a small community of likeminded individuals who like the art of drag.",
+    preview_image="https://w7.pngwing.com/pngs/529/669/png-transparent-rupaul-s-drag-race-season-9-drag-queen-television-show-drag-race.png",
+    server_description="Be what ever you imagine you want to be",
     private=False,
     is_DM=False,
     owner_id=4

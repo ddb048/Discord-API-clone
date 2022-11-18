@@ -34,36 +34,35 @@ function OnePageServer() {
       <>
         {/* NOTE upper (blue) div with pic and links */}
         <div id="upper">
-          
-          <img id="upper-img" src={oneServer.preview_image} alt='upper-img' />
+          <img id="upper-img" src={oneServer.preview_image} alt="upper-img" />
         </div>
         {/* NOTE lower part white */}
         <div id="lower-div">
-          <h1 id="bold-title">{oneServer.name}</h1>
+          <h1 id="bold-headtitle">{oneServer.name}</h1>
           <div id="sub-title">{oneServer.num_member} members</div>
 
           <div id="content-container">
             <div id="in-with-img">
-              <img id="bullatin-img" src={calender} alt='img' />
+              <img id="bullatin-img" src={calender} alt="img" />
               <p>{oneServer.created_at}</p>
             </div>
             <div id="in-with-img">
-              <img id="bullatin-img" src={fun} alt='img' />
+              <img id="bullatin-img" src={fun} alt="img" />
               <p>Have fun discussions with other members.</p>
             </div>
             <div id="in-with-img">
-              <img id="bullatin-img" src={games} alt='img' />
+              <img id="bullatin-img" src={games} alt="img" />
               <p>Meet new people to play the game with</p>
             </div>
             <div id="in-with-img">
-              <img id="bullatin-img" src={exlamation} alt='img' />
+              <img id="bullatin-img" src={exlamation} alt="img" />
               <p>Post your beautiful fanart and suggestions</p>
             </div>
             <div id="in-with-img">
-              <img id="bullatin-img" src={chaty} alt='img' />
+              <img id="bullatin-img" src={chaty} alt="img" />
               <p>
-                Find trades, raids, and many other game events going on to complete
-                with friends.
+                Find trades, raids, and many other game events going on to
+                complete with friends.
               </p>
             </div>
           </div>
@@ -75,7 +74,7 @@ function OnePageServer() {
         <div className="details-container">
           <div className="details-card">
             <img className="details-card-photo" src={splash_3} alt="img" />
-            <div className="ddetails-card-text">
+            <div className="details-card-text">
               <div className="sub-title">Where Hanging Out is Easy</div>
               <div className="sub-subtext">
                 Grab a seat in a voice channel when youre free. Friends in your
@@ -83,18 +82,27 @@ function OnePageServer() {
                 having to call.
               </div>
             </div>
-            <NavLink className="details-card-bttn" to="/sign-up">
-              <div>Join Q-Core</div>
-            </NavLink>
           </div>
+          <div className="all-lower-text">
+            <div id="text-to-join-title">
+              Find a place where you belong Discord servers are organized into
+            </div>
+            <div id="text-to-join-sub">
+              topic-based channels where you can collaborate, share, and just
+              talk about your day without clogging up a group chat.
+            </div>
+          </div>
+          <NavLink className="details-card-bttn" to="/sign-up">
+            <div>Join Q-Core</div>
+          </NavLink>
         </div>
 
         {/* FIXME we need to implament the righ url for joining a server */}
-        <div id="footer-div">
+        {/* <div id="footer-div">
           <NavLink id="footer" to={`/servers/${serverId}`}>
             <div id="in-footer">Join Server</div>
           </NavLink>
-        </div>
+        </div> */}
       </>
     );
 
