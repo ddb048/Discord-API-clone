@@ -8,14 +8,15 @@ import {
 import '../../context/Modal.css';
 
 // NOTE How do you i pass in channelId
-const UpdateChannelModal = ({ serverId, setShowModal, channelId }) => {
+const UpdateChannelModal = ({ serverId, setUpdateModal, channelId }) => {
 	serverId = +serverId;
-
+	console.log('channel id ', channelId)
 	const serverName = useSelector((state) => state.servers.oneServer);
 	// //console.log('servername >>>>', serverName);
 	const dispatch = useDispatch();
 	const [name, setName] = useState('');
-	const [is_voice, setIs_voice] = useState(true);
+	// const [is_voice, setIs_voice] = useState(true);
+	const is_voice=false
 	const [description, setDescription] = useState('');
 	const [errors, setErrors] = useState([]);
 	const [frontEndErrors, setFrontEndErrors] = useState([]);
@@ -24,10 +25,8 @@ const UpdateChannelModal = ({ serverId, setShowModal, channelId }) => {
 
   const confirmDelete = (confirm)=>{
     setShowConfirmButton(confirm)
-
   }
 	useEffect(() => {
-		//console.log('use effect ')
 		if (name.length) {
 			setChangeColor('light-create-channel-btn');
 		} else {
@@ -37,15 +36,15 @@ const UpdateChannelModal = ({ serverId, setShowModal, channelId }) => {
 
     }
 		const errors = [];
-		if (name.length > 10)
+		if (name.length > 32)
 			errors.push('Please provide a channel name less than 32 characters.');
 		setFrontEndErrors(errors);
-	}, [name]);
+	}, [name, changeColor]);
 
 	const submitUpdatedChannel = (e) => {
 		e.preventDefault();
 		setErrors([]);
-		if (name.length > 10)
+		if (name.length > 32)
 			errors.push('Please provide a channel name less than 32 characters.');
 		setErrors(errors);
 
@@ -58,7 +57,8 @@ const UpdateChannelModal = ({ serverId, setShowModal, channelId }) => {
 		if (!frontEndErrors.length) {
 			dispatch(updateChannel(channelId, updateChannelForm));
       dispatch(getServerDetails(serverId))
-			setShowModal(false);
+			setUpdateModal(false);
+			console.log('setUpdateModal', setUpdateModal)
 		}
 	};
 
@@ -67,14 +67,10 @@ const UpdateChannelModal = ({ serverId, setShowModal, channelId }) => {
 
     dispatch(deleteChannel(channelId))
     dispatch(getServerDetails(serverId))
-    setShowModal(false);
+    setUpdateModal(false);
 
   }
 
-  // const handleUpdateChannel = (e) =>{
-  //   e.preventDefault()
-
-  // }
 	return (
 		<div className="modal">
 			<form className="new-channel-modal-form" onSubmit={submitUpdatedChannel}>
@@ -92,7 +88,6 @@ const UpdateChannelModal = ({ serverId, setShowModal, channelId }) => {
 
 					/>
 					</div>
-					{/* <div> */}
 						<label id="modal-DESCRIPTION-label">DESCRIPTION</label>
 						<input
 							className="modal-input-textbox"
@@ -101,7 +96,6 @@ const UpdateChannelModal = ({ serverId, setShowModal, channelId }) => {
 							value={description}
 							onChange={(e) => setDescription(e.target.value)}
 						/>
-					{/* </div> */}
 				</div>
 				<div id='grey-footer'>
 

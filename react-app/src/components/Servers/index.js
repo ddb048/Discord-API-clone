@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NavLink, Redirect, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
@@ -16,19 +16,23 @@ import './Servers.css';
 
 import { io } from 'socket.io-client'
 import { createMessage, getAllMessages } from '../../store/message';
+import UpdateServerForm from '../UpdateServerModal';
 
 let socket;
 
 const Servers = () => {
 	const [showModal, setShowModal] = useState(false);
+	const [showUpdateModal, setUpdateShowModal] = useState(false);
 	const [showMsg, setShowMsg] = useState(false);
 	const [messages, setMessages] = useState([])
 	const [chatInput, setChatInput] = useState('')
 	const [currentServer, setCurrentServer] = useState([])
 
+	const dummy = useRef()
+
 	const dispatch = useDispatch();
 	// const history = useHistory();
-	const { channelId } = useParams();
+	// const { channelId } = useParams();
 	// const member=useSelector(state =>Object.values(state.members.members))
 	const dm = useSelector(state => Object.values(state.messages.messages))
 	// grabbing the state of servers in servers
@@ -62,7 +66,8 @@ const Servers = () => {
 		dispatch(getChannelDetail(currentServer[1]));
 		dispatch(getAllMembers(currentServer[0]));
 		dispatch(getAllMessages(currentServer[1]));
-	}, [currentServer]);
+
+	}, [currentServer, dispatch]);
 
 
 	useEffect(() => {
@@ -72,7 +77,7 @@ const Servers = () => {
 		socket.on("DM", (chat) => {
 			// console.log('chat input>>>>>333', chat)
 			setMessages(messages => [...messages, chat])
-			console.log('data from DM=======>', messages)
+			// console.log('data from DM=======>', messages)
 		})
 		// when component unmounts, disconnect
 		return (() => {
@@ -94,6 +99,7 @@ const Servers = () => {
 			socket.emit("DM", { owner_name: currentUser.username, owner_pic: currentUser.profile_pic, message_body: chatInput });
 		}
 		setChatInput("")
+		dummy.current.scrollIntoView({ behavior: 'smooth' })
 	}
 
 
@@ -121,22 +127,31 @@ const Servers = () => {
 					return (
 						<>
 							<div className="servers-button-map" key={server.name}>
-								<NavLink to={`/servers/${server.id}`}>
-									<div className="servers-photo-container">
-										<div>
-											{" "}
-											{server.preview_image ? (
-												<img
-													className="servers-photo"
-													src={server.preview_image}
-													alt="server img"
-												/>
-											) : (
-												server.name.slice(0, 2).toUpperCase()
-											)}
+								<div className='server-cog-grouper'>
+									<NavLink to={`/servers/${server.id}`}>
+										<div className="servers-photo-container">
+											<div>
+												{" "}
+												{server.preview_image ? (
+													<img
+														className="servers-photo"
+														src={server.preview_image}
+														alt="server img"
+													/>
+												) : (
+													server.name.slice(0, 2).toUpperCase()
+												)}
+											</div>
 										</div>
+									</NavLink>
+									<div className='cog' onClick={()=>setUpdateShowModal(true)}>
+										<i className="fa fa-cog" aria-hidden="true" />
 									</div>
-								</NavLink>
+									{showUpdateModal&&(
+									<Modal onClose={()=>setUpdateShowModal(false)}>
+										<UpdateServerForm setUpdateShowModal={setUpdateShowModal} />
+									</Modal>)}
+								</div>
 							</div>
 						</>
 					);

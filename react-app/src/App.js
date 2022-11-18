@@ -14,75 +14,74 @@ import ServerDetail from './components/ServerDetails';
 import { authenticate } from './store/session';
 import Safety from './components/SafetyPage';
 import Footer from './components/footer';
-import ActiveUserRight from './components/ActiveUserRight';
+
 
 
 function App() {
-	const [loaded, setLoaded] = useState(false);
-	const dispatch = useDispatch();
+  const [loaded, setLoaded] = useState(false);
+  const dispatch = useDispatch();
 
-	const session = useSelector((state) => state.session);
+  const session = useSelector((state) => state.session);
 
-	useEffect(() => {
-		(async () => {
-			await dispatch(authenticate());
-			setLoaded(true);
-		})();
-	}, [dispatch]);
+  useEffect(() => {
+    (async () => {
+      await dispatch(authenticate());
+      setLoaded(true);
+    })();
+  }, [dispatch]);
 
-	if (!loaded) {
-		return null;
-	}
+  if (!loaded) {
+    return null;
+  }
 
-	return (
+  return (
     <BrowserRouter>
       <Route exact path="/">
         {session.user && <Redirect to="/servers/@me" />}
         <NavBar />
       </Route>
 
-      <Switch>
-        <Route path="/" exact={true}>
-          <Splash />
-        </Route>
-        <Route path="/login" exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm />
-        </Route>
-        <Route path="/discover/servers/:serverId" exact={true}>
-          <NavBar />
-          <OnePageServer />
-          <Footer />
-        </Route>
-        <Route path="/discover" exact={true}>
-          <NavBar />
-          <Discover />
-          <Footer />
-        </Route>
-        <ProtectedRoute path="/users/:userId" exact={true}>
-          <User />
-        </ProtectedRoute>
-        <Route path="/servers/@me">
-          <Servers />
-        </Route>
-        <ProtectedRoute path="/servers/:serverId" exact={true}>
-          <ServerDetail />
-        </ProtectedRoute>
+			<Switch>
+				<Route path="/" exact={true}>
+					<Splash />
+				</Route>
+				<Route path="/login" exact={true}>
+					<LoginForm />
+				</Route>
+				<Route path="/sign-up" exact={true}>
+					<SignUpForm />
+				</Route>
+				<Route path="/discover/servers/:serverId" exact={true}>
+					<OnePageServer />
+				</Route>
+				<Route path="/discover" exact={true}>
+					<NavBar />
+					<Discover />
+					<Footer />
+				</Route>
+				<ProtectedRoute path="/users/:userId" exact={true}>
+					<User />
+				</ProtectedRoute>
+				<Route path="/servers/@me">
+					<Servers />
+				</Route>
+				<ProtectedRoute path="/servers/:serverId" exact={true}>
+					<ServerDetail />
+				</ProtectedRoute>
 
-        <ProtectedRoute
-          path="/channels/:channelId"
-          exact={true}
-        ></ProtectedRoute>
-        <Route path="/safety">
-          <NavBar />
-          <Safety />
-          <Footer />
-        </Route>
-      </Switch>
-    </BrowserRouter>
-  );
+				<ProtectedRoute
+					path="/channels/:channelId"
+					exact={true}
+				>
+        </ProtectedRoute>
+				<Route path="/safety">
+					<NavBar />
+					<Safety />
+					<Footer />
+				</Route>
+			</Switch>
+		</BrowserRouter>
+	);
 }
 
 export default App;
