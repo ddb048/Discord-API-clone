@@ -20,7 +20,7 @@ socketio = SocketIO(cors_allowed_origins=origins)
 def handle_chat(data):
     emit("DM", data, broadcast=True)
 
-#server handling
-@socketio.on("ServerMessages")
-def handle_chat(data):
-    emit("ServerMessages", data, broadcast=True)
+#channelMsgs handling
+@socketio.on("channelMsgs")
+def handle__channel_chat(data):
+    emit("channelMsgs", data, broadcast=True)

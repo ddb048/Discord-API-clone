@@ -1,9 +1,57 @@
-/* .delete-channel-bttn{
-
+.delete-channel-bttnhide{
+  background-color: #434a94;
+  color: #888b98;
+  height: 50px;
+  width: 100px;
+  border: none;
+  border-radius: 2px;
+  font-family: adelle-sans, sans-serif;
+}
+.delete-channel-bttnvisible{
+  display: none;
+}
+.delete-channel-bttn::hover{
+  background-color: #5865f2;
+  color: white;
+  height: 50px;
+  width: 100px;
+  border: none;
+  border-radius: 2px;
+  font-family: adelle-sans, sans-serif;
 }
 .confirm-channel-bttn{
-
+  background-color: #434a94;
+  color: #888b98;
+  height: 50px;
+  width: 100px;
+  border: none;
+  border-radius: 2px;
+  font-family: adelle-sans, sans-serif;
 }
-.cancel-cha{
-
-} */
+.confirm-channel-bttn::hover{
+  background-color: #5865f2;
+  color: white;
+  height: 50px;
+  width: 100px;
+  border: none;
+  border-radius: 2px;
+  font-family: adelle-sans, sans-serif;
+}
+.cancel-channel-bttn{
+  background-color: #434a94;
+  color: #888b98;
+  height: 50px;
+  width: 100px;
+  border: none;
+  border-radius: 2px;
+  font-family: adelle-sans, sans-serif;
+}
+.cancel-channel-bttn::hover{
+  background-color: #5865f2;
+  color: white;
+  height: 50px;
+  width: 100px;
+  border: none;
+  border-radius: 2px;
+  font-family: adelle-sans, sans-serif;
+}
