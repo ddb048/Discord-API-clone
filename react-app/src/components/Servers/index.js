@@ -28,7 +28,7 @@ const Servers = () => {
 
 	const dispatch = useDispatch();
 	// const history = useHistory();
-	const { channelId } = useParams();
+	// const { channelId } = useParams();
 	// const member=useSelector(state =>Object.values(state.members.members))
 	const dm = useSelector(state => Object.values(state.messages.messages))
 	// grabbing the state of servers in servers
@@ -73,7 +73,7 @@ const Servers = () => {
 		socket.on("DM", (chat) => {
 			// console.log('chat input>>>>>333', chat)
 			setMessages(messages => [...messages, chat])
-			console.log('data from DM=======>', messages)
+			// console.log('data from DM=======>', messages)
 		})
 		// when component unmounts, disconnect
 		return (() => {
