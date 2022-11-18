@@ -217,3 +217,66 @@
   width: 51px;
   border-radius: 10px;
 }
+
+.activ-user-con {
+  border-radius: 20px;
+  display:flex;
+  flex-direction: column;
+  background-color: #202225;
+  width: 300px;
+  height: 300px
+}
+.user-img-header{
+background-color: blueviolet;
+width:95%;
+height: 90px;
+margin-bottom: -50px;
+border-radius: 20px;
+margin-right: 10%;
+margin-left: 10%;
+position:relative;
+}
+.user-img-div {
+  max-width: 70px;
+  margin-left: 20px;
+  margin-top: 100px;
+  border-radius: 50%;
+  border:10px solid #36393f;
+  top: -70%;
+  
+}
+.user-img {
+  max-width: 100%;
+
+}
+
+.user-details {
+  color:white;
+  width:250px;
+  height: 150px;
+  border-radius: 20px;
+  padding: 10%;
+  background-color:black;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.user-name-id {
+  color:white;
+  width:200px;
+  height: 75px;
+  background-color:black;
+  top:185px;
+  border-bottom: #4d4f54;
+  
+}
+
+.user-name-id-joined {
+  color: white;
+  height: 70px;
+  width: 250px;
+
+}
+
+
