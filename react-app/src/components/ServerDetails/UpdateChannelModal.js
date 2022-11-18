@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateChannel, deleteChannel, getAllChannel } from '../../store/channel';
-import {
-	getServerDetails,
-	getAllCurrentUserServers,
-} from '../../store/servers';
+import { updateChannel, deleteChannel} from '../../store/channel';
+import {getServerDetails} from '../../store/servers';
 import '../../context/Modal.css';
 import './UpdateChannelModal.css'
 // NOTE How do you i pass in channelId
@@ -73,6 +70,7 @@ const UpdateChannelModal = ({ serverId, setUpdateModal, channelId }) => {
 
 	return (
 		<div className="modal">
+		
 			<form className="new-channel-modal-form" onSubmit={submitUpdatedChannel}>
 				<div className="modal-title">Update Channel</div>
 				<div className="modal-input-form">
