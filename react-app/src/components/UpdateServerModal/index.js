@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { createServer } from "../../store/servers";
-import './server-form.css'
+import { createServer, updateServer } from "../../store/servers";
+// import './server-form.css'
 
-const UpdateServerForm = ({ setShowModal }) => {
+const UpdateServerForm = ({ setUpdateShowModal }) => {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [preview_image, setPreview_image] = useState("");
@@ -33,8 +33,8 @@ const UpdateServerForm = ({ setShowModal }) => {
             privateServer,
             isDM
         };
-        dispatch(EditServer(newServer))
-        setShowModal(false)
+        dispatch(updateServer(newServer))
+        setUpdateShowModal(false)
     }
 
     //   const reset = () => {
@@ -47,7 +47,7 @@ const UpdateServerForm = ({ setShowModal }) => {
 
     return (
         <div id="form" className="inputBox">
-            <h1>Your New Server</h1>
+            <h1>Update Server</h1>
             {error &&
                 error.map((error) => {
                     return (
@@ -96,7 +96,7 @@ const UpdateServerForm = ({ setShowModal }) => {
                 </div>
 
                 <button id="new-server-btn" type="submit" disabled={!!error.length}>
-                    Submit
+                    Update
                 </button>
             </form>
         </div>

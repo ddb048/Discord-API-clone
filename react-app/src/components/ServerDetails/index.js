@@ -21,7 +21,7 @@ const ServerDetail = () => {
 	const [showModal, setShowModal] = useState(false);
 
 	const [updateModal, setUpdateModal] = useState(false)
-	const [setModalData] = useState();
+	const [modalData,setModalData] = useState();
 
 	// useState that sets channel id once
 	const [currentChannelId, setCurrentChannelId] = useState();

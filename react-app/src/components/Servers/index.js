@@ -16,11 +16,13 @@ import './Servers.css';
 
 import { io } from 'socket.io-client'
 import { createMessage, getAllMessages } from '../../store/message';
+import UpdateServerForm from '../UpdateServerModal';
 
 let socket;
 
 const Servers = () => {
 	const [showModal, setShowModal] = useState(false);
+	const [showUpdateModal, setUpdateShowModal] = useState(false);
 	const [showMsg, setShowMsg] = useState(false);
 	const [messages, setMessages] = useState([])
 	const [chatInput, setChatInput] = useState('')
@@ -92,7 +94,7 @@ const Servers = () => {
 			channelId: currentServer[1],
 			message_body: chatInput
 		}
-		// dispatch(createMessage(payload))
+		dispatch(createMessage(payload))
 		if (socket) {
 			socket.emit("DM", { owner_name: currentUser.username, owner_pic: currentUser.profile_pic, message_body: chatInput });
 		}
@@ -142,9 +144,13 @@ const Servers = () => {
 											</div>
 										</div>
 									</NavLink>
-									<div className='cog'>
+									<div className='cog' onClick={()=>setUpdateShowModal(true)}>
 										<i className="fa fa-cog" aria-hidden="true" />
 									</div>
+									{showUpdateModal&&(
+									<Modal onClose={()=>setUpdateShowModal(false)}>
+										<UpdateServerForm setUpdateShowModal={setUpdateShowModal} />
+									</Modal>)}
 								</div>
 							</div>
 						</>
