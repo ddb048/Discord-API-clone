@@ -52,11 +52,20 @@
 }
 
 #bold-title {
-    font-weight: 600;
-    font-size: 28px;
+    font-weight: 900;
+    font-size: 31px;
+    margin-left: 6%;
+    padding-top: 10%;
+    font-family: sans-serif;
+    margin-bottom: -7%;
 
 }
-
+#bold-headtitle {
+    font-weight: 900;
+    font-size: 31px;
+    font-family: sans-serif;
+    
+}
 #sub-title {
     font-weight: 200;
     padding-bottom: 2%;
@@ -90,66 +99,65 @@
 .details-card-bttn {
     text-decoration: none;
     box-sizing: border-box;
-    border-radius: 20px;
-    width: 150px;
-    height: 80px;
+    border-radius: 39px;
+    width: 351px;
+    height: 60px;
     background-color: black;
     color: white;
     text-align: center;
     vertical-align: middle;
-    
+    padding: 2%;
+    font-family: sans-serif;
+    font-size: medium;
+    font-weight: 100;
 }
 
-#in-footer {
-    background-color:#5865F2;
-    border-radius: 20px;
-    color: white;
-    height: 35px;
-    text-align: center;
-    /* vertical-align: middle; */
-    margin: 1%;
-    font-size: large;
-    text-decoration: none;
+#text-to-join-title {
+    font-weight: 700;
+    font-size: 37px;
+    font-family: sans-serif;
+    max-width: 70%;
+}
+
+#text-to-join-sub {
+    font-family: sans-serif;
+    font-size: 20px;
+    max-width: 70%;
+    margin-top: 1%;
+    font-weight: 100;
 }
 
 .details-container {
-display: flex;
-flex-direction: column;
-/* align-items: center; */
-margin-left:10%;
-height: 600px;
-width: 100%;
-
+    display: flex;
+    flex-direction: column;
+    margin: 10%;
+    height: 675px;
+    width: 100%;
+    align-items: center;
+    
 }
-
+.all-lower-text {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
 .details-card {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-template-areas: 
-    "a.c"
-    ".b.";
-    width: 50%;
-    height:500px
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+   
 }
 
 .details-card-text {
-    grid-area: a;
+    max-width: 50%;
     
 }
 
 .details-card-photo {
-    grid-area: c;
-    border: 1px;
+    max-width:50%;
+    
     
 }
 
-.details-card-bttn {
-    grid-area: b;
-    
-    padding: 20% 0;
-}
 
-#footer {
-    text-decoration: none;
-}
+

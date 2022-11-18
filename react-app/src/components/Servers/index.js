@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NavLink, Redirect, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
@@ -16,15 +16,19 @@ import './Servers.css';
 
 import { io } from 'socket.io-client'
 import { createMessage, getAllMessages } from '../../store/message';
+import UpdateServerForm from '../UpdateServerModal';
 
 let socket;
 
 const Servers = () => {
 	const [showModal, setShowModal] = useState(false);
+	const [showUpdateModal, setUpdateShowModal] = useState(false);
 	const [showMsg, setShowMsg] = useState(false);
 	const [messages, setMessages] = useState([])
 	const [chatInput, setChatInput] = useState('')
 	const [currentServer, setCurrentServer] = useState([])
+
+	const dummy = useRef()
 
 	const dispatch = useDispatch();
 	// const history = useHistory();
@@ -36,8 +40,8 @@ const Servers = () => {
 	// console.log('THIS IS SERVES USESELECTOR IN ARRAY', servers)
 	const currentUser = useSelector((state) => state.session.user);
 	// console.log('this is current user >>', currentUser)
-	const isNotDm = servers.filter((dm) => dm.is_DM === false);
-	const dmServersArr = servers.filter((dm) => dm.is_DM === true);
+	let isNotDm = servers.filter((dm) => dm.is_DM === false);
+	let dmServersArr = servers.filter((dm) => dm.is_DM === true);
 	// const userArr = userObj.find((dm) => dm.is_DM == true);
 	// console.log('USER ARRAY', dmServersArr)
 	let memberArr = []
@@ -63,7 +67,7 @@ const Servers = () => {
 		dispatch(getAllMembers(currentServer[0]));
 		dispatch(getAllMessages(currentServer[1]));
 
-	}, [currentServer, dispatch]);
+	}, [currentServer, dispatch,setUpdateShowModal]);
 
 
 	useEffect(() => {
@@ -95,6 +99,7 @@ const Servers = () => {
 			socket.emit("DM", { owner_name: currentUser.username, owner_pic: currentUser.profile_pic, message_body: chatInput });
 		}
 		setChatInput("")
+		dummy.current.scrollIntoView({ behavior: 'smooth' })
 	}
 
 
@@ -122,22 +127,31 @@ const Servers = () => {
 					return (
 						<>
 							<div className="servers-button-map" key={server.name}>
-								<NavLink to={`/servers/${server.id}`}>
-									<div className="servers-photo-container">
-										<div>
-											{" "}
-											{server.preview_image ? (
-												<img
-													className="servers-photo"
-													src={server.preview_image}
-													alt="server img"
-												/>
-											) : (
-												server.name.slice(0, 2).toUpperCase()
-											)}
+								<div className='server-cog-grouper'>
+									<NavLink to={`/servers/${server.id}`}>
+										<div className="servers-photo-container">
+											<div>
+												{" "}
+												{server.preview_image ? (
+													<img
+														className="servers-photo"
+														src={server.preview_image}
+														alt="server img"
+													/>
+												) : (
+													server.name.slice(0, 2).toUpperCase()
+												)}
+											</div>
 										</div>
+									</NavLink>
+									<div className='cog' onClick={()=>setUpdateShowModal(true)}>
+										<i className="fa fa-cog" aria-hidden="true" />
 									</div>
-								</NavLink>
+									{showUpdateModal&&(
+									<Modal onClose={()=>setUpdateShowModal(false)}>
+										<UpdateServerForm setUpdateShowModal={setUpdateShowModal} server={server} />
+									</Modal>)}
+								</div>
 							</div>
 						</>
 					);
