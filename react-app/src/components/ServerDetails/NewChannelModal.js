@@ -32,9 +32,6 @@ const ChannelModal = ({ serverId, setShowModal }) => {
 	const submitNewChannel = (e) => {
 		e.preventDefault();
 		setErrors([]);
-		if (name.length > 32){
-			errors.push('Please provide a channel name less than 32 characters.');
-		setErrors(errors);
 
 		const newChannel = {
 			name,
@@ -44,10 +41,9 @@ const ChannelModal = ({ serverId, setShowModal }) => {
 
 		if (!frontEndErrors.length) {
 			dispatch(createChannel(serverId, newChannel));
-
+			console.log('for the love of God please work')
 			setShowModal(false);
 		}
-	};
 	}
 	return (
 		<div className="modal">
