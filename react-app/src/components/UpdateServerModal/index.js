@@ -52,7 +52,7 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
         dispatch(deleteServer(server))
         dispatch(getAllCurrentUserServers())
         setUpdateShowModal(false)
-        console.log('i rannnnnnnnnnnnnnnnnnnnnnnnn')
+        // console.log('i rannnnnnnnnnnnnnnnnnnnnnnnn')
     }
     //   const reset = () => {
     //     setName("");
