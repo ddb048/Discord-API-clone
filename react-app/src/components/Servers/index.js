@@ -10,8 +10,8 @@ import CreateServerForm from '../CreateServerForm';
 // import { getAllMessages } from '../../store/message';
 import { getServerDetails } from '../../store/servers';
 import DM_button from '../../Images/q-cord-button.png';
-import CreateServerModal from '../CreateServerModal';
 import './Servers.css';
+
 
 
 import { io } from 'socket.io-client'
@@ -43,7 +43,7 @@ const Servers = () => {
 	let memberArr = []
 	dmServersArr.forEach(server => memberArr.push(...server.members))
 	// console.log("------>", memberArr)
-	let otherMember = memberArr.filter(member => member.user_id != currentUser.id)
+	let otherMember = memberArr.filter(member => member.user_id !== currentUser.id)
 	let dmMessageArr = []
 	dmServersArr.forEach(server => dmMessageArr.push(...server.messages))
 	// console.log("2222------>", dm)
@@ -55,15 +55,13 @@ const Servers = () => {
 
 	useEffect(() => {
 		dispatch(getAllCurrentUserServers());
-	}, [dispatch, channelId, servers.id]);
+	}, [ dispatch]);
 
 	useEffect(() => {
-		;
 		dispatch(getServerDetails(currentServer[0]));
 		dispatch(getChannelDetail(currentServer[1]));
 		dispatch(getAllMembers(currentServer[0]));
 		dispatch(getAllMessages(currentServer[1]));
-		setMessages(dm)
 	}, [currentServer]);
 
 

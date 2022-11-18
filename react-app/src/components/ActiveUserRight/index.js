@@ -13,7 +13,7 @@ function ActiveUserRight(){
         dispatch(getAllCurrentUserServers())
     },[dispatch])
     
-    console.log('ACTIVE USER',server)
+    console.log('ACTIVE SERVER',server)
     console.log('ACTIVE USER',sessionUsers)
     return (
         <>

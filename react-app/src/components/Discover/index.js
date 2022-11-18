@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import { getAllServers } from "../../store/servers";
 import header from "../../Images/discover-header-png.png";
 import "./discover.css";
-// import NavBar from "../Navbar";
+
 
 
 function Discover() {

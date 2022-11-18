@@ -28,7 +28,7 @@ const ServerDetail = () => {
 	channelsServersArr.forEach((channel) =>
 		channelsArray.push(...channel.channels)
 	);
-	// console.log('channels array', channelsArray);
+	// console.log('channels array.....>>>>>>>', channelsArray);
 	// console.log('servers', servers)
 	const allChannels = useSelector((state) =>
 		Object.values(state.channels.channels)
@@ -39,7 +39,7 @@ const ServerDetail = () => {
 
 	const onServer = useSelector((state) => (state.servers.oneServer));
 
-	console.log('server details=======>', onServer)
+	// console.log('server details=======>', onServer)
 
 	useEffect(() => {
 		dispatch(getServerDetails(+serverId));
