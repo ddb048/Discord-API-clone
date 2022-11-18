@@ -106,9 +106,10 @@
     color: white;
     height: 35px;
     text-align: center;
-    vertical-align: middle;
+    /* vertical-align: middle; */
     margin: 1%;
     font-size: large;
+    text-decoration: none;
 }
 
 .details-container {
@@ -147,4 +148,8 @@ width: 100%;
     grid-area: b;
     
     padding: 20% 0;
+}
+
+#footer {
+    text-decoration: none;
 }
