@@ -27,7 +27,7 @@ const ChannelModal = ({ serverId, setShowModal }) => {
 
 		console.log('this is change color', changeColor);
 		const errors = [];
-		if (name.length > 10)
+		if (name.length > 15){
 			errors.push('Please provide a channel name less than 32 characters.');
 		setFrontEndErrors(errors);
 	}, [name]);
@@ -35,7 +35,7 @@ const ChannelModal = ({ serverId, setShowModal }) => {
 	const submitNewChannel = (e) => {
 		e.preventDefault();
 		setErrors([]);
-		if (name.length > 10)
+		if (name.length > 15){
 			errors.push('Please provide a channel name less than 32 characters.');
 		setErrors(errors);
 
@@ -47,7 +47,7 @@ const ChannelModal = ({ serverId, setShowModal }) => {
 
 		if (!frontEndErrors.length) {
 			dispatch(createChannel(serverId, newChannel));
-			
+
 			setShowModal(false);
 		}
 	};
@@ -58,36 +58,33 @@ const ChannelModal = ({ serverId, setShowModal }) => {
 				<div className="modal-title">Create New Channel</div>
 				<div className="modal-input-form">
 					<label className="modal-input-label">CHANNEL NAME</label>
-					<div className='new-channel-hash-container'>
-					<div className='hashtag'>#</div>
-					<input
-						className="modal-input-textbox"
-						type="text"
-						placeholder="new-channel"
-						value={name}
-						onChange={(e) => setName(e.target.value)}
-						required
-					/>
-					</div>
-					{/* <div> */}
-						<label id="modal-DESCRIPTION-label">DESCRIPTION</label>
+					<div className="new-channel-hash-container">
+						<div className="hashtag">#</div>
 						<input
 							className="modal-input-textbox"
 							type="text"
-							placeholder="channel-description"
-							value={description}
-							onChange={(e) => setDescription(e.target.value)}
+							placeholder="new-channel"
+							value={name}
+							onChange={(e) => setName(e.target.value)}
+							required
 						/>
-					{/* </div> */}
+						</div>
+					<label id="modal-DESCRIPTION-label">DESCRIPTION</label>
+					<input
+						className="modal-input-textbox"
+						type="text"
+						placeholder="channel-description"
+						value={description}
+						onChange={(e) => setDescription(e.target.value)}
+					/>
 				</div>
-				<div id='grey-footer'>
-
-				<div className="create-channel-submit-btn-container">
-					<button className={changeColor} type="submit">
-						Create Channel
-					</button>
-				</div>
-				</div>
+				<div id="grey-footer">
+					<div className="create-channel-submit-btn-container">
+						<button className={changeColor} type="submit">
+							Create Channel
+						</button>
+					</div>
+					</div>
 			</form>
 		</div>
 	);
