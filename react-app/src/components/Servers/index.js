@@ -62,6 +62,7 @@ const Servers = () => {
 		dispatch(getChannelDetail(currentServer[1]));
 		dispatch(getAllMembers(currentServer[0]));
 		dispatch(getAllMessages(currentServer[1]));
+
 	}, [currentServer, dispatch]);
 
 
