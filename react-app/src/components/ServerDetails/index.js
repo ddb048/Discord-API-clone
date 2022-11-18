@@ -32,9 +32,9 @@ const ServerDetail = () => {
 
 	// sets new chat input in channel messages
 	const [chatInput, setChatInput] = useState('');
-	const allMsgs = useSelector((state) =>
-		Object.values(state.messages.messages)
-	);
+	// const allMsgs = useSelector((state) =>
+	// 	Object.values(state.messages.messages)
+	// );
 	const dispatch = useDispatch();
 	const servers = useSelector((state) => Object.values(state.servers.servers));
 	const members = useSelector((state) => state.members.members);
@@ -47,9 +47,9 @@ const ServerDetail = () => {
 	);
 	// console.log('channels array.....>>>>>>>', channelsArray);
 	// console.log('servers', servers)
-	const allChannels = useSelector((state) =>
-		Object.values(state.channels.channels)
-	);
+	// const allChannels = useSelector((state) =>
+	// 	Object.values(state.channels.channels)
+	// );
 
 	// console.log('all channels', allChannels);
 	const currentUser = useSelector((state) => state.session.user);

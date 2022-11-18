@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { NavLink, Redirect, useParams } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
 import { getAllCurrentUserServers } from '../../store/servers';
@@ -67,7 +67,7 @@ const Servers = () => {
 		dispatch(getAllMembers(currentServer[0]));
 		dispatch(getAllMessages(currentServer[1]));
 
-	}, [dispatch, currentServer, setUpdateShowModal]);
+	}, [currentServer, dispatch, setUpdateShowModal]);
 
 
 	useEffect(() => {
