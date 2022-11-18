@@ -64,7 +64,7 @@ const Servers = () => {
 		dispatch(getAllMembers(currentServer[0]));
 		dispatch(getAllMessages(currentServer[1]));
 		setMessages(dm)
-	}, [currentServer, dispatch, dm]);
+	}, [currentServer]);
 
 
 	useEffect(() => {

@@ -8,7 +8,7 @@ const CreateServerForm = ({ setShowModal }) => {
   const [description, setDescription] = useState("");
   const [previewImage, setPreviewImage] = useState("");
   const [isDM, setIsDM] = useState(false);
-  const [privateServer, setPrivateServer] = useState()
+  const [privateServer, setPrivateServer] = useState(false)
   const [error, setError] = useState([]);
   const dispatch = useDispatch();
 
@@ -82,24 +82,6 @@ const CreateServerForm = ({ setShowModal }) => {
           name="description"
           required
         ></textarea>
-        <div id="server-conteiner">
-          <label>
-            <input
-              type='radio'
-              onChange={(e) => setIsDM(e.target.value)}
-              value={isDM}
-              checked={isDM === true ? true : false}
-              name='boolean' /> True
-          </label>
-          <label>
-            <input
-              type='radio'
-              onChange={(e) => setIsDM(e.target.value)}
-              value={isDM}
-              checked={isDM === false ? false : true}
-              name='boolean' /> False
-          </label>
-        </div>
 
         <div id="server-conteiner">
           <label>
@@ -108,16 +90,9 @@ const CreateServerForm = ({ setShowModal }) => {
               onChange={(e) => setPrivateServer(e.target.value)}
               value={privateServer}
               checked={privateServer === true ? true : false}
-              name='boolean' /> True
+              name='boolean' /> Private Server
           </label>
-          <label>
-            <input
-              type='radio'
-              onChange={(e) => setPrivateServer(e.target.value)}
-              value={privateServer}
-              checked={privateServer === false ? false : true}
-              name='boolean' /> False
-          </label>
+
         </div>
 
         <button id="new-server-btn" type="submit" disabled={!!error.length}>
