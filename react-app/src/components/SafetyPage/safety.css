@@ -34,6 +34,7 @@
     text-align: left;
     font-size: 30px;
     font-weight: 600;
+    max-width: 50%;
 }
 
 #middle {
