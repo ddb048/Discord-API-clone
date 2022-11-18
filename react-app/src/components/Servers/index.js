@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { NavLink, Redirect, useParams } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
 import { getAllCurrentUserServers } from '../../store/servers';
@@ -67,7 +67,7 @@ const Servers = () => {
 		dispatch(getAllMembers(currentServer[0]));
 		dispatch(getAllMessages(currentServer[1]));
 
-	}, [currentServer, dispatch,setUpdateShowModal]);
+	}, [currentServer, dispatch, setUpdateShowModal]);
 
 
 	useEffect(() => {
@@ -144,13 +144,13 @@ const Servers = () => {
 											</div>
 										</div>
 									</NavLink>
-									<div className='cog' onClick={()=>setUpdateShowModal(true)}>
+									<div className='cog' onClick={() => setUpdateShowModal(true)}>
 										<i className="fa fa-cog" aria-hidden="true" />
 									</div>
-									{showUpdateModal&&(
-									<Modal onClose={()=>setUpdateShowModal(false)}>
-										<UpdateServerForm setUpdateShowModal={setUpdateShowModal} server={server} />
-									</Modal>)}
+									{showUpdateModal && (
+										<Modal onClose={() => setUpdateShowModal(false)}>
+											<UpdateServerForm setUpdateShowModal={setUpdateShowModal} server={server} />
+										</Modal>)}
 								</div>
 							</div>
 						</>

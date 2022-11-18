@@ -21,11 +21,11 @@ const ChannelModal = ({ serverId, setShowModal }) => {
 			setChangeColor('dark-create-channel-btn');
 		}
 
-		console.log('this is change color', changeColor);
+		// console.log('this is change color', changeColor);
 		const errors = [];
-		if (name.length > 32){
+		if (name.length > 32) {
 			errors.push('Please provide a channel name less than 32 characters.');
-		setFrontEndErrors(errors);
+			setFrontEndErrors(errors);
 		}
 	}, [name, errors]);
 
@@ -62,7 +62,7 @@ const ChannelModal = ({ serverId, setShowModal }) => {
 							required
 						/>
 
-						</div>
+					</div>
 
 					<label id="modal-DESCRIPTION-label">DESCRIPTION</label>
 					<input
@@ -79,7 +79,7 @@ const ChannelModal = ({ serverId, setShowModal }) => {
 							Create Channel
 						</button>
 					</div>
-					</div>
+				</div>
 			</form>
 		</div>
 	);
