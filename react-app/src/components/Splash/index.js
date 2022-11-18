@@ -28,10 +28,10 @@ function Splash() {
 						</div>
 					</div>
 					<div className="splash-title-imgs">
-						<img id="clouds" src={splash_1a} alt="clouds" />
 						<img id="left-people" src={splash_1b} alt="people on the left" />
 						<img id="right-people" src={splash_1c} alt="people on the right" />
 					</div>
+						<img id="clouds" src={splash_1a} alt="clouds" />
 				</div>
 				<div className="Splash-detail odd">
 					<div className="row">
