@@ -198,12 +198,12 @@ const ServerDetail = () => {
 										className='update-channel-container'
 										onClick={() => setUpdateModal(true)}
 									>
-										<i className='fa fa-plus' aria-hidden='true' />
+										<i className='fa fa-plus' aria-hidden='true' onClick={() =>
+												grabChannelId(channel.id)
+											} />
 										<div
 											className='gear-name'
-											onClick={() =>
-												grabChannelId(channel.id)
-											}
+
 										></div>
 									</div>
 								</div>
@@ -283,7 +283,7 @@ const ServerDetail = () => {
 					<UpdateChannelModal
 						serverId={serverId}
 						channelId={modalData}
-						setUpdateModal={setShowModal}
+						setUpdateModal={setUpdateModal}
 					/>
 				</Modal>
 			)}
