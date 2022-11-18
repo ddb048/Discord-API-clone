@@ -124,22 +124,27 @@ const Servers = () => {
 					return (
 						<>
 							<div className="servers-button-map" key={server.name}>
-								<NavLink to={`/servers/${server.id}`}>
-									<div className="servers-photo-container">
-										<div>
-											{" "}
-											{server.preview_image ? (
-												<img
-													className="servers-photo"
-													src={server.preview_image}
-													alt="server img"
-												/>
-											) : (
-												server.name.slice(0, 2).toUpperCase()
-											)}
+								<div className='server-cog-grouper'>
+									<NavLink to={`/servers/${server.id}`}>
+										<div className="servers-photo-container">
+											<div>
+												{" "}
+												{server.preview_image ? (
+													<img
+														className="servers-photo"
+														src={server.preview_image}
+														alt="server img"
+													/>
+												) : (
+													server.name.slice(0, 2).toUpperCase()
+												)}
+											</div>
 										</div>
+									</NavLink>
+									<div className='cog'>
+										<i className="fa fa-cog" aria-hidden="true" />
 									</div>
-								</NavLink>
+								</div>
 							</div>
 						</>
 					);
