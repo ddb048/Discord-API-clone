@@ -1,11 +1,11 @@
+/* ****************** SERVERS COLUMN ************************* */
 /* styles user landing page layout */
 .servers-page-container {
   width: 100%;
-  height: 600px;
+  height: 100vh;
   display: flex;
   flex-direction: row;
 }
-
 /* styles div for all servers container */
 .servers-column-container {
   display: flex;
@@ -14,7 +14,6 @@
   padding: 15px 0;
   background-color: #202225;
 }
-
 /* styles container for dm button */
 .dm-button-container {
   width: 100%;
@@ -30,7 +29,6 @@
   margin: 0 auto;
   width: 0;
 }
-
 /* styles dm button */
 .dm-button {
   width: 40px;
@@ -40,11 +38,10 @@
   background-color: #5865f2;
   object-fit: contain;
 }
-
+/* hovering effect over dm HOME button */
 .dm-button:hover {
   border-radius: 15px;
 }
-
 /* styles div that holds server buttons */
 .servers-button-column {}
 
@@ -55,19 +52,6 @@
   display: flex;
   justify-content: center;
   /* border: 1px solid green; */
-}
-
-.add-channel-container{
-  width: 20px;
-  height: 20px;
-  border: none;
-  /* border: 1px solid white; */
-  object-fit: cover;
-  border-radius: 40px;
-  background-color: #36393f;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 /* styles server button */
 .servers-photo {
@@ -88,8 +72,8 @@
   border-radius: 15px;
   background-color: #5865f2;
 }
-
-/* styles div holding all messages list */
+/* ****************** CHANNELS COLUMN ************************* */
+/* styles div holding all channels list */
 .server-channels-container {
   display: flex;
   justify-content: flex-start;
@@ -97,15 +81,32 @@
   /* border: 1px solid green; */
   width: 135px;
   background-color: #2f3136;
-}
 
+}
+/* div styling the layout of all channel names and edit channel buttons */
+.server-channel-layout {
+  display: flex;
+  /* border: 1px solid pink; */
+  flex-direction: column;
+  max-height: 85%;
+  overflow: scroll;
+  /* overflow-x: hidden; */
+}
+/* scroll bar effect when channels list get longer than channels container height */
+.server-channel-layout::-webkit-scrollbar{
+  display: none;
+  /* overflow: auto;
+  display: flex;
+  flex-direction: column-reverse; */
+}
+/* DIV styling the container for CHANNELS name and add a channel button */
 .server-title-container {
   border-bottom: 1px solid white;
   display: flex;
-    align-items: center;
-    justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
 }
-
+/* styles CHANNEL name */
 .server-title {
   height: 50px;
   color: white;
@@ -117,29 +118,69 @@
   align-items: center;
   margin-left: 10px;
 }
-
-.server-channel-layout {
+/* div holding the add a channel button container */
+.add-channel-container{
+  width: 20px;
+  height: 20px;
+  border: none;
+  /* border: 1px solid white; */
+  object-fit: cover;
+  border-radius: 40px;
+  background-color: #36393f;
   display: flex;
-  /* border: 1px solid pink; */
-  flex-direction: row;
-  height: 85%;
+  justify-content: center;
+  align-items: center;
 }
 
-.server-channel-name {
-  width: 230px;
+/* trying this div to figure out channel names and button layout */
+#some-name{
+  border: 1px solid blue;
   display: flex;
-  justify-content: flex-start;
+  flex-direction: row;
+}
+
+/* styles hashtag on the left of every channel name */
+.hashtag-channel{
+  border: 1px solid red;
+  display: flex;
+  color: #dcddde;
+  height: 15px;
+  padding: 15px 0;
+  font-family: adelle-sans, sans-serif;
+  /* padding: 2.2px 14px; */
+  align-items: center;
+}
+/* styles each channel name */
+.server-channel-name {
+  width: 94px;
+  display: flex;
+  justify-content: center;
   color: white;
   list-style: none;
-  padding: 15px 10px;
-}
+  padding: 15px 0;
+  font-family: adelle-sans, sans-serif;
 
+  /* padding-right: 10px; */
+}
+/* styles container for each channel button */
+.update-channel-container{
+  width: 17px;
+  border: 1px solid pink;
+  display: flex;
+  align-items: center;
+}
+/* styles each update channel button */
+.update-channel-button{
+  border: 1px solid green;
+}
 .servers-dm-footer {
   display: flex;
   /* border: 1px solid purple; */
   justify-content: space-around;
   align-items: center;
-  height: 50px;
+  position: absolute;
+  top: 880px;
+  background-color: #2f3136;
 }
 
 .user-photo {
@@ -160,15 +201,16 @@
   font-size: 12px;
   color: white;
 }
+/* ****************** MESSAGES COLUMN ************************* */
 
 .channel-messages-container {
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   width: 1172px;
   background-color: #36393f;
   border-right: 1px solid white;
   overflow: scroll;
   overflow-x: hidden;
-
+  /* height: 100vh; */
   /* display: flex; */
   /* flex-direction: row; */
 }
@@ -185,18 +227,22 @@
 
 }
 
-/* .user-container{
-
+.channel-input-textbox-container{
+  border: 1px solid pink;
+  position: absolute;
+  /* bottom: -100px; */
+  width: 925px;
+  bottom: 0px
 }
-.channel-msg-photo{
-
-} */
+.channel-message-form{
+  border: 1px solid blue;
+}
 .channel-message {
   font-family: adelle-sans, sans-serif;
   font-size: 12px;
   /* overflow: scroll; */
 }
-
+/* ****************** ACTIVE SECTION COLUMN *************************  */
 .server-active-container {
   /* border: 1px solid black; */
   background-color: #36393f;
