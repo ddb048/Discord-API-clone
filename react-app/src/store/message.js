@@ -47,7 +47,7 @@ export const createMessage = (payload) => async dispatch => {
     const response = await fetch(`/api/messages/${serverId}/${channelId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({message_body})
+        body: JSON.stringify({ message_body })
     })
 
     if (response.ok) {
@@ -94,28 +94,28 @@ const messageReducer = (state = initialState, action) => {
     let newState = {}
 
     switch (action.type) {
-        case LOAD_MESSAGES: {
+        case LOAD_MESSAGES:
             newState = { ...state, messages: {} }
 
             action.messages.forEach(message => {
                 newState.messages[message.id] = message
             });
             return newState
-        }
+
         //REVIEW - ANCHOR - FOR CINDY: CREATE_MESSAGE DID NOT HAVE A RETURN> UPDATED TO FIX RENDER
-        case CREATE_MESSAGE: {
+        case CREATE_MESSAGE:
             newState.messages[action.newMessage.id] = action.newMessage
             return newState
-        }
-        case EDIT_MESSAGE: {
+
+        case EDIT_MESSAGE:
             newState = { ...state, [action.message.id]: action.message };
             return newState
-        }
-        case REMOVE_MESSAGE: {
+
+        case REMOVE_MESSAGE:
             newState = { ...state };
             delete newState[action.messageId]
             return newState
-        }
+
         default:
             return state
     }
