@@ -14,27 +14,27 @@ import ServerDetail from './components/ServerDetails';
 import { authenticate } from './store/session';
 import Safety from './components/SafetyPage';
 import Footer from './components/footer';
-import ActiveUserRight from './components/ActiveUserRight';
+
 
 
 function App() {
-	const [loaded, setLoaded] = useState(false);
-	const dispatch = useDispatch();
+  const [loaded, setLoaded] = useState(false);
+  const dispatch = useDispatch();
 
-	const session = useSelector((state) => state.session);
+  const session = useSelector((state) => state.session);
 
-	useEffect(() => {
-		(async () => {
-			await dispatch(authenticate());
-			setLoaded(true);
-		})();
-	}, [dispatch]);
+  useEffect(() => {
+    (async () => {
+      await dispatch(authenticate());
+      setLoaded(true);
+    })();
+  }, [dispatch]);
 
-	if (!loaded) {
-		return null;
-	}
+  if (!loaded) {
+    return null;
+  }
 
-	return (
+  return (
     <BrowserRouter>
       <Route exact path="/">
         {session.user && <Redirect to="/servers/@me" />}
