@@ -10,6 +10,7 @@
     /* border:1px solid blue */
 }
 
+
 #modal-background {
     position: fixed;
     top: 0;
@@ -21,7 +22,7 @@
     border:1px solid red
 }
 
-#modal-content {
+.modal-content {
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
@@ -33,6 +34,7 @@
     object-fit: contain;
     /* border:1px solid blue */
 }
+
 
 .exit {
     width: 100%;
@@ -93,6 +95,7 @@
 .modal-input-textbox{
     /* border: 1px solid blue; */
     /* width: 100%; */
+    font-family: adelle-sans, sans-serif;
     object-fit: contain;
     color: white;
     font-size: 18px;
@@ -162,3 +165,59 @@
 /* .dark-create-channel-btnhide{
     display: none;
 } */
+/* *****************CREATE A SERVER MODAL ********************** */
+#create-channel-channel-btn{
+    background-color: #5865f2;
+    color: white;
+    height: 50px;
+    width: 400px;
+    border: none;
+    border-radius: 2px;
+}
+#create-server-modal-content{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    position: absolute;
+    background-color: #36393f;
+    border-radius: 10px;
+    height: 420px;
+    width: 400px;
+    object-fit: contain;
+    /* border:1px solid blue */
+}
+.new-server-modal-form{
+    /* border: 1px solid green; */
+    display: flex;
+    flex-direction: column;
+    /* gap: 15px; */
+}
+#checkmark-label{
+    font-family: adelle-sans, sans-serif;
+    color: #b9bbbe;
+    font-size: 18px;
+    padding-bottom: 2px;
+    padding-top: 4px;
+    white-space: nowrap;
+}
+#checkmark-container{
+
+    display: flex;
+}
+
+#checkmark-box{
+    width: 90px;
+}
+#modal-input-textarea{
+    background-color: #202225;
+    border: none;
+    max-width:400px;
+    overflow: scroll;
+    font-family: adelle-sans, sans-serif;
+    object-fit: contain;
+    color: white;
+    font-size: 18px;
+}
+#modal-input-textarea::-webkit-scrollbar{
+    display: none;
+}
