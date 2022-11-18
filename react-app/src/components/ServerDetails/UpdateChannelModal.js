@@ -6,7 +6,7 @@ import {
 	getAllCurrentUserServers,
 } from '../../store/servers';
 import '../../context/Modal.css';
-
+import './UpdateChannelModal.css'
 // NOTE How do you i pass in channelId
 const UpdateChannelModal = ({ serverId, setUpdateModal, channelId }) => {
 	serverId = +serverId;
@@ -32,9 +32,9 @@ const UpdateChannelModal = ({ serverId, setUpdateModal, channelId }) => {
 		} else {
 			setChangeColor('dark-create-channel-btn');
 		}
-    if(confirmDelete){
+    // if(confirmDelete){
 
-    }
+    // }
 		const errors = [];
 		if (name.length > 32)
 			errors.push('Please provide a channel name less than 32 characters.');
@@ -100,12 +100,19 @@ const UpdateChannelModal = ({ serverId, setUpdateModal, channelId }) => {
 				<div id='grey-footer'>
 
 				<div className="create-channel-submit-btn-container">
-					<button className={changeColor} type="submit">
+					 {!showConfirmButton && <button className={changeColor + (showConfirmButton ? 'hide':'')} type="submit">
 						Update Channel
-					</button>
-          <button className={showConfirmButton ? 'visible':'hide'} onClick={() => confirmDelete(true)}>Delete Channel</button>
-          <button className={showConfirmButton ? 'hide':'visible'} onClick={() => confirmDelete(false)}>Cancel Delete</button>
-          <button className={showConfirmButton ? 'hide':'visible'} onClick={handleDeleteChannel}>Confirm Delete</button>
+					</button>}
+					<div>
+          <button className={'delete-channel-bttn' + (showConfirmButton ? 'visible':'hide')} onClick={() => confirmDelete(true)}>Delete Channel</button>
+					</div>
+          {showConfirmButton &&(
+						<>
+						<button className={"confirm-channel-bttn"} onClick={() => confirmDelete(false)}>Cancel Delete</button>
+          <button className={"cancel-channel-bttn"} onClick={handleDeleteChannel}>Confirm Delete</button>
+						</>
+					)
+					}
 
 				</div>
 				</div>

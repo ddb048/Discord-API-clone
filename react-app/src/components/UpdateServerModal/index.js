@@ -1,17 +1,25 @@
+
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { createServer, updateServer } from "../../store/servers";
+import {
+    createServer,
+    deleteServer,
+    getAllCurrentUserServers,
+    updateServer
+} from "../../store/servers";
 // import './server-form.css'
 
-const UpdateServerForm = ({ setUpdateShowModal }) => {
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [preview_image, setPreview_image] = useState("");
+const UpdateServerForm = ({ setUpdateShowModal, server }) => {
+    const [name, setName] = useState(server.name);
+    const [description, setDescription] = useState(server.Server_description);
+    const [preview_image, setPreview_image] = useState(server.preview_image);
     const [isDM] = useState(false);
     const [privateServer, setPrivateServer] = useState(false)
     const [error, setError] = useState([]);
     const dispatch = useDispatch();
 
+
+    console.log('server in update modal', server)
     useEffect(() => {
         dispatch(createServer());
     }, [dispatch]);
@@ -27,16 +35,25 @@ const UpdateServerForm = ({ setUpdateShowModal }) => {
         // let errors = [];
         e.preventDefault();
         const newServer = {
+            id: server.id,
             name,
             preview_image,
             server_description: description,
             privateServer,
-            isDM
+            is_DM: isDM
         };
         dispatch(updateServer(newServer))
+        dispatch(getAllCurrentUserServers())
         setUpdateShowModal(false)
     }
 
+    const delServer = async (e) => {
+        e.preventDefault();
+        dispatch(deleteServer(server))
+        dispatch(getAllCurrentUserServers())
+        setUpdateShowModal(false)
+        console.log('i rannnnnnnnnnnnnnnnnnnnnnnnn')
+    }
     //   const reset = () => {
     //     setName("");
     //     setDescription("");
@@ -98,6 +115,7 @@ const UpdateServerForm = ({ setUpdateShowModal }) => {
                 <button id="new-server-btn" type="submit" disabled={!!error.length}>
                     Update
                 </button>
+                <button id="new-server-btn" onClick={delServer} disabled={!!error.length}>Delete</button>
             </form>
         </div>
     );

@@ -40,8 +40,8 @@ const Servers = () => {
 	// console.log('THIS IS SERVES USESELECTOR IN ARRAY', servers)
 	const currentUser = useSelector((state) => state.session.user);
 	// console.log('this is current user >>', currentUser)
-	const isNotDm = servers.filter((dm) => dm.is_DM === false);
-	const dmServersArr = servers.filter((dm) => dm.is_DM === true);
+	let isNotDm = servers.filter((dm) => dm.is_DM === false);
+	let dmServersArr = servers.filter((dm) => dm.is_DM === true);
 	// const userArr = userObj.find((dm) => dm.is_DM == true);
 	// console.log('USER ARRAY', dmServersArr)
 	let memberArr = []
@@ -67,7 +67,7 @@ const Servers = () => {
 		dispatch(getAllMembers(currentServer[0]));
 		dispatch(getAllMessages(currentServer[1]));
 
-	}, [currentServer, dispatch]);
+	}, [currentServer, dispatch,setUpdateShowModal]);
 
 
 	useEffect(() => {
@@ -149,7 +149,7 @@ const Servers = () => {
 									</div>
 									{showUpdateModal&&(
 									<Modal onClose={()=>setUpdateShowModal(false)}>
-										<UpdateServerForm setUpdateShowModal={setUpdateShowModal} />
+										<UpdateServerForm setUpdateShowModal={setUpdateShowModal} server={server} />
 									</Modal>)}
 								</div>
 							</div>
