@@ -245,7 +245,7 @@ const Servers = () => {
 			</div>
 		</div >
 	);
-};;
+};
 
 
 export default Servers;
