@@ -104,8 +104,8 @@
     align-items: center
 }
 .hashtag{
-    display: flex;
     background-color: #202225;
+    display: flex;
     color: #dcddde;
     height: 27px;
     padding: 2.2px 14px;

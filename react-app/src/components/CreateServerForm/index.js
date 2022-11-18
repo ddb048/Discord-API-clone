@@ -37,13 +37,13 @@ const CreateServerForm = ({ setShowModal }) => {
     setShowModal(false)
   }
 
-  const reset = () => {
-    setName("");
-    setDescription("");
-    setPreview_image("");
-    setPrivateServer("");
-    setIsDM(false);
-  };
+  // const reset = () => {
+  //   setName("");
+  //   setDescription("");
+  //   setPreview_image("");
+  //   setPrivateServer("");
+  //   setIsDM(false);
+  // };
 
   return (
     <div id="form" className="inputBox">
