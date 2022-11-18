@@ -274,14 +274,15 @@ const Servers = () => {
 							</div>
 							<div className="user-details">
 								<div className="user-name-id">
+
 									{otherMember[0].user_info.first_name}{" "}
 									{otherMember[0].user_info.last_name}#
 									{otherMember[0].user_info.id}
 								</div>
 
 								<div className="user-name-id-joined">
-									<div>Q-core member since </div>
-									<div>{otherMember[0].user_info.joined}</div>
+									<div className='joined'>Q-core member since </div>
+									<div className='joind-date'>{otherMember[0].joined.slice(0,17)}</div>
 								</div>
 							</div>
 						</div>
