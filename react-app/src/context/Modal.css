@@ -130,11 +130,10 @@
     border-bottom-left-radius: 10px; */
     height: 86px;
     display: flex;
-    justify-content: flex-end;
-    flex-direction: column;
+    justify-content: space-between;
+    /* flex-direction: column; */
     align-items: flex-end;
 }
-
 .dark-create-channel-btn{
     background-color: #434a94;
     color: #888b98;
@@ -143,6 +142,15 @@
     border: none;
     border-radius: 2px;
 }
+/* .dark-create-channel-btnvisible{
+    background-color: #434a94;
+    color: #888b98;
+    height: 50px;
+    width: 100px;
+    border: none;
+    border-radius: 2px;
+} */
+
 .light-create-channel-btn{
     background-color: #5865f2;
     color: white;
@@ -151,3 +159,6 @@
     border: none;
     border-radius: 2px;
 }
+/* .dark-create-channel-btnhide{
+    display: none;
+} */
