@@ -225,20 +225,23 @@ const ServerDetail = () => {
 			</div>
 			<div className='channel-messages-container'>
 				<div></div>
+					messages section
 				<div className='test-name'>
 					{showMsg &&
 						currentChannel &&
 						currentChannel.messages.map((msg) => {
 							return (
-								<div className='channel-messages-container'>
+								<div className='mess-box'>
 									<div className='user-container'>
-										<img className='user-photo' src={msg.user_photo} />
-										<div className='channel-message'>{msg.message_body}</div>
+										<img className='user-photo' src={msg.user_photo} alt='' />
+										<div className='mess'>
+											<div><h4>{msg.owner_name}</h4></div>
+											<div className='channel-message'>{msg.message_body}</div>
+										</div>
 									</div>
 								</div>
 							);
 						})}
-					messages section
 					<div>
 						{showMsg &&
 							messages.length > 0 &&
@@ -254,7 +257,7 @@ const ServerDetail = () => {
 											<div>
 												<h4>{chat.owner_name}</h4>
 											</div>
-											<div>{chat.message_body}</div>
+											<div className='channel-message'>{chat.message_body}</div>
 										</div>
 									</div>
 								);

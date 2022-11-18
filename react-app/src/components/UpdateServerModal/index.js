@@ -32,7 +32,6 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
 
 
     const handleSubmit = async (e) => {
-        // let errors = [];
         e.preventDefault();
         const newServer = {
             id: server.id,
@@ -42,25 +41,18 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
             privateServer,
             is_DM: isDM
         };
-        dispatch(updateServer(newServer))
+        await dispatch(updateServer(newServer))
         dispatch(getAllCurrentUserServers())
         setUpdateShowModal(false)
     }
 
     const delServer = async (e) => {
         e.preventDefault();
-        dispatch(deleteServer(server))
+        await dispatch(deleteServer(server))
         dispatch(getAllCurrentUserServers())
         setUpdateShowModal(false)
-        console.log('i rannnnnnnnnnnnnnnnnnnnnnnnn')
     }
-    //   const reset = () => {
-    //     setName("");
-    //     setDescription("");
-    //     setPreview_image("");
-    //     setPrivateServer("");
-    //     setIsDM(false);
-    //   };
+
 
     return (
         <div id="form" className="inputBox">

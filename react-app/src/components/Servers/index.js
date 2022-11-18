@@ -28,7 +28,7 @@ const Servers = () => {
 	const [chatInput, setChatInput] = useState('')
 	const [currentServer, setCurrentServer] = useState([])
 
-	const dummy = useRef()
+
 
 	const dispatch = useDispatch();
 	// const history = useHistory();
@@ -43,7 +43,7 @@ const Servers = () => {
 	let isNotDm = servers.filter((dm) => dm.is_DM === false);
 	let dmServersArr = servers.filter((dm) => dm.is_DM === true);
 	// const userArr = userObj.find((dm) => dm.is_DM == true);
-	// console.log('USER ARRAY', dmServersArr)
+	// console.log('USER ARRAY', isNotDm)
 	let memberArr = []
 	dmServersArr.forEach(server => memberArr.push(...server.members))
 	// console.log("------>", memberArr)
@@ -67,7 +67,7 @@ const Servers = () => {
 		dispatch(getAllMembers(currentServer[0]));
 		dispatch(getAllMessages(currentServer[1]));
 
-	}, [currentServer, dispatch,setUpdateShowModal]);
+	}, [dispatch, currentServer, setUpdateShowModal]);
 
 
 	useEffect(() => {
@@ -99,7 +99,6 @@ const Servers = () => {
 			socket.emit("DM", { owner_name: currentUser.username, owner_pic: currentUser.profile_pic, message_body: chatInput });
 		}
 		setChatInput("")
-		dummy.current.scrollIntoView({ behavior: 'smooth' })
 	}
 
 
@@ -144,13 +143,13 @@ const Servers = () => {
 											</div>
 										</div>
 									</NavLink>
-									<div className='cog' onClick={()=>setUpdateShowModal(true)}>
+									<div className='cog' onClick={() => setUpdateShowModal(true)}>
 										<i className="fa fa-cog" aria-hidden="true" />
 									</div>
-									{showUpdateModal&&(
-									<Modal onClose={()=>setUpdateShowModal(false)}>
-										<UpdateServerForm setUpdateShowModal={setUpdateShowModal} server={server} />
-									</Modal>)}
+									{showUpdateModal && (
+										<Modal onClose={() => setUpdateShowModal(false)}>
+											<UpdateServerForm setUpdateShowModal={setUpdateShowModal} server={server} />
+										</Modal>)}
 								</div>
 							</div>
 						</>
@@ -175,7 +174,7 @@ const Servers = () => {
 					{otherMember.map(
 						(member) =>
 							member.user_info.profile_pic && (
-								<div>
+								<div key={member.id}>
 									<div onClick={() => userDm(member.server_id)}>
 										<div>
 											<img
