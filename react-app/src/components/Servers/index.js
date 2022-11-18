@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NavLink, Redirect, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
@@ -25,6 +25,8 @@ const Servers = () => {
 	const [messages, setMessages] = useState([])
 	const [chatInput, setChatInput] = useState('')
 	const [currentServer, setCurrentServer] = useState([])
+
+	const dummy = useRef()
 
 	const dispatch = useDispatch();
 	// const history = useHistory();
@@ -55,7 +57,7 @@ const Servers = () => {
 
 	useEffect(() => {
 		dispatch(getAllCurrentUserServers());
-	}, [ dispatch]);
+	}, [dispatch]);
 
 	useEffect(() => {
 		dispatch(getServerDetails(currentServer[0]));
@@ -89,11 +91,12 @@ const Servers = () => {
 			channelId: currentServer[1],
 			message_body: chatInput
 		}
-		dispatch(createMessage(payload))
+		// dispatch(createMessage(payload))
 		if (socket) {
 			socket.emit("DM", { owner_name: currentUser.username, owner_pic: currentUser.profile_pic, message_body: chatInput });
 		}
 		setChatInput("")
+		dummy.current.scrollIntoView({ behavior: 'smooth' })
 	}
 
 
@@ -228,8 +231,8 @@ const Servers = () => {
 				</div>
 				{showMsg && (
 					<form
-						onSubmit={submit}
-						className='message-form'>
+					onSubmit={submit}
+					className='message-form'>
 						<input
 							value={chatInput}
 							onChange={e => setChatInput(e.target.value)}
@@ -239,6 +242,7 @@ const Servers = () => {
 							type='submit'>Send</button>
 					</form>
 				)}
+				{/* <span ref={dummy}></span> */}
 			</div>
 			<div className="servers-active-container">
 				<h1 className="test-name">active section</h1>
