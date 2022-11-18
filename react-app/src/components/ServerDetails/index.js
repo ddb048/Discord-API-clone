@@ -21,7 +21,7 @@ const ServerDetail = () => {
 	const [showModal, setShowModal] = useState(false);
 
 	const [updateModal, setUpdateModal] = useState(false)
-	const [setModalData] = useState();
+	const [modalData, setModalData] = useState();
 
 	// useState that sets channel id once
 	const [currentChannelId, setCurrentChannelId] = useState();
@@ -176,7 +176,7 @@ const ServerDetail = () => {
 			</div>
 			<div className='server-channels-container'>
 				<div className='server-title-container'>
-					<div className='server-title'>{}</div>
+					<div className='server-title'>{ }</div>
 					<div
 						className='add-channel-container'
 						onClick={() => setShowModal(true)}
@@ -190,27 +190,26 @@ const ServerDetail = () => {
 						{channelsArray.map((channel) => {
 							return (
 								<div id='some-name'>
-								<div
-									className='server-channel-name'
-									onClick={() => showmsg(channel.id)}
-								>
-									{channel.name}
-
 									<div
-										className='update-channel-container'
-										onClick={() => setUpdateModal(true)}
+										className='server-channel-name'
+										onClick={() => showmsg(channel.id)}
 									>
+										{channel.name}
 
-										<i className='fa fa-plus' aria-hidden='true' />
 										<div
-											className='gear-name'
-											onClick={() =>
+											className='update-channel-container'
+											onClick={() => setUpdateModal(true)}
+										>
+											<i className='fa fa-plus' aria-hidden='true' onClick={() =>
 												grabChannelId(channel.id)
-											}
-										></div>
+											} />
+											<div
+												className='gear-name'
 
+											></div>
+
+										</div>
 									</div>
-								</div>
 								</div>
 							);
 						})}
@@ -288,7 +287,7 @@ const ServerDetail = () => {
 					<UpdateChannelModal
 						serverId={serverId}
 						channelId={modalData}
-						setUpdateModal={setShowModal}
+						setUpdateModal={setUpdateModal}
 					/>
 				</Modal>
 			)}
