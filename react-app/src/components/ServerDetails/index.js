@@ -19,8 +19,10 @@ let socket;
 const ServerDetail = () => {
 	const { serverId, channelId } = useParams();
 	const [showModal, setShowModal] = useState(false);
+
 	const [updateModal, setUpdateModal] = useState(false)
-	const [modalData, setModalData] = useState();
+	const [setModalData] = useState();
+
 	// useState that sets channel id once
 	const [currentChannelId, setCurrentChannelId] = useState();
 	const [showMsg, setShowMsg] = useState(false);
@@ -205,6 +207,7 @@ const ServerDetail = () => {
 											className='gear-name'
 
 										></div>
+
 									</div>
 								</div>
 								</div>
@@ -278,6 +281,7 @@ const ServerDetail = () => {
 					<ChannelModal serverId={serverId} setShowModal={setShowModal} />
 				</Modal>
 			)}
+
 			{updateModal && (
 				<Modal onClose={() => setUpdateModal(false)}>
 					<UpdateChannelModal
@@ -287,6 +291,7 @@ const ServerDetail = () => {
 					/>
 				</Modal>
 			)}
+
 		</div>
 	);
 };

@@ -1,14 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { createChannel, getAllChannel } from '../../store/channel';
-import {
-	getServerDetails,
-	getAllCurrentUserServers,
-} from '../../store/servers';
+import { useDispatch } from 'react-redux';
+import { createChannel } from '../../store/channel';
 import '../../context/Modal.css';
 const ChannelModal = ({ serverId, setShowModal }) => {
 	serverId = +serverId;
-	const serverName = useSelector((state) => state.servers.oneServer);
+	// const serverName = useSelector((state) => state.servers.oneServer);
 	// //console.log('servername >>>>', serverName);
 	const dispatch = useDispatch();
 	const [name, setName] = useState('');
@@ -69,7 +65,9 @@ const ChannelModal = ({ serverId, setShowModal }) => {
 							onChange={(e) => setName(e.target.value)}
 							required
 						/>
+
 						</div>
+
 					<label id="modal-DESCRIPTION-label">DESCRIPTION</label>
 					<input
 						className="modal-input-textbox"
