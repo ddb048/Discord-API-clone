@@ -55,7 +55,7 @@ const Servers = () => {
 
 	useEffect(() => {
 		dispatch(getAllCurrentUserServers());
-	}, [ dispatch]);
+	}, [dispatch]);
 
 	useEffect(() => {
 		dispatch(getServerDetails(currentServer[0]));
@@ -150,7 +150,6 @@ const Servers = () => {
 							<CreateServerForm setShowModal={setShowModal} />
 						</Modal>
 					)}
-
 				</div>
 			</div>
 			<div className="servers-dms-container">
@@ -158,22 +157,23 @@ const Servers = () => {
 					<div className="servers-title">DIRECT MESSAGES</div>
 				</div>
 				<div className="servers-dm-layout">
-					{otherMember.map((member) => (
-
-						member.user_info.profile_pic && (
-							<div>
-								<div onClick={() => userDm(member.server_id)}>
-									<div>
-										<img className='user-photo' src={member.user_info.profile_pic} alt="" />
+					{otherMember.map(
+						(member) =>
+							member.user_info.profile_pic && (
+								<div>
+									<div onClick={() => userDm(member.server_id)}>
+										<div>
+											<img
+												className="user-photo"
+												src={member.user_info.profile_pic}
+												alt=""
+											/>
+										</div>
+										<div>{member.user_info.username} </div>
 									</div>
-									<div>{member.user_info.username} </div>
 								</div>
-							</div>
-						)
-
-					)
-					)
-					}
+							)
+					)}
 				</div>
 				<div className="servers-dm-footer">
 					<div className="user-photo-container">
@@ -186,8 +186,9 @@ const Servers = () => {
 			<div className="servers-messages-container">
 				<div>
 					<h1 className="test-name">messages section</h1>
-					{showMsg && dm.length > 0 && (
-						dm.map(message => {
+					{showMsg &&
+						dm.length > 0 &&
+						dm.map((message) => {
 							return (
 								<div className="mess-box">
 									<img
@@ -203,18 +204,22 @@ const Servers = () => {
 										<div>{message.message_body}</div>
 									</div>
 								</div>
-							)
-						})
-					)}
-				</div >
+							);
+						})}
+				</div>
 
 				<div>
-					{showMsg && messages.length > 0 && (
-						messages.map(x => {
+					{showMsg &&
+						messages.length > 0 &&
+						messages.map((x) => {
 							return (
-								<div className='mess-box'>
-									<img className='user-photo' src={x.owner_pic} alt='userPhoto' />
-									<div className='mess'>
+								<div className="mess-box">
+									<img
+										className="user-photo"
+										src={x.owner_pic}
+										alt="userPhoto"
+									/>
+									<div className="mess">
 										<div>
 											<h4>{x.owner_name}</h4>
 											{/* {message.created_at} */}
@@ -222,28 +227,53 @@ const Servers = () => {
 										<div>{x.message_body}</div>
 									</div>
 								</div>
-							)
-						})
-					)}
+							);
+						})}
 				</div>
 				{showMsg && (
-					<form
-						onSubmit={submit}
-						className='message-form'>
+					<form onSubmit={submit} className="message-form">
 						<input
 							value={chatInput}
-							onChange={e => setChatInput(e.target.value)}
-							placeholder='Message' />
-						<button
-							onClick={submit}
-							type='submit'>Send</button>
+							onChange={(e) => setChatInput(e.target.value)}
+							placeholder="Message"
+						/>
+						<button onClick={submit} type="submit">
+							Send
+						</button>
 					</form>
 				)}
 			</div>
 			<div className="servers-active-container">
-				<h1 className="test-name">active section</h1>
+				{/* SECTION active user */}
+				{showMsg && (
+					<>
+						<div className="active-user-con">
+							<div className="user-img-header">
+								<div className="user-img-div">
+									<img
+										className="user-img"
+										src={otherMember[0].user_info.profile_pic}
+										alt=""
+									/>
+								</div>
+							</div>
+							<div className="user-details">
+								<div className="user-name-id">
+									{otherMember[0].user_info.first_name}{" "}
+									{otherMember[0].user_info.last_name}#
+									{otherMember[0].user_info.id}
+								</div>
+
+								<div className="user-name-id-joined">
+									<div>Q-core member since </div>
+									<div>{otherMember[0].user_info.joined}</div>
+								</div>
+							</div>
+						</div>
+					</>
+				)}
 			</div>
-		</div >
+		</div>
 	);
 };;
 
