@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import { createServer } from "../../store/servers";
 import './server-form.css'
 
-const CreateServerForm = ({ setShowModal }) => {
+const CreateServerForm = ({setShowModal}) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [previewImage, setPreviewImage] = useState("");
+  const [preview_image, setPreview_image] = useState("");
   const [isDM, setIsDM] = useState(false);
   const [privateServer, setPrivateServer] = useState()
   const [error, setError] = useState([]);
@@ -24,12 +24,12 @@ const CreateServerForm = ({ setShowModal }) => {
 
 
   const handleSubmit = async (e) => {
-    // let errors = [];
+    let errors = [];
     e.preventDefault();
     const newServer = {
       name,
-      previewImage,
-      server_description: description,
+      preview_image,
+      server_description:description,
       privateServer,
       isDM
     };
@@ -37,13 +37,13 @@ const CreateServerForm = ({ setShowModal }) => {
     setShowModal(false)
   }
 
-  // const reset = () => {
-  //   setName("");
-  //   setDescription("");
-  //   setPreviewImage("");
-  //   setPrivateServer("");
-  //   setIsDM(false);
-  // };
+  const reset = () => {
+    setName("");
+    setDescription("");
+    setPreview_image("");
+    setPrivateServer("");
+    setIsDM(false);
+  };
 
   return (
     <div id="form" className="inputBox">
@@ -68,8 +68,8 @@ const CreateServerForm = ({ setShowModal }) => {
         />
         <input
           type="text"
-          onChange={(e) => setPreviewImage(e.target.value)}
-          value={previewImage}
+          onChange={(e) => setPreview_image(e.target.value)}
+          value={preview_image}
           placeholder="Choose your server image url"
           name="image"
           required
