@@ -121,7 +121,7 @@ const Servers = () => {
 			<div className="servers-column-container">
 				<div className="dm-button-container">
 					<div>
-						<NavLink to="">
+						<NavLink to="/servers/@me">
 							<img className="dm-button" src={DM_button} alt="" />
 						</NavLink>
 					</div>
