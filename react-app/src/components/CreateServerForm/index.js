@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createServer } from '../../store/servers';
+import { createServer, getAllCurrentUserServers } from '../../store/servers';
 import '../../context/Modal.css';
 
 const CreateServerForm = ({ setShowModal }) => {
@@ -8,13 +8,13 @@ const CreateServerForm = ({ setShowModal }) => {
   const [description, setDescription] = useState('');
   const [preview_image, setPreview_image] = useState('');
   const [isDM] = useState(false);
-  const [privateServer, setPrivateServer] = useState(null);
+  const [privateServer, setPrivateServer] = useState();
   const [error, setError] = useState([]);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(createServer());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(createServer());
+  // }, [dispatch]);
 
   useEffect(() => {
     let errors = [];
