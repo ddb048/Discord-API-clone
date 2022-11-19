@@ -31,6 +31,9 @@ const ServerDetail = () => {
 	// useState for websocket listener
 	const [messages, setMessages] = useState([]);
 
+	// useSelector to grab messages from the state
+	const retrieveMsgsFromDB = useSelector(state => Object.values(state.messages.messages))
+	console.log('retrieving the messages >>>>>', retrieveMsgsFromDB)
 	// sets new chat input in channel messages
 	const [chatInput, setChatInput] = useState('');
 	// const allMsgs = useSelector((state) =>
@@ -45,7 +48,7 @@ const ServerDetail = () => {
 	const channelsServersArr = servers.filter((dm) => dm.is_DM === false);
 	// an object finds the server by its id
 	const currentServerChannels = channelsServersArr.find(server => server.id === serverId)
-	console.log('CURRENT SERVER CHANNEL', currentServerChannels.name)
+	// console.log('CURRENT SERVER CHANNEL', currentServerChannels.name)
 	// array of object that holds the current channels of the server
 	const channelsArray = currentServerChannels.channels;
 	// console.log('all channels', allChannels);

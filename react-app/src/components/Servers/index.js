@@ -21,8 +21,11 @@ import UpdateServerForm from '../UpdateServerModal';
 let socket;
 
 const Servers = () => {
+	// useState for create a channel
 	const [showModal, setShowModal] = useState(false);
+	// useState for update a channel
 	const [showUpdateModal, setUpdateShowModal] = useState(false);
+	// useState for
 	const [showMsg, setShowMsg] = useState(false);
 	const [messages, setMessages] = useState([])
 	const [chatInput, setChatInput] = useState('')
@@ -35,6 +38,7 @@ const Servers = () => {
 	// const { channelId } = useParams();
 	// const member=useSelector(state =>Object.values(state.members.members))
 	const state = useSelector(state => state)
+	// an array of messages
 	const dm = Object.values(state.messages.messages);
 	const servers = Object.values(state.servers.servers);
 	const currentUser = state.session.user
