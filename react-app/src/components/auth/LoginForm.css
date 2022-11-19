@@ -68,6 +68,15 @@
   font-size: 18px;
 }
 
+.errors-div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-family: adelle-sans, sans-serif;
+  font-size: 14px;
+  font-style: italic;
+}
+
 #subButton:hover {
   background-color: #373f99;
 }
@@ -116,12 +125,33 @@
   font-style: bold;
 }
 
+.text.renderError {
+  color: rgb(121, 56, 56)
+}
+
+.text.noRenderError {
+  color: #a2a3a5;
+}
 
 .text {
   /* border: blue solid 1px; */
   height: 35px;
   font-family: adelle-sans, sans-serif;
   font-style: normal;
+}
+
+@media screen and (max-width: 800px) {
+  .qCode-container {
+    visibility: hidden;
+  }
+
+  .form-card {
+    width: 80%;
+  }
+
+  #form {
+    width: auto;
+  }
 }
 
 /* ************ SIGN UP FORM ************* */
@@ -189,11 +219,11 @@
   text-decoration: underline;
 }
 
-#form label {
+/* #form label {
   color: #a2a3a5;
-}
+} */
 
-.qCode-container{
+.qCode-container {
   /* border: 1px solid white; */
   height: 100%;
   width: 200px;
@@ -201,16 +231,19 @@
   flex-direction: column;
   justify-content: center;
 }
-.qCode{
+
+.qCode {
   height: 200px;
   width: 200px;
 }
-.qCode-title{
-border:1px solid pink;
-font-family: adelle-sans, sans-serif;
+
+.qCode-title {
+  border: 1px solid pink;
+  font-family: adelle-sans, sans-serif;
   font-style: normal;
 
 }
-.qCode-subtext{
+
+.qCode-subtext {
   border: 1px solid green
 }

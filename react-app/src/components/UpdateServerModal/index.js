@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
-    createServer,
     deleteServer,
     getAllCurrentUserServers,
     updateServer
@@ -17,11 +16,6 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
     const [error, setError] = useState([]);
     const dispatch = useDispatch();
 
-
-    console.log('server in update modal', server)
-    useEffect(() => {
-        dispatch(createServer());
-    }, [dispatch]);
 
     useEffect(() => {
         let errors = [];
@@ -41,14 +35,14 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
             privateServer,
             is_DM: isDM
         };
-        dispatch(updateServer(newServer))
+       await dispatch(updateServer(newServer))
         dispatch(getAllCurrentUserServers())
         setUpdateShowModal(false)
     }
 
     const delServer = async (e) => {
         e.preventDefault();
-        dispatch(deleteServer(server))
+        await dispatch(deleteServer(server))
         dispatch(getAllCurrentUserServers())
         setUpdateShowModal(false)
     }
