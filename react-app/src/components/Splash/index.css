@@ -235,13 +235,14 @@
 
 .Splash-footer {
     /* border: 1px solid black; */
-    height: 380px;
+    height: auto;
     justify-content: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #23272a;
-    /* padding-top: 80px; */
+    padding-top: 5%;
+    padding-bottom: 5%;
 }
 
 .footer-content {
@@ -348,4 +349,21 @@
 .buttons-div {
     gap: 10px;
     display: inline-flex;
+}
+
+.button-div {
+    padding-bottom: 2%;
+}
+
+.sign-up-button {
+    height: 45px;
+    width: 100px;
+    border-radius: 20px;
+    border: none;
+    background-color: #5865f2;
+    color: white;
+    transition: background-color .2s ease;
+    font-family: adelle-sans, sans-serif;
+    font-style: bold;
+    font-size: 18px;
 }
