@@ -324,9 +324,9 @@
 .servers-button-map {
   display: flex;
   flex-direction: row;
-  gap: 5px;
+  gap: 30px;
   align-items: center;
-  padding-left: 17px;
+  padding-left: 10px;
 }
 
 .cog>i {

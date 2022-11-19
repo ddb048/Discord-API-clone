@@ -23,6 +23,7 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
         setError(errors);
     }, [name]);
 
+   
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -34,7 +35,7 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
             privateServer,
             is_DM: isDM
         };
-       await dispatch(updateServer(newServer))
+        await dispatch(updateServer(newServer))
         dispatch(getAllCurrentUserServers())
         setUpdateShowModal(false)
     }
@@ -48,8 +49,7 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
 
 
     return (
-        <div id="form" className="inputBox">
-            <h1>Update Server</h1>
+        <div className='modal'>
             {error &&
                 error.map((error) => {
                     return (
@@ -58,49 +58,55 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
                         </li>
                     );
                 })}
+            <form className='new-server-modal-form' onSubmit={handleSubmit}>
+                <div className='modal-title'>Update your Server</div>
+                <div className="modal-input-form">
+                    <input
+                        className="modal-input-textbox"
+                        type="text"
+                        onChange={(e) => setName(e.target.value)}
+                        value={name}
+                        placeholder="Server name"
+                        name="name"
+                        required
+                    />
+                    <input
+                        className="modal-input-textbox"
+                        type="text"
+                        onChange={(e) => setPreview_image(e.target.value)}
+                        value={preview_image}
+                        placeholder="Choose your server image url"
+                        name="image"
+                        required
+                    />
+                    <textarea
+                        id="modal-input-textarea"
+                        type="text"
+                        onChange={(e) => setDescription(e.target.value)}
+                        value={description}
+                        placeholder="Please describe your server topics"
+                        name="description"
+                        required
+                    ></textarea>
 
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    onChange={(e) => setName(e.target.value)}
-                    value={name}
-                    placeholder="Server name"
-                    name="name"
-                    required
-                />
-                <input
-                    type="text"
-                    onChange={(e) => setPreview_image(e.target.value)}
-                    value={preview_image}
-                    placeholder="Choose your server image url"
-                    name="image"
-                    required
-                />
-                <textarea
-                    type="text"
-                    onChange={(e) => setDescription(e.target.value)}
-                    value={description}
-                    placeholder="Please describe your server topics"
-                    name="description"
-                    required
-                ></textarea>
+                    <div id='checkmark-container'>
 
-                <div id="server-conteiner">
-                    <label>
+                        <label id="checkmark-label">Private Server
+                        </label>
                         <input
-                            type='radio'
+                            id='checkmark-box'
+                            type='checkbox'
                             onChange={(e) => setPrivateServer(e.target.value)}
                             value={privateServer}
-                            checked={privateServer === true ? true : false}
-                            name='boolean' /> Private Server
-                    </label>
-
+                            checked={privateServer || null}
+                        />
+                    </div>
                 </div>
-
-                <button id="new-server-btn" type="submit" disabled={!!error.length}>
+                <button id='create-channel-channel-btn' type="submit" disabled={!!error.length}>
                     Update
                 </button>
-                <button id="new-server-btn" onClick={delServer} disabled={!!error.length}>Delete</button>
+
+                <button id='create-channel-channel-btn' onClick={delServer} disabled={!!error.length}>Delete</button>
             </form>
         </div>
     );

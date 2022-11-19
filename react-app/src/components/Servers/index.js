@@ -28,6 +28,7 @@ const Servers = () => {
 	const [messages, setMessages] = useState([])
 	const [chatInput, setChatInput] = useState('')
 	const [currentServer, setCurrentServer] = useState([])
+	const [toUpdate, setToUpdate]=useState({})
 
 
 
@@ -144,12 +145,12 @@ const Servers = () => {
 											</div>
 										</div>
 									</NavLink>
-									<div className='cog' onClick={() => setUpdateShowModal(true)}>
+									<div className='cog' onClick={() => (setUpdateShowModal(true), setToUpdate(server))}>
 										<i className="fa fa-cog" aria-hidden="true" />
 									</div>
 									{showUpdateModal && (
 										<Modal onClose={() => setUpdateShowModal(false)}>
-											<UpdateServerForm setUpdateShowModal={setUpdateShowModal} server={server} />
+											<UpdateServerForm setUpdateShowModal={setUpdateShowModal} server={toUpdate} />
 										</Modal>)}
 								</div>
 							</div>
