@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../store/session';
@@ -8,17 +8,53 @@ const LoginForm = () => {
 	const [errors, setErrors] = useState([]);
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [emailErr, setEmailErr] = useState('');
+	const [passwordErr, setPasswordErr] = useState('');
+	const [renderErr, setRenderErr] = useState(false);
 	const user = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
 
+
+	/********************Helper Function***************** */
+
+	const validateEmail = (email) => {
+		return /\S+@\S+\.\S+/.test(email);
+	};
+
 	const onLogin = async (e) => {
 		e.preventDefault();
-		const data = await dispatch(login(email, password));
-		if (data) {
-			setErrors(data);
+		setRenderErr(true)
+
+		if (!emailErr &&
+			!passwordErr) {
+
+			const data = await dispatch(login(email, password));
+			if (data) {
+				setErrors(data);
+			}
+			<Redirect to="/servers/@me" />;
 		}
-		<Redirect to="/servers/@me" />;
 	};
+
+	useEffect(() => {
+		//email error handling
+		if (email.length && !validateEmail(email)) {
+			setEmailErr('invalid email')
+		} else if (!email.length) {
+			setEmailErr('email is required')
+		} else {
+			setEmailErr("")
+		}
+		//password error handling
+		if (!password.length) {
+			setPasswordErr('password is required')
+		} else if (password.length && password.length < 6) {
+			setPasswordErr('password must be greater than 6 characters')
+		} else {
+			setPasswordErr("")
+		}
+	}, [email, password])
+
 	const log = async (e) => {
 		e.preventDefault()
 		const data = await dispatch(login('lazaro@aa.io', 'password'))
@@ -35,8 +71,8 @@ const LoginForm = () => {
 		setPassword(e.target.value);
 	};
 
-	if (user) { 
-	return <Redirect to="/servers/@me" />
+	if (user) {
+		return <Redirect to="/servers/@me" />
 	}
 
 	return (
@@ -55,14 +91,14 @@ const LoginForm = () => {
 								</div>
 							</div>
 						</div>
-						<div>
+						<div className='errors-div'>
 							{errors.map((error, ind) => (
 								<div key={ind}>{error}</div>
 							))}
 						</div>
 						<div>
-							<div>
-								<label className='text' htmlFor="email">Email</label>
+							<div>{renderErr && emailErr ? <label className='text renderError' htmlFor="email">Email: {emailErr}</label> :
+								<label className='text noRenderError' htmlFor="email">Email</label>}
 							</div>
 							<input
 
@@ -75,8 +111,8 @@ const LoginForm = () => {
 							/>
 						</div>
 						<div>
-							<div>
-								<label className='text' htmlFor="password">Password</label>
+							<div>{renderErr && passwordErr ? <label className='text renderError' htmlFor="password">Password: {passwordErr}</label> :
+								<label className='text noRenderError' htmlFor="password">Password</label>}
 							</div>
 							<input
 								name="password"
