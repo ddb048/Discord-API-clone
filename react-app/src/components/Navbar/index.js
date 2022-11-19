@@ -41,16 +41,7 @@ const NavBar = () => {
                 Safety
               </NavLink>
             </div>
-            <div className='link-button'>
-              {/* <NavLink
-                className="link-text"
-                to="/support"
-                exact={true}
-                activeClassName="active"
-              >
-                Support
-              </NavLink> */}
-            </div>
+            <div className='link-button'></div>
           </div>
           <div className="splash-login-right">
             <button className="login-button" onClick={login}>
