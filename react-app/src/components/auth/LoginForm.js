@@ -17,6 +17,7 @@ const LoginForm = () => {
 		if (data) {
 			setErrors(data);
 		}
+		<Redirect to="/servers/@me" />;
 	};
 	const log = async (e) => {
 		e.preventDefault()
@@ -34,8 +35,8 @@ const LoginForm = () => {
 		setPassword(e.target.value);
 	};
 
-	if (user) {
-		return <Redirect to="/" />;
+	if (user) { 
+	return <Redirect to="/servers/@me" />
 	}
 
 	return (
@@ -61,9 +62,10 @@ const LoginForm = () => {
 						</div>
 						<div>
 							<div>
-								<label htmlFor="email">Email</label>
+								<label className='text' htmlFor="email">Email</label>
 							</div>
 							<input
+
 								name="email"
 								type="text"
 								// placeholder="Email"
@@ -74,7 +76,7 @@ const LoginForm = () => {
 						</div>
 						<div>
 							<div>
-								<label htmlFor="password">Password</label>
+								<label className='text' htmlFor="password">Password</label>
 							</div>
 							<input
 								name="password"
@@ -89,8 +91,7 @@ const LoginForm = () => {
 							<button className='subButton' type="submit">Login</button>
 						</div>
 						<div id='to-signup'>
-							Need an account?
-							<Link to={'/sign-up'}> Register</Link>
+							Need an account? <Link to={'/sign-up'}>Register</Link>
 						</div>
 						<div>
 							<button
@@ -98,8 +99,10 @@ const LoginForm = () => {
 								className='subButton'>Demo User</button>
 						</div>
 					</form>
-					<div>
+					<div className='qCode-container'>
 						<img className='qCode' src={qrCode} alt="" />
+						<h3 className='text'>Scan this QR Code to check out our GitHub</h3>
+
 					</div>
 				</div>
 			</div>
