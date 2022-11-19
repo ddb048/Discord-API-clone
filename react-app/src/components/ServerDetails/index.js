@@ -196,11 +196,11 @@ const ServerDetail = () => {
 									>
 										{channel.name}
 
-										<div
-											className='update-channel-container'
-											onClick={() => setUpdateModal(true)}
-										>
-											<i className='fa fa-plus' aria-hidden='true' onClick={() =>
+									<div
+										className='update-channel-container'
+										onClick={() => setUpdateModal(true)}
+									>
+										<i className='fa fa-cog' aria-hidden='true' onClick={() =>
 												grabChannelId(channel.id)
 											} />
 											<div

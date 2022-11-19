@@ -7,13 +7,13 @@
 
 /* media screen sizing for  */
 @media screen and (min-width: 1024px) {
-    
+
 }
 /* css for the splash title  */
 .Splash-title {
     background-color: rgb(64, 78, 237);
     /* width:100%; */
-    /* position: relative; */
+    position: relative;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -48,10 +48,11 @@
 }
 
 .splash-title-imgs {
-    z-index: 0;
-    position: relative;
+    z-index: 1;
+    position: absolute;
     height: 100%;
-    width: 100%;
+    width: 100vw;
+    top:0;
 }
 
 /* css for splash title img - clouds */
@@ -65,16 +66,16 @@
 }
 
 #left-people {
-    position: absolute;
-    z-index: 1;
-    top: -95px;
+    /* position: absolute; */
+    /* z-index: 1; */
+    /* top: -95px; */
 }
 
 #right-people {
     z-index: 1;
-    position: absolute;
+    /* position: absolute;
     top: -40%;
-    left: 68%;
+    left: 68%; */
     /* top: -350px;
     left:59%; */
 }
