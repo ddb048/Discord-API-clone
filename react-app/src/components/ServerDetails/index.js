@@ -17,7 +17,8 @@ import { createMessage, getAllMessages } from '../../store/message';
 let socket;
 
 const ServerDetail = () => {
-	const { serverId, channelId } = useParams();
+	let { serverId, channelId } = useParams();
+	serverId = parseInt(serverId)
 	const [showModal, setShowModal] = useState(false);
 
 	const [updateModal, setUpdateModal] = useState(false)
@@ -37,26 +38,22 @@ const ServerDetail = () => {
 	// );
 	const dispatch = useDispatch();
 	const servers = useSelector((state) => Object.values(state.servers.servers));
+
 	const members = useSelector((state) => state.members.members);
-	// console.log('users', members);
+
+	// filters out any private dm channels or servers (not sure)
 	const channelsServersArr = servers.filter((dm) => dm.is_DM === false);
-
-	const channelsArray = [];
-	channelsServersArr.forEach((channel) =>
-		channelsArray.push(...channel.channels)
-	);
-	// console.log('channels array.....>>>>>>>', channelsArray);
-	// console.log('servers', servers)
-	// const allChannels = useSelector((state) =>
-	// 	Object.values(state.channels.channels)
-	// );
-
+	// an object finds the server by its id
+	const currentServerChannels = channelsServersArr.find(server => server.id === serverId)
+	console.log('CURRENT SERVER CHANNEL', currentServerChannels.name)
+	// array of object that holds the current channels of the server
+	const channelsArray = currentServerChannels.channels;
 	// console.log('all channels', allChannels);
 	const currentUser = useSelector((state) => state.session.user);
 
 	const findOneServer = useSelector((state) => state.servers.oneServer);
 
-	console.log('server details=======>', findOneServer);
+	// console.log('server details=======>', findOneServer);
 
 	useEffect(() => {
 		dispatch(getServerDetails(serverId));
@@ -137,7 +134,19 @@ const ServerDetail = () => {
 		}
 		setChatInput('');
 	};
-
+// this code was duplicating the messages ==> not sure if we will need it again, please do not delete
+	// {showMsg &&
+	// 	currentChannel &&
+	// 	currentChannel.messages.map((msg) => {
+	// 		return (
+	// 			<div className='channel-messages-container'>
+	// 				<div className='user-container'>
+	// 					{/* <img className='user-photo' src={msg.user_photo} alt="" /> */}
+	// 					<div className='channel-message'>{msg.message_body}</div>
+	// 				</div>
+	// 			</div>
+	// 		);
+	// 	})}
 	return (
 		<div className='servers-page-container'>
 			<div className='servers-column-container'>
@@ -176,7 +185,7 @@ const ServerDetail = () => {
 			</div>
 			<div className='server-channels-container'>
 				<div className='server-title-container'>
-					<div className='server-title'>{ }</div>
+					<div className='server-title'>{currentServerChannels.name}</div>
 					<div
 						className='add-channel-container'
 						onClick={() => setShowModal(true)}
@@ -226,19 +235,6 @@ const ServerDetail = () => {
 			<div className='channel-messages-container'>
 				<div></div>
 				<div className='test-name'>
-					{showMsg &&
-						currentChannel &&
-						currentChannel.messages.map((msg) => {
-							return (
-								<div className='channel-messages-container'>
-									<div className='user-container'>
-										<img className='user-photo' src={msg.user_photo} alt="" />
-										<div className='channel-message'>{msg.message_body}</div>
-									</div>
-								</div>
-							);
-						})}
-					messages section
 					<div>
 						{showMsg &&
 							messages.length > 0 &&
