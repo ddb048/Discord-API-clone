@@ -7,7 +7,6 @@ import {
     getAllCurrentUserServers,
     updateServer
 } from "../../store/servers";
-// import './server-form.css'
 
 const UpdateServerForm = ({ setUpdateShowModal, server }) => {
     const [name, setName] = useState(server.name);

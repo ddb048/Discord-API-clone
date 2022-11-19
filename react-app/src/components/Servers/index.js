@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
 import { getAllCurrentUserServers } from '../../store/servers';
@@ -7,7 +7,7 @@ import { getAllMembers } from '../../store/member';
 import { getChannelDetail } from '../../store/channel';
 import LogoutButton from '../auth/LogoutButton';
 import CreateServerForm from '../CreateServerForm';
-// import { getAllMessages } from '../../store/message';
+
 import { getServerDetails } from '../../store/servers';
 import DM_button from '../../Images/q-cord-button.png';
 import './Servers.css';
@@ -113,9 +113,6 @@ const Servers = () => {
 		setCurrentServer([id, chanId])
 	}
 
-	// if (!currentUser) {
-	// 	return <Redirect to="/" />;
-	// }
 	return (
 		<div className="servers-page-container">
 			<div className="servers-column-container">
@@ -262,7 +259,6 @@ const Servers = () => {
 				)}
 			</div>
 			<div className="servers-active-container">
-				{/* SECTION active user */}
 				{showMsg && (
 					<>
 						<div className="active-user-con">
