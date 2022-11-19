@@ -50,8 +50,8 @@ const UpdateChannelModal = ({ serverId, setUpdateModal, channelId }) => {
 
 		if (!frontEndErrors.length) {
 			dispatch(updateChannel(channelId, updateChannelForm));
-			dispatch(getServerDetails(serverId))
 			setUpdateModal(false);
+			dispatch(getServerDetails(serverId))
 			console.log('setUpdateModal', setUpdateModal)
 		}
 	};
