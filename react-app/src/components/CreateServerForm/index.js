@@ -12,10 +12,6 @@ const CreateServerForm = ({ setShowModal }) => {
   const [error, setError] = useState([]);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(createServer());
-  // }, [dispatch]);
-
   useEffect(() => {
     let errors = [];
     if (!name) errors.push('You must give your server a name');
@@ -36,13 +32,6 @@ const CreateServerForm = ({ setShowModal }) => {
     setShowModal(false);
   };
 
-  // const reset = () => {
-  //   setName("");
-  //   setDescription("");
-  //   setPreview_image("");
-  //   setPrivateServer("");
-  //   setIsDM(false);
-  // };
 
   return (
     <div className='modal'>
