@@ -34,11 +34,14 @@ const Servers = () => {
 	// const history = useHistory();
 	// const { channelId } = useParams();
 	// const member=useSelector(state =>Object.values(state.members.members))
-	const dm = useSelector(state => Object.values(state.messages.messages))
+	const state = useSelector(state => state)
+	const dm = Object.values(state.messages.messages);
+	const servers = Object.values(state.servers.servers);
+	const currentUser = state.session.user
 	// grabbing the state of servers in servers
-	const servers = useSelector((state) => Object.values(state.servers.servers));
+	// const servers = useSelector((state) => Object.values(state.servers.servers));
 	// console.log('THIS IS SERVES USESELECTOR IN ARRAY', servers)
-	const currentUser = useSelector((state) => state.session.user);
+	// const currentUser = useSelector((state) => state.session.user);
 	// console.log('this is current user >>', currentUser)
 	let isNotDm = servers.filter((dm) => dm.is_DM === false);
 	let dmServersArr = servers.filter((dm) => dm.is_DM === true);
@@ -110,9 +113,9 @@ const Servers = () => {
 		setCurrentServer([id, chanId])
 	}
 
-	if (!currentUser) {
-		return <Redirect to="/" />;
-	}
+	// if (!currentUser) {
+	// 	return <Redirect to="/" />;
+	// }
 	return (
 		<div className="servers-page-container">
 			<div className="servers-column-container">

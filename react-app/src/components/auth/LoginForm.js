@@ -17,6 +17,7 @@ const LoginForm = () => {
 		if (data) {
 			setErrors(data);
 		}
+		<Redirect to="/servers/@me" />;
 	};
 	const log = async (e) => {
 		e.preventDefault()
@@ -34,8 +35,8 @@ const LoginForm = () => {
 		setPassword(e.target.value);
 	};
 
-	if (user) {
-		return <Redirect to="/" />;
+	if (user) { 
+	return <Redirect to="/servers/@me" />
 	}
 
 	return (

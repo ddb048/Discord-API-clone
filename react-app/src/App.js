@@ -37,12 +37,12 @@ function App() {
   return (
     <BrowserRouter>
       <Route exact path="/">
-        {session.user && <Redirect to="/servers/@me" />}
-        <NavBar />
+        {/* {session.user && <Redirect to="/servers/@me" />} */}
       </Route>
 
       <Switch>
         <Route path="/" exact={true}>
+          <NavBar />
           <Splash />
         </Route>
         <Route path="/login" exact={true}>
@@ -64,7 +64,7 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        <Route path="/servers/@me">
+        <Route exact path="/servers/@me">
           <Servers />
         </Route>
         <ProtectedRoute path="/servers/:serverId" exact={true}>

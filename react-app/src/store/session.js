@@ -16,7 +16,7 @@ const removeUser = () => ({
 })
 
 /***************THUNKS**************** */
-
+const initialState = {user:null}
 export const authenticate = () => async (dispatch) => {
     //REVISE URL AS NECESSARY
     const response = await fetch('/api/auth/', {
@@ -27,7 +27,11 @@ export const authenticate = () => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        if (data.errors) { }
+        
+        if (data.errors) {
+            return
+        }
+        dispatch(setUser(data))
     }
 }
 
@@ -101,7 +105,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
 }
 
 /**********************REDUCER********************************** */
-let initialState = {}
+
 export default function sessionReducer(state = initialState, action) {
     switch (action.type) {
         case SET_USER:
