@@ -86,8 +86,9 @@ function Splash() {
 								</p>
 							</div>
 							<img id='splash5' src={splash_5} alt='' />
+
 						</div>
-						<div>
+						<div className='button-div'>
 							<button className='sign-up-button' onClick={signUp}>
 								Sign Up
 							</button>
@@ -179,48 +180,49 @@ function Splash() {
 								</Link>
 							</div>
 						</div>
-					</div>
-					<div className='contact-card' id='david'>
-						<div className='contact-text'>David Burch</div>
-						<div className='buttons-div'>
-							<Link
-								className='contact-button'
-								to={{ pathname: 'https://github.com/ddb048' }}
-								target='_blank'
-							>
-								<i className='fa-brands fa-square-github' />
-							</Link>
-							<Link
-								className='contact-button'
-								to={{
-									pathname:
-										'https://www.linkedin.com/in/david-burch-26b92b226/',
-								}}
-								target='_blank'
-							>
-								<i className='fa-brands fa-linkedin'></i>
-							</Link>
+						<div className='contact-card' id='david'>
+							<div className='contact-text'>David Burch</div>
+							<div className='buttons-div'>
+								<Link
+									className='contact-button'
+									to={{ pathname: 'https://github.com/ddb048' }}
+									target='_blank'
+								>
+									<i className='fa-brands fa-square-github' />
+								</Link>
+								<Link
+									className='contact-button'
+									to={{
+										pathname:
+											'https://www.linkedin.com/in/david-burch-26b92b226/',
+									}}
+									target='_blank'
+								>
+									<i className='fa-brands fa-linkedin'></i>
+								</Link>
+							</div>
+						</div>
+						<div className='contact-card' id='moran'>
+							<div className='contact-text'>Moran Even</div>
+							<div className='buttons-div'>
+								<Link
+									className='contact-button'
+									to={{ pathname: 'https://github.com/MEven44' }}
+									target='_blank'
+								>
+									<i className='fa-brands fa-square-github' />
+								</Link>
+								<Link
+									className='contact-button'
+									to={{ pathname: 'https://www.linkedin.com/in/moran-even/' }}
+									target='_blank'
+								>
+									<i className='fa-brands fa-linkedin'></i>
+								</Link>
+							</div>
 						</div>
 					</div>
-					<div className='contact-card' id='moran'>
-						<div className='contact-text'>Moran Even</div>
-						<div className='buttons-div'>
-							<Link
-								className='contact-button'
-								to={{ pathname: 'https://github.com/MEven44' }}
-								target='_blank'
-							>
-								<i className='fa-brands fa-square-github' />
-							</Link>
-							<Link
-								className='contact-button'
-								to={{ pathname: 'https://www.linkedin.com/in/moran-even/' }}
-								target='_blank'
-							>
-								<i className='fa-brands fa-linkedin'></i>
-							</Link>
-						</div>
-					</div>
+
 				</div>
 			</div>
 		</>
