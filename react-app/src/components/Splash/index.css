@@ -6,35 +6,35 @@
 }
 
 /* media screen sizing for  */
-@media screen and (min-width: 1024px) {
-    
-}
+
+
 /* css for the splash title  */
 .Splash-title {
     background-color: rgb(64, 78, 237);
-    /* width:100%; */
-    /* position: relative; */
+    width: 100vw;
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     height: 500px;
+    position: relative;
     /* overflow: hidden; */
     padding-top: 56px;
     /* padding-bottom: 56px; */
 }
 
-.splash-text-container {
+/* .splash-text-container {
     display: grid;
     box-sizing: border-box;
     grid-template-columns: repeat(3, 1fr);
     /* border: 1px solid black; */
-    /* padding-top: 56px;
+/* padding-top: 56px;
     padding-bottom: 56px; */
-    z-index: 1;
-    width: 100%;
-    /* gap: 0 30px; */
-    /* padding:0 24px; */
-}
+/* z-index: 1;
+    width: 100%; */
+/* gap: 0 30px; */
+/* padding:0 24px; */
+
 
 .splash-body {
     grid-column: 2;
@@ -47,36 +47,45 @@
     color: white;
 }
 
-.splash-title-imgs {
-    z-index: 0;
-    position: relative;
+/* .splash-title-imgs {
+    z-index: 1;
+    position: absolute;
     height: 100%;
-    width: 100%;
-}
+    width: 100vw;
+    top: 0;
+} */
 
 /* css for splash title img - clouds */
 #clouds {
-    z-index: 1;
+    z-index: 0;
     position: absolute;
-    top: -144%;
+    width: auto;
+    height: auto;
+    top: auto;
     /* left:50%; */
-    margin-left: -459px;
+    margin-left: 370px;
+    bottom: 0;
 
 }
 
 #left-people {
     position: absolute;
     z-index: 1;
-    top: -95px;
+    width: auto;
+    height: auto;
+    bottom: 0;
+    right: 75%;
+    margin-left: -1030px;
 }
 
 #right-people {
     z-index: 1;
     position: absolute;
-    top: -40%;
-    left: 68%;
-    /* top: -350px;
-    left:59%; */
+    width: auto;
+    height: auto;
+    bottom: 0;
+    left: 45%;
+    margin-left: 370px;
 }
 
 #splash2 {
@@ -120,15 +129,17 @@
     position: absolute;
     top: 50%; */
     left: 20%;
+    text-rendering: geometricPrecision;
     font-family: 'Roboto', sans-serif;
     font-family: 'Seymour One', sans-serif;
     font-size: 45px;
+    color: white;
     /* font-weight: 800; */
     /* color: white; */
 }
 
 .subtext {
-    /* z-index: 3; */
+    z-index: 3;
     /* border: 1px solid black;
     position: absolute;
     top: 60%;
@@ -138,6 +149,9 @@
     font-family: adelle-sans, sans-serif;
     font-style: normal;
     font-size: 20px;
+    color: white;
+    max-width: 30rem;
+    margin-top: 1rem;
     /* font-weight: 100; */
 }
 
@@ -170,6 +184,7 @@
     /* border: 1px solid blue; */
 }
 
+
 .even {
     background-color: #f6f6f6;
     width: 100%;
@@ -192,6 +207,10 @@
     height: 830px;
 
     /* transition: opacity .6s .1s,transform .6s ease, .6s ease; */
+}
+
+.detail-img {
+    width: 50%
 }
 
 .sub-title {
@@ -226,7 +245,8 @@
     background-color: #23272a;
     /* padding-top: 80px; */
 }
-.footer-content{
+
+.footer-content {
     width: 50%;
     height: 100%;
     padding: 0 24px;
@@ -238,7 +258,7 @@
 .contact-box {
     display: grid;
     box-sizing: border-box;
-    grid-template-columns: repeat(12,1fr);
+    grid-template-columns: repeat(12, 1fr);
 
     /* gap: 20px; */
     /* display: flex;
@@ -251,22 +271,26 @@
     /* height: 140px; */
     /* border: 1px solid blue; */
 }
-.languages-card{
+
+.languages-card {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     row-gap: 10px;
 }
-.language-button-div{
+
+.language-button-div {
     display: flex;
     gap: 5px;
 }
-.language-button{
+
+.language-button {
     color: white;
     font-size: 15px;
 }
-.footer-title{
+
+.footer-title {
     /* display: flex;
     flex-direction: row;
     align-items: center; */
@@ -277,7 +301,8 @@
     font-weight: bold;
     text-align: center;
 }
-.contact-card{
+
+.contact-card {
     /* border: 1px solid; */
     grid-column: span 2;
     display: flex;
@@ -285,36 +310,44 @@
     align-items: center;
     justify-content: center;
 }
-#languages{
+
+#languages {
     grid-column: 2/span 1;
 }
-#abel{
+
+#abel {
     grid-column: 4/span 1;
 }
-#cindy{
+
+#cindy {
     grid-column: 6/span 1;
 }
-#david{
+
+#david {
     grid-column: 8/span 1;
 }
-#moran{
+
+#moran {
     grid-column: 10/span 1;
 }
-.contact-card-line{
-    border-right:.5 px solid white ;
+
+.contact-card-line {
+    border-right: .5 px solid white;
 }
-.contact-text{
+
+.contact-text {
     font-size: 20px;
     font-family: adelle-sans, sans-serif;
     color: #4650af;
 }
 
-.contact-button{
+.contact-button {
     color: white;
     font-size: 30px;
 
 }
-.buttons-div{
+
+.buttons-div {
     gap: 10px;
     display: inline-flex;
 }

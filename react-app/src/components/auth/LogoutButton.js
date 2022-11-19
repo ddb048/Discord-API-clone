@@ -6,9 +6,11 @@ import '../Navbar/NavBar.css'
 const LogoutButton = () => {
   const history = useHistory()
   const dispatch = useDispatch()
-  const onLogout = async (e) => {
-    await dispatch(logout());
-    history.push('/')
+  
+  const onLogout =  (e) => {
+    e.preventDefault()
+    dispatch(logout());
+    history.push('/discover')
   };
 
   return <button className='splash-logout-button' onClick={onLogout}>Logout</button>;

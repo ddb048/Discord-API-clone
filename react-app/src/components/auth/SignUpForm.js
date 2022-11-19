@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './LoginForm.css'
 
+
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
@@ -65,7 +66,7 @@ const SignUpForm = () => {
             </div>
             <div>
               <div>
-                <label>UserName</label>
+                <label className='text'>UserName</label>
               </div>
               <input
                 className='inp2'
@@ -73,11 +74,12 @@ const SignUpForm = () => {
                 name='username'
                 onChange={updateUsername}
                 value={username}
+                placeholder='Your username'
               ></input>
             </div>
             <div>
               <div>
-                <label>Email</label>
+                <label className='text'>Email</label>
               </div>
               <input
                 className='inp2'
@@ -85,11 +87,12 @@ const SignUpForm = () => {
                 name='email'
                 onChange={updateEmail}
                 value={email}
+                placeholder='Your email'
               ></input>
             </div>
             <div>
               <div>
-                <label>Profile picture</label>
+                <label className='text'>Profile picture</label>
               </div>
               <input
                 className='inp2'
@@ -97,11 +100,12 @@ const SignUpForm = () => {
                 name='profilePicture'
                 onChange={updateProfile_pi}
                 value={profile_pic}
+                placeholder='Upload a png or jpeg image of yourself'
               ></input>
             </div>
             <div>
               <div>
-                <label>Password</label>
+                <label className='text'>Password</label>
               </div>
               <input
                 className='inp2'
@@ -109,16 +113,18 @@ const SignUpForm = () => {
                 name='password'
                 onChange={updatePassword}
                 value={password}
+                placeholder='Your Password'
               ></input>
             </div>
             <div>
-              <label>Repeat Password</label>
+              <label className='text'>Confirm Password</label>
               <input
                 className='inp2'
                 type='password'
                 name='repeat_password'
                 onChange={updateRepeatPassword}
                 value={repeatPassword}
+                placeholder='Your password'
                 required={true}
               ></input>
             </div>

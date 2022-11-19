@@ -8,27 +8,45 @@
   display: grid;
   box-sizing: border-box;
   grid-template-columns: repeat(3, 1fr);
+  height: 50px;
+  /* border: 1px solid purple; */
+}
+.splash-logo-button{
+  width:50px;
+  object-fit: fill;
+  /* border: 1px solid green; */
+}
+.splash-logo-text{
+  /* border: 1px solid green; */
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Seymour One', sans-serif;
+  font-size: 30px;
 }
 .splash-logo-left{
   /* border: 1px solid wheat; */
   display: flex;
   justify-content: center;
+
 }
 .splash-mid-links{
   display: flex;
   /* border: 1px solid wheat; */
   justify-content: space-around;
-  font-size: 16px;
+  font-size: 22px;
 }
 .link-button{
   display: flex;
   align-items: center;
+
 }
 .link-text{
   color: white;
   font-family: adelle-sans, sans-serif;
   font-style: normal;
   text-decoration: none;
+  display: flex;
+
+    align-items: center;
 }
 
 .link-text:hover{
@@ -36,20 +54,23 @@
   font-family: adelle-sans, sans-serif;
   font-style: normal;
   text-decoration: underline;
+
 }
 .splash-login-right{
   display: flex;
   justify-content: center;
   padding-right: 37px;
+  align-items: center;
   /* border: 1px solid wheat; */
 }
 
 .login-button{
   background-color: #FFFFFF;
   border-radius: 40px;
-  font-size: 14px;
+  font-size: 16px;
   padding: 7px 16px;
   border: none;
+  height: 40px;
 }
 .login-button:hover{
   background-color: #FFFFFF;

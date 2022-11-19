@@ -78,7 +78,7 @@ else
                 <div className="buttons-div">
                   <Link
                     className="contact-button"
-                    to={{ pathname: "" }}
+                    to={{ pathname: "https://github.com/c-rose-g" }}
                     target="_blank"
                   >
                     <i className="fa-brands fa-square-github" />

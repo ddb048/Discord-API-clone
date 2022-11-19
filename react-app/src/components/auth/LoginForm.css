@@ -30,7 +30,7 @@
   width: 800px;
   background-color: #36393f;
   color: aliceblue;
-  gap: 50px;
+  gap: 110px;
   padding: 0px 40px;
   border-radius: 6px;
   border: none;
@@ -45,13 +45,17 @@
   border-radius: 5px;
   border: none;
   color: white;
+  font-family: adelle-sans, sans-serif;
+  font-style: normal;
 }
 
 .inp:focus {
   outline: none;
+  font-family: adelle-sans, sans-serif;
+  font-style: normal;
 }
 
-#subButton {
+.subButton {
   height: 45px;
   width: 400px;
   border-radius: 5px;
@@ -59,6 +63,9 @@
   background-color: #5865f2;
   color: white;
   transition: background-color .2s ease;
+  font-family: adelle-sans, sans-serif;
+  font-style: bold;
+  font-size: 18px;
 }
 
 #subButton:hover {
@@ -67,6 +74,8 @@
 
 #to-signup {
   color: rgb(133, 133, 133);
+  font-family: adelle-sans, sans-serif;
+  font-style: normal;
 }
 
 #to-signup>a {
@@ -103,15 +112,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: adelle-sans, sans-serif;
+  font-style: bold;
 }
 
 
 .text {
   /* border: blue solid 1px; */
   height: 35px;
+  font-family: adelle-sans, sans-serif;
+  font-style: normal;
 }
 
-
+/* ************ SIGN UP FORM ************* */
 .form-card-1 {
   display: flex;
   flex-direction: row;
@@ -156,6 +169,9 @@
   background-color: #5865f2;
   color: white;
   transition: background-color .2s ease;
+  font-family: adelle-sans, sans-serif;
+  font-style: bold;
+  font-size: 18px;
 }
 
 #subButton2:hover {
@@ -165,6 +181,8 @@
 #to-signup2 {
   color: #05a5cd;
   text-decoration: none;
+  font-family: adelle-sans, sans-serif;
+  border: 1px solid wheat;
 }
 
 #to-signup2:hover {
@@ -175,8 +193,24 @@
   color: #a2a3a5;
 }
 
-
+.qCode-container{
+  /* border: 1px solid white; */
+  height: 100%;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .qCode{
   height: 200px;
   width: 200px;
+}
+.qCode-title{
+border:1px solid pink;
+font-family: adelle-sans, sans-serif;
+  font-style: normal;
+
+}
+.qCode-subtext{
+  border: 1px solid green
 }
