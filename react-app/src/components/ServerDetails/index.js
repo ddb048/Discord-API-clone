@@ -36,7 +36,7 @@ const ServerDetail = () => {
 	// 	Object.values(state.messages.messages)
 	// );
 	const dispatch = useDispatch();
-	const servers = useSelector((state) => Object.values(state.servers.servers));
+	const servers = useSelector((state) => Object.values(state.servers.oneServer));
 	const members = useSelector((state) => state.members.members);
 	// console.log('users', members);
 	const channelsServersArr = servers.filter((dm) => dm.is_DM === false);
