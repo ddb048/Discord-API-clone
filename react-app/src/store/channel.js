@@ -137,10 +137,12 @@ const channelReducer = (state = initialState, action) => {
             return newState;
 
         case CREATE_CHANNEL:
+
             newState.channels = { ...state.channels, [action.channel.id]: action.channel };
 
             // console.log('new state in create channel', action)
-            return newState;
+            // return {...newState}
+            return newState
 
         case EDIT_CHANNEL:
             newState = { ...state, [action.channel.id]: action.channel };
