@@ -367,3 +367,7 @@
     font-style: bold;
     font-size: 18px;
 }
+
+.sign-up-button:hover {
+    background-color: #373f99;
+}
