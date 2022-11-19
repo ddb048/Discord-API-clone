@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createChannel } from '../../store/channel';
+import { getServerDetails } from '../../store/servers';
 import '../../context/Modal.css';
 const ChannelModal = ({ serverId, setShowModal }) => {
 	serverId = +serverId;
-	// const serverName = useSelector((state) => state.servers.oneServer);
-	// //console.log('servername >>>>', serverName);
+
 	const dispatch = useDispatch();
 	const [name, setName] = useState('');
 	const is_voice = false;
@@ -41,7 +41,7 @@ const ChannelModal = ({ serverId, setShowModal }) => {
 
 		if (!frontEndErrors.length) {
 			dispatch(createChannel(serverId, newChannel));
-			console.log('for the love of God please work')
+			dispatch(getServerDetails(serverId))
 			setShowModal(false);
 		}
 	}
