@@ -104,7 +104,7 @@
   /* align-items: flex-start; */
   /* width: 100%; */
   /* border: 1px solid pink; */
-  flex-direction: row;
+  flex-direction: column;
   height: 85%;
 }
 

@@ -10,7 +10,7 @@ function UsersList() {
   const [users, setUsers] = useState([]);
   const [showConfirm, setShowConfirm] = useState(false)
   const [newServer, setNewServer] = useState({})
-  const[receiver,setReceiver]=useState()
+  const [receiver, setReceiver] = useState()
   const dispatch = useDispatch()
   const currUser = useSelector(state => state.session.user)
   useEffect(() => {
