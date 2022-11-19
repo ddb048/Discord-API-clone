@@ -150,7 +150,7 @@ const serverReducer = (state = initialState, action) => {
             newState.servers[action.newServer.id] = action.newServer;
             return newState;
 
-
+// add state.servers to edit and remove
         case EDIT_SERVER:
             newState = { ...state, [action.server.id]: action.server };
             return newState

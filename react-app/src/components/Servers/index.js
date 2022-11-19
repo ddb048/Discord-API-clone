@@ -205,7 +205,7 @@ const Servers = () => {
 						dm.length > 0 &&
 						dm.map((message) => {
 							return (
-								<div className="mess-box">
+								<div className="mess-box" key={message.owner_name}>
 									<img
 										className="user-photo"
 										src={message.owner_pic}
@@ -228,7 +228,7 @@ const Servers = () => {
 						messages.length > 0 &&
 						messages.map((x) => {
 							return (
-								<div className="mess-box">
+								<div className="mess-box" key={x.owner_name}>
 									<img
 										className="user-photo"
 										src={x.owner_pic}
