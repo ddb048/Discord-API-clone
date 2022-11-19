@@ -11,6 +11,7 @@ const LogoutButton = () => {
     e.preventDefault()
     dispatch(logout());
     history.push('/discover')
+
   };
 
   return <button className='splash-logout-button' onClick={onLogout}>Logout</button>;

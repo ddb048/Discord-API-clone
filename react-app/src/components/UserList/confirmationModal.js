@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux"
 import { createMember } from "../../store/member"
-import { deleteServer } from "../../store/servers"
+import { deleteServer, getAllCurrentUserServers } from "../../store/servers"
 
 const MessageConfirmation = ({user, serverId, setShowConfirm}) => {
     const dispatch = useDispatch()
@@ -18,6 +18,7 @@ const MessageConfirmation = ({user, serverId, setShowConfirm}) => {
     const cancel=(e)=>{
         e.preventDefault()
         dispatch(deleteServer(serverId.id))
+        dispatch(getAllCurrentUserServers())
     }
 
     return (

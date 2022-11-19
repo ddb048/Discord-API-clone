@@ -28,6 +28,7 @@ const Servers = () => {
 	const [messages, setMessages] = useState([])
 	const [chatInput, setChatInput] = useState('')
 	const [currentServer, setCurrentServer] = useState([])
+	const [toUpdate, setToUpdate]=useState({})
 
 
 
@@ -119,7 +120,7 @@ const Servers = () => {
 				<div className="dm-button-container">
 					<div>
 						<NavLink to="/servers/@me">
-							<img className="dm-button" src={DM_button} alt="" />
+							<img onClick={showMsg} className="dm-button" src={DM_button} alt="" />
 						</NavLink>
 					</div>
 				</div>
@@ -144,12 +145,12 @@ const Servers = () => {
 											</div>
 										</div>
 									</NavLink>
-									<div className='cog' onClick={() => setUpdateShowModal(true)}>
+									<div className='cog' onClick={() => (setUpdateShowModal(true), setToUpdate(server))}>
 										<i className="fa fa-cog" aria-hidden="true" />
 									</div>
 									{showUpdateModal && (
 										<Modal onClose={() => setUpdateShowModal(false)}>
-											<UpdateServerForm setUpdateShowModal={setUpdateShowModal} server={server} />
+											<UpdateServerForm setUpdateShowModal={setUpdateShowModal} server={toUpdate} />
 										</Modal>)}
 								</div>
 							</div>
