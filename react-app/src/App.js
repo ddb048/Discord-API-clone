@@ -37,7 +37,7 @@ function App() {
   return (
     <BrowserRouter>
       <Route exact path="/">
-        {/* {session.user && <Redirect to="/servers/@me" />} */}
+        {session.user && <Redirect to="/servers/@me" />}
       </Route>
 
       <Switch>

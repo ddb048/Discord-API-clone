@@ -4,8 +4,7 @@ import { createChannel } from '../../store/channel';
 import '../../context/Modal.css';
 const ChannelModal = ({ serverId, setShowModal }) => {
 	serverId = +serverId;
-	// const serverName = useSelector((state) => state.servers.oneServer);
-	// //console.log('servername >>>>', serverName);
+
 	const dispatch = useDispatch();
 	const [name, setName] = useState('');
 	const is_voice = false;

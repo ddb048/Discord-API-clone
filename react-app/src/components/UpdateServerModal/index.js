@@ -7,7 +7,6 @@ import {
     getAllCurrentUserServers,
     updateServer
 } from "../../store/servers";
-// import './server-form.css'
 
 const UpdateServerForm = ({ setUpdateShowModal, server }) => {
     const [name, setName] = useState(server.name);
@@ -52,15 +51,8 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
         dispatch(deleteServer(server))
         dispatch(getAllCurrentUserServers())
         setUpdateShowModal(false)
-        // console.log('i rannnnnnnnnnnnnnnnnnnnnnnnn')
     }
-    //   const reset = () => {
-    //     setName("");
-    //     setDescription("");
-    //     setPreview_image("");
-    //     setPrivateServer("");
-    //     setIsDM(false);
-    //   };
+
 
     return (
         <div id="form" className="inputBox">
