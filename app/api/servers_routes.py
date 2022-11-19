@@ -117,8 +117,8 @@ def user_servers():
             res.append(server)
         elif id in [x["user_id"] for x in server['members']]:
             res.append(server)
-        for x in server['members']:
-            print('===========',x)
+        # for x in server['members']:
+        #     print('===========',x)
     return {'servers': res}, 200
 
 

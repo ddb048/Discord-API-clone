@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './LoginForm.css'
 
+
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');

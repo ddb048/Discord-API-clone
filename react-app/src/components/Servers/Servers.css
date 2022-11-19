@@ -244,7 +244,6 @@
   border-radius: 10px;
 }
 
-
 .active-user-con {
     margin: 2%;
     border-radius: 20px;
@@ -280,6 +279,7 @@
     display: flex;
 
 
+
 }
 
 .user-img {
@@ -288,7 +288,6 @@
 }
 
 .user-details {
-
     color: white;
     width: 250px;
     height: 150px;
@@ -304,12 +303,15 @@
 
 .user-name-id {
   color: white;
-
     width: 272px;
-    height: 62px;
+    height: 32px;
     background-color: black;
+}
 
-
+.joind-date {
+  font-weight: 100;
+    font-family: sans-serif;
+    font-size: 15px;
 }
 
 .user-name-id-joined {
