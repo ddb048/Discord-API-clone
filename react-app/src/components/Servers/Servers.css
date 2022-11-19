@@ -170,7 +170,11 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    overflow-y: scroll;
+}
 
+.servers-active-container::-webkit-scrollbar{
+  display: none;
 }
 
 /* styles div containing direct messages title */
@@ -274,7 +278,7 @@
     /* top: 45%; */
     object-fit: contain;
     display: flex;
-  
+
 
 }
 
@@ -294,7 +298,7 @@
     display: flex;
     flex-direction: column;
     margin-top: 95px;
-  
+
 
 }
 
@@ -304,7 +308,7 @@
     width: 272px;
     height: 62px;
     background-color: black;
-  
+
 
 }
 

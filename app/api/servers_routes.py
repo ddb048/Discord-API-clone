@@ -40,8 +40,8 @@ def get_all_member(id):
 def add_a_member(user_id, server_id):
     member = Member(
         roles='Pending',
-        user_id=user_id,
-        server_id=server_id
+        user_id=int(user_id),
+        server_id=int(server_id)
     )
     db.session.add(member)
     db.session.commit()

@@ -17,6 +17,7 @@ import './Servers.css';
 import { io } from 'socket.io-client'
 import { createMessage, getAllMessages } from '../../store/message';
 import UpdateServerForm from '../UpdateServerModal';
+import UsersList from '../UserList/UsersList';
 
 let socket;
 
@@ -43,7 +44,7 @@ const Servers = () => {
 	let isNotDm = servers.filter((dm) => dm.is_DM === false);
 	let dmServersArr = servers.filter((dm) => dm.is_DM === true);
 	// const userArr = userObj.find((dm) => dm.is_DM == true);
-	// console.log('USER ARRAY', isNotDm)
+	console.log('USER ARRAY', dmServersArr)
 	let memberArr = []
 	dmServersArr.forEach(server => memberArr.push(...server.members))
 	// console.log("------>", memberArr)
@@ -285,6 +286,9 @@ const Servers = () => {
 							</div>
 						</div>
 					</>
+				)}
+				{!showMsg && (
+					<UsersList />
 				)}
 			</div>
 		</div>

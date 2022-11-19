@@ -145,6 +145,7 @@ const serverReducer = (state = initialState, action) => {
             return newState
 
         case CREATE_SERVER:
+            newState={...state}
             newState.servers[action.newServer.id] = action.newServer;
             return newState;
 
