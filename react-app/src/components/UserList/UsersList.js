@@ -26,7 +26,7 @@ function UsersList() {
   const createDM = async (user) => {
     let newDmServer = await dispatch(createServer({
       name: `${currUser.username}-${user.username}`,
-      preview_image: '',
+      preview_image: '2',
       private: true,
       server_description: 'New Dm',
       is_DM: true
