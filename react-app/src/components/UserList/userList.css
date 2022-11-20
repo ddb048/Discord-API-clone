@@ -39,9 +39,11 @@
     /* object-fit: contain; */
     /* display: flex;
     flex-direction: column; */
+    height: 70px;
 }
 
 .user-img2 {
     max-width: 100%;
     border-radius: 50%;
+    object-fit: fill;
 }

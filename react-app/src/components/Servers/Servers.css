@@ -332,3 +332,15 @@
 .cog>i {
   font-size: 15px;
 }
+
+
+.users-list-container{
+  /* border: red solid 1px; */
+  height: 100%;
+  overflow-y: scroll;
+  padding-bottom: 5%;
+}
+
+.users-list-container::-webkit-scrollbar {
+  display: none;
+}
