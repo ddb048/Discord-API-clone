@@ -29,8 +29,9 @@ const Servers = () => {
 	const [chatInput, setChatInput] = useState('')
 	const [currentServer, setCurrentServer] = useState([])
 	const [toUpdate, setToUpdate] = useState({})
+	const [memberCard,setMemberCard]=useState({})
 
-
+console.log('member card data',memberCard)
 
 	const dispatch = useDispatch();
 	// const history = useHistory();
@@ -183,7 +184,7 @@ const Servers = () => {
 						(member) =>
 							member.user_info.profile_pic && (
 								<div key={member.id}>
-									<div onClick={() => userDm(member.server_id)}>
+									<div onClick={() => (userDm(member.server_id), setMemberCard(member))}>
 										<div>
 											<img
 												className="user-photo"
@@ -273,7 +274,7 @@ const Servers = () => {
 								<div className="user-img-div">
 									<img
 										className="user-img"
-										src={otherMember[0].user_info.profile_pic}
+										src={memberCard.user_info.profile_pic}
 										alt=""
 									/>
 								</div>
@@ -281,14 +282,14 @@ const Servers = () => {
 							<div className="user-details">
 								<div className="user-name-id">
 
-									{otherMember[0].user_info.first_name}{" "}
-									{otherMember[0].user_info.last_name}#
-									{otherMember[0].user_info.id}
+									{memberCard.user_info.first_name}{" "}
+									{memberCard.user_info.last_name}#
+									{memberCard.user_info.id}
 								</div>
 
 								<div className="user-name-id-joined">
 									<div className='joined'>Q-core member since </div>
-									<div className='joind-date'>{otherMember[0].joined.slice(0, 17)}</div>
+									<div className='joind-date'>{memberCard.joined.slice(0, 17)}</div>
 								</div>
 							</div>
 						</div>
