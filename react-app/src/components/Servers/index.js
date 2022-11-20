@@ -29,7 +29,7 @@ const Servers = () => {
 	const [chatInput, setChatInput] = useState('')
 	const [currentServer, setCurrentServer] = useState([])
 	const [activeMember, setActiveMember] = useState({})
-	console.log("SHOW ME ACTIVE USER", activeMember)	
+	// console.log("SHOW ME ACTIVE USER", activeMember)	
 	const [toUpdate, setToUpdate]=useState({})
 
 
@@ -122,7 +122,12 @@ const Servers = () => {
         <div className="dm-button-container">
           <div>
             <NavLink to="/servers/@me">
-              <img onClick={showMsg} className="dm-button" src={DM_button} alt="" />
+              <img
+                onClick={showMsg}
+                className="dm-button"
+                src={DM_button}
+                alt=""
+              />
             </NavLink>
           </div>
         </div>
@@ -147,7 +152,12 @@ const Servers = () => {
                       </div>
                     </div>
                   </NavLink>
-                  <div className="cog" onClick={() => (setUpdateShowModal(true), setToUpdate(server))}>
+                  <div
+                    className="cog"
+                    onClick={() => (
+                      setUpdateShowModal(true), setToUpdate(server)
+                    )}
+                  >
                     <i className="fa fa-cog" aria-hidden="true" />
                   </div>
                   {showUpdateModal && (
@@ -183,13 +193,16 @@ const Servers = () => {
             (member) =>
               member.user_info.profile_pic && (
                 <div key={member.id}>
-                  <div onClick={() => (userDm(member.server_id), setActiveMember(member))}>
+                  <div
+                    onClick={() => (
+                      userDm(member.server_id), setActiveMember(member)
+                    )}
+                  >
                     <div>
                       <img
                         className="user-photo"
                         src={member.user_info.profile_pic}
                         alt=""
-                        
                       />
                     </div>
                     <div>{member.user_info.username} </div>
@@ -296,9 +309,7 @@ const Servers = () => {
             </div>
           </>
         )}
-					{!showMsg && (
-					<UsersList />
-				)}
+        {!showMsg && <UsersList />}
       </div>
     </div>
   );

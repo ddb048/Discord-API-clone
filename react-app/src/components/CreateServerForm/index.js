@@ -72,7 +72,7 @@ const CreateServerForm = ({ setShowModal }) => {
             value={name}
             placeholder={"Server name"}
             name="name"
-            required
+            
           />
           <div>
             <label className="modal-input-label"> ADD AN IMAGE</label>
@@ -92,7 +92,7 @@ const CreateServerForm = ({ setShowModal }) => {
               value={preview_image}
               placeholder="Choose your server image url"
               name="image"
-              required
+              
             />
 
             <textarea
