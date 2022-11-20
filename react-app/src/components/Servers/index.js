@@ -62,7 +62,7 @@ const Servers = () => {
 	dmServersArr.forEach(server => tes.push(...server.messages))
 	// console.log("testtt=====>", tes)
 
-
+	console.log('this is other member', otherMember)
 
 	useEffect(() => {
 		dispatch(getAllCurrentUserServers());
