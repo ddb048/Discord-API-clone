@@ -42,8 +42,7 @@ const CreateServerForm = ({ setShowModal }) => {
       isDM,
     };
     const data = await dispatch(createServer(newServer));
-    console.log("within handlesubmit of createServer", data)
-    if (data.errors) {
+      if (data.errors) {
       setError(data.errors);
     } else { setShowModal(false); }
   };
