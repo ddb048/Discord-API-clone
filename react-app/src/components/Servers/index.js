@@ -69,9 +69,9 @@ const Servers = () => {
 		dispatch(getAllCurrentUserServers());
 	}, [dispatch]);
 
-	useEffect(() => {
+	// useEffect(() => {
 
-	}, [currentServer])
+	// }, [currentServer])
 
 	useEffect(() => {
 		dispatch(getServerDetails(currentServer[0]));
@@ -83,7 +83,7 @@ const Servers = () => {
 
 	useEffect(()=>{
 		setMessages([])
-	}, memberCard)
+	},[ memberCard])
 
 	useEffect(() => {
 		// open socket connection
