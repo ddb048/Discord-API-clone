@@ -35,6 +35,12 @@
     /* border:1px solid blue */
 }
 
+.errors-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 
 .exit {
     width: 100%;
@@ -164,11 +170,16 @@ input {
 .dark-create-channel-btn {
     background-color: #434a94;
     color: #888b98;
-    height: 50px;
-    width: 100px;
+    height: 45px;
+    width: 400px;
     border: none;
     border-radius: 2px;
+    transition: background-color .2s ease;
+    font-family: adelle-sans, sans-serif;
+    font-style: bold;
+    font-size: 18px;
 }
+
 
 /* .dark-create-channel-btnvisible{
     background-color: #434a94;
@@ -182,10 +193,18 @@ input {
 .light-create-channel-btn {
     background-color: #5865f2;
     color: white;
-    height: 50px;
-    width: 100px;
+    height: 45px;
+    width: 400px;
     border: none;
     border-radius: 2px;
+    transition: background-color .2s ease;
+    font-family: adelle-sans, sans-serif;
+    font-style: bold;
+    font-size: 18px;
+}
+
+.light-create-channel-btn:hover {
+    background-color: #434a94;
 }
 
 /* .dark-create-channel-btnhide{
