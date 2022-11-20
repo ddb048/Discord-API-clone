@@ -28,13 +28,10 @@ const Servers = () => {
 	const [messages, setMessages] = useState([])
 	const [chatInput, setChatInput] = useState('')
 	const [currentServer, setCurrentServer] = useState([])
-	const [activeMember, setActiveMember] = useState({})
-	// console.log("SHOW ME ACTIVE USER", activeMember)	
-	const [toUpdate, setToUpdate]=useState({})
-	const [memberCard,setMemberCard]=useState({})
+	const [toUpdate, setToUpdate] = useState({})
+	const [memberCard, setMemberCard] = useState({})
 
-
-console.log('member card data',memberCard)
+	console.log('member card data', memberCard)
 
 	const dispatch = useDispatch();
 	// const history = useHistory();
@@ -72,9 +69,9 @@ console.log('member card data',memberCard)
 		dispatch(getAllCurrentUserServers());
 	}, [dispatch]);
 
-	useEffect(() => {
+	// useEffect(() => {
 
-	}, [currentServer])
+	// }, [currentServer])
 
 	useEffect(() => {
 		dispatch(getServerDetails(currentServer[0]));
@@ -84,6 +81,9 @@ console.log('member card data',memberCard)
 
 	}, [currentServer, dispatch, setUpdateShowModal]);
 
+	useEffect(() => {
+		setMessages([])
+	}, [memberCard])
 
 	useEffect(() => {
 		// open socket connection
@@ -298,9 +298,12 @@ console.log('member card data',memberCard)
 						</div>
 					</>
 				)}
-				{!showMsg && (
-					<UsersList />
-				)}
+				<div className='users-list-container'>
+					{!showMsg && (
+						<UsersList />
+					)}
+				</div>
+
 			</div>
 		</div>
 	);

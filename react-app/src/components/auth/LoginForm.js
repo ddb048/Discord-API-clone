@@ -91,14 +91,21 @@ const LoginForm = () => {
 							</div>
 						</div>
 					</div>
+
 					<div className='errors-div'>
 						{errors.map((error, ind) => (
 							<div key={ind}>{error}</div>
 						))}
 					</div>
 					<div>
-						<div>{renderErr && emailErr ? <label className='text renderError' htmlFor="email">Email: {emailErr}</label> :
-							<label className='text noRenderError' htmlFor="email">Email</label>}
+						<div>{renderErr && emailErr ?
+							<label className='text renderError' htmlFor="email">
+								Email: {emailErr}</label>
+							:
+							<label className='text noRenderError' htmlFor="email">
+								Email
+							</label>
+						}
 						</div>
 						<input
 
@@ -111,8 +118,15 @@ const LoginForm = () => {
 						/>
 					</div>
 					<div>
-						<div>{renderErr && passwordErr ? <label className='text renderError' htmlFor="password">Password: {passwordErr}</label> :
-							<label className='text noRenderError' htmlFor="password">Password</label>}
+						<div>
+							{renderErr && passwordErr ?
+								<label className='text renderError' htmlFor="password">
+									Password: {passwordErr}</label>
+								:
+								<label className='text noRenderError' htmlFor="password">
+									Password
+								</label>
+							}
 						</div>
 						<input
 							name="password"

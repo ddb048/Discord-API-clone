@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useDispatch,useSelector } from 'react-redux';
+
+import { useDispatch, useSelector } from 'react-redux';
 import { createServer, getAllCurrentUserServers } from '../../store/servers';
 import '../../context/Modal.css';
 
@@ -16,22 +17,34 @@ const CreateServerForm = ({ setShowModal }) => {
   const urlValidation = (str) => {
     return /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/.test(str);
   };
- 
-  
-   useEffect(() => {
+
+  const servers = useSelector(state => state.servers.servers)
+
+
+  const serversNames = Object.values(servers)
+
+  const compName = serversNames.find(server => server.name === name)
+
+  console.log("this is servers from createServerform", servers)
+
+  useEffect(() => {
     let errors = {};
-    if (!name) errors.nameError = 'You must give your server a name'
-    
+    if (!name) {
+      errors.nameError = 'You must give your server a name';
+    } else if (compName) {
+      errors.nameError = 'Server with this name already exists'
+    }
+
     else errors.nameError = ''
     if (!preview_image.length) errors.preview_imageError = 'You must provide image url'
     else if (!preview_image.length && urlValidation)
-    errors.preview_imageError = 'You must provide a valid url link to an image'
+      errors.preview_imageError = 'You must provide a valid url link to an image'
     else errors.preview_imageError = ''
-   
-    setError(errors);
-  }, [name,preview_image,description]);
 
-  
+    setError(errors);
+  }, [name, preview_image, description]);
+
+
   const handleSubmit = async (e) => {
     // let errors = [];
     e.preventDefault();
@@ -44,92 +57,108 @@ const CreateServerForm = ({ setShowModal }) => {
       isDM,
     };
     const data = await dispatch(createServer(newServer));
-      if (data.errors) {
+    if (data.errors) {
       setError(data.errors);
     } else { setShowModal(false); }
   };
 
 
   return (
-    <div className="modal">
-      <form className="new-server-modal-form" onSubmit={handleSubmit}>
-        <div className="modal-title">Your New Server</div>
-        <div className="modal-input-form">
-          {renderErr && error.nameError ? (
-            <label className="text renderError" htmlFor="email">
-              NAME: {error.nameError}
-            </label>
-          ) : (
-            <label className="text noRenderError" htmlFor="name">
-              SERVER NAME
-            </label>
-          )}
-          <input
-            type="text"
-            className="server-modal-inp"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-            placeholder={"Server name"}
-            name="name"
-          />
-          <div>
-            {renderErr && error.preview_imageError ? (
-              <label className="text renderError" htmlFor="email">
-                SERVER IMAGE: {error.preview_imageError}
-              </label>
-            ) : (
-              <label className="text noRenderError" htmlFor="img">
-                SERVER IMAGE
-              </label>
-            )}
-            <input
-              type="text"
-              className="server-modal-inp"
-              onChange={(e) => setPreview_image(e.target.value)}
-              value={preview_image}
-              placeholder="Choose your server image url"
-              name="image"
-            />
-            <label className="text noRenderError" htmlFor="img">
-              SERVER TOPICS
-            </label>
-            <textarea
-              className="server-modal-inp-text"
-              type="text"
-              onChange={(e) => setDescription(e.target.value)}
-              value={description}
-              placeholder="Please describe your server topics"
-              name="description"
-            ></textarea>
+    <>
 
-            <div id="checkmark-container">
-              <label id="checkmark-label">Private Server</label>
+      <div className="form-container">
+        <div className="form-card">
+          <form id="form" onSubmit={handleSubmit}>
+
+            <div className="text">
+              <h2>Your New Server</h2>
+            </div>
+
+            <div>
+              {renderErr && error.nameError ?
+                <label className="text renderError" htmlFor="name">
+                  Server Name: {error.nameError}
+                </label>
+                :
+                <label className="text noRenderError" htmlFor="name">
+                  Server Name
+                </label>
+              }
               <input
-                id="checkmark-box"
+                type="text"
+                className="inp"
+                onChange={(e) => setName(e.target.value)}
+                value={name}
+                placeholder={"Server name"}
+                name="name"
+              />
+            </div>
+            <div>
+              <div>
+                {renderErr && error.preview_imageError ?
+                  <label className="text renderError" htmlFor="img">
+                    Server Image: {error.preview_imageError}
+                  </label>
+                  :
+                  <label className="text noRenderError" htmlFor="img">
+                    Server Image
+                  </label>
+                }
+              </div>
+              <input
+                type="text"
+                className="inp"
+                onChange={(e) => setPreview_image(e.target.value)}
+                value={preview_image}
+                placeholder="Choose your server image url"
+                name="image"
+              />
+            </div>
+            <div>
+              <label className="text noRenderError" htmlFor="text">
+                Server Topics
+              </label>
+              <input
+                className="inp"
+                type="text"
+                onChange={(e) => setDescription(e.target.value)}
+                value={description}
+                placeholder="Please describe your server topics"
+                name="description"
+              ></input>
+            </div>
+            <div className='private-container'>
+
+              <input
+                id="inp"
                 type="checkbox"
                 onChange={(e) => setPrivateServer(e.target.value)}
                 value={privateServer}
                 checked={privateServer || null}
               />
+              <label className='text noRenderError'>Private Server</label>
             </div>
-          </div>
-          <div className="errors-div">
-            {!!error.length && <div id="errors">{error[0]}</div>}
-          </div>
-          <div className='submit-btn-div'>
-            <button
-              id="create-channel-channel-btn"
-              disabled={
-                !!error.nameError && !!error.preview_image && !!error[0]
-              }
-              type="submit"
-            >
-              Submit
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
+
+            <div className="errors-div">
+              {!!error.length && <div id="errors">{error[0]}</div>}
+            </div>
+            <div >
+              <button
+                className='subButton'
+                // id="create-channel-channel-btn"
+                disabled={
+                  !!error.nameError && !!error.preview_image && !!error[0]
+                }
+                type="submit"
+              >
+                Submit
+              </button>
+            </div>
+
+          </form>
+        </div >
+      </div >
+    </>
   );
 };
 
