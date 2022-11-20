@@ -9,6 +9,8 @@ import LogoutButton from '../auth/LogoutButton';
 import { Modal } from '../../context/Modal';
 import ChannelModal from './NewChannelModal';
 import UpdateChannelModal from './UpdateChannelModal';
+import UpdateServerForm from '../UpdateServerModal';
+import CreateServerForm from '../CreateServerForm';
 import './index.css';
 
 import { io } from 'socket.io-client';
@@ -23,6 +25,10 @@ const ServerDetail = () => {
 
 	const [updateModal, setUpdateModal] = useState(false)
 	const [modalData, setModalData] = useState();
+	// useState for update server Modal
+	const [showUpdateModal, setUpdateShowModal] = useState(false);
+// useState for saving server to be updated
+	const [toUpdate, setToUpdate]=useState({})
 
 	// useState that sets channel id once
 	const [currentChannelId, setCurrentChannelId] = useState();
@@ -179,9 +185,26 @@ const ServerDetail = () => {
 										</div>
 									</NavLink>
 								</div>
+								<div className='cog' onClick={() => (setUpdateShowModal(true), setToUpdate(server))}>
+										<i className="fa fa-cog" aria-hidden="true" />
+									</div>
+									{showUpdateModal && (
+										<Modal onClose={() => setUpdateShowModal(false)}>
+											<UpdateServerForm setUpdateShowModal={setUpdateShowModal} server={toUpdate} />
+										</Modal>)}
 							</>
 						);
 					})}
+					<div className="servers-photo-container">
+					<div className="servers-photo" onClick={() => setShowModal(true)}>
+						<i className="fa fa-plus" aria-hidden="true" />
+					</div>
+					{showModal && (
+						<Modal onClose={() => setShowModal(false)}>
+							<CreateServerForm setShowModal={setShowModal} />
+						</Modal>
+					)}
+				</div>
 			</div>
 			<div className='server-channels-container'>
 				<div className='server-title-container'>
@@ -234,7 +257,23 @@ const ServerDetail = () => {
 			</div>
 			<div className='channel-messages-container'>
 				<div></div>
+					messages section
 				<div className='test-name'>
+					{showMsg &&
+						currentChannel &&
+						currentChannel.messages.map((msg) => {
+							return (
+								<div className='mess-box'>
+									<div className='user-container'>
+										<img className='user-photo' src={msg.user_photo} alt='' />
+										<div className='mess'>
+											<div><h4>{msg.owner_name}</h4></div>
+											<div className='channel-message'>{msg.message_body}</div>
+										</div>
+									</div>
+								</div>
+							);
+						})}
 					<div>
 						{showMsg &&
 							messages.length > 0 &&
@@ -250,7 +289,7 @@ const ServerDetail = () => {
 											<div>
 												<h4>{chat.owner_name}</h4>
 											</div>
-											<div>{chat.message_body}</div>
+											<div className='channel-message'>{chat.message_body}</div>
 										</div>
 									</div>
 								);
