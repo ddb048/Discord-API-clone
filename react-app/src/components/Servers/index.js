@@ -29,7 +29,8 @@ const Servers = () => {
 	const [chatInput, setChatInput] = useState('')
 	const [currentServer, setCurrentServer] = useState([])
 	const [activeMember, setActiveMember] = useState({})
-	console.log("SHOW ME ACTIVE USER", activeMember)	const [toUpdate, setToUpdate]=useState({})
+	console.log("SHOW ME ACTIVE USER", activeMember)	
+	const [toUpdate, setToUpdate]=useState({})
 
 
 
