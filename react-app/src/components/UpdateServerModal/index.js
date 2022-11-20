@@ -14,17 +14,26 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
     const [isDM] = useState(false);
     const [privateServer, setPrivateServer] = useState(false)
     const [error, setError] = useState({});
+    const [renderErr, setRenderErr] = useState(false);
     const dispatch = useDispatch();
 
+    const urlValidation = (str) => {
+      return /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/.test(str);
+    };
 
     useEffect(() => {
       let errors = {};
-      if (!name) errors.nameError = "You must give your server a name";
-      else errors.nameError = "";
-
-      setError(errors);
-    }, [name]);
-
+    if (!name) errors.nameError = 'You must give your server a name'
+    
+    else errors.nameError = ''
+    if (!preview_image.length) errors.preview_imageError = 'You must provide image url'
+    else if (!preview_image.length && urlValidation)
+    errors.preview_imageError = 'You must provide a valid url link to an image'
+    else errors.preview_imageError = ''
+   
+    setError(errors);
+  }, [name,preview_image,description]);
+   
 
 
     const handleSubmit = async (e) => {
@@ -56,15 +65,32 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
         <h1>Update Server</h1>
 
         <form onSubmit={handleSubmit}>
+          {renderErr && error.nameError ? (
+            <label className="text renderError" htmlFor="email">
+              NAME: {error.nameError}
+            </label>
+          ) : (
+            <label className="text noRenderError" htmlFor="name">
+              Name
+            </label>
+          )}
           <input
             type="text"
             onChange={(e) => setName(e.target.value)}
             value={name}
             placeholder="Server name"
             name="name"
-            required
           />
-          <div id="errors">{error.nameError}</div>
+
+          {renderErr && error.preview_imageError ? (
+            <label className="text renderError" htmlFor="email">
+              SERVER IMAGE: {error.preview_imageError}
+            </label>
+          ) : (
+            <label className="text noRenderError" htmlFor="img">
+              Image
+            </label>
+          )}
           <input
             id="update-name"
             type="text"
@@ -72,7 +98,6 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
             value={preview_image}
             placeholder="Choose your server image url"
             name="image"
-            required
           />
           <textarea
             id="update-text-area"
@@ -81,17 +106,16 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
             value={description}
             placeholder="Please describe your server topics"
             name="description"
-            required
           ></textarea>
 
           <div id="server-conteiner">
             <label id="private-radio">
               <input
-              id='checkmark-box'
+                id="checkmark-box"
                 type="checkbox"
                 onChange={(e) => setPrivateServer(e.target.value)}
                 value={privateServer}
-                checked={privateServer || null }
+                checked={privateServer || null}
                 name="boolean"
               />{" "}
               Private Server
@@ -100,13 +124,13 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
           <div className="errors-div">
             {!!error.length && <div id="errors">{error[0]}</div>}
           </div>
-          <button id="new-server-btn" type="submit" disabled={!!error.length}>
+          <button id="new-server-btn" type="submit"  disabled={!!error.nameError && !!error.preview_image && !!error[0]}>
             Update
           </button>
           <button
             id="new-server-btn-dlt"
             onClick={delServer}
-            disabled={!!error.length}
+           
           >
             Delete
           </button>
