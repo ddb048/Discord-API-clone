@@ -75,6 +75,7 @@
     display: flex;
     flex-direction: column;
     padding-bottom: 4px;
+    
 }
 .modal-input-label{
     /* border: 1px solid red; */
@@ -171,9 +172,9 @@
     background-color: #5865f2;
     color: white;
     height: 50px;
-    width: 400px;
+    width: 302px;
     border: none;
-    border-radius: 2px;
+    border-radius: 14px;
 }
 #create-server-modal-content{
     display: flex;
@@ -189,10 +190,9 @@
 }
 
 .new-server-modal-form{
-    /* border: 1px solid green; */
     display: flex;
     flex-direction: column;
-    /* gap: 15px; */
+    align-items: center;
 }
 #checkmark-label{
     font-family: adelle-sans, sans-serif;
@@ -277,5 +277,56 @@ width: 396px;
 }
 
 #form {
-    font-family: Arial, Helvetica, sans-serif
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    color: rgb(133, 133, 133);
+}
+.server-modal-inp {
+    height: 40px;
+    width: 383px;
+    background-color: white;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-family: adelle-sans, sans-serif;
+    font-style: normal;
+    margin-left: 1.5%;
+    color: #36393f;
+    margin-bottom: 3%;
+    margin-top:1%;
+}
+
+.server-modal-inp-text {
+    height: 80px;
+    width: 383px;
+    background-color: white;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-family: adelle-sans, sans-serif;
+    font-style: normal;
+    margin-left: 1.5%;
+    margin-top: 1%;
+    color: #36393f;
+}
+
+#h1 {
+  height: 35px;
+  font-family: adelle-sans, sans-serif;
+  font-style: normal;
+  text-align: center;
+  
+}
+
+.text.noRenderError {
+    color: #a2a3a5;
+    margin-left: 1%;
+}
+
+.submit-btn-div {
+    display: flex;
+    justify-content: center;
 }
