@@ -76,73 +76,73 @@ const LoginForm = () => {
 	}
 
 	return (
-		<>
-			<div className="form-container">
-				<div className="form-card">
-					<form id='form' onSubmit={onLogin}>
 
-						<div id='welcome'>
-							<div id='welcome-text'>
-								<div className='text'>
-									<h2>Welcome back!</h2>
-								</div>
-								<div className='text'>
-									<p>We're so excited to see you again!</p>
-								</div>
+		<div className="form-container">
+			<div className="form-card">
+				<form id='form' onSubmit={onLogin}>
+
+					<div id='welcome'>
+						<div id='welcome-text'>
+							<div className='text'>
+								<h2>Welcome back!</h2>
+							</div>
+							<div className='text'>
+								<p>We're so excited to see you again!</p>
 							</div>
 						</div>
-						<div className='errors-div'>
-							{errors.map((error, ind) => (
-								<div key={ind}>{error}</div>
-							))}
-						</div>
-						<div>
-							<div>{renderErr && emailErr ? <label className='text renderError' htmlFor="email">Email: {emailErr}</label> :
-								<label className='text noRenderError' htmlFor="email">Email</label>}
-							</div>
-							<input
-
-								name="email"
-								type="text"
-								// placeholder="Email"
-								value={email}
-								onChange={updateEmail}
-								className='inp'
-							/>
-						</div>
-						<div>
-							<div>{renderErr && passwordErr ? <label className='text renderError' htmlFor="password">Password: {passwordErr}</label> :
-								<label className='text noRenderError' htmlFor="password">Password</label>}
-							</div>
-							<input
-								name="password"
-								type="password"
-								// placeholder="Password"
-								value={password}
-								onChange={updatePassword}
-								className='inp'
-							/>
-						</div>
-						<div>
-							<button className='subButton' type="submit">Login</button>
-						</div>
-						<div id='to-signup'>
-							Need an account? <Link to={'/sign-up'}>Register</Link>
-						</div>
-						<div>
-							<button
-								onClick={log}
-								className='subButton'>Demo User</button>
-						</div>
-					</form>
-					<div className='qCode-container'>
-						<img className='qCode' src={qrCode} alt="" />
-						<h3 className='text'>Scan this QR Code to check out our GitHub</h3>
-
 					</div>
+					<div className='errors-div'>
+						{errors.map((error, ind) => (
+							<div key={ind}>{error}</div>
+						))}
+					</div>
+					<div>
+						<div>{renderErr && emailErr ? <label className='text renderError' htmlFor="email">Email: {emailErr}</label> :
+							<label className='text noRenderError' htmlFor="email">Email</label>}
+						</div>
+						<input
+
+							name="email"
+							type="text"
+							// placeholder="Email"
+							value={email}
+							onChange={updateEmail}
+							className='inp'
+						/>
+					</div>
+					<div>
+						<div>{renderErr && passwordErr ? <label className='text renderError' htmlFor="password">Password: {passwordErr}</label> :
+							<label className='text noRenderError' htmlFor="password">Password</label>}
+						</div>
+						<input
+							name="password"
+							type="password"
+							// placeholder="Password"
+							value={password}
+							onChange={updatePassword}
+							className='inp'
+						/>
+					</div>
+					<div>
+						<button className='subButton' type="submit">Login</button>
+					</div>
+					<div id='to-signup'>
+						Need an account? <Link to={'/sign-up'}>Register</Link>
+					</div>
+					<div>
+						<button
+							onClick={log}
+							className='subButton'>Demo User</button>
+					</div>
+				</form>
+				<div className='qCode-container'>
+					<img className='qCode' src={qrCode} alt="" />
+					<h3 className='text'>Scan this QR Code to check out our GitHub</h3>
+
 				</div>
 			</div>
-		</>
+		</div>
+
 	);
 };
 
