@@ -272,12 +272,19 @@ input {
 #new-server-btn-dlt {
     background-color: #d92525;
     color: white;
-    height: 50px;
+    height: 45px;
     width: 400px;
     border: none;
-    border-radius: 2px;
+    border-radius: 5px;
+    transition: background-color .2s ease;
+    font-family: adelle-sans, sans-serif;
+    font-style: bold;
+    font-size: 18px;
 }
 
+#new-server-btn-dlt:hover {
+    background-color: brown;
+}
 
 #update-text-area {
     height: 40px;
