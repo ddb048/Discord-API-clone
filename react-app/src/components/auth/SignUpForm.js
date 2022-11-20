@@ -26,6 +26,7 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
+    setRenderErr(true)
     if (password === confirmPassword) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
@@ -122,92 +123,132 @@ const SignUpForm = () => {
   }
 
   return (
-
-    <div className='form-container'>
-      <div className='form-card-1'>
-        <form id='form' onSubmit={onSignUp}>
-
-          <div id='welcome-text'>
-            <h2 className='text'>Create an account</h2>
+    <div className="form-container">
+      <div className="form-card-1">
+        <form id="form" onSubmit={onSignUp}>
+          <div id="welcome-text">
+            <h2 className="text">Create an account</h2>
           </div>
 
-          <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div>
           <div>
             <div>
-              <label className='text'>UserName</label>
+              {renderErr && usernameErr ? (
+                <label className="text renderError" htmlFor="username">
+                  NAME: {usernameErr}
+                </label>
+              ) : (
+                <label className="text noRenderError" htmlFor="username">
+                  User Name
+                </label>
+              )}
             </div>
             <input
-              className='inp2'
-              type='text'
-              name='username'
+              className="inp2"
+              type="text"
+              name="username"
               onChange={updateUsername}
               value={username}
-              placeholder='Your username'
+              placeholder="Your username"
             ></input>
           </div>
           <div>
             <div>
-              <label className='text'>Email</label>
+             
+              {renderErr && emailErr ? (
+                <label className="text renderError" htmlFor="email">
+                  NAME: {emailErr}
+                </label>
+              ) : (
+                <label className="text noRenderError" htmlFor="email">
+                  User Name
+                </label>
+              )}
             </div>
             <input
-              className='inp2'
-              type='text'
-              name='email'
+              className="inp2"
+              type="text"
+              name="email"
               onChange={updateEmail}
               value={email}
-              placeholder='Your email'
+              placeholder="Your email"
             ></input>
           </div>
           <div>
             <div>
-              <label className='text'>Profile picture</label>
+              
+              {renderErr && urlErr ? (
+                <label className="text renderError" htmlFor="pic">
+                  PROFIL PICTURE: {urlErr}
+                </label>
+              ) : (
+                <label className="text noRenderError" htmlFor="pic">
+                  Profile picture
+                </label>
+              )}
             </div>
             <input
-              className='inp2'
-              type='text'
-              name='profilePicture'
+              className="inp2"
+              type="text"
+              name="profilePicture"
               onChange={updateProfile_pi}
               value={profile_pic}
-              placeholder='Upload a png or jpeg image of yourself'
+              placeholder="Upload a png or jpeg image of yourself"
             ></input>
           </div>
           <div>
             <div>
-              <label className='text'>Password</label>
+              {renderErr && passwordErr ? (
+                <label className="text renderError" htmlFor="pic">
+                  PASSWORD: {passwordErr}
+                </label>
+              ) : (
+                <label className="text noRenderError" htmlFor="pic">
+                  Password
+                </label>
+              )}
             </div>
             <input
-              className='inp2'
-              type='password'
-              name='password'
+              className="inp2"
+              type="password"
+              name="password"
               onChange={updatePassword}
               value={password}
-              placeholder='Your Password'
+              placeholder="Your Password"
             ></input>
           </div>
           <div>
-            <label className='text'>Confirm Password</label>
+            {renderErr && confirmPasswordErr ? (
+              <label className="text renderError" htmlFor="pic">
+                CONFIRMED PASSWORD: {confirmPasswordErr}
+              </label>
+            ) : (
+              <label className="text noRenderError" htmlFor="pic">
+                Confirm Password
+              </label>
+            )}
             <input
-              className='inp2'
-              type='password'
-              name='repeat_password'
+              className="inp2"
+              type="password"
+              name="repeat_password"
               onChange={updateRepeatPassword}
               value={confirmPassword}
-              placeholder='Your password'
-              required={true}
+              placeholder="Your password"
             ></input>
           </div>
-          <button id='subButton2' type='submit'>Sign Up</button>
-          <div >
-            <Link id='to-signup2' to={'/login'}>Already have an account?</Link>
+          <div className="errors-div">
+            {!!errors.length && <div id="errors">{errors[0]}</div>}
+          </div>
+          <button id="subButton2" type="submit">
+            Sign Up
+          </button>
+          <div>
+            <Link id="to-signup2" to={"/login"}>
+              Already have an account?
+            </Link>
           </div>
         </form>
       </div>
     </div>
-
   );
 };
 
