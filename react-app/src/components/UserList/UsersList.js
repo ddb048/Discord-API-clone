@@ -43,25 +43,12 @@ function UsersList() {
     console.log('new server', newDmServer)
 
   }
-  // console.log(showConfirm)
-  // console.log("**********",newServer)
-  // console.log('12345',receiver)
-
-
-
-  // let addUser = (user) => {
-  //   // console.log('new server', newDmServer)
-  //   console.log('i am the member>>>>>', user)
-
-  //   // dispatch(createMember({
-  //   //   serverId: +newDmServer.id, userId: +user.id
-  //   // }))
-  // }
 
 
 
 
-  // const userComponents =
+
+
   return (users.map((user) => {
     return (
       // <div className='user-details'>

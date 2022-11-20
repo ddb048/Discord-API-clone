@@ -5,7 +5,7 @@ import { deleteServer, getAllCurrentUserServers } from "../../store/servers"
 const MessageConfirmation = ({ user, serverId, setShowConfirm, errors }) => {
     const dispatch = useDispatch()
     console.log("server id in modal", serverId.id)
-    // console.log('user id in modal', user.id)
+
 
     const confirm = (e) => {
         e.preventDefault()
