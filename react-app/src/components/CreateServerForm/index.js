@@ -15,23 +15,14 @@ const CreateServerForm = ({ setShowModal }) => {
   const urlValidation = (str) => {
     return /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/.test(str);
   };
-  const servers = useSelector(state => state.servers.servers)
-    console.log('SHOW ME SERVERS', servers)
-  const serverUniqueNameValidation = () => {
-  let serversNames=[]
-  Object.values(servers).map(element => serversNames.push(element.name));
-  console.log('validation name function', serversNames)
-  
-  return (serversNames.includes(name)) 
-  
-  }
+ 
   
    useEffect(() => {
     let errors = {};
     if (!name) errors.nameError = 'You must give your server a name'
     
     else errors.nameError = ''
-    if (!preview_image.length) errors.preview_imageError = 'you must provide image url'
+    if (!preview_image.length) errors.preview_imageError = 'You must provide image url'
     else if (!preview_image.length && urlValidation)
     errors.preview_imageError = 'You must provide a valid url link to an image'
     else errors.preview_imageError = ''
@@ -50,22 +41,16 @@ const CreateServerForm = ({ setShowModal }) => {
       privateServer,
       isDM,
     };
-    if (!error.nameError && !error.preview_imageError) {
-      if (serverUniqueNameValidation()) setError({uniqueError:['This server exists, choose a different name']})
-      const data = await dispatch(createServer(newServer))
-    }
-   
-    setShowModal(false);
+    const data = await dispatch(createServer(newServer));
+    console.log("within handlesubmit of createServer", data)
+    if (data.errors) {
+      setError(data.errors);
+    } else { setShowModal(false); }
   };
 
 
   return (
     <div className="modal">
-      <div className="errors-div">
-        {serverUniqueNameValidation() &&
-          <div key='errors'>{error.uniqueError}</div>
-        }
-      </div>
       <form className="new-server-modal-form" onSubmit={handleSubmit}>
         <div className="modal-title">Your New Server</div>
         <div className="modal-input-form">
@@ -100,7 +85,7 @@ const CreateServerForm = ({ setShowModal }) => {
             name="description"
             required
           ></textarea>
-          
+
           <div id="checkmark-container">
             <label id="checkmark-label">Private Server</label>
             <input
@@ -112,8 +97,14 @@ const CreateServerForm = ({ setShowModal }) => {
             />
           </div>
         </div>
-
-        <button id="create-channel-channel-btn" disabled={!!error.nameError && !!error.preview_image} type="submit" >
+        <div className="errors-div">
+          {!!error.length && <div id="errors">{error[0]}</div>}
+        </div>
+        <button
+          id="create-channel-channel-btn"
+          disabled={!!error.nameError && !!error.preview_image}
+          type="submit"
+        >
           Submit
         </button>
       </form>

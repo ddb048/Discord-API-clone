@@ -29,7 +29,7 @@
     position: absolute;
     background-color: #36393f;
     border-radius: 10px;
-    height: 326px;
+    height: 488px;
     width: 400px;
     object-fit: contain;
     /* border:1px solid blue */
@@ -72,10 +72,9 @@
 .modal-input-form{
 
     gap: 10px;
-
     display: flex;
     flex-direction: column;
-    padding-bottom: 20px;
+    padding-bottom: 4px;
 }
 .modal-input-label{
     /* border: 1px solid red; */
@@ -181,11 +180,12 @@
     position: absolute;
     background-color: #36393f;
     border-radius: 10px;
-    height: 420px;
+    height: 500px;
     width: 400px;
     object-fit: contain;
-    /* border:1px solid blue */
+    /* border: 1px solid blue; */
 }
+
 .new-server-modal-form{
     /* border: 1px solid green; */
     display: flex;
