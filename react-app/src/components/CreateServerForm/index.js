@@ -28,8 +28,11 @@ const CreateServerForm = ({ setShowModal }) => {
       privateServer,
       isDM,
     };
-    dispatch(createServer(newServer));
-    setShowModal(false);
+    const data = await dispatch(createServer(newServer));
+    console.log("within handlesubmit of createServer", data)
+    if (data.errors) {
+      setError(data.errors);
+    } else { setShowModal(false); }
   };
 
 

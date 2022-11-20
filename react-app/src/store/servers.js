@@ -86,7 +86,15 @@ export const createServer = newServer => async dispatch => {
         const newServer = await response.json();
         dispatch(addServer(newServer));
         return newServer;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data;
+        }
+
     }
+
+
 }
 
 //SECTION - PUT /api/servers/@me/:serverId (UPDATE)
@@ -146,11 +154,12 @@ const serverReducer = (state = initialState, action) => {
             return newState
 
         case CREATE_SERVER:
-            newState={...state}
-            newState.servers[action.newServer.id] = action.newServer;
+            console.log('new state in create server', newState)
+            newState.servers = { ...state.servers, [action.newServer.id]: action.newServer }
+            // newState[action.newServer.id] = action.newServer;
             return newState;
 
-// add state.servers to edit and remove
+        // add state.servers to edit and remove
         case EDIT_SERVER:
             newState = { ...state, [action.server.id]: action.server };
             return newState

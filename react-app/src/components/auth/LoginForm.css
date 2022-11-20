@@ -1,23 +1,24 @@
-.background {
+/* .background {
   z-index: -1;
   background-image: url("../../Images/discord-signup-login.png");
   height: 942px;
   border: 1px solid springgreen;
   background-position: center;
-}
+} */
 
 .form-container {
-  z-index: -1;
-  background-image: url("../../Images/discord-signup-login.png");
-  height: 942px;
-  /* border: 1px solid springgreen; */
-  background-position: center;
-  /* object-fit: cover; */
-  height: 100vh;
-  /* border:  red solid 2px; */
   display: flex;
   justify-content: center;
   align-items: center;
+  background: url("../../Images/discord-signup-login.png");
+  /* border: 1px solid springgreen; */
+  background-position: center;
+  background-size: contain;
+  background-repeat: repeat;
+  /* object-fit: cover; */
+  height: 100vh;
+  /* border:  red solid 2px; */
+
 
 }
 

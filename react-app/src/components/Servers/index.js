@@ -288,7 +288,7 @@ const Servers = () => {
 						</div>
 					</>
 				)}
-				{!showMsg && (
+					{!showMsg && (
 					<UsersList />
 				)}
 			</div>

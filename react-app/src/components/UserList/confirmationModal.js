@@ -4,7 +4,7 @@ import { deleteServer, getAllCurrentUserServers } from "../../store/servers"
 
 const MessageConfirmation = ({user, serverId, setShowConfirm}) => {
     const dispatch = useDispatch()
-    // console.log("server id in modal",serverId.id)
+    console.log("server id in modal",serverId.id)
     // console.log('user id in modal', user.id)
 
     const confirm = (e) => {
@@ -12,13 +12,15 @@ const MessageConfirmation = ({user, serverId, setShowConfirm}) => {
         dispatch(createMember({
             serverId:serverId.id, userId:user.id
         }))
+        dispatch(getAllCurrentUserServers())
         setShowConfirm(false)
     }
 
     const cancel=(e)=>{
         e.preventDefault()
-        dispatch(deleteServer(serverId.id))
-        dispatch(getAllCurrentUserServers())
+        dispatch(deleteServer(serverId))
+        // dispatch(getAllCurrentUserServers())
+        setShowConfirm(false)
     }
 
     return (
