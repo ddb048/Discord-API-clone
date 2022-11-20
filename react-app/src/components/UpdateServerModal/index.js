@@ -13,14 +13,16 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
     const [preview_image, setPreview_image] = useState(server.preview_image);
     const [isDM] = useState(false);
     const [privateServer, setPrivateServer] = useState(false)
-    const [error, setError] = useState([]);
+    const [error, setError] = useState({});
     const dispatch = useDispatch();
 
 
     useEffect(() => {
-        let errors = [];
-        if (!name) errors.push("You must give your server a name");
-        setError(errors);
+      let errors = {};
+      if (!name) errors.nameError = "You must give your server a name";
+      else errors.nameError = "";
+
+      setError(errors);
     }, [name]);
 
 
@@ -35,7 +37,8 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
             privateServer,
             is_DM: isDM
         };
-        await dispatch(updateServer(newServer))
+       const data = await dispatch(updateServer(newServer))
+       if (data.errors) {setError(data.errors)}
         dispatch(getAllCurrentUserServers())
         setUpdateShowModal(false)
     }
@@ -49,66 +52,66 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
 
 
     return (
-        <div className='modal'>
-            {error &&
-                error.map((error) => {
-                    return (
-                        <li id="errors" key={error}>
-                            {error}
-                        </li>
-                    );
-                })}
-            <form className='new-server-modal-form' onSubmit={handleSubmit}>
-                <div className='modal-title'>Update your Server</div>
-                <div className="modal-input-form">
-                    <input
-                        className="modal-input-textbox"
-                        type="text"
-                        onChange={(e) => setName(e.target.value)}
-                        value={name}
-                        placeholder="Server name"
-                        name="name"
-                        required
-                    />
-                    <input
-                        className="modal-input-textbox"
-                        type="text"
-                        onChange={(e) => setPreview_image(e.target.value)}
-                        value={preview_image}
-                        placeholder="Choose your server image url"
-                        name="image"
-                        required
-                    />
-                    <textarea
-                        id="modal-input-textarea"
-                        type="text"
-                        onChange={(e) => setDescription(e.target.value)}
-                        value={description}
-                        placeholder="Please describe your server topics"
-                        name="description"
-                        required
-                    ></textarea>
+      <div id="form" className="inputBox">
+        <h1>Update Server</h1>
 
-                    <div id='checkmark-container'>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+            placeholder="Server name"
+            name="name"
+            required
+          />
+          <div id="errors">{error.nameError}</div>
+          <input
+            id="update-name"
+            type="text"
+            onChange={(e) => setPreview_image(e.target.value)}
+            value={preview_image}
+            placeholder="Choose your server image url"
+            name="image"
+            required
+          />
+          <textarea
+            id="update-text-area"
+            type="text"
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
+            placeholder="Please describe your server topics"
+            name="description"
+            required
+          ></textarea>
 
-                        <label id="checkmark-label">Private Server
-                        </label>
-                        <input
-                            id='checkmark-box'
-                            type='checkbox'
-                            onChange={(e) => setPrivateServer(e.target.value)}
-                            value={privateServer}
-                            checked={privateServer || null}
-                        />
-                    </div>
-                </div>
-                <button id='create-channel-channel-btn' type="submit" disabled={!!error.length}>
-                    Update
-                </button>
-
-                <button id='create-channel-channel-btn' onClick={delServer} disabled={!!error.length}>Delete</button>
-            </form>
-        </div>
+          <div id="server-conteiner">
+            <label id="private-radio">
+              <input
+              id='checkmark-box'
+                type="checkbox"
+                onChange={(e) => setPrivateServer(e.target.value)}
+                value={privateServer}
+                checked={privateServer || null }
+                name="boolean"
+              />{" "}
+              Private Server
+            </label>
+          </div>
+          <div className="errors-div">
+            {!!error.length && <div id="errors">{error[0]}</div>}
+          </div>
+          <button id="new-server-btn" type="submit" disabled={!!error.length}>
+            Update
+          </button>
+          <button
+            id="new-server-btn-dlt"
+            onClick={delServer}
+            disabled={!!error.length}
+          >
+            Delete
+          </button>
+        </form>
+      </div>
     );
 }
 

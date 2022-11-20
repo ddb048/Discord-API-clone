@@ -245,14 +245,14 @@
 }
 
 .active-user-con {
-  margin: 2%;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  background-color: #202225;
-  width: 345px;
-  height: 368px;
-  align-items: center;
+    margin: 2%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #202225;
+    width: 345px;
+    height: 327px;
+    align-items: center;
 }
 
 
@@ -284,20 +284,20 @@
 
 .user-img {
   max-width: 100%;
+  border-radius: 50%;
 
 }
 
 .user-details {
-  color: white;
-  width: 250px;
-  height: 150px;
-  border-radius: 20px;
-  padding: 10%;
-  background-color: black;
-  display: flex;
-  flex-direction: column;
-  margin-top: 95px;
-
+    color: white;
+    width: 250px;
+    height: 150px;
+    border-radius: 20px;
+    padding: 10%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    margin-top: 95px;
 
 }
 
