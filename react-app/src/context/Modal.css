@@ -19,7 +19,7 @@
     bottom: 0;
     background-color: #0a0a0b;
     opacity: 80%;
-    border:1px solid red
+
 }
 
 .modal-content {
@@ -49,6 +49,7 @@
     padding-top: 30px;
     /* padding-bottom: 40px; */
     color: #777a7f;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     cursor: pointer;
 }
@@ -56,28 +57,32 @@
 .close-button:hover {
     color: #c6c7c8;
 }
+
 /* styling for create channel modal */
-.new-channel-modal-form{
+.new-channel-modal-form {
     /* border: 1px solid green; */
     display: flex;
     flex-direction: column;
     /* gap: 15px; */
 }
-.modal-title{
+
+.modal-title {
     font-family: adelle-sans, sans-serif;
     color: #ffffff;
     font-size: 25px;
     padding-bottom: 15px;
 }
-.modal-input-form{
+
+.modal-input-form {
 
     gap: 10px;
     display: flex;
     flex-direction: column;
     padding-bottom: 4px;
-    
+
 }
-.modal-input-label{
+
+.modal-input-label {
     /* border: 1px solid red; */
     font-family: adelle-sans, sans-serif;
     color: #b9bbbe;
@@ -85,14 +90,23 @@
     padding-bottom: 2px;
     padding-top: 4px;
 }
-#modal-DESCRIPTION-label{
+
+.private-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal-DESCRIPTION-label {
     font-family: adelle-sans, sans-serif;
     color: #b9bbbe;
     font-size: 18px;
 
     padding-top: 4px;
 }
-.modal-input-textbox{
+
+.modal-input-textbox {
     /* border: 1px solid blue; */
     /* width: 100%; */
     font-family: adelle-sans, sans-serif;
@@ -100,13 +114,17 @@
     color: white;
     font-size: 18px;
 }
-.new-channel-hash-container{
+
+.new-channel-hash-container {
     display: flex;
     flex-direction: row;
     height: 16px;
     align-items: center
 }
-.hashtag{
+
+
+
+.hashtag {
     background-color: #202225;
     display: flex;
     color: #dcddde;
@@ -114,7 +132,9 @@
     padding: 2.2px 14px;
     align-items: center;
 }
-.modal-input-textbox , input{
+
+.modal-input-textbox,
+input {
     background-color: #202225;
     border: none;
     font-size: 16px;
@@ -123,13 +143,14 @@
     color: white;
 }
 
-#grey-footer{
+#grey-footer {
     background-color: #2f3136;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     height: 86px;
 }
-.create-channel-submit-btn-container{
+
+.create-channel-submit-btn-container {
     /* background-color: #2f3136;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px; */
@@ -139,7 +160,8 @@
     /* flex-direction: column; */
     align-items: flex-end;
 }
-.dark-create-channel-btn{
+
+.dark-create-channel-btn {
     background-color: #434a94;
     color: #888b98;
     height: 50px;
@@ -147,6 +169,7 @@
     border: none;
     border-radius: 2px;
 }
+
 /* .dark-create-channel-btnvisible{
     background-color: #434a94;
     color: #888b98;
@@ -156,7 +179,7 @@
     border-radius: 2px;
 } */
 
-.light-create-channel-btn{
+.light-create-channel-btn {
     background-color: #5865f2;
     color: white;
     height: 50px;
@@ -164,11 +187,12 @@
     border: none;
     border-radius: 2px;
 }
+
 /* .dark-create-channel-btnhide{
     display: none;
 } */
 /* *****************CREATE A SERVER MODAL ********************** */
-#create-channel-channel-btn{
+#create-channel-channel-btn {
     background-color: #5865f2;
     color: white;
     height: 50px;
@@ -176,7 +200,8 @@
     border: none;
     border-radius: 14px;
 }
-#create-server-modal-content{
+
+#create-server-modal-content {
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
@@ -189,12 +214,13 @@
     /* border: 1px solid blue; */
 }
 
-.new-server-modal-form{
+.new-server-modal-form {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-#checkmark-label{
+
+#checkmark-label {
     font-family: adelle-sans, sans-serif;
     color: #b9bbbe;
     font-size: 18px;
@@ -202,37 +228,40 @@
     padding-top: 4px;
     white-space: nowrap;
 }
-#checkmark-container{
+
+#checkmark-container {
 
     display: flex;
 }
 
-#checkmark-box{
+#checkmark-box {
     width: 90px;
 }
-#modal-input-textarea{
+
+#modal-input-textarea {
     background-color: #202225;
     border: none;
-    max-width:400px;
+    max-width: 400px;
     overflow: scroll;
     font-family: adelle-sans, sans-serif;
     object-fit: contain;
     color: white;
     font-size: 18px;
 }
-#modal-input-textarea::-webkit-scrollbar{
+
+#modal-input-textarea::-webkit-scrollbar {
     display: none;
 }
 
 #errors {
     list-style: none;
-    color:rgb(121, 56, 56);
+    color: rgb(121, 56, 56);
     margin-left: 3%;
     margin-bottom: 1%;
 }
 
 #new-server-btn {
-   background-color: #5865f2;
+    background-color: #5865f2;
     color: white;
     height: 50px;
     width: 400px;
@@ -241,17 +270,24 @@
 }
 
 #new-server-btn-dlt {
-   background-color: #d92525;
+    background-color: #d92525;
     color: white;
-    height: 50px;
+    height: 45px;
     width: 400px;
     border: none;
-    border-radius: 2px;
+    border-radius: 5px;
+    transition: background-color .2s ease;
+    font-family: adelle-sans, sans-serif;
+    font-style: bold;
+    font-size: 18px;
 }
 
+#new-server-btn-dlt:hover {
+    background-color: brown;
+}
 
 #update-text-area {
-   height: 40px;
+    height: 40px;
     width: 396px;
     background-color: #202225;
     /* border-radius: 5px; */
@@ -262,18 +298,21 @@
     margin-top: 2%;
 
 }
+
 #update-name {
-width: 396px;
+    width: 396px;
 }
 
 #private-radio {
- color: white;
+    color: white;
 }
+
 #server-conteiner {
     padding: 5%;
 }
+
 #radio-btn {
-    padding-top:5%;
+    padding-top: 5%;
 }
 
 #form {
@@ -284,6 +323,7 @@ width: 396px;
     align-items: center;
     color: rgb(133, 133, 133);
 }
+
 .server-modal-inp {
     height: 40px;
     width: 383px;
@@ -296,7 +336,7 @@ width: 396px;
     margin-left: 1.5%;
     color: #36393f;
     margin-bottom: 3%;
-    margin-top:1%;
+    margin-top: 1%;
 }
 
 .server-modal-inp-text {
@@ -314,11 +354,11 @@ width: 396px;
 }
 
 #h1 {
-  height: 35px;
-  font-family: adelle-sans, sans-serif;
-  font-style: normal;
-  text-align: center;
-  
+    height: 35px;
+    font-family: adelle-sans, sans-serif;
+    font-style: normal;
+    text-align: center;
+
 }
 
 .text.noRenderError {
