@@ -100,7 +100,7 @@ export const createServer = newServer => async dispatch => {
 //SECTION - PUT /api/servers/@me/:serverId (UPDATE)
 export const updateServer = server => async dispatch => {
     const response = await fetch(`/api/servers/@me/${server.id}`, {
-        method: 'PUT',
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(server)
     });

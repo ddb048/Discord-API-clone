@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createServer, getAllCurrentUserServers } from '../../store/servers';
 import '../../context/Modal.css';
 
@@ -16,22 +16,34 @@ const CreateServerForm = ({ setShowModal }) => {
   const urlValidation = (str) => {
     return /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/.test(str);
   };
- 
-  
-   useEffect(() => {
+
+  const servers = useSelector(state => state.servers.servers)
+
+
+  const serversNames = Object.values(servers)
+
+  const compName = serversNames.find(server => server.name === name)
+
+  console.log("this is servers from createServerform", servers)
+
+  useEffect(() => {
     let errors = {};
-    if (!name) errors.nameError = 'You must give your server a name'
-    
+    if (!name) {
+      errors.nameError = 'You must give your server a name';
+    } else if (compName) {
+      errors.nameError = 'Server with this name already exists'
+    }
+
     else errors.nameError = ''
     if (!preview_image.length) errors.preview_imageError = 'You must provide image url'
     else if (!preview_image.length && urlValidation)
-    errors.preview_imageError = 'You must provide a valid url link to an image'
+      errors.preview_imageError = 'You must provide a valid url link to an image'
     else errors.preview_imageError = ''
-   
-    setError(errors);
-  }, [name,preview_image,description]);
 
-  
+    setError(errors);
+  }, [name, preview_image, description]);
+
+
   const handleSubmit = async (e) => {
     // let errors = [];
     e.preventDefault();
@@ -44,7 +56,7 @@ const CreateServerForm = ({ setShowModal }) => {
       isDM,
     };
     const data = await dispatch(createServer(newServer));
-      if (data.errors) {
+    if (data.errors) {
       setError(data.errors);
     } else { setShowModal(false); }
   };

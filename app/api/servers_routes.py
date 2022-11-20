@@ -189,7 +189,7 @@ def create_server():
 
 # SECTION - update a server
 # TODO - error handling needs to be added
-@servers_routes.route('/@me/<int:id>', methods=['PUT'])
+@servers_routes.route('/@me/<int:id>', methods=['POST'])
 @login_required
 def update_server(id):
     server = Server.query.get(int(id))
@@ -198,7 +198,6 @@ def update_server(id):
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
             form.populate_obj(server)
-
             db.session.commit()
             return server.to_dict(), 201
         return {"errors": validation_errors_to_error_messages(form.errors)}, 400
