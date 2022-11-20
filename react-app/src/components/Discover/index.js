@@ -10,7 +10,7 @@ import "./discover.css";
 
 function Discover() {
   const serversList = useSelector((state) => state.servers);
-  const servers = serversList.servers
+  const servers = serversList?.servers
   console.log("DISCOVER SERVERS STATE", servers);
   const dispatch = useDispatch();
   let isNotDm = Object.values(servers).filter((dm) => dm.is_DM === false);
