@@ -51,7 +51,8 @@ export const getAllMembers = (serverId) => async dispatch => {
 //REVIEW - Does a post work without a body
 export const createMember = (payload) => async dispatch => {
     const { serverId, userId } = payload
-    const response = await fetch(`/api/servers/${serverId}/members/${userId}`, {
+    console.log('create member thunk was hit')
+    const response = await fetch(`/api/servers/${serverId}/members/${+userId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

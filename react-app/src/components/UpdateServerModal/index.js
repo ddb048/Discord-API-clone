@@ -21,13 +21,13 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
       let errors = {};
       if (!name) errors.nameError = "You must give your server a name";
       else errors.nameError = "";
-     
+
       setError(errors);
     }, [name]);
 
 
+
     const handleSubmit = async (e) => {
-        // let errors = [];
         e.preventDefault();
         const newServer = {
             id: server.id,
