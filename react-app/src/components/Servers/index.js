@@ -28,7 +28,7 @@ const Servers = () => {
 	const [messages, setMessages] = useState([])
 	const [chatInput, setChatInput] = useState('')
 	const [currentServer, setCurrentServer] = useState([])
-	const [toUpdate, setToUpdate]=useState({})
+	const [toUpdate, setToUpdate] = useState({})
 
 
 
@@ -48,23 +48,29 @@ const Servers = () => {
 	let isNotDm = servers.filter((dm) => dm.is_DM === false);
 	let dmServersArr = servers.filter((dm) => dm.is_DM === true);
 	// const userArr = userObj.find((dm) => dm.is_DM == true);
-	console.log('USER ARRAY', dmServersArr)
+	// console.log('dm USER ARRAY', dmServersArr)
+	// console.log('not dm USER ARRAY', isNotDm)
+
 	let memberArr = []
 	dmServersArr.forEach(server => memberArr.push(...server.members))
 	// console.log("------>", memberArr)
 	let otherMember = memberArr.filter(member => member.user_id !== currentUser.id)
 	let dmMessageArr = []
 	dmServersArr.forEach(server => dmMessageArr.push(...server.messages))
-	// console.log("2222------>", dm)
+	console.log("2222------>", dm)
 	let tes = []
 	dmServersArr.forEach(server => tes.push(...server.messages))
 	// console.log("testtt=====>", tes)
 
-	console.log('this is other member', otherMember)
+	// console.log('this is other member', otherMember)
 
 	useEffect(() => {
 		dispatch(getAllCurrentUserServers());
 	}, [dispatch]);
+
+	useEffect(() => {
+
+	}, [currentServer])
 
 	useEffect(() => {
 		dispatch(getServerDetails(currentServer[0]));
@@ -206,7 +212,7 @@ const Servers = () => {
 						dm.length > 0 &&
 						dm.map((message) => {
 							return (
-								<div className="mess-box" key={message.owner_name}>
+								<div className="mess-box" key={message.id}>
 									<img
 										className="user-photo"
 										src={message.owner_pic}
@@ -229,7 +235,7 @@ const Servers = () => {
 						messages.length > 0 &&
 						messages.map((x) => {
 							return (
-								<div className="mess-box" key={x.owner_name}>
+								<div className="mess-box" key={x.id}>
 									<img
 										className="user-photo"
 										src={x.owner_pic}
@@ -238,7 +244,7 @@ const Servers = () => {
 									<div className="mess">
 										<div>
 											<h4>{x.owner_name}</h4>
-											{/* {message.created_at} */}
+
 										</div>
 										<div>{x.message_body}</div>
 									</div>
@@ -253,7 +259,7 @@ const Servers = () => {
 							onChange={(e) => setChatInput(e.target.value)}
 							placeholder="Message"
 						/>
-						<button onClick={submit} type="submit">
+						<button type="submit">
 							Send
 						</button>
 					</form>
@@ -282,13 +288,13 @@ const Servers = () => {
 
 								<div className="user-name-id-joined">
 									<div className='joined'>Q-core member since </div>
-									<div className='joind-date'>{otherMember[0].joined.slice(0,17)}</div>
+									<div className='joind-date'>{otherMember[0].joined.slice(0, 17)}</div>
 								</div>
 							</div>
 						</div>
 					</>
 				)}
-					{!showMsg && (
+				{!showMsg && (
 					<UsersList />
 				)}
 			</div>
