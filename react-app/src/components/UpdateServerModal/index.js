@@ -16,7 +16,7 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
     const [error, setError] = useState({});
     const dispatch = useDispatch();
 
-
+console.log('server===>',server)
     useEffect(() => {
       let errors = {};
       if (!name) errors.nameError = "You must give your server a name";

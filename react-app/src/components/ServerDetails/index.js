@@ -22,6 +22,7 @@ const ServerDetail = () => {
 	let { serverId, channelId } = useParams();
 	serverId = parseInt(serverId)
 	const [showModal, setShowModal] = useState(false);
+	const [showModalServers,setShowModalServers]=useState(false)
 
 	const [updateModal, setUpdateModal] = useState(false)
 	const [modalData, setModalData] = useState();
@@ -196,12 +197,12 @@ const ServerDetail = () => {
 						);
 					})}
 					<div className="servers-photo-container">
-					<div className="servers-photo" onClick={() => setShowModal(true)}>
+					<div className="servers-photo" onClick={() => setShowModalServers(true)}>
 						<i className="fa fa-plus" aria-hidden="true" />
 					</div>
-					{showModal && (
-						<Modal onClose={() => setShowModal(false)}>
-							<CreateServerForm setShowModal={setShowModal} />
+					{showModalServers && (
+						<Modal onClose={() => setShowModalServers(false)}>
+							<CreateServerForm setShowModal={setShowModalServers} />
 						</Modal>
 					)}
 				</div>
