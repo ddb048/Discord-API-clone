@@ -13,6 +13,7 @@ function Discover() {
   const servers = serversList.servers
   console.log("DISCOVER SERVERS STATE", servers);
   const dispatch = useDispatch();
+  let isNotDm = Object.values(servers).filter((dm) => dm.is_DM === false);
 
 
   useEffect(() => {
@@ -33,7 +34,7 @@ function Discover() {
             </div>
           </div>
           <div id="conteiner">
-            {Object.values(servers).map((server) => (
+            {Object.values(isNotDm).map((server) => (
               <NavLink key={server.name} id="discover-links" to={`/discover/servers/${server.id}`}>
                 <div id="single-server">
                   <div id="server-img-div">
