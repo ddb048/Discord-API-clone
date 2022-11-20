@@ -55,54 +55,51 @@ const CreateServerForm = ({ setShowModal }) => {
       <form className="new-server-modal-form" onSubmit={handleSubmit}>
         <div className="modal-title">Your New Server</div>
         <div className="modal-input-form">
-          <label className="modal-input-label">SERVER NAME</label>
           {renderErr && error.nameError ? (
             <label className="text renderError" htmlFor="email">
               NAME: {error.nameError}
             </label>
           ) : (
             <label className="text noRenderError" htmlFor="name">
-              Name
+              SERVER NAME
             </label>
           )}
           <input
             type="text"
-            className="modal-input-textbox"
+            className="server-modal-inp"
             onChange={(e) => setName(e.target.value)}
             value={name}
             placeholder={"Server name"}
             name="name"
-            
           />
           <div>
-            <label className="modal-input-label"> ADD AN IMAGE</label>
             {renderErr && error.preview_imageError ? (
               <label className="text renderError" htmlFor="email">
                 SERVER IMAGE: {error.preview_imageError}
               </label>
             ) : (
               <label className="text noRenderError" htmlFor="img">
-                Image
+                SERVER IMAGE
               </label>
             )}
             <input
               type="text"
-              className="modal-input-textbox"
+              className="server-modal-inp"
               onChange={(e) => setPreview_image(e.target.value)}
               value={preview_image}
               placeholder="Choose your server image url"
               name="image"
-              
             />
-
+            <label className="text noRenderError" htmlFor="img">
+              SERVER TOPICS
+            </label>
             <textarea
-              id="modal-input-textarea"
+              className="server-modal-inp-text"
               type="text"
               onChange={(e) => setDescription(e.target.value)}
               value={description}
               placeholder="Please describe your server topics"
               name="description"
-              
             ></textarea>
 
             <div id="checkmark-container">
@@ -119,13 +116,17 @@ const CreateServerForm = ({ setShowModal }) => {
           <div className="errors-div">
             {!!error.length && <div id="errors">{error[0]}</div>}
           </div>
-          <button
-            id="create-channel-channel-btn"
-            disabled={!!error.nameError && !!error.preview_image && !!error[0]}
-            type="submit"
-          >
-            Submit
-          </button>
+          <div className='submit-btn-div'>
+            <button
+              id="create-channel-channel-btn"
+              disabled={
+                !!error.nameError && !!error.preview_image && !!error[0]
+              }
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
         </div>
       </form>
     </div>

@@ -62,7 +62,7 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
 
     return (
       <div id="form" className="inputBox">
-        <h1>Update Server</h1>
+        <h1 id="h1">Update Server</h1>
 
         <form onSubmit={handleSubmit}>
           {renderErr && error.nameError ? (
@@ -80,6 +80,7 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
             value={name}
             placeholder="Server name"
             name="name"
+            className="server-modal-inp"
           />
 
           {renderErr && error.preview_imageError ? (
@@ -92,15 +93,18 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
             </label>
           )}
           <input
-            id="update-name"
+            className="server-modal-inp"
             type="text"
             onChange={(e) => setPreview_image(e.target.value)}
             value={preview_image}
             placeholder="Choose your server image url"
             name="image"
           />
+          <label className="text noRenderError" htmlFor="img">
+            Server Topics
+          </label>
           <textarea
-            id="update-text-area"
+            className="server-modal-inp-text"
             type="text"
             onChange={(e) => setDescription(e.target.value)}
             value={description}
@@ -124,14 +128,14 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
           <div className="errors-div">
             {!!error.length && <div id="errors">{error[0]}</div>}
           </div>
-          <button id="new-server-btn" type="submit"  disabled={!!error.nameError && !!error.preview_image && !!error[0]}>
+          <button
+            id="new-server-btn"
+            type="submit"
+            disabled={!!error.nameError && !!error.preview_image && !!error[0]}
+          >
             Update
           </button>
-          <button
-            id="new-server-btn-dlt"
-            onClick={delServer}
-           
-          >
+          <button id="new-server-btn-dlt" onClick={delServer}>
             Delete
           </button>
         </form>
