@@ -11,6 +11,7 @@ function UsersList() {
   const [showConfirm, setShowConfirm] = useState(false)
   const [newServer, setNewServer] = useState({})
   const [receiver, setReceiver] = useState()
+  const [error, setError] = useState()
   const dispatch = useDispatch()
   const currUser = useSelector(state => state.session.user)
   useEffect(() => {
@@ -26,16 +27,20 @@ function UsersList() {
   const createDM = async (user) => {
     let newDmServer = await dispatch(createServer({
       name: `${currUser.username}-${user.username}`,
-      preview_image: '',
+      preview_image: '2',
       private: true,
       server_description: 'New Dm',
       is_DM: true
     }
     ))
+
+    if (newDmServer.errors) {
+      setError(newDmServer.errors);
+    }
     setReceiver(user)
     // console.log('<<<<',user)
     setNewServer(newDmServer)
-    // console.log('new server', newDmServer)
+    console.log('new server', newDmServer)
 
   }
   // console.log(showConfirm)
@@ -75,7 +80,7 @@ function UsersList() {
           </div>
           {showConfirm && (
             <Modal on onClose={() => setShowConfirm(false)}>
-              <MessageConfirmation user={receiver} serverId={newServer} setShowConfirm={setShowConfirm} />
+              <MessageConfirmation user={receiver} serverId={newServer} setShowConfirm={setShowConfirm} errors={error} />
             </Modal>
           )}
         </div>

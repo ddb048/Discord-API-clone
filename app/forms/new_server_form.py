@@ -21,7 +21,7 @@ def image_exists(form, field):
 class New_server(FlaskForm):
 
     name = StringField('Server Name', validators=[DataRequired(), name_exists])
-    preview_image = StringField('Image', validators=[image_exists])
+    preview_image = StringField('Image')
     private = BooleanField('Private')
     server_description=TextAreaField('Description')
     is_DM = BooleanField('Direct Message', default = False)
