@@ -10,6 +10,7 @@ const CreateServerForm = ({ setShowModal }) => {
   const [isDM] = useState(false);
   const [privateServer, setPrivateServer] = useState();
   const [error, setError] = useState({});
+  const [renderErr, setRenderErr] = useState(false)
   const dispatch = useDispatch();
 
   const urlValidation = (str) => {
@@ -34,6 +35,7 @@ const CreateServerForm = ({ setShowModal }) => {
   const handleSubmit = async (e) => {
     // let errors = [];
     e.preventDefault();
+    setRenderErr(true)
     const newServer = {
       name,
       preview_image,
@@ -53,59 +55,79 @@ const CreateServerForm = ({ setShowModal }) => {
       <form className="new-server-modal-form" onSubmit={handleSubmit}>
         <div className="modal-title">Your New Server</div>
         <div className="modal-input-form">
-          <label className="modal-input-label">SERVER NAME</label>
+          {renderErr && error.nameError ? (
+            <label className="text renderError" htmlFor="email">
+              NAME: {error.nameError}
+            </label>
+          ) : (
+            <label className="text noRenderError" htmlFor="name">
+              SERVER NAME
+            </label>
+          )}
           <input
             type="text"
-            className="modal-input-textbox"
+            className="server-modal-inp"
             onChange={(e) => setName(e.target.value)}
             value={name}
             placeholder={"Server name"}
             name="name"
-            required
           />
-          <div id="errors">{error.nameError}</div>
-          <label className="modal-input-label"> ADD AN IMAGE</label>
-          <input
-            type="text"
-            className="modal-input-textbox"
-            onChange={(e) => setPreview_image(e.target.value)}
-            value={preview_image}
-            placeholder="Choose your server image url"
-            name="image"
-            required
-          />
-          <div id="errors">{error.preview_imageError}</div>
-          <textarea
-            id="modal-input-textarea"
-            type="text"
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
-            placeholder="Please describe your server topics"
-            name="description"
-            required
-          ></textarea>
-
-          <div id="checkmark-container">
-            <label id="checkmark-label">Private Server</label>
+          <div>
+            {renderErr && error.preview_imageError ? (
+              <label className="text renderError" htmlFor="email">
+                SERVER IMAGE: {error.preview_imageError}
+              </label>
+            ) : (
+              <label className="text noRenderError" htmlFor="img">
+                SERVER IMAGE
+              </label>
+            )}
             <input
-              id="checkmark-box"
-              type="checkbox"
-              onChange={(e) => setPrivateServer(e.target.value)}
-              value={privateServer}
-              checked={privateServer || null}
+              type="text"
+              className="server-modal-inp"
+              onChange={(e) => setPreview_image(e.target.value)}
+              value={preview_image}
+              placeholder="Choose your server image url"
+              name="image"
             />
+            <label className="text noRenderError" htmlFor="img">
+              SERVER TOPICS
+            </label>
+            <textarea
+              className="server-modal-inp-text"
+              type="text"
+              onChange={(e) => setDescription(e.target.value)}
+              value={description}
+              placeholder="Please describe your server topics"
+              name="description"
+            ></textarea>
+
+            <div id="checkmark-container">
+              <label id="checkmark-label">Private Server</label>
+              <input
+                id="checkmark-box"
+                type="checkbox"
+                onChange={(e) => setPrivateServer(e.target.value)}
+                value={privateServer}
+                checked={privateServer || null}
+              />
+            </div>
+          </div>
+          <div className="errors-div">
+            {!!error.length && <div id="errors">{error[0]}</div>}
+          </div>
+          <div className='submit-btn-div'>
+            <button
+              id="create-channel-channel-btn"
+              disabled={
+                !!error.nameError && !!error.preview_image && !!error[0]
+              }
+              type="submit"
+            >
+              Submit
+            </button>
           </div>
         </div>
-        <div className="errors-div">
-          {!!error.length && <div id="errors">{error[0]}</div>}
-        </div>
-        <button
-          id="create-channel-channel-btn"
-          disabled={!!error.nameError && !!error.preview_image}
-          type="submit"
-        >
-          Submit
-        </button>
       </form>
     </div>
   );

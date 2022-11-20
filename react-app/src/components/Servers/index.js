@@ -28,8 +28,11 @@ const Servers = () => {
 	const [messages, setMessages] = useState([])
 	const [chatInput, setChatInput] = useState('')
 	const [currentServer, setCurrentServer] = useState([])
-	const [toUpdate, setToUpdate] = useState({})
+	const [activeMember, setActiveMember] = useState({})
+	// console.log("SHOW ME ACTIVE USER", activeMember)	
+	const [toUpdate, setToUpdate]=useState({})
 	const [memberCard,setMemberCard]=useState({})
+
 
 console.log('member card data',memberCard)
 
@@ -301,6 +304,7 @@ console.log('member card data',memberCard)
 			</div>
 		</div>
 	);
+
 };;
 
 
