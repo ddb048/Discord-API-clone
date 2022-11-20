@@ -65,84 +65,96 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
 
 
   return (
-    <div id="form" className="inputBox">
-      <h1 id="h1">Update Server</h1>
+    <div className="form-container">
+      <div className="form-card">
+        <form id="form" onSubmit={handleSubmit}>
 
-      <form onSubmit={handleSubmit}>
-        {renderErr && error.nameError ? (
-          <label className="text renderError" htmlFor="email">
-            NAME: {error.nameError}
-          </label>
-        ) : (
-          <label className="text noRenderError" htmlFor="name">
-            Name
-          </label>
-        )}
-        <input
-          type="text"
-          onChange={(e) => setName(e.target.value)}
-          value={name}
-          placeholder="Server name"
-          name="name"
-          className="server-modal-inp"
-        />
+          <div className="text">
+            <h2>Update Server</h2>
+          </div>
 
-        {renderErr && error.preview_imageError ? (
-          <label className="text renderError" htmlFor="email">
-            SERVER IMAGE: {error.preview_imageError}
-          </label>
-        ) : (
-          <label className="text noRenderError" htmlFor="img">
-            Image
-          </label>
-        )}
-        <input
-          className="server-modal-inp"
-          type="text"
-          onChange={(e) => setPreview_image(e.target.value)}
-          value={preview_image}
-          placeholder="Choose your server image url"
-          name="image"
-        />
-        <label className="text noRenderError" htmlFor="img">
-          Server Topics
-        </label>
-        <textarea
-          className="server-modal-inp-text"
-          type="text"
-          onChange={(e) => setDescription(e.target.value)}
-          value={description}
-          placeholder="Please describe your server topics"
-          name="description"
-        ></textarea>
-
-        <div id="server-conteiner">
-          <label id="private-radio">
+          <div>
+            {renderErr && error.nameError ?
+              <label className="text renderError" htmlFor="name">
+                Server Name: {error.nameError}
+              </label>
+              :
+              <label className="text noRenderError" htmlFor="name">
+                Server Name
+              </label>
+            }
             <input
-              id="checkmark-box"
+              type="text"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+              placeholder={"Server name"}
+              name="name"
+              className="inp"
+            />
+          </div>
+          <div>
+            <div>
+              {renderErr && error.preview_imageError ?
+                <label className="text renderError" htmlFor="img">
+                  Server Image: {error.preview_imageError}
+                </label>
+                : (
+                  <label className="text noRenderError" htmlFor="img">
+                    Image
+                  </label>
+                )}
+            </div>
+            <input
+              className="inp"
+              type="text"
+              onChange={(e) => setPreview_image(e.target.value)}
+              value={preview_image}
+              placeholder="Choose your server image url"
+              name="image"
+            />
+          </div>
+          <div>
+            <label className="text noRenderError" htmlFor="img">
+              Server Topics
+            </label>
+            <input
+              className="inp"
+              type="text"
+              onChange={(e) => setDescription(e.target.value)}
+              value={description}
+              placeholder="Please describe your server topics"
+              name="description"
+            ></input>
+          </div>
+          <div className='private-container'>
+
+            <input
+              id="inp"
               type="checkbox"
               onChange={(e) => setPrivateServer(e.target.value)}
               value={privateServer}
               checked={privateServer || null}
-              name="boolean"
-            />{" "}
-            Private Server
-          </label>
-        </div>
-        <div className="errors-div">
-          {!!error.length && <div id="errors">{error[0]}</div>}
-        </div>
-        <button
-          id="new-server-btn"
-          type="submit"
-          disabled={!!error.nameError && !!error.preview_image && !!error[0]}
-        >
-          Update
-        </button>
-        <button id="new-server-btn-dlt" onClick={delServer}>
-          Delete
-        </button>
-      </form>
+            />
+            <label id="private-radio">
+              Private Server
+            </label>
+          </div>
+
+          <div className="errors-div">
+            {!!error.length && <div id="errors">{error[0]}</div>}
+          </div>
+          <button
+            className='subButton'
+            type="submit"
+            disabled={!!error.nameError && !!error.preview_image && !!error[0]}
+          >
+            Update
+          </button>
+          <button id="new-server-btn-dlt" onClick={delServer}>
+            Delete
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
