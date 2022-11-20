@@ -178,7 +178,7 @@
   /* border: 1px solid purple; */
   justify-content: space-around;
   align-items: center;
-  position: absolute;
+  /* position: absolute; */
   top: 880px;
   background-color: #2f3136;
 }
