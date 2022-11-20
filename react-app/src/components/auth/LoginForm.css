@@ -1,23 +1,24 @@
-.background {
+/* .background {
   z-index: -1;
   background-image: url("../../Images/discord-signup-login.png");
   height: 942px;
   border: 1px solid springgreen;
   background-position: center;
-}
+} */
 
 .form-container {
-  z-index: -1;
-  background-image: url("../../Images/discord-signup-login.png");
-  height: 942px;
-  /* border: 1px solid springgreen; */
-  background-position: center;
-  /* object-fit: cover; */
-  height: 100vh;
-  /* border:  red solid 2px; */
   display: flex;
   justify-content: center;
   align-items: center;
+  background: url("../../Images/discord-signup-login.png");
+  /* border: 1px solid springgreen; */
+  background-position: center;
+  background-size: contain;
+  background-repeat: repeat;
+  /* object-fit: cover; */
+  height: 100vh;
+  /* border:  red solid 2px; */
+
 
 }
 
@@ -30,7 +31,7 @@
   width: 800px;
   background-color: #36393f;
   color: aliceblue;
-  gap: 50px;
+  gap: 110px;
   padding: 0px 40px;
   border-radius: 6px;
   border: none;
@@ -45,13 +46,17 @@
   border-radius: 5px;
   border: none;
   color: white;
+  font-family: adelle-sans, sans-serif;
+  font-style: normal;
 }
 
 .inp:focus {
   outline: none;
+  font-family: adelle-sans, sans-serif;
+  font-style: normal;
 }
 
-#subButton {
+.subButton {
   height: 45px;
   width: 400px;
   border-radius: 5px;
@@ -59,6 +64,18 @@
   background-color: #5865f2;
   color: white;
   transition: background-color .2s ease;
+  font-family: adelle-sans, sans-serif;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.errors-div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-family: adelle-sans, sans-serif;
+  font-size: 14px;
+  font-style: italic;
 }
 
 #subButton:hover {
@@ -67,6 +84,8 @@
 
 #to-signup {
   color: rgb(133, 133, 133);
+  font-family: adelle-sans, sans-serif;
+  font-style: normal;
 }
 
 #to-signup>a {
@@ -103,15 +122,40 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: adelle-sans, sans-serif;
+  font-style: bold;
 }
 
+.text.renderError {
+  color: rgb(121, 56, 56)
+}
+
+.text.noRenderError {
+  color: #a2a3a5;
+}
 
 .text {
   /* border: blue solid 1px; */
   height: 35px;
+  font-family: adelle-sans, sans-serif;
+  font-style: normal;
 }
 
+@media screen and (max-width: 800px) {
+  .qCode-container {
+    visibility: hidden;
+  }
 
+  .form-card {
+    width: 80%;
+  }
+
+  #form {
+    width: auto;
+  }
+}
+
+/* ************ SIGN UP FORM ************* */
 .form-card-1 {
   display: flex;
   flex-direction: row;
@@ -156,6 +200,9 @@
   background-color: #5865f2;
   color: white;
   transition: background-color .2s ease;
+  font-family: adelle-sans, sans-serif;
+  font-style: bold;
+  font-size: 18px;
 }
 
 #subButton2:hover {
@@ -165,18 +212,39 @@
 #to-signup2 {
   color: #05a5cd;
   text-decoration: none;
+  font-family: adelle-sans, sans-serif;
+  border: 1px solid wheat;
 }
 
 #to-signup2:hover {
   text-decoration: underline;
 }
 
-#form label {
+/* #form label {
   color: #a2a3a5;
+} */
+
+.qCode-container {
+  /* border: 1px solid white; */
+  height: 100%;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-
-.qCode{
+.qCode {
   height: 200px;
   width: 200px;
+}
+
+.qCode-title {
+  border: 1px solid pink;
+  font-family: adelle-sans, sans-serif;
+  font-style: normal;
+
+}
+
+.qCode-subtext {
+  border: 1px solid green
 }

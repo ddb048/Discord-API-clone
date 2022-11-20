@@ -2,12 +2,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
-    createServer,
     deleteServer,
     getAllCurrentUserServers,
     updateServer
 } from "../../store/servers";
-// import './server-form.css'
 
 const UpdateServerForm = ({ setUpdateShowModal, server }) => {
     const [name, setName] = useState(server.name);
@@ -18,11 +16,6 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
     const [error, setError] = useState([]);
     const dispatch = useDispatch();
 
-
-    console.log('server in update modal', server)
-    useEffect(() => {
-        dispatch(createServer());
-    }, [dispatch]);
 
     useEffect(() => {
         let errors = [];
@@ -42,25 +35,18 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
             privateServer,
             is_DM: isDM
         };
-        dispatch(updateServer(newServer))
+       await dispatch(updateServer(newServer))
         dispatch(getAllCurrentUserServers())
         setUpdateShowModal(false)
     }
 
     const delServer = async (e) => {
         e.preventDefault();
-        dispatch(deleteServer(server))
+        await dispatch(deleteServer(server))
         dispatch(getAllCurrentUserServers())
         setUpdateShowModal(false)
-        // console.log('i rannnnnnnnnnnnnnnnnnnnnnnnn')
     }
-    //   const reset = () => {
-    //     setName("");
-    //     setDescription("");
-    //     setPreview_image("");
-    //     setPrivateServer("");
-    //     setIsDM(false);
-    //   };
+
 
     return (
         <div id="form" className="inputBox">

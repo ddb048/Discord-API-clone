@@ -4,15 +4,14 @@ import { updateChannel, deleteChannel } from '../../store/channel';
 import { getServerDetails } from '../../store/servers';
 import '../../context/Modal.css';
 import './UpdateChannelModal.css'
-// NOTE How do you i pass in channelId
+
 const UpdateChannelModal = ({ serverId, setUpdateModal, channelId }) => {
 	serverId = +serverId;
 	console.log('channel id ', channelId)
-	// const serverName = useSelector((state) => state.servers.oneServer);
-	// //console.log('servername >>>>', serverName);
+
 	const dispatch = useDispatch();
 	const [name, setName] = useState('');
-	// const [is_voice, setIs_voice] = useState(true);
+
 	const is_voice = false
 	const [description, setDescription] = useState('');
 	const [errors, setErrors] = useState([]);
@@ -29,9 +28,7 @@ const UpdateChannelModal = ({ serverId, setUpdateModal, channelId }) => {
 		} else {
 			setChangeColor('dark-create-channel-btn');
 		}
-		// if(confirmDelete){
 
-		// }
 		const errors = [];
 		if (name.length > 32)
 			errors.push('Please provide a channel name less than 32 characters.');
@@ -53,8 +50,8 @@ const UpdateChannelModal = ({ serverId, setUpdateModal, channelId }) => {
 
 		if (!frontEndErrors.length) {
 			dispatch(updateChannel(channelId, updateChannelForm));
-			dispatch(getServerDetails(serverId))
 			setUpdateModal(false);
+			dispatch(getServerDetails(serverId))
 			console.log('setUpdateModal', setUpdateModal)
 		}
 	};
@@ -102,7 +99,7 @@ const UpdateChannelModal = ({ serverId, setUpdateModal, channelId }) => {
 							Update Channel
 						</button>}
 						<div>
-							<button className={'delete-channel-bttn' + (showConfirmButton ? 'visible' : 'hide')} onClick={() => confirmDelete(true)}>Delete Channel</button>
+							<div className={'delete-channel-bttn' + (showConfirmButton ? 'visible' : 'hide')} onClick={() => confirmDelete(true)}>Delete Channel</div>
 						</div>
 						{showConfirmButton && (
 							<>

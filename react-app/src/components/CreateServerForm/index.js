@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createServer } from '../../store/servers';
+import { createServer, getAllCurrentUserServers } from '../../store/servers';
 import '../../context/Modal.css';
 
 const CreateServerForm = ({ setShowModal }) => {
@@ -8,13 +8,9 @@ const CreateServerForm = ({ setShowModal }) => {
   const [description, setDescription] = useState('');
   const [preview_image, setPreview_image] = useState('');
   const [isDM] = useState(false);
-  const [privateServer, setPrivateServer] = useState(null);
+  const [privateServer, setPrivateServer] = useState();
   const [error, setError] = useState([]);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(createServer());
-  }, [dispatch]);
 
   useEffect(() => {
     let errors = [];
@@ -32,17 +28,13 @@ const CreateServerForm = ({ setShowModal }) => {
       privateServer,
       isDM,
     };
-    dispatch(createServer(newServer));
-    setShowModal(false);
+    const data = await dispatch(createServer(newServer));
+    console.log("within handlesubmit of createServer", data)
+    if (data.errors) {
+      setError(data.errors);
+    } else { setShowModal(false); }
   };
 
-  // const reset = () => {
-  //   setName("");
-  //   setDescription("");
-  //   setPreview_image("");
-  //   setPrivateServer("");
-  //   setIsDM(false);
-  // };
 
   return (
     <div className='modal'>

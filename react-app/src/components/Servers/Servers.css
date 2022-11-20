@@ -240,7 +240,6 @@
   border-radius: 10px;
 }
 
-
 .active-user-con {
     margin: 2%;
     border-radius: 20px;
@@ -275,7 +274,6 @@
     object-fit: contain;
     display: flex;
   
-
 }
 
 .user-img {
@@ -284,7 +282,6 @@
 }
 
 .user-details {
-
     color: white;
     width: 250px;
     height: 150px;
@@ -295,17 +292,31 @@
     flex-direction: column;
     margin-top: 95px;
   
-
 }
 
 .user-name-id {
   color: white;
-
     width: 272px;
-    height: 62px;
+    height: 32px;
     background-color: black;
+    font-weight: 600;
+    font-family: sans-serif;
+    font-size: large;
+    border-bottom: #6a6d71;
   
+}
+.joined {
+    font-weight: 600;
+    font-family: sans-serif;
+    font-size: large;
+    padding-bottom: 1%;
+    margin-top:2%;
+}
 
+.joind-date {
+  font-weight: 100;
+    font-family: sans-serif;
+    font-size: 15px;
 }
 
 .user-name-id-joined {

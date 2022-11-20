@@ -69,11 +69,16 @@ export const createChannel = (serverId, newChannel) => async dispatch => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newChannel)
     })
-    console.log('this is the response', response)
+
     if (response.ok) {
         const addedChannel = await response.json();
         dispatch(addChannel(addedChannel));
         return addedChannel
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data;
+        }
     }
 }
 
@@ -90,6 +95,11 @@ export const updateChannel = (channelId, update) => async dispatch => {
         const updated = await response.json();
         dispatch(editChannel(updated));
         return updated
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data;
+        }
     }
 }
 
@@ -137,10 +147,12 @@ const channelReducer = (state = initialState, action) => {
             return newState;
 
         case CREATE_CHANNEL:
+
             newState.channels = { ...state.channels, [action.channel.id]: action.channel };
 
             // console.log('new state in create channel', action)
-            return newState;
+            // return {...newState}
+            return newState
 
         case EDIT_CHANNEL:
             newState = { ...state, [action.channel.id]: action.channel };

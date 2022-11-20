@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
 import { getAllCurrentUserServers } from '../../store/servers';
@@ -7,7 +7,7 @@ import { getAllMembers } from '../../store/member';
 import { getChannelDetail } from '../../store/channel';
 import LogoutButton from '../auth/LogoutButton';
 import CreateServerForm from '../CreateServerForm';
-// import { getAllMessages } from '../../store/message';
+
 import { getServerDetails } from '../../store/servers';
 import DM_button from '../../Images/q-cord-button.png';
 import './Servers.css';
@@ -34,11 +34,14 @@ const Servers = () => {
 	// const history = useHistory();
 	// const { channelId } = useParams();
 	// const member=useSelector(state =>Object.values(state.members.members))
-	const dm = useSelector(state => Object.values(state.messages.messages))
+	const state = useSelector(state => state)
+	const dm = Object.values(state.messages.messages);
+	const servers = Object.values(state.servers.servers);
+	const currentUser = state.session.user
 	// grabbing the state of servers in servers
-	const servers = useSelector((state) => Object.values(state.servers.servers));
+	// const servers = useSelector((state) => Object.values(state.servers.servers));
 	// console.log('THIS IS SERVES USESELECTOR IN ARRAY', servers)
-	const currentUser = useSelector((state) => state.session.user);
+	// const currentUser = useSelector((state) => state.session.user);
 	// console.log('this is current user >>', currentUser)
 	let isNotDm = servers.filter((dm) => dm.is_DM === false);
 	let dmServersArr = servers.filter((dm) => dm.is_DM === true);
@@ -110,15 +113,12 @@ const Servers = () => {
 		setCurrentServer([id, chanId])
 	}
 
-	if (!currentUser) {
-		return <Redirect to="/" />;
-	}
 	return (
 		<div className="servers-page-container">
 			<div className="servers-column-container">
 				<div className="dm-button-container">
 					<div>
-						<NavLink to="">
+						<NavLink to="/servers/@me">
 							<img className="dm-button" src={DM_button} alt="" />
 						</NavLink>
 					</div>
@@ -205,7 +205,7 @@ const Servers = () => {
 						dm.length > 0 &&
 						dm.map((message) => {
 							return (
-								<div className="mess-box">
+								<div className="mess-box" key={message.owner_name}>
 									<img
 										className="user-photo"
 										src={message.owner_pic}
@@ -228,7 +228,7 @@ const Servers = () => {
 						messages.length > 0 &&
 						messages.map((x) => {
 							return (
-								<div className="mess-box">
+								<div className="mess-box" key={x.owner_name}>
 									<img
 										className="user-photo"
 										src={x.owner_pic}
@@ -259,7 +259,6 @@ const Servers = () => {
 				)}
 			</div>
 			<div className="servers-active-container">
-				{/* SECTION active user */}
 				{showMsg && (
 					<>
 						<div className="active-user-con">
@@ -274,14 +273,15 @@ const Servers = () => {
 							</div>
 							<div className="user-details">
 								<div className="user-name-id">
+
 									{otherMember[0].user_info.first_name}{" "}
 									{otherMember[0].user_info.last_name}#
 									{otherMember[0].user_info.id}
 								</div>
 
 								<div className="user-name-id-joined">
-									<div>Q-core member since </div>
-									<div>{otherMember[0].user_info.joined}</div>
+									<div className='joined'>Q-core member since </div>
+									<div className='joind-date'>{otherMember[0].joined.slice(0,17)}</div>
 								</div>
 							</div>
 						</div>

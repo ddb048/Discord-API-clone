@@ -32,11 +32,9 @@ function OnePageServer() {
   else
     return (
       <>
-        {/* NOTE upper (blue) div with pic and links */}
         <div id="upper">
           <img id="upper-img" src={oneServer.preview_image} alt="upper-img" />
         </div>
-        {/* NOTE lower part white */}
         <div id="lower-div">
           <h1 id="bold-headtitle">{oneServer.name}</h1>
           <div id="sub-title">{oneServer.num_member} members</div>
@@ -67,7 +65,7 @@ function OnePageServer() {
             </div>
           </div>
         </div>
-        {/* NOTE lower part with pic and join button, reffer to css from splash page */}
+
         <div id="bold-title">About</div>
         <div id="text">{oneServer.description}</div>
 
@@ -96,13 +94,6 @@ function OnePageServer() {
             <div>Join Q-Core</div>
           </NavLink>
         </div>
-
-        {/* FIXME we need to implament the righ url for joining a server */}
-        {/* <div id="footer-div">
-          <NavLink id="footer" to={`/servers/${serverId}`}>
-            <div id="in-footer">Join Server</div>
-          </NavLink>
-        </div> */}
       </>
     );
 

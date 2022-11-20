@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
+import logo from '../../Images/q-cord-button.png'
 import './NavBar.css';
 const NavBar = () => {
   const history = useHistory();
@@ -14,7 +15,8 @@ const NavBar = () => {
           <div className="splash-logo-left">
             <div className='link-button'>
               <NavLink className="link-text" to="/" exact={true} activeClassName="active">
-                Q-CORD
+              <img className='splash-logo-button' src={logo} alt='q-cord-logo'/>
+                <div className='splash-logo-text'>Q-CORD</div>
               </NavLink>
             </div>
           </div>
@@ -39,16 +41,7 @@ const NavBar = () => {
                 Safety
               </NavLink>
             </div>
-            <div className='link-button'>
-              {/* <NavLink
-                className="link-text"
-                to="/support"
-                exact={true}
-                activeClassName="active"
-              >
-                Support
-              </NavLink> */}
-            </div>
+            <div className='link-button'></div>
           </div>
           <div className="splash-login-right">
             <button className="login-button" onClick={login}>
