@@ -17,6 +17,7 @@ import './Servers.css';
 import { io } from 'socket.io-client'
 import { createMessage, getAllMessages } from '../../store/message';
 import UpdateServerForm from '../UpdateServerModal';
+import UsersList from '../UserList/UsersList';
 
 let socket;
 
@@ -28,8 +29,9 @@ const Servers = () => {
 	const [chatInput, setChatInput] = useState('')
 	const [currentServer, setCurrentServer] = useState([])
 	const [activeMember, setActiveMember] = useState({})
-	console.log("SHOW ME ACTIVE USER", activeMember)
-	const dummy = useRef()
+	console.log("SHOW ME ACTIVE USER", activeMember)	const [toUpdate, setToUpdate]=useState({})
+
+
 
 	const dispatch = useDispatch();
 	// const history = useHistory();
@@ -47,7 +49,7 @@ const Servers = () => {
 	let isNotDm = servers.filter((dm) => dm.is_DM === false);
 	let dmServersArr = servers.filter((dm) => dm.is_DM === true);
 	// const userArr = userObj.find((dm) => dm.is_DM == true);
-	// console.log('USER ARRAY', dmServersArr)
+	console.log('USER ARRAY', dmServersArr)
 	let memberArr = []
 	dmServersArr.forEach(server => memberArr.push(...server.members))
 	// console.log("------>", memberArr)
@@ -103,7 +105,6 @@ const Servers = () => {
 			socket.emit("DM", { owner_name: currentUser.username, owner_pic: currentUser.profile_pic, message_body: chatInput });
 		}
 		setChatInput("")
-		dummy.current.scrollIntoView({ behavior: 'smooth' })
 	}
 
 
@@ -120,7 +121,7 @@ const Servers = () => {
         <div className="dm-button-container">
           <div>
             <NavLink to="/servers/@me">
-              <img className="dm-button" src={DM_button} alt="" />
+              <img onClick={showMsg} className="dm-button" src={DM_button} alt="" />
             </NavLink>
           </div>
         </div>
@@ -145,14 +146,14 @@ const Servers = () => {
                       </div>
                     </div>
                   </NavLink>
-                  <div className="cog" onClick={() => setUpdateShowModal(true)}>
+                  <div className="cog" onClick={() => (setUpdateShowModal(true), setToUpdate(server))}>
                     <i className="fa fa-cog" aria-hidden="true" />
                   </div>
                   {showUpdateModal && (
                     <Modal onClose={() => setUpdateShowModal(false)}>
                       <UpdateServerForm
                         setUpdateShowModal={setUpdateShowModal}
-                        server={server}
+                        server={toUpdate}
                       />
                     </Modal>
                   )}
@@ -180,7 +181,7 @@ const Servers = () => {
           {otherMember.map(
             (member) =>
               member.user_info.profile_pic && (
-                <div>
+                <div key={member.id}>
                   <div onClick={() => (userDm(member.server_id), setActiveMember(member))}>
                     <div>
                       <img
@@ -294,6 +295,9 @@ const Servers = () => {
             </div>
           </>
         )}
+					{!showMsg && (
+					<UsersList />
+				)}
       </div>
     </div>
   );
