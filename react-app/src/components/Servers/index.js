@@ -29,9 +29,9 @@ const Servers = () => {
 	const [chatInput, setChatInput] = useState('')
 	const [currentServer, setCurrentServer] = useState([])
 	const [toUpdate, setToUpdate] = useState({})
-	const [memberCard,setMemberCard]=useState({})
+	const [memberCard, setMemberCard] = useState({})
 
-console.log('member card data',memberCard)
+	console.log('member card data', memberCard)
 
 	const dispatch = useDispatch();
 	// const history = useHistory();
@@ -81,6 +81,9 @@ console.log('member card data',memberCard)
 
 	}, [currentServer, dispatch, setUpdateShowModal]);
 
+	useEffect(()=>{
+		setMessages([])
+	}, memberCard)
 
 	useEffect(() => {
 		// open socket connection
