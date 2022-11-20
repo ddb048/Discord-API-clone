@@ -109,6 +109,11 @@ export const updateServer = server => async dispatch => {
         const server = await response.json();
         dispatch(editServer(server));
         return server;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data;
+        }
     }
 }
 

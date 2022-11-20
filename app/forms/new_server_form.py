@@ -15,7 +15,7 @@ def name_exists(_form, field):
 def image_exists(form, field):
     url = field.data
     url = Server.query.filter(Server.preview_image == url).first()
-    if not url:
+    if url:
         raise ValidationError('Image is already used by another server')
 
 class New_server(FlaskForm):
