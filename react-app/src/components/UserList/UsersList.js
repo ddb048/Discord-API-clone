@@ -44,12 +44,12 @@ function UsersList() {
 
   }
 
+ let otherUsers= users.filter(user=>user.id !==currUser.id)
 
 
 
 
-
-  return (users.map((user) => {
+  return (otherUsers.map((user) => {
     return (
       // <div className='user-details'>
       <>

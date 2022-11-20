@@ -108,6 +108,12 @@ const ServerDetail = () => {
 			setUpdateModal(true);
 		}
 	};
+
+
+	useEffect(()=>{
+		setMessages([])
+	},[ currentChannelId])
+
 	// websocket listener
 	useEffect(() => {
 		// open socket connection

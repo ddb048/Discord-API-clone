@@ -69,9 +69,9 @@ const Servers = () => {
 		dispatch(getAllCurrentUserServers());
 	}, [dispatch]);
 
-	useEffect(() => {
+	// useEffect(() => {
 
-	}, [currentServer])
+	// }, [currentServer])
 
 	useEffect(() => {
 		dispatch(getServerDetails(currentServer[0]));
@@ -81,9 +81,9 @@ const Servers = () => {
 
 	}, [currentServer, dispatch, setUpdateShowModal]);
 
-	useEffect(()=>{
+	useEffect(() => {
 		setMessages([])
-	}, memberCard)
+	}, [memberCard])
 
 	useEffect(() => {
 		// open socket connection
@@ -298,9 +298,12 @@ const Servers = () => {
 						</div>
 					</>
 				)}
-				{!showMsg && (
-					<UsersList />
-				)}
+				<div className='users-list-container'>
+					{!showMsg && (
+						<UsersList />
+					)}
+				</div>
+
 			</div>
 		</div>
 	);
