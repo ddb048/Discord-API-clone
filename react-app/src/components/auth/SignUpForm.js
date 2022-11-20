@@ -134,11 +134,11 @@ const SignUpForm = () => {
             <div>
               {renderErr && usernameErr ? (
                 <label className="text renderError" htmlFor="username">
-                  NAME: {usernameErr}
+                  Username: {usernameErr}
                 </label>
               ) : (
                 <label className="text noRenderError" htmlFor="username">
-                  User Name
+                  Username
                 </label>
               )}
             </div>
@@ -153,14 +153,13 @@ const SignUpForm = () => {
           </div>
           <div>
             <div>
-             
               {renderErr && emailErr ? (
                 <label className="text renderError" htmlFor="email">
-                  NAME: {emailErr}
+                  Email: {emailErr}
                 </label>
               ) : (
                 <label className="text noRenderError" htmlFor="email">
-                  User Name
+                  Email
                 </label>
               )}
             </div>
@@ -175,10 +174,9 @@ const SignUpForm = () => {
           </div>
           <div>
             <div>
-              
               {renderErr && urlErr ? (
                 <label className="text renderError" htmlFor="pic">
-                  PROFIL PICTURE: {urlErr}
+                  Profile picture: {urlErr}
                 </label>
               ) : (
                 <label className="text noRenderError" htmlFor="pic">
@@ -199,7 +197,7 @@ const SignUpForm = () => {
             <div>
               {renderErr && passwordErr ? (
                 <label className="text renderError" htmlFor="pic">
-                  PASSWORD: {passwordErr}
+                  Password: {passwordErr}
                 </label>
               ) : (
                 <label className="text noRenderError" htmlFor="pic">
@@ -219,7 +217,7 @@ const SignUpForm = () => {
           <div>
             {renderErr && confirmPasswordErr ? (
               <label className="text renderError" htmlFor="pic">
-                CONFIRMED PASSWORD: {confirmPasswordErr}
+                Confirm Password: {confirmPasswordErr}
               </label>
             ) : (
               <label className="text noRenderError" htmlFor="pic">
