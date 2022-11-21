@@ -115,6 +115,61 @@ def seed_members():
     server_id=10,
     roles='Member'
     )
+  mem21 = Member(
+    user_id=1,
+    server_id=2,
+    roles='Member'
+    )
+  mem22 = Member(
+    user_id=1,
+    server_id=3,
+    roles='Member'
+    )
+  mem23 = Member(
+    user_id=1,
+    server_id=4,
+    roles='Member'
+    )
+  mem24 = Member(
+    user_id=1,
+    server_id=5,
+    roles='Member'
+    )
+  mem25 = Member(
+    user_id=1,
+    server_id=6,
+    roles='Member'
+    )
+  mem26 = Member(
+    user_id=10,
+    server_id=1,
+    roles='Member'
+    )
+  mem27 = Member(
+    user_id=10,
+    server_id=2,
+    roles='Member'
+    )
+  mem28 = Member(
+    user_id=10,
+    server_id=3,
+    roles='Member'
+    )
+  mem29 = Member(
+    user_id=10,
+    server_id=4,
+    roles='Member'
+    )
+  mem30 = Member(
+    user_id=10,
+    server_id=5,
+    roles='Member'
+    )
+  mem31 = Member(
+    user_id=10,
+    server_id=6,
+    roles='Member'
+    )
   db.session.add(mem1)
   db.session.add(mem2)
   db.session.add(mem3)
@@ -135,6 +190,17 @@ def seed_members():
   db.session.add(mem18)
   db.session.add(mem19)
   db.session.add(mem20)
+  db.session.add(mem21)
+  db.session.add(mem22)
+  db.session.add(mem23)
+  db.session.add(mem24)
+  db.session.add(mem25)
+  db.session.add(mem26)
+  db.session.add(mem27)
+  db.session.add(mem28)
+  db.session.add(mem29)
+  db.session.add(mem30)
+  db.session.add(mem31)
 
   db.session.commit()
 
