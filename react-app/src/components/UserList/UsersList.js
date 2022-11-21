@@ -82,10 +82,12 @@ function UsersList() {
               src={user.profile_pic}
               alt='user.name' />
           </div>
-          <div>{user.username}</div>
-          <div onClick={() => (createDM(user), setShowConfirm(true))}>
+          <div className='user-card-bundle'>
+          <div className='user-card-name'>{user.username}</div>
+          <div className='user-card-msg-button' onClick={() => (createDM(user), setShowConfirm(true))}>
             {/* <i className='fa-solid fa-message'/> */}
             <i className="fa-regular fa-message"></i>
+          </div>
           </div>
           {showConfirm && (
             <Modal on onClose={() => setShowConfirm(false)}>

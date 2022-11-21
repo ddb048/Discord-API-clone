@@ -21,13 +21,14 @@
   width: 110px;
   /* border:1px solid green; */
   background-color: #202225;
+  padding-top: 20px;
 }
 .servers-layout{
   /* border:1px solid green; */
   display: flex;
   flex-direction: column;
   /* width: 100%; */
-  padding: 15px 0;
+  /* padding: 15px 0; */
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -230,7 +231,18 @@
 .servers-title-container {
   /* border-bottom: 1px solid white; */
   /* padding-bottom: 20px; */
-  background-color: #202225;
+  /* background-color: #202225; */
+  height: 50px;
+    color: white;
+    font-size: 18px;
+    font-family: adelle-sans, sans-serif;
+    font-style: normal;
+    display: flex;
+    align-items: center;
+    /* margin-left: 15px; */
+    position: absolute;
+    background-color: #202225;
+    width: 1127px;
 }
 
 /* styles direct message title */
@@ -259,9 +271,11 @@
   font-size: 50px;
   font-family: adelle-sans, sans-serif;
   font-style: normal;
-  height: 50%;
-  /* border: 1px solid blueviolet; */
+  height: 100%;
+  position: absolute;
+
   align-items: center;
+  width: 1113px;
 }
 .channel-user-photo{
   /* border: 1px solid blue; */
@@ -336,7 +350,8 @@
 }
 
 .active-user-con {
-    margin: 2%;
+    /* margin: 2%; */
+    margin: 40px;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
