@@ -1,6 +1,6 @@
 /* styles user landing page layout */
 .servers-page-container {
-  width: 100vw;
+  /* width: 100vw; */
   height: 100vh;
   /* height: 600px; */
   /* grid-template-columns: repeat(4, fr);
@@ -20,10 +20,20 @@
   /* justify-content: center; */
   width: 110px;
   /* border:1px solid green; */
-  padding: 15px 0;
   background-color: #202225;
 }
-
+.servers-layout{
+  /* border:1px solid green; */
+  display: flex;
+  flex-direction: column;
+  /* width: 100%; */
+  padding: 15px 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.servers-layout::-webkit-scrollbar {
+  display: none;
+}
 /* styles container for dm button */
 .dm-button-container {
   width: 100%;
@@ -114,9 +124,30 @@
   /* width: 100%; */
   /* border: 1px solid pink; */
   flex-direction: column;
-  height: 85%;
+  height: 89%;
+  overflow-y: scroll;
 }
-
+.servers-dm-layout::-webkit-scrollbar {
+  display: none;
+}
+.friend-msg-map{
+  /* border: 1px solid purple; */
+  /* width: 80%; */
+  border-width: 80%;
+  border-bottom: 1px solid lightgrey;
+  padding: 10px 10px;
+}
+.friend-msg{
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.friend-msg-title{
+  /* border: 1px solid purple; */
+  font-family: adelle-sans, sans-serif;
+  font-style: normal;
+  color: white;
+}
 .servers-dm-name {
   width: 230px;
   display: flex;
@@ -158,9 +189,11 @@
 /* styles div holding all messages */
 .servers-messages-container {
   /* border: 1px solid blue; */
-  width: 1172px;
+  width: 1127px;
   background-color: #36393f;
-  border-right: 1px solid white;
+  /* width: 1172px;
+  background-color: #36393f; */
+  /* border-right: 1px solid white; */
   overflow-y: scroll;
   scrollbar-width: thin;
   scrollbar-color: grey;
@@ -179,7 +212,8 @@
 .servers-active-container {
   /* border: 1px solid black; */
   /* background-color: #36393f; */
-  background-color: #202225;
+  background-color: #2f3136;
+  /* background-color: #202225; */
   width: 25.7vw;
   display: flex;
   justify-content: center;
@@ -194,8 +228,9 @@
 
 /* styles div containing direct messages title */
 .servers-title-container {
-  border-bottom: 1px solid white;
-  padding-bottom: 20px;
+  /* border-bottom: 1px solid white; */
+  /* padding-bottom: 20px; */
+  background-color: #202225;
 }
 
 /* styles direct message title */
@@ -212,11 +247,11 @@
 }
 
 /* div for the h1 placeholders, can be removed once page is completely styled */
-.test-name {
+/* .test-name {
   color: white;
-  /* border-bottom: 1px solid white; */
+  border-bottom: 1px solid white;
   font-size: 12px;
-}
+} */
 .click-friend{
   color: white;
   display: flex;
@@ -228,27 +263,48 @@
   /* border: 1px solid blueviolet; */
   align-items: center;
 }
-
+.channel-user-photo{
+  /* border: 1px solid blue; */
+  display: flex;
+  align-items: center;
+}
 .mess {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  flex-direction: row;
+  gap: 8px;
   color: rgb(199, 199, 199);
+  font-family: adelle-sans, sans-serif;
+  font-style: normal;
   /* border: solid red 1px; */
+  align-items: center;
+  max-width: 1060px;
 }
 
-
+.channel-message{
+  /* border: 1px solid orange; */
+  display: flex;
+  /* align-items: center; */
+  font-family: adelle-sans, sans-serif;
+  font-size: 12px;
+}
 .mess-box {
   display: flex;
   flex-direction: row;
   gap: 15px;
   padding-top: 30px;
-  padding-left: 50px;
+  padding-left: 5px;
+  /* border: 1px solid pink; */
+  max-width: 1122px;
 }
 
 
 .message-form {
-  width: 100%;
+  /* width: 100%; */
+  position: absolute;
+    width: 60vw;
+    padding: 0 5px;
+    bottom: 0px;
+    display: flex;
   /* border: red solid 1px; */
 }
 
@@ -269,6 +325,9 @@
   height: 35px;
   width: 51px;
   border-radius: 10px;
+  background-color: #202225;
+  border: none;
+  color: white;
 }
 
 .active-user-con {
@@ -284,14 +343,17 @@
 }
 .servers-active-title-container{
   /* border-bottom: 1px solid white; */
-  background-color: #2f3136;
+  background-color: #202225;
+  /* background-color: #2f3136; */
+  /* background-color: #2f3136; */
   /* padding-bottom: 10px; */
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
   width: 100%;
   display: flex;
   justify-content: center;
-
 }
+
+
 .servers-active-title{
   height: 50px;
   color: white;
@@ -304,6 +366,7 @@
   display: flex;
   align-items: center;
   margin-left: 15px;
+  /* background-color: #202225 */
 }
 
 .user-img-header {

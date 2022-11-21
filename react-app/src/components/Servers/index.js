@@ -140,6 +140,17 @@ const Servers = () => {
 						</NavLink>
 					</div>
 				</div>
+				<div className='servers-photo-container'>
+					<div className='servers-photo' onClick={() => setShowModal(true)}>
+						<i className='fa fa-plus' aria-hidden='true' />
+					</div>
+					{showModal && (
+						<Modal onClose={() => setShowModal(false)}>
+							<CreateServerForm setShowModal={setShowModal} />
+						</Modal>
+					)}
+				</div>
+				<div className='servers-layout'>
 				{isNotDm.map((server) => {
 					return (
 						<>
@@ -182,15 +193,6 @@ const Servers = () => {
 						</>
 					);
 				})}
-				<div className='servers-photo-container'>
-					<div className='servers-photo' onClick={() => setShowModal(true)}>
-						<i className='fa fa-plus' aria-hidden='true' />
-					</div>
-					{showModal && (
-						<Modal onClose={() => setShowModal(false)}>
-							<CreateServerForm setShowModal={setShowModal} />
-						</Modal>
-					)}
 				</div>
 			</div>
 			<div className='servers-dms-container'>
@@ -201,8 +203,9 @@ const Servers = () => {
 					{otherMember.map(
 						(member) =>
 							member.user_info.profile_pic && (
-								<div key={member.id}>
+								<div className='friend-msg-map' key={member.id}>
 									<div
+										className='friend-msg'
 										onClick={() => (
 											userDm(member.server_id), setMemberCard(member)
 										)}
@@ -214,7 +217,9 @@ const Servers = () => {
 												alt=''
 											/>
 										</div>
-										<div>{member.user_info.username} </div>
+										<div className='friend-msg-title'>
+											{member.user_info.username}{' '}
+										</div>
 									</div>
 								</div>
 							)
@@ -233,7 +238,12 @@ const Servers = () => {
 					<div className='servers-active-title'>MESSAGES</div>
 				</div>
 
-				{!showMsg && <div className='click-friend'> Click on a friend to start chatting</div>}
+				{!showMsg && (
+					<div className='click-friend'>
+						{' '}
+						Click on a friend to start chatting
+					</div>
+				)}
 				{showMsg &&
 					dm.length > 0 &&
 					dm.map((message) => {
@@ -246,7 +256,7 @@ const Servers = () => {
 								/>
 								<div className='mess'>
 									<div>
-										<h4>{message.owner_name}</h4>
+										<h4>{message.owner_name}: </h4>
 										{/* {message.created_at} */}
 									</div>
 									<div>{message.message_body}</div>
@@ -268,7 +278,7 @@ const Servers = () => {
 									/>
 									<div className='mess'>
 										<div>
-											<h4>{x.owner_name}</h4>
+											<h4>{x.owner_name}: </h4>
 										</div>
 										<div>{x.message_body}</div>
 									</div>
@@ -282,14 +292,18 @@ const Servers = () => {
 							value={chatInput}
 							onChange={(e) => setChatInput(e.target.value)}
 							placeholder='Message'
+							className='channel-message-input'
 						/>
-						<button type='submit'>Send</button>
+						<button type='submit'>
+							<i class='fa-regular fa-paper-plane'></i>
+						</button>
 					</form>
 				)}
 			</div>
 			<div className='servers-active-container'>
-				<div className='servers-title-container'>
+				<div className='servers-active-title-container'>
 					{!showMsg && <div className='servers-active-title'>FRIENDS</div>}
+					{showMsg && <div className='servers-active-title'>FRIEND</div>}
 				</div>
 				{showMsg && (
 					<>
