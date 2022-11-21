@@ -24,20 +24,28 @@ const MessageConfirmation = ({ user, serverId, setShowConfirm, errors }) => {
     }
 
     return (
-        <fieldset>
-            {!!errors ?
+        <div className="form-container">
+            <div className="form-card">
+                <fieldset id='form'>
 
-                <div>{errors}</div>
+                    <div className="text">
+                        <h2>Ready to Chat?</h2>
+                    </div>
+                    {!!errors ?
 
-                :
-                <>
-                    <h3>Are you Sure you want to Message this user</h3>
-                    <button onClick={confirm}>Yes</button>
-                    <button onClick={cancel}>No</button>
-                </>
-            }
+                        <div className="errors-div">{errors}</div>
 
-        </fieldset>
+                        :
+                        <>
+                            <h3>Are you Sure you want to Message this user</h3>
+                            <button onClick={confirm}>Yes</button>
+                            <button onClick={cancel}>No</button>
+                        </>
+                    }
+
+                </fieldset>
+            </div>
+        </div>
     )
 }
 
