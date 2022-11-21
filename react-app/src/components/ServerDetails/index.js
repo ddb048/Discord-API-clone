@@ -228,7 +228,7 @@ const ServerDetail = () => {
 			</div>
 			<div className='server-channels-container'>
 				<div className='server-title-container'>
-					<div className='server-title'>{currentServerChannels.name}</div>
+					<div className='server-title'>{currentServerChannels?.name}</div>
 					<div
 						className='add-channel-container'
 						onClick={() => setShowModal(true)}
@@ -236,7 +236,7 @@ const ServerDetail = () => {
 					</div>
 				</div>
 				<div className='server-channel-layout'>
-					{channelsArray.map((channel) => {
+					{channelsArray?.map((channel) => {
 						return (
 							<div id='some-name'>
 								<div
