@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getServerDetails } from '../../store/servers';
@@ -171,6 +171,8 @@ const ServerDetail = () => {
 	// 		);
 	// 	})}
 	// console.log('CURRENT SERVER CHANNELS?',currentChannel)
+
+
 	return (
 		<div className='servers-page-container'>
 			<div className='servers-column-container'>
