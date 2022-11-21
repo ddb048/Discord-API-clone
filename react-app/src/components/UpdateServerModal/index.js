@@ -38,6 +38,9 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setRenderErr(true)
+    const validUrl = urlValidation(preview_image)
+
     const newServer = {
       id: server.id,
       name,
@@ -46,12 +49,16 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
       privateServer,
       is_DM: isDM
     };
-    const data = await dispatch(updateServer(newServer))
-    if (data.errors) {
-      setError(data.errors)
+    if (validUrl === false) {
+      setError({ preview_imageError: 'Invalid URL' })
     } else {
-      dispatch(getAllCurrentUserServers())
-      setUpdateShowModal(false)
+      const data = await dispatch(updateServer(newServer))
+      if (data.errors) {
+        setError(data.errors)
+      } else {
+        dispatch(getAllCurrentUserServers())
+        setUpdateShowModal(false)
+      }
     }
 
   }
@@ -63,6 +70,7 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
     setUpdateShowModal(false)
   }
 
+  console.log('ERRORS',error)
 
   return (
     <div className="form-container">

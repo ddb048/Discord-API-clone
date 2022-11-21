@@ -47,6 +47,8 @@ const CreateServerForm = ({ setShowModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setRenderErr(true)
+    const validUrl = urlValidation(preview_image)
+    // console.log('----------',validUrl)
     const newServer = {
       name,
       preview_image,
@@ -54,10 +56,16 @@ const CreateServerForm = ({ setShowModal }) => {
       privateServer,
       isDM,
     };
-    const data = await dispatch(createServer(newServer));
-    if (data.errors) {
-      setError(data.errors);
-    } else { setShowModal(false); }
+
+    if (validUrl === false) {
+      setError({preview_imageError:'Invalid URL'})
+    } else {
+      const data = await dispatch(createServer(newServer));
+      if (data.errors) {
+        setError(data.errors);
+      } else { setShowModal(false); }
+    }
+
   };
 
 
