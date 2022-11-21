@@ -19,6 +19,10 @@
   background-color: #434a94;
 }
 
+.delete-channel-bttnhide:active {
+  transform: scale(0.95);
+}
+
 .delete-div {
   display: flex;
   flex-direction: column;
@@ -44,6 +48,10 @@
   font-family: adelle-sans, sans-serif;
   font-style: bold;
   font-size: 18px;
+}
+
+.delete-channel-bttn:active {
+  transform: scale(0.95);
 }
 
 .confirm-channel-bttn {
@@ -72,6 +80,10 @@
   font-size: 18px;
 }
 
+.confirm-channel-bttn:active {
+  transform: scale(0.95);
+}
+
 .cancel-channel-bttn {
   background-color: #5865f2;
   color: white;
@@ -96,6 +108,10 @@
   font-family: adelle-sans, sans-serif;
   font-style: bold;
   font-size: 18px;
+}
+
+.cancel-channel-bttn:active {
+  transform: scale(0.95);
 }
 
 .create-channel-submit-btn-container {
