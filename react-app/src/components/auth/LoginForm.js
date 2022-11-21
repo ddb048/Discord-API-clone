@@ -65,7 +65,7 @@ const LoginForm = () => {
 			setErrors(data);
 		} else {
 			dispatch(clearServer());
-			setTimeout(() => { < Redirect to="/servers/@me" />; }, 2000)
+			setTimeout(() => { < Redirect to="/servers/@me" />; }, 1000)
 		}
 	}
 
