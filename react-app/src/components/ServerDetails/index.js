@@ -71,10 +71,10 @@ const ServerDetail = () => {
 	useEffect(() => {
 		(async () => {
 			await dispatch(getServerDetails(serverId));
+			setIsLoaded(true)
 			await dispatch(getAllChannel(serverId));
 			await dispatch(getAllMembers(serverId));
 			await dispatch(getAllMessages(currentChannelId));
-			setIsLoaded(true)
 		})();
 
 	}, [dispatch, channelId, serverId, currentChannelId]);

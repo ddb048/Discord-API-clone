@@ -32,7 +32,7 @@ const DeleteConfirmation = ({id}) => {
                     <button onClick={cancel}>No</button>
                 </>
             }
-
+            
         </fieldset>
     )
 }
