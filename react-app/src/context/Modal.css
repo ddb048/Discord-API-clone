@@ -173,6 +173,7 @@ input {
     height: 45px;
     width: 400px;
     border: none;
+    gap: 1rem;
     border-radius: 2px;
     transition: background-color .2s ease;
     font-family: adelle-sans, sans-serif;
@@ -197,6 +198,7 @@ input {
     width: 400px;
     border: none;
     border-radius: 2px;
+    gap: 1rem;
     transition: background-color .2s ease;
     font-family: adelle-sans, sans-serif;
     font-style: bold;
