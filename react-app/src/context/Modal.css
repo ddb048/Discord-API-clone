@@ -181,6 +181,9 @@ input {
     font-size: 18px;
 }
 
+.dark-create-channel-btn:active {
+    transform: scale(0.95);
+}
 
 /* .dark-create-channel-btnvisible{
     background-color: #434a94;
@@ -203,6 +206,10 @@ input {
     font-family: adelle-sans, sans-serif;
     font-style: bold;
     font-size: 18px;
+}
+
+.light-create-channel-btn:active {
+    transform: scale(0.95);
 }
 
 .light-create-channel-btn:hover {
@@ -305,6 +312,10 @@ input {
 
 #new-server-btn-dlt:hover {
     background-color: brown;
+}
+
+#new-server-btn-dlt:active {
+    transform: scale(0.95);
 }
 
 #update-text-area {

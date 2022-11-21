@@ -22,6 +22,8 @@
 
 }
 
+
+
 .form-card {
   display: flex;
   flex-direction: row;
@@ -80,6 +82,10 @@
 
 #subButton:hover {
   background-color: #373f99;
+}
+
+.subButton:active {
+  transform: scale(0.95);
 }
 
 #to-signup {

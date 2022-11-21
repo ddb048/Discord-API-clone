@@ -25,7 +25,7 @@
     display: flex;
     flex-direction: row;
     margin-top: 40px;
-   justify-items: center;
+    justify-items: center;
 }
 
 
@@ -46,4 +46,34 @@
     max-width: 100%;
     border-radius: 50%;
     object-fit: fill;
+}
+
+.buttons-div {
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    background-color: rgb(59, 165, 93);
+    border: none;
+    color: white;
+    height: 45px;
+    width: 400px;
+    border-radius: 5px;
+    border: none;
+    transition: background-color .2s ease;
+    font-family: adelle-sans, sans-serif;
+    font-style: bold;
+    font-size: 18px;
+}
+
+.button:hover {
+    background-color: rgb(32, 93, 51);
+}
+
+.button:active {
+    transform: scale(0.95);
 }
