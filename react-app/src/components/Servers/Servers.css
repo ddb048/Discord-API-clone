@@ -412,7 +412,6 @@
     display: flex;
     flex-direction: column;
     margin-top: 95px;
-
 }
 
 .user-name-id {
@@ -426,7 +425,6 @@
   font-weight: bolder;
   padding-bottom: 30px;
 }
-
 .joind-date {
   font-weight: 100;
   font-family: sans-serif;
