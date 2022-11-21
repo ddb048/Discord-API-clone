@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getServerDetails } from '../../store/servers';
@@ -168,8 +168,15 @@ const ServerDetail = () => {
 	// 		);
 	// 	})}
 	// console.log('CURRENT SERVER CHANNELS?',currentChannel)
+	const dummy = useRef(null)
 
+    const scrollToBottom = () => {
+      dummy.current?.scrollIntoView({ behavior: "smooth" })
+    }
 
+    useEffect(() => {
+      scrollToBottom()
+    }, [messages]);
 	return (
 		<div className='servers-page-container'>
 			<div className='servers-column-container'>
@@ -301,7 +308,7 @@ const ServerDetail = () => {
 							return (
 								<div className='mess-box'>
 									<div className='channel-user-photo'>
-										<img className='user-photo' src={msg.user_photo} alt='' />
+										<img className='user-photo' src={msg.owner_pic} alt='' />
 									</div>
 									<div className='mess'>
 										<div>
@@ -331,6 +338,7 @@ const ServerDetail = () => {
 								</div>
 							);
 						})}
+						<div ref ={dummy} />
 				</div>
 				<div className='channel-input-textbox-container'>
 					{showMsg && (

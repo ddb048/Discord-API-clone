@@ -2,9 +2,10 @@
 .Splash-container {
     height: 100%;
     overflow-x: hidden;
-
 }
-
+.Splash-container::-webkit-scrollbar {
+    display: none;
+}
 
 /* css for the splash title  */
 .Splash-title {
@@ -233,12 +234,15 @@
     font-family: adelle-sans, sans-serif;
 }
 
+.button-div{
+    padding-bottom: 10px;
+}
 .Splash-footer {
     /* border: 1px solid black; */
     height: auto;
     justify-content: center;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
     background-color: #23272a;
     padding-top: 5%;
@@ -277,16 +281,18 @@
     justify-content: center;
     align-items: center;
     row-gap: 10px;
+
 }
 
 .language-button-div {
+    /* padding-top: 20px; */
     display: flex;
     gap: 5px;
 }
 
 .language-button {
     color: white;
-    font-size: 15px;
+    /* font-size: 15px; */
 }
 
 .footer-title {
@@ -299,15 +305,18 @@
     font-size: 35px;
     font-weight: bold;
     text-align: center;
+    /* padding-bottom: 50px; */
 }
 
 .contact-card {
     /* border: 1px solid; */
     grid-column: span 2;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
-    justify-content: center;
+    gap: 40px;
+    /* justify-content: center; */
+    /* border: 1px solid blue; */
 }
 
 #languages {
@@ -316,18 +325,27 @@
 
 #abel {
     grid-column: 4/span 1;
+    /* border:1px solid pink; */
+    flex-direction: column;
+
 }
 
 #cindy {
+    /* border:1px solid pink; */
     grid-column: 6/span 1;
+    flex-direction: column;
 }
 
 #david {
+    /* border:1px solid pink; */
     grid-column: 8/span 1;
+    flex-direction: column;
 }
 
 #moran {
+    /* border:1px solid pink; */
     grid-column: 10/span 1;
+    flex-direction: column;
 }
 
 .contact-card-line {
@@ -346,14 +364,17 @@
 
 }
 
-.buttons-div {
+.contact-buttons-div {
     gap: 10px;
     display: inline-flex;
+    /* border:1px solid pink; */
+
 }
 
-.button-div {
+/* .button-div {
     padding-bottom: 2%;
-}
+
+} */
 
 .sign-up-button {
     height: 45px;

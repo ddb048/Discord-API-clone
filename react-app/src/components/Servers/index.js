@@ -124,7 +124,15 @@ const Servers = () => {
 		const chanId = server.channels[0].id;
 		setCurrentServer([id, chanId]);
 	}
+	const dummy = useRef(null);
 
+	const scrollToBottom = () => {
+		dummy.current?.scrollIntoView({ behavior: 'smooth' });
+	};
+
+	useEffect(() => {
+		scrollToBottom();
+	}, [messages]);
 	return (
 		<div className='servers-page-container'>
 			<div className='servers-column-container'>
@@ -237,32 +245,34 @@ const Servers = () => {
 				<div className='servers-title-container'>
 					<div className='servers-active-title'>MESSAGES</div>
 				</div>
-
 				{!showMsg && (
-					<div className='click-friend'>Click on a friend to start chatting</div>
+					<div className='click-friend'>
+						Click on a friend to start chatting
+					</div>
 				)}
-				{showMsg &&
-					dm.length > 0 &&
-					dm.map((message) => {
-						return (
-							<div className='mess-box' key={message.id}>
-								<img
-									className='user-photo'
-									src={message.owner_pic}
-									alt='userPhoto'
-								/>
-								<div className='mess'>
-									<div>
-										<h4>{message.owner_name}: </h4>
-										{/* {message.created_at} */}
-									</div>
-									<div>{message.message_body}</div>
-								</div>
-							</div>
-						);
-					})}
 
-				<div>
+				<div className='try1'>
+					{showMsg &&
+						dm.length > 0 &&
+						dm.map((message) => {
+							return (
+								<div className='mess-box' key={message.id}>
+									<img
+										className='user-photo'
+										src={message.owner_pic}
+										alt='userPhoto'
+									/>
+									<div className='mess'>
+										<div>
+											<h4>{message.owner_name}: </h4>
+											{/* {message.created_at} */}
+										</div>
+										<div>{message.message_body}</div>
+									</div>
+								</div>
+							);
+						})}
+
 					{showMsg &&
 						messages.length > 0 &&
 						messages.map((x) => {
@@ -281,10 +291,15 @@ const Servers = () => {
 									</div>
 								</div>
 							);
-						})}
+						})
+
+						}
+						<div ref={dummy} />
 				</div>
+				<div className='channel-input-textbox-container'>
+
 				{showMsg && (
-					<form onSubmit={submit} className='message-form'>
+					<form onSubmit={submit} className='channel-message-form'>
 						<input
 							value={chatInput}
 							maxLength={160}
@@ -293,11 +308,13 @@ const Servers = () => {
 							placeholder='Message'
 							className='channel-message-input'
 						/>
-						<button type='submit'>
+						<button class="channel-send-msg" type='submit'>
 							<i class='fa-regular fa-paper-plane'></i>
 						</button>
 					</form>
 				)}
+				</div>
+
 			</div>
 			<div className='servers-active-container'>
 				<div className='servers-active-title-container'>
