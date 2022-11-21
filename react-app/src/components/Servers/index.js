@@ -194,7 +194,7 @@ const Servers = () => {
 				</div>
 			</div>
 			<div className='servers-dms-container'>
-				<div className='servers-title-container'>
+				<div className='server-title-container'>
 					<div className='servers-title'>DIRECT MESSAGES</div>
 				</div>
 				<div className='servers-dm-layout'>

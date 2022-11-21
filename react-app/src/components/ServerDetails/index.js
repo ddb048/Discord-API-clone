@@ -54,7 +54,9 @@ const ServerDetail = () => {
 	const currentServerChannels = channelsServersArr.find(server => server.id === serverId)
 	// console.log('CURRENT SERVER CHANNEL', currentServerChannels.name)
 	// array of object that holds the current channels of the server
-	const channelsArray = currentServerChannels.channels;
+	// i added ? to stop it from erroring out 
+	const channelsArray = currentServerChannels?.channels;
+	// console.log('CHANNEL ARRAY', channelsArray)
 	// console.log('all channels', allChannels);
 	const currentUser = useSelector((state) => state.session.user);
 
@@ -160,6 +162,7 @@ const ServerDetail = () => {
 	// 			</div>
 	// 		);
 	// 	})}
+	// console.log('CURRENT SERVER CHANNELS?',currentChannel)
 	return (
 		<div className='servers-page-container'>
 			<div className='servers-column-container'>
@@ -221,9 +224,7 @@ const ServerDetail = () => {
 					<div
 						className='add-channel-container'
 						onClick={() => setShowModal(true)}
-					>
-						{' '}
-						<i className='fa fa-plus' aria-hidden='true' />
+					><i className='fa fa-plus' aria-hidden='true' />
 					</div>
 				</div>
 				<div className='server-channel-layout'>
@@ -263,8 +264,9 @@ const ServerDetail = () => {
 				</div>
 			</div>
 			<div className='channel-messages-container'>
-				<div></div>
-					messages section
+			<div className='servers-title-container'>
+					<div className='servers-title'>MESSAGES FOR CHANNEL {currentChannel? ": "+currentChannel.name: null}</div>
+				</div>
 				<div className='test-name'>
 					{showMsg &&
 						currentChannel &&
