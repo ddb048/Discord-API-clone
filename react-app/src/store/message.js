@@ -104,7 +104,7 @@ const messageReducer = (state = initialState, action) => {
 
         //REVIEW - ANCHOR - FOR CINDY: CREATE_MESSAGE DID NOT HAVE A RETURN> UPDATED TO FIX RENDER
         case CREATE_MESSAGE:
-            newState.messages[action.newMessage.id] = action.newMessage
+            newState = { ...state, [action.message.id]: action.message };
             return newState
 
         case EDIT_MESSAGE:
