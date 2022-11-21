@@ -237,9 +237,9 @@ const SignUpForm = () => {
               placeholder="Your password"
             ></input>
           </div>
-          <div className="errors-div">
+          {/* <div className="errors-div">
             {!!errors.length && <div id="errors">{errors[0]}</div>}
-          </div>
+          </div> */}
           <button id="subButton2" type="submit">
             Sign Up
           </button>
