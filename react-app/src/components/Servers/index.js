@@ -108,7 +108,7 @@ const Servers = () => {
 			message_body: chatInput,
 		};
 		dispatch(createMessage(payload));
-		if (socket) {
+		if (socket && chatInput.length) {
 			socket.emit('DM', {
 				owner_name: currentUser.username,
 				owner_pic: currentUser.profile_pic,
@@ -293,26 +293,26 @@ const Servers = () => {
 							);
 						})
 
-						}
-						<div ref={dummy} />
+					}
+					<div ref={dummy} />
 				</div>
 				<div className='channel-input-textbox-container'>
 
-				{showMsg && (
-					<form onSubmit={submit} className='channel-message-form'>
-						<input
-							value={chatInput}
-							maxLength={160}
-							minLength={2}
-							onChange={(e) => setChatInput(e.target.value)}
-							placeholder='Message'
-							className='channel-message-input'
-						/>
-						<button class="channel-send-msg" type='submit'>
-							<i class='fa-regular fa-paper-plane'></i>
-						</button>
-					</form>
-				)}
+					{showMsg && (
+						<form onSubmit={submit} className='channel-message-form'>
+							<input
+								value={chatInput}
+								maxLength={160}
+								minLength={2}
+								onChange={(e) => setChatInput(e.target.value)}
+								placeholder='Message'
+								className='channel-message-input'
+							/>
+							<button class="channel-send-msg" type='submit'>
+								<i class='fa-regular fa-paper-plane'></i>
+							</button>
+						</form>
+					)}
 				</div>
 
 			</div>
