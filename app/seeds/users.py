@@ -6,7 +6,7 @@ def seed_users():
     user1 = User(
         first_name='Demo',
         last_name='Smith',
-        profile_pic='https://www.pngitem.com/pimgs/m/576-5768840_cartoon-man-png-avatar-transparent-png.png',
+        profile_pic='https://www.pwnandpatch.com/wp-content/uploads/2019/07/50-Security-icons_31.png',
         username='Demo',
         email='demo@aa.io',
         password='password'
@@ -22,7 +22,7 @@ def seed_users():
     user3 = User(
         first_name='Bobbie',
         last_name='Koss',
-        profile_pic='https://banner2.cleanpng.com/20180422/kzq/kisspng-user-profile-computer-icons-user-interface-design-egyptian-culture-5adc0fa3cc7602.8400905915243713638375.jpg',
+        profile_pic='https://www.pwnandpatch.com/wp-content/uploads/2019/07/50-Security-icons_31.png',
         username='Bobbie',
         email='bobbie@aa.io',
         password='password'
@@ -38,7 +38,7 @@ def seed_users():
     user5 = User(
         first_name='Keshaun',
         last_name='Huels',
-        profile_pic='https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/128298321/original/cedacf7901914219625ff9d47550f7475f9064b8/draw-awesome-bighead-cartoon-in-24-hours.jpg',
+        profile_pic='https://static.vecteezy.com/system/resources/previews/002/002/403/non_2x/man-with-beard-avatar-character-isolated-icon-free-vector.jpg',
         username='Keshaun',
         email='keshaun@aa.io',
         password='password'
@@ -46,7 +46,7 @@ def seed_users():
     user6 = User(
         first_name='Ryder',
         last_name='Schmitt',
-        profile_pic='https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/213245707/original/66a67e36fe8227d15c8c310cc112b60e74af5d6f/design-avatar-cartoon-for-business-gaming-social-media.jpg',
+        profile_pic='https://cdn1.iconfinder.com/data/icons/avatar-2-2/512/Programmer-512.png',
         username='Ryder',
         email='ryder@aa.io',
         password='password'

@@ -14,11 +14,11 @@
 
 /* styles div for all servers container */
 .servers-column-container {
-  /* grid-area: server; */
+
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
-  width: 90px;
+  width: 110px;
   /* border:1px solid green; */
   padding: 15px 0;
   background-color: #202225;
@@ -40,6 +40,14 @@
   width: 0;
 }
 
+.server-cog-grouper{
+  /* border: 1px solid green; */
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  /* padding-left: 15px; */
+}
 /* styles dm button */
 .dm-button {
   width: 40px;
@@ -55,13 +63,13 @@
 }
 
 /* syles the div holding all server buttons */
-.servers-photo-container {
+/* .servers-photo-container {
   padding: 10px 0;
   width: 100%;
   display: flex;
   justify-content: center;
-  /* border: 1px solid green; */
-}
+  border: 1px solid green;
+} */
 
 /* className='servers-channel-name' */
 /* styles server button */
@@ -92,7 +100,8 @@
   justify-content: flex-start;
   flex-direction: column;
   /* border: 1px solid green; */
-  width: 135px;
+  /* width: 135px; */
+  width: 190px;
   background-color: #2f3136;
   /* border: 1px solid white */
 
@@ -120,9 +129,11 @@
 
 .servers-dm-footer {
   display: flex;
-  border: 1px solid purple;
+  /* border: 1px solid purple; */
   justify-content: space-around;
   align-items: center;
+  position: absolute;
+  bottom: 0;
   /* height: 50px; */
 }
 
@@ -165,12 +176,14 @@
 /* styles div for active container  NOTE idk why its not hitting this*/
 .servers-active-container {
   /* border: 1px solid black; */
-  background-color: #36393f;
-  width: 420px;
+  /* background-color: #36393f; */
+  background-color: #202225;
+  width: 25.7vw;
   display: flex;
   justify-content: center;
   flex-direction: column;
   overflow-y: scroll;
+  align-items: center;
 }
 
 .servers-active-container::-webkit-scrollbar {
@@ -180,6 +193,12 @@
 /* styles div containing direct messages title */
 .servers-title-container {
   border-bottom: 1px solid white;
+  padding-bottom: 20px;
+  width:100%;
+  display: flex;
+  justify-content: center;
+  background-color: #202225;
+
 }
 
 /* styles direct message title */
@@ -192,6 +211,7 @@
   display: flex;
   align-items: center;
   margin-left: 15px;
+  /* background-color: #202225; */
 }
 
 /* div for the h1 placeholders, can be removed once page is completely styled */
@@ -200,7 +220,17 @@
   /* border-bottom: 1px solid white; */
   font-size: 12px;
 }
-
+.click-friend{
+  color: white;
+  display: flex;
+  justify-content: center;
+  font-size: 50px;
+  font-family: adelle-sans, sans-serif;
+  font-style: normal;
+  height: 50%;
+  /* border: 1px solid blueviolet; */
+  align-items: center;
+}
 
 .mess {
   display: flex;
@@ -249,12 +279,35 @@
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    background-color: #202225;
+    background-color: #2f3136;
+    /* background-color: #202225; */
     width: 345px;
     height: 327px;
     align-items: center;
 }
+.servers-active-title-container{
+  /* border-bottom: 1px solid white; */
+  background-color: #2f3136;
+  /* padding-bottom: 10px; */
+  padding-bottom: 20px;
+  width: 1fr;
+  display: flex;
+  justify-content: center;
 
+}
+.servers-active-title{
+  height: 50px;
+  color: white;
+  font-size: 22px;
+  height: 50px;
+  color: white;
+  font-size: 18px;
+  font-family: adelle-sans, sans-serif;
+  font-style: normal;
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
 
 .user-img-header {
   background-color: blueviolet;
@@ -290,7 +343,7 @@
 
 .user-details {
     color: white;
-    width: 250px;
+    width: 276px;
     height: 150px;
     border-radius: 20px;
     padding: 10%;
@@ -326,7 +379,8 @@
   flex-direction: row;
   gap: 30px;
   align-items: center;
-  padding-left: 10px;
+  padding-left: 15px;
+  /* border: 1px solid blue; */
 }
 
 .cog>i {
