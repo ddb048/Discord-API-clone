@@ -14,6 +14,14 @@ function UsersList() {
   const [error, setError] = useState()
   const dispatch = useDispatch()
   const currUser = useSelector(state => state.session.user)
+
+  const servers = useSelector(state => state.servers.servers)
+
+
+  const serversNames = Object.values(servers)
+
+
+
   useEffect(() => {
     async function fetchData() {
       const response = await fetch('/api/users/');
@@ -21,30 +29,44 @@ function UsersList() {
       setUsers(responseData.users);
     }
     fetchData();
+
   }, []);
   // console.log("++++++++++", users)
 
   const createDM = async (user) => {
-    let newDmServer = await dispatch(createServer({
-      name: `${currUser.username}-${user.username}`,
-      preview_image: '2',
-      private: true,
-      server_description: 'New Dm',
-      is_DM: true
-    }
-    ))
 
-    if (newDmServer.errors) {
-      setError(newDmServer.errors);
+    const compName = serversNames.find(server => server.name === (`${currUser.username}and${user.username}`))
+
+    console.log("compName from createDM", compName)
+
+    let newDmServer;
+
+    if (!compName) {
+      setError("")
+      newDmServer = await dispatch(createServer({
+        name: `${currUser.username}and${user.username}`,
+        preview_image: '2',
+        private: true,
+        server_description: 'New Dm',
+        is_DM: true
+      }
+      ))
+      setReceiver(user)
+      setNewServer(newDmServer)
+
+      // console.log('<<<<',user)
+
+    } else {
+      setError("A Direct Message with this friend already exists");
     }
-    setReceiver(user)
-    // console.log('<<<<',user)
-    setNewServer(newDmServer)
+
+
+
     console.log('new server', newDmServer)
 
   }
 
- let otherUsers= users.filter(user=>user.id !==currUser.id)
+  let otherUsers = users.filter(user => user.id !== currUser.id)
 
 
 
