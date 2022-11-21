@@ -29,7 +29,7 @@ const Servers = () => {
 	const [toUpdate, setToUpdate] = useState({});
 	const [memberCard, setMemberCard] = useState({});
 
-	console.log('member card data', memberCard);
+	// console.log('member card data', memberCard);
 
 	const dispatch = useDispatch();
 	// const history = useHistory();

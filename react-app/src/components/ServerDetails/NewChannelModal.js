@@ -8,29 +8,35 @@ const ChannelModal = ({ serverId, setShowModal }) => {
 
 	const dispatch = useDispatch();
 	const [name, setName] = useState('');
-	const is_voice = false;
+	const [is_voice] = useState(false);
 	const [description, setDescription] = useState('');
 	const [error, setError] = useState({});
+	const [renderErr, setRenderErr] = useState(false)
+
 	// const [frontEndErrors, setFrontEndErrors] = useState([]);
 	const [changeColor, setChangeColor] = useState('dark-create-channel-btn');
 
 	useEffect(() => {
 		let errors = {};
-		if (name.length) {
+		if (name) {
 			setChangeColor('light-create-channel-btn');
 		} else {
 			setChangeColor('dark-create-channel-btn');
 		}
 
 
-		if (name.length > 32) {
-			errors.nameError = 'Please provide a channel name less than 32 characters';
+		if (!name) {
+			errors.nameError = 'Please provide a channel name less than 10 characters';
+			setError(errors);
+		} else if (name.length >10){
+			errors.nameError = 'Channel name must be at most 10 characters'
 			setError(errors);
 		}
 	}, [name]);
-
+// console.log('errrors', error)
 	const submitNewChannel = async (e) => {
 		e.preventDefault();
+    setRenderErr(true)
 
 		const newChannel = {
 			name,
@@ -66,18 +72,25 @@ const ChannelModal = ({ serverId, setShowModal }) => {
 					<div>
 
 
-						<label className="text noRenderError">Channel Name</label>
+						<label className="text noRenderError" htmlFor="name">
+						Channel Name
+              </label>
+
 						<input
 							className="inp"
 							type="text"
-							placeholder="new-channel"
+							placeholder={"new-channel"}
 							value={name}
 							onChange={(e) => setName(e.target.value)}
 						/>
 
 					</div>
 					<div>
-						<label className="text noRenderError">Description</label>
+
+						<label className="text noRenderError" htmlFor="name">
+						Description
+              </label>
+							
 						<input
 							className="inp"
 							type="text"
@@ -88,7 +101,8 @@ const ChannelModal = ({ serverId, setShowModal }) => {
 					</div>
 
 					<div className="create-channel-submit-btn-container">
-						<button className={changeColor} type="submit">
+						<button className={changeColor}
+						type="submit">
 							Create Channel
 						</button>
 					</div>

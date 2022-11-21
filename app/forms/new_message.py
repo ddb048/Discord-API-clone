@@ -1,4 +1,4 @@
-from app.models import Channel
+# from app.models import Channel
 from wtforms.validators import DataRequired
 from wtforms import TextAreaField
 from flask_wtf import FlaskForm

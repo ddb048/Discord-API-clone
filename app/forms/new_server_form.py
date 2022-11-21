@@ -1,8 +1,8 @@
-from app.models import Server
-from wtforms.validators import DataRequired, ValidationError
-from wtforms import StringField,BooleanField,IntegerField,TextAreaField
+# from app.models import Server
+from wtforms.validators import DataRequired
+from wtforms import StringField,BooleanField,TextAreaField
 from flask_wtf import FlaskForm
-from app.models import Server
+
 
 # def name_exists(_form, field):
 #     #checking if name of server exists

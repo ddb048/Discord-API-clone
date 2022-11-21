@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { createServer, getAllCurrentUserServers } from '../../store/servers';
+import { createServer } from '../../store/servers';
 import '../../context/Modal.css';
 
 const CreateServerForm = ({ setShowModal }) => {
@@ -33,6 +33,8 @@ const CreateServerForm = ({ setShowModal }) => {
       errors.nameError = 'You must give your server a name';
     } else if (compName) {
       errors.nameError = 'Server with this name already exists'
+    } else if(name.length > 10){
+      errors.nameError = 'Server name must be at most 10 characters'
     }
     if (!preview_image.length) {
       errors.preview_imageError = 'You must provide image url'
@@ -63,7 +65,7 @@ const CreateServerForm = ({ setShowModal }) => {
       const data = await dispatch(createServer(newServer));
       if (data.errors) {
         setError(data.errors);
-      } else { setShowModal(false); }
+      } else { setShowModal(false) }
     }
 
   };

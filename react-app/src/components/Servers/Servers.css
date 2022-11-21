@@ -196,8 +196,8 @@
   background-color: #36393f; */
   /* border-right: 1px solid white; */
   overflow-y: scroll;
-  scrollbar-width: thin;
-  scrollbar-color: grey;
+  /* scrollbar-width: thin;
+  scrollbar-color: grey; */
 }
 
 .servers-messages-container::-webkit-scrollbar {
@@ -328,7 +328,7 @@
 }
 
 .message-form input {
-  
+
   height: 30px;
   border-radius: 10px;
   border: none;
