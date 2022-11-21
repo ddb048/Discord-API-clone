@@ -21,7 +21,7 @@ const ChannelModal = ({ serverId, setShowModal }) => {
 		} else {
 			setChangeColor('dark-create-channel-btn');
 		}
-		// console.log('this is change color', changeColor);
+
 
 		if (name.length > 32) {
 			errors.nameError = 'Please provide a channel name less than 32 characters';
@@ -41,7 +41,8 @@ const ChannelModal = ({ serverId, setShowModal }) => {
 		const data = await dispatch(createChannel(serverId, newChannel))
 
 		if (data.errors) {
-			setError(data.errors)
+			setError(data.errors);
+
 		} else {
 			dispatch(getServerDetails(serverId))
 			setShowModal(false);

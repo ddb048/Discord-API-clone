@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../store/session';
 import './LoginForm.css';
+import { clearServer } from '../../store/servers';
 import qrCode from '../../Images/q-cord.png'
 const LoginForm = () => {
 	const [errors, setErrors] = useState([]);
@@ -31,8 +32,10 @@ const LoginForm = () => {
 			const data = await dispatch(login(email, password));
 			if (data) {
 				setErrors(data);
+			} else {
+				setTimeout(() => { dispatch(clearServer()).then(< Redirect to="/servers/@me" />) }, 1000)
 			}
-			<Redirect to="/servers/@me" />;
+
 		}
 	};
 
@@ -60,6 +63,9 @@ const LoginForm = () => {
 		const data = await dispatch(login('lazaro@aa.io', 'password'))
 		if (data) {
 			setErrors(data);
+		} else {
+			dispatch(clearServer());
+			setTimeout(() => { < Redirect to="/servers/@me" />; }, 2000)
 		}
 	}
 
