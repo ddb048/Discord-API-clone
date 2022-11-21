@@ -308,7 +308,7 @@ const ServerDetail = () => {
 							return (
 								<div className='mess-box'>
 									<div className='channel-user-photo'>
-										<img className='user-photo' src={msg.user_photo} alt='' />
+										<img className='user-photo' src={msg.owner_pic} alt='' />
 									</div>
 									<div className='mess'>
 										<div>
