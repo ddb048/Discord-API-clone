@@ -72,6 +72,7 @@ const ServerDetail = () => {
 		(async () => {
 			await dispatch(getServerDetails(serverId));
 			await dispatch(getAllChannel(serverId));
+			await dispatch(getChannelDetail(channelId));
 			await dispatch(getAllMembers(serverId));
 			await dispatch(getAllMessages(currentChannelId));
 			setIsLoaded(true)
