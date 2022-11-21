@@ -91,7 +91,7 @@ function OnePageServer() {
             </div>
           </div>
           <NavLink className="details-card-bttn" to="/sign-up">
-            <div>Join Q-Core</div>
+            <div>Join Q-Cord</div>
           </NavLink>
         </div>
       </>

@@ -234,26 +234,26 @@ const Servers = () => {
 				</div>
 
 				{!showMsg && <div className='click-friend'> Click on a friend to start chatting</div>}
-					{showMsg &&
-						dm.length > 0 &&
-						dm.map((message) => {
-							return (
-								<div className='mess-box' key={message.id}>
-									<img
-										className='user-photo'
-										src={message.owner_pic}
-										alt='userPhoto'
-									/>
-									<div className='mess'>
-										<div>
-											<h4>{message.owner_name}</h4>
-											{/* {message.created_at} */}
-										</div>
-										<div>{message.message_body}</div>
+				{showMsg &&
+					dm.length > 0 &&
+					dm.map((message) => {
+						return (
+							<div className='mess-box' key={message.id}>
+								<img
+									className='user-photo'
+									src={message.owner_pic}
+									alt='userPhoto'
+								/>
+								<div className='mess'>
+									<div>
+										<h4>{message.owner_name}</h4>
+										{/* {message.created_at} */}
 									</div>
+									<div>{message.message_body}</div>
 								</div>
-							);
-						})}
+							</div>
+						);
+					})}
 
 				<div>
 					{showMsg &&
@@ -288,9 +288,9 @@ const Servers = () => {
 				)}
 			</div>
 			<div className='servers-active-container'>
-			<div className='servers-title-container'>
-			{!showMsg && <div className='servers-active-title'>FRIENDS</div>}
-			</div>
+				<div className='servers-title-container'>
+					{!showMsg && <div className='servers-active-title'>FRIENDS</div>}
+				</div>
 				{showMsg && (
 					<>
 						<div className='active-user-con'>
@@ -314,7 +314,7 @@ const Servers = () => {
 								</div>
 
 								<div className='user-name-id-joined'>
-									<div className='joined'>Q-core member since </div>
+									<div className='joined'>Q-Cord member since </div>
 									<div className='joind-date'>
 										{memberCard.joined.slice(0, 17)}
 									</div>
