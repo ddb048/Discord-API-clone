@@ -371,3 +371,11 @@
 .sign-up-button:hover {
     background-color: #373f99;
 }
+
+.splash-logout-button{
+   background-color: rgb(59, 165, 93);
+   border: none;
+   border-radius: 2px;
+   color:white;
+   
+}

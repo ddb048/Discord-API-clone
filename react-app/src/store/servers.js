@@ -50,8 +50,8 @@ export const getAllServers = () => async dispatch => {
         const servers = await response.json();
         dispatch(loadServers(servers.servers));
         return servers.servers
-    }
-
+    } 
+   
 }
 
 //SECTION - GET /api/servers/@me (READ)
