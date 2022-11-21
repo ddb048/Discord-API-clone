@@ -18,7 +18,6 @@ const SignUpForm = () => {
   const [emailErr, setEmailErr] = useState('');
   const [usernameErr, setUsernameErr] = useState('');
   const [passwordErr, setPasswordErr] = useState('');
-  const [lastNameErr, setLastNameErr] = useState('');
   const [confirmPasswordErr, setConfirmPasswordErr] = useState('');
   const [renderErr, setRenderErr] = useState(false);
   const user = useSelector(state => state.session.user);
@@ -27,7 +26,12 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     setRenderErr(true)
-    if (password === confirmPassword) {
+    if (password === confirmPassword &&
+      !usernameErr &&
+      !passwordErr &&
+      !confirmPasswordErr &&
+      !urlErr &&
+      !emailErr) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data)
@@ -84,7 +88,7 @@ const SignUpForm = () => {
     //username error handling
     if (username.length < 4) {
       setUsernameErr('username must be at least 4 characters')
-    } else if (username.length > 10){
+    } else if (username.length > 10) {
       setUsernameErr('username must be less than 10 characters ')
     } else {
       setUsernameErr("")
