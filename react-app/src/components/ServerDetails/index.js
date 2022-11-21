@@ -44,12 +44,12 @@ const ServerDetail = () => {
 	// 	Object.values(state.messages.messages)
 	// );
 	const dispatch = useDispatch();
-	const servers = useSelector((state) => Object.values(state.servers.servers));
-
-	const members = useSelector((state) => state.members.members);
+	const state = useSelector(state=>state)
+	const servers = Object.values(state.servers.servers);
+	const members = state?.members.members;
 
 	// filters out any private dm channels or servers (not sure)
-	const channelsServersArr = servers.filter((dm) => dm.is_DM === false);
+	const channelsServersArr = servers?.filter((dm) => dm.is_DM === false);
 	// an object finds the server by its id
 	
 	const currentServerChannels = channelsServersArr.find(server => server.id === serverId)
@@ -65,7 +65,7 @@ const ServerDetail = () => {
 	const findOneServer = useSelector((state) => state.servers.oneServer);
 
 	// console.log('server details=======>', findOneServer);
-
+	console.log('SHOW ME channelArr', channelsArray)
 	useEffect(() => {
 		dispatch(getServerDetails(serverId));
 		dispatch(getAllChannel(serverId));
@@ -77,10 +77,10 @@ const ServerDetail = () => {
 	let currentChannel;
 	// filters current channel id once current state and useEffect are populated
 	if (channelsArray.length && currentChannelId) {
-		currentChannel = channelsArray.find(
-			(channel) => channel.id === currentChannelId
-		);
-	}
+    currentChannel = channelsArray.find(
+      (channel) => channel.id === currentChannelId
+    );
+  }
 
 	// appends profile_pic to currentChannel
 	// NOTE off by 1 error will be corrected later(changing seed files)
@@ -165,181 +165,210 @@ const ServerDetail = () => {
 	// 		);
 	// 	})}
 	// console.log('CURRENT SERVER CHANNELS?',currentChannel)
-	return (
-		<div className='servers-page-container'>
-			<div className='servers-column-container'>
-				<div className='dm-button-container'>
-					<div>
-						<NavLink to=''>
-							<img className='dm-button' src={DM_button} alt='' />
-						</NavLink>
-					</div>
-				</div>
-				{channelsServersArr.length > 0 &&
-					channelsServersArr.map((server) => {
-						return (
-							<>
-							<div className='servers-button-map' key={server.name}>
-								<div className='server-cog-grouper'>
-									<NavLink to={`/servers/${server.id}`}>
-										<div className='servers-photo-container'>
-											<div>
-												{' '}
-												{server.preview_image ? (
-													<img
-														className='servers-photo'
-														src={server.preview_image}
-														alt='server img'
-													/>
-												) : (
-													server.name.slice(0, 2)
-												)}
-											</div>
-										</div>
-									</NavLink>
-								<div className='cog' onClick={() => (setUpdateShowModal(true), setToUpdate(server))}>
-										<i className="fa fa-cog" aria-hidden="true" />
-									</div>
-									{showUpdateModal && (
-										<Modal onClose={() => setUpdateShowModal(false)}>
-											<UpdateServerForm setUpdateShowModal={setUpdateShowModal} server={toUpdate} />
-										</Modal>)}
-								</div>
-							</div>
-							</>
-						);
-					})}
-					<div className="servers-photo-container">
-					<div className="servers-photo" onClick={() => setShowModalServers(true)}>
-						<i className="fa fa-plus" aria-hidden="true" />
-					</div>
-					{showModalServers && (
-						<Modal onClose={() => setShowModalServers(false)}>
-							<CreateServerForm setShowModal={setShowModalServers} />
-						</Modal>
-					)}
-				</div>
-			</div>
-			<div className='server-channels-container'>
-				<div className='server-title-container'>
-					<div className='server-title'>{currentServerChannels.name}</div>
-					<div
-						className='add-channel-container'
-						onClick={() => setShowModal(true)}
-					><i className='fa fa-plus' aria-hidden='true' />
-					</div>
-				</div>
-				<div className='server-channel-layout'>
-						{channelsArray.map((channel) => {
-							return (
-								<div id='some-name'>
-									<div
-										className='server-channel-name'
-										onClick={() => showmsg(channel.id)}
-									>
-										{channel.name}
+	if (!servers) return null
+	else
+    return (
+      <div className="servers-page-container">
+        <div className="servers-column-container">
+          <div className="dm-button-container">
+            <div>
+              <NavLink to="">
+                <img className="dm-button" src={DM_button} alt="" />
+              </NavLink>
+            </div>
+          </div>
+          {channelsServersArr.length > 0 &&
+            channelsServersArr.map((server) => {
+              return (
+                <>
+                  <div className="servers-button-map" key={server.name}>
+                    <div className="server-cog-grouper">
+                      <NavLink to={`/servers/${server.id}`}>
+                        <div className="servers-photo-container">
+                          <div>
+                            {" "}
+                            {server.preview_image ? (
+                              <img
+                                className="servers-photo"
+                                src={server.preview_image}
+                                alt="server img"
+                              />
+                            ) : (
+                              server.name.slice(0, 2)
+                            )}
+                          </div>
+                        </div>
+                      </NavLink>
+                      <div
+                        className="cog"
+                        onClick={() => (
+                          setUpdateShowModal(true), setToUpdate(server)
+                        )}
+                      >
+                        <i className="fa fa-cog" aria-hidden="true" />
+                      </div>
+                      {showUpdateModal && (
+                        <Modal onClose={() => setUpdateShowModal(false)}>
+                          <UpdateServerForm
+                            setUpdateShowModal={setUpdateShowModal}
+                            server={toUpdate}
+                          />
+                        </Modal>
+                      )}
+                    </div>
+                  </div>
+                </>
+              );
+            })}
+          <div className="servers-photo-container">
+            <div
+              className="servers-photo"
+              onClick={() => setShowModalServers(true)}
+            >
+              <i className="fa fa-plus" aria-hidden="true" />
+            </div>
+            {showModalServers && (
+              <Modal onClose={() => setShowModalServers(false)}>
+                <CreateServerForm setShowModal={setShowModalServers} />
+              </Modal>
+            )}
+          </div>
+        </div>
+        <div className="server-channels-container">
+          <div className="server-title-container">
+            <div className="server-title">{currentServerChannels.name}</div>
+            <div
+              className="add-channel-container"
+              onClick={() => setShowModal(true)}
+            >
+              <i className="fa fa-plus" aria-hidden="true" />
+            </div>
+          </div>
+          <div className="server-channel-layout">
+            {channelsArray.map((channel) => {
+              return (
+                <div id="some-name">
+                  <div
+                    className="server-channel-name"
+                    onClick={() => showmsg(channel.id)}
+                  >
+                    {channel.name}
 
-									<div
-										className='update-channel-container'
-										onClick={() => setUpdateModal(true)}
-									>
-										<i className='fa fa-cog' aria-hidden='true' onClick={() =>
-												grabChannelId(channel.id)
-											} />
-											<div
-												className='gear-name'
+                    <div
+                      className="update-channel-container"
+                      onClick={() => setUpdateModal(true)}
+                    >
+                      <i
+                        className="fa fa-cog"
+                        aria-hidden="true"
+                        onClick={() => grabChannelId(channel.id)}
+                      />
+                      <div className="gear-name"></div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div className="servers-dm-footer">
+            <div className="user-photo-container">
+              <img
+                className="user-photo"
+                src={currentUser.profile_pic}
+                alt=""
+              />
+            </div>
+            <div className="servers-user">{currentUser.username}</div>
+            <LogoutButton />
+          </div>
+        </div>
+        <div className="channel-messages-container">
+          <div className="servers-title-container">
+            <div className="servers-title">
+              MESSAGES FOR CHANNEL{" "}
+              {currentChannel ? ": " + currentChannel.name : null}
+            </div>
+          </div>
+          <div className="test-name">
+            {showMsg &&
+              currentChannel &&
+              currentChannel.messages.map((msg) => {
+                return (
+                  <div className="mess-box">
+                    <div className="user-container">
+                      <img className="user-photo" src={msg.user_photo} alt="" />
+                      <div className="mess">
+                        <div>
+                          <h4>{msg.owner_name}</h4>
+                        </div>
+                        <div className="channel-message">
+                          {msg.message_body}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            <div>
+              {showMsg &&
+                messages.length > 0 &&
+                messages.map((chat) => {
+                  return (
+                    <div className="mess-box">
+                      <img
+                        className="user-photo"
+                        src={chat.owner_pic}
+                        alt="userPhoto"
+                      />
+                      <div className="mess">
+                        <div>
+                          <h4>{chat.owner_name}</h4>
+                        </div>
+                        <div className="channel-message">
+                          {chat.message_body}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+            <div className="channel-input-textbox-container">
+              {showMsg && (
+                <form onSubmit={submitChatMsg} className="channel-message-form">
+                  <input
+                    value={chatInput}
+                    onChange={(e) => setChatInput(e.target.value)}
+                    placeholder="Message"
+                  />
+                  <button
+                    className="channel-msg-send"
+                    onClick={submitChatMsg}
+                    type="submit"
+                  >
+                    Send
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+        {showModal && (
+          <Modal onClose={() => setShowModal(false)}>
+            <ChannelModal serverId={serverId} setShowModal={setShowModal} />
+          </Modal>
+        )}
 
-											></div>
-
-										</div>
-									</div>
-								</div>
-							);
-						})}
-				</div>
-				<div className='servers-dm-footer'>
-					<div className='user-photo-container'>
-						<img className='user-photo' src={currentUser.profile_pic} alt='' />
-					</div>
-					<div className='servers-user'>{currentUser.username}</div>
-					<LogoutButton />
-				</div>
-			</div>
-			<div className='channel-messages-container'>
-			<div className='servers-title-container'>
-					<div className='servers-title'>MESSAGES FOR CHANNEL {currentChannel? ": "+currentChannel.name: null}</div>
-				</div>
-				<div className='test-name'>
-					{showMsg &&
-						currentChannel &&
-						currentChannel.messages.map((msg) => {
-							return (
-								<div className='mess-box'>
-									<div className='user-container'>
-										<img className='user-photo' src={msg.user_photo} alt='' />
-										<div className='mess'>
-											<div><h4>{msg.owner_name}</h4></div>
-											<div className='channel-message'>{msg.message_body}</div>
-										</div>
-									</div>
-								</div>
-							);
-						})}
-					<div>
-						{showMsg &&
-							messages.length > 0 &&
-							messages.map((chat) => {
-								return (
-									<div className='mess-box'>
-										<img
-											className='user-photo'
-											src={chat.owner_pic}
-											alt='userPhoto'
-										/>
-										<div className='mess'>
-											<div>
-												<h4>{chat.owner_name}</h4>
-											</div>
-											<div className='channel-message'>{chat.message_body}</div>
-										</div>
-									</div>
-								);
-							})}
-					</div>
-					<div className='channel-input-textbox-container'>
-						{showMsg && (
-							<form onSubmit={submitChatMsg} className='channel-message-form'>
-								<input
-									value={chatInput}
-									onChange={(e) => setChatInput(e.target.value)}
-									placeholder='Message'
-								/>
-								<button onClick={submitChatMsg} type='submit'>
-									Send
-								</button>
-							</form>
-						)}
-					</div>
-				</div>
-			</div>
-			{showModal && (
-				<Modal onClose={() => setShowModal(false)}>
-					<ChannelModal serverId={serverId} setShowModal={setShowModal} />
-				</Modal>
-			)}
-
-			{updateModal && (
-				<Modal onClose={() => setUpdateModal(false)}>
-					<UpdateChannelModal
-						serverId={serverId}
-						channelId={modalData}
-						setUpdateModal={setUpdateModal}
-					/>
-				</Modal>
-			)}
-
-		</div>
-	);
+        {updateModal && (
+          <Modal onClose={() => setUpdateModal(false)}>
+            <UpdateChannelModal
+              serverId={serverId}
+              channelId={modalData}
+              setUpdateModal={setUpdateModal}
+            />
+          </Modal>
+        )}
+      </div>
+    );
 };
 
 export default ServerDetail;

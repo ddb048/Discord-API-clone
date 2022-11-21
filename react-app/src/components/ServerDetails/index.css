@@ -257,7 +257,9 @@
   position: absolute;
   /* bottom: -100px; */
   width: 925px;
-  bottom: 0px
+  bottom: 0px;
+  display:flex;
+  flex-direction: row;
 }
 
 .channel-message-form {
@@ -296,4 +298,13 @@
   font-size: 10px;
 }
 
+.channel-msg-send {
+  border:none;
+  background-color:#2D8248;
+  margin: 1%
+}
 /* .server-title {} */
+.channel-message-form > input {
+border-radius: 2px;
+width: 100%;
+}

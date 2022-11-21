@@ -252,6 +252,7 @@
 
 .message-form {
   width: 100%;
+  display: flex;
   /* border: red solid 1px; */
 }
 
@@ -269,9 +270,11 @@
 }
 
 .message-form button {
-  height: 35px;
-  width: 51px;
-  border-radius: 10px;
+    height: 35px;
+    width: 51px;
+    border-radius: 2px;
+    border: none;
+    background-color: rgb(59, 165, 93);
 }
 
 .active-user-con {
