@@ -57,7 +57,7 @@ export const getAllServers = () => async dispatch => {
 //SECTION - GET /api/servers/@me (READ)
 export const getAllCurrentUserServers = () => async dispatch => {
     const response = await fetch('/api/servers/@me')
-
+    console.log('i getAllCurrentUserServers got hit')
     if (response.ok) {
         const servers = await response.json();
         dispatch(loadServers(servers.servers));
@@ -69,7 +69,7 @@ export const getAllCurrentUserServers = () => async dispatch => {
 //SECTION - GET /api/servers/:serverId (READ)
 export const getServerDetails = serverId => async dispatch => {
     const response = await fetch(`/api/servers/${serverId}`);
-
+    console.log('i getServerDetails got hit')
     if (response.ok) {
         const server = await response.json();
         // console.log('get server details thunk >>>>>>', server)
