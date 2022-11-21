@@ -90,10 +90,11 @@
 .server-channel-layout {
   width: 190px;
   display: flex;
-  /* border: 1px solid pink; */
   flex-direction: column;
-  /* max-height: 85%; */
   overflow: scroll;
+  /* overflow-x: hidden; */
+  /* border: 1px solid pink; */
+  /* max-height: 85%; */
   /* overflow-x: hidden; */
 }
 
@@ -108,8 +109,9 @@
 /* DIV styling the container for CHANNELS name and add a channel button */
 .server-title-container{
   border-bottom: 1px solid white;
-  padding-bottom: 20px;
-  width:100%;
+  /* padding-bottom: 20px; */
+  /* width:100%; */
+  width: 190px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -157,6 +159,7 @@
   /* border: 1px solid blue; */
   display: flex;
   flex-direction: row;
+  padding-left: 20px;
 }
 
 /* styles hashtag on the left of every channel name */
@@ -180,7 +183,7 @@
   list-style: none;
   padding: 15px 0;
   font-family: adelle-sans, sans-serif;
-
+  gap: 15px;
   /* padding-right: 10px; */
 }
 
@@ -229,21 +232,39 @@
 
 .channel-messages-container {
   /* border: 1px solid blue; */
-  width: 100vw;
+  /* width: 100vw; */
   /* width: 1fr; */
   background-color: #36393f;
-  border-right: 1px solid white;
-  overflow: scroll;
-  overflow-x: hidden;
+  /* border-right: 1px solid white; */
+  /* overflow: scroll;
+  overflow-x: hidden; */
+  width: 1127px;
+  display: flex;
+
+  flex-direction: column;
   /* height: 100vh; */
   /* display: flex; */
   /* flex-direction: row; */
 }
 
-.channel-messages-container::-webkit-scrollbar {
+/* .channel-messages-container::-webkit-scrollbar {
   display: none;
-}
+} */
+.channel-msg-header{
+  height: 50px;
+  color: white;
+  font-size: 18px;
+  font-family: adelle-sans, sans-serif;
+  font-style: normal;
+  display: flex;
+  align-items: center;
+  /* margin-left: 15px; */
+  position: absolute;
+  background-color: #202225;
+  width: 1127px
 
+  /* width: 85vw; */
+}
 .channel-message-date {
   border-bottom: 1px solid white;
   font-family: adelle-sans, sans-serif;
@@ -251,37 +272,61 @@
   text-align: center;
 
 }
+.try1{
+  /* border: 1px solid green; */
+  height: 871px;
+  overflow: scroll;
+  padding-top: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 1122px;
 
+}
+.try1::-webkit-scrollbar {
+  display: none;
+
+}
+/* .try{
+  border:1px solid blue
+} */
 .channel-input-textbox-container {
   /* border: 1px solid pink; */
   position: absolute;
+  width: 1117px;
   /* bottom: -100px; */
   /* width: 925px; */
-  width: 84vw;
-  padding: 0 5px;
+  /* width: 84vw; */
+  /* padding: 0 5px; */
   bottom: 0px;
   display: flex;
 }
 
 .channel-message-form {
-  width: 100vw;
+  padding: 0 9px;
+
+  /* width: 83vw; */
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid violet; */
 }
 .channel-message-input{
-  /* border: 1px solid violet; */
   /* width: 95%; */
-  width: 93.5%;
+  /* width: 93.5%; */
+  /* width: 100%; */
+  width: 1054px;
+
   height: 30px;
   border-radius: 10px;
   border: none;
   color: #36393f;
   position: relative;
 }
-.channel-message {
+/* .channel-message {
   font-family: adelle-sans, sans-serif;
   font-size: 12px;
-  /* overflow: scroll; */
-}
-
+  overflow: scroll;
+} */
 .channel-send-msg{
   /* border: 1px solid blue; */
   border: none;
@@ -294,8 +339,9 @@
 /* ****************** ACTIVE SECTION COLUMN *************************  */
 .server-active-container {
   /* border: 1px solid black; */
-  background-color: #36393f;
-  width: 420px;
+  /* background-color: #202225; */
+  background-color: #2f3136;
+  width: 25.7vw;
 }
 
 .subButton {
