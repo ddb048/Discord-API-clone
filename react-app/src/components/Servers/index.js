@@ -151,48 +151,48 @@ const Servers = () => {
 					)}
 				</div>
 				<div className='servers-layout'>
-				{isNotDm.map((server) => {
-					return (
-						<>
-							<div className='servers-button-map' key={server.name}>
-								<div className='server-cog-grouper'>
-									<NavLink to={`/servers/${server.id}`}>
-										<div className='servers-photo-container'>
-											<div>
-												{' '}
-												{server.preview_image ? (
-													<img
-														className='servers-photo'
-														src={server.preview_image}
-														alt='server img'
-													/>
-												) : (
-													server.name.slice(0, 2).toUpperCase()
-												)}
+					{isNotDm.map((server) => {
+						return (
+							<>
+								<div className='servers-button-map' key={server.name}>
+									<div className='server-cog-grouper'>
+										<NavLink to={`/servers/${server.id}`}>
+											<div className='servers-photo-container'>
+												<div>
+													{' '}
+													{server.preview_image ? (
+														<img
+															className='servers-photo'
+															src={server.preview_image}
+															alt='server img'
+														/>
+													) : (
+														server.name.slice(0, 2).toUpperCase()
+													)}
+												</div>
 											</div>
+										</NavLink>
+										<div
+											className='cog'
+											onClick={() => (
+												setUpdateShowModal(true), setToUpdate(server)
+											)}
+										>
+											<i className='fa fa-cog' aria-hidden='true' />
 										</div>
-									</NavLink>
-									<div
-										className='cog'
-										onClick={() => (
-											setUpdateShowModal(true), setToUpdate(server)
+										{showUpdateModal && (
+											<Modal onClose={() => setUpdateShowModal(false)}>
+												<UpdateServerForm
+													setUpdateShowModal={setUpdateShowModal}
+													server={toUpdate}
+												/>
+											</Modal>
 										)}
-									>
-										<i className='fa fa-cog' aria-hidden='true' />
 									</div>
-									{showUpdateModal && (
-										<Modal onClose={() => setUpdateShowModal(false)}>
-											<UpdateServerForm
-												setUpdateShowModal={setUpdateShowModal}
-												server={toUpdate}
-											/>
-										</Modal>
-									)}
 								</div>
-							</div>
-						</>
-					);
-				})}
+							</>
+						);
+					})}
 				</div>
 			</div>
 			<div className='servers-dms-container'>
@@ -287,6 +287,8 @@ const Servers = () => {
 					<form onSubmit={submit} className='message-form'>
 						<input
 							value={chatInput}
+							maxLength={160}
+							minLength={2}
 							onChange={(e) => setChatInput(e.target.value)}
 							placeholder='Message'
 							className='channel-message-input'
