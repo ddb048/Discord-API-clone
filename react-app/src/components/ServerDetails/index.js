@@ -43,7 +43,7 @@ const ServerDetail = () => {
 	// sets new chat input in channel messages
 	const [chatInput, setChatInput] = useState('');
 
-	const [isLoaded, setIsLoaded] = useState(false);
+	// const [isLoaded, setIsLoaded] = useState(false);
 	// const allMsgs = useSelector((state) =>
 	// 	Object.values(state.messages.messages)
 	// );
@@ -69,14 +69,14 @@ const ServerDetail = () => {
 	// console.log('server details=======>', findOneServer);
 
 	useEffect(() => {
-		(async () => {
-			await dispatch(getServerDetails(serverId));
-			setIsLoaded(true)
-			await dispatch(getAllChannel(serverId));
-			await dispatch(getChannelDetail(channelId));
-			await dispatch(getAllMembers(serverId));
-			await dispatch(getAllMessages(currentChannelId));
-		})();
+
+		dispatch(getServerDetails(serverId));
+		dispatch(getAllChannel(serverId));
+		dispatch(getChannelDetail(channelId));
+		dispatch(getAllMembers(serverId));
+		dispatch(getAllMessages(currentChannelId));
+
+
 
 	}, [dispatch, channelId, serverId, currentChannelId]);
 
@@ -228,7 +228,7 @@ const ServerDetail = () => {
 			</div>
 			<div className='server-channels-container'>
 				<div className='server-title-container'>
-					<div className='server-title'>{currentServerChannels.name}</div>
+					<div className='server-title'>{currentServerChannels?.name}</div>
 					<div
 						className='add-channel-container'
 						onClick={() => setShowModal(true)}
@@ -236,7 +236,7 @@ const ServerDetail = () => {
 					</div>
 				</div>
 				<div className='server-channel-layout'>
-					{channelsArray.map((channel) => {
+					{channelsArray?.map((channel) => {
 						return (
 							<div id='some-name'>
 								<div
