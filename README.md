@@ -93,3 +93,14 @@ Check the details of a group or event in the details page.
 
 ## View a Users Main Interface
 Once Users log-in, they may interact with their servers, channels, or message their friends!
+
+
+## RoadMap of Future Features
+Our Backend has enabled Membership and roles within each server.  The next feature
+to add will allow the owner of a server to accept or delete "pending" members.
+
+Owners will then be able to delete "members" as well.
+
+We will add features to enable voice and video channels.
+
+We will add features to enable screensharing.
