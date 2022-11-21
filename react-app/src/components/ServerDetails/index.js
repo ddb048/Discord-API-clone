@@ -43,7 +43,7 @@ const ServerDetail = () => {
 	// sets new chat input in channel messages
 	const [chatInput, setChatInput] = useState('');
 
-	const [isLoaded, setIsLoaded] = useState(false);
+	// const [isLoaded, setIsLoaded] = useState(false);
 	// const allMsgs = useSelector((state) =>
 	// 	Object.values(state.messages.messages)
 	// );
@@ -69,14 +69,14 @@ const ServerDetail = () => {
 	// console.log('server details=======>', findOneServer);
 
 	useEffect(() => {
-		(async () => {
-			await dispatch(getServerDetails(serverId));
-			await dispatch(getAllChannel(serverId));
-			await dispatch(getChannelDetail(channelId));
-			await dispatch(getAllMembers(serverId));
-			await dispatch(getAllMessages(currentChannelId));
-			setIsLoaded(true)
-		})();
+
+		dispatch(getServerDetails(serverId));
+		dispatch(getAllChannel(serverId));
+		dispatch(getChannelDetail(channelId));
+		dispatch(getAllMembers(serverId));
+		dispatch(getAllMessages(currentChannelId));
+
+
 
 	}, [dispatch, channelId, serverId, currentChannelId]);
 
