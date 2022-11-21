@@ -171,7 +171,7 @@ const ServerDetail = () => {
 	// 		);
 	// 	})}
 	// console.log('CURRENT SERVER CHANNELS?',currentChannel)
-	return isLoaded && (
+	return (
 		<div className='servers-page-container'>
 			<div className='servers-column-container'>
 				<div className='dm-button-container'>
