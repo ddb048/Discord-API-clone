@@ -10,7 +10,7 @@ const LogoutButton = () => {
   const onLogout =  (e) => {
     e.preventDefault()
     dispatch(logout());
-    history.push('/discover')
+    history.push('/')
 
   };
 

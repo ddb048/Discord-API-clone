@@ -24,7 +24,9 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
   useEffect(() => {
     let errors = {};
     if (!name) errors.nameError = 'You must give your server a name'
-
+    else if(name.length > 10){
+      errors.nameError = 'Your server name must be at most 10 characters.'
+    }
     else errors.nameError = ''
     if (!preview_image.length) errors.preview_imageError = 'You must provide image url'
     else if (!preview_image.length && urlValidation)

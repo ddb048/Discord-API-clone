@@ -15,7 +15,7 @@ const UpdateChannelModal = ({ serverId, setUpdateModal, channelId }) => {
 	const is_voice = false
 	const [description, setDescription] = useState('');
 	const [error, setError] = useState({});
-	const [frontEndErrors, setFrontEndErrors] = useState([]);
+	// const [frontEndErrors, setFrontEndErrors] = useState([]);
 	const [changeColor, setChangeColor] = useState('dark-create-channel-btn');
 	const [showConfirmButton, setShowConfirmButton] = useState(false)
 
@@ -31,8 +31,8 @@ const UpdateChannelModal = ({ serverId, setUpdateModal, channelId }) => {
 		}
 
 
-		if (name.length > 32) {
-			errors.nameError = 'Please provide a channel name less than 32 characters';
+		if (name.length > 10) {
+			errors.nameError = 'Please provide a channel name less than 10 characters';
 			setError(errors);
 		}
 	}, [name]);

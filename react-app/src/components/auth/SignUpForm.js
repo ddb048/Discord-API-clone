@@ -86,12 +86,9 @@ const SignUpForm = () => {
       setUsernameErr('username must be at least 4 characters')
     } else if (username.length > 10){
       setUsernameErr('username must be less than 10 characters ')
-    }
-
-    else {
+    } else {
       setUsernameErr("")
     }
-
 
     //password error handling
     if (!password.length) {
