@@ -14,7 +14,7 @@ const UpdateChannelModal = ({ serverId, setUpdateModal, channelId }) => {
 
 	const is_voice = false
 	const [description, setDescription] = useState('');
-	const [errors, setErrors] = useState([]);
+	const [error, setError] = useState({});
 	const [frontEndErrors, setFrontEndErrors] = useState([]);
 	const [changeColor, setChangeColor] = useState('dark-create-channel-btn');
 	const [showConfirmButton, setShowConfirmButton] = useState(false)
@@ -23,24 +23,23 @@ const UpdateChannelModal = ({ serverId, setUpdateModal, channelId }) => {
 		setShowConfirmButton(confirm)
 	}
 	useEffect(() => {
+		const errors = {};
 		if (name.length) {
 			setChangeColor('light-create-channel-btn');
 		} else {
 			setChangeColor('dark-create-channel-btn');
 		}
 
-		const errors = [];
-		if (name.length > 32)
-			errors.push('Please provide a channel name less than 32 characters.');
-		setFrontEndErrors(errors);
-	}, [name, changeColor]);
 
-	const submitUpdatedChannel = (e) => {
+		if (name.length > 32) {
+			errors.nameError = 'Please provide a channel name less than 32 characters';
+			setError(errors);
+		}
+	}, [name]);
+
+	const submitUpdatedChannel = async (e) => {
 		e.preventDefault();
-		setErrors([]);
-		if (name.length > 32)
-			errors.push('Please provide a channel name less than 32 characters.');
-		setErrors(errors);
+
 
 		const updateChannelForm = {
 			name,
@@ -48,12 +47,16 @@ const UpdateChannelModal = ({ serverId, setUpdateModal, channelId }) => {
 			description,
 		};
 
-		if (!frontEndErrors.length) {
-			dispatch(updateChannel(channelId, updateChannelForm));
-			setUpdateModal(false);
+		const data = await dispatch(updateChannel(channelId, updateChannelForm))
+
+		if (data.errors) {
+			setError(data.errors);
+
+		} else {
 			dispatch(getServerDetails(serverId))
-			console.log('setUpdateModal', setUpdateModal)
+			setUpdateModal(false);
 		}
+
 	};
 
 	const handleDeleteChannel = (e) => {

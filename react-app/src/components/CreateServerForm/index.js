@@ -136,7 +136,7 @@ const CreateServerForm = ({ setShowModal }) => {
                 value={privateServer}
                 checked={privateServer || null}
               />
-              <label className='text noRenderError'>Private Server</label>
+              <label className='text noRenderError'>Check If Private</label>
             </div>
 
             <div className="errors-div">
