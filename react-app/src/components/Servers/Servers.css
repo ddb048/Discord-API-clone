@@ -295,7 +295,12 @@
   padding-left: 5px;
   /* border: 1px solid pink; */
   max-width: 1122px;
+
 }
+.channel-message-input{
+  color: #c6c1c1;
+}
+
 
 
 .message-form {
@@ -309,11 +314,11 @@
 }
 
 .message-form input {
-  width: 93.5%;
+  
   height: 30px;
   border-radius: 10px;
   border: none;
-  color: #36393f;
+
   position: relative;
 }
 
