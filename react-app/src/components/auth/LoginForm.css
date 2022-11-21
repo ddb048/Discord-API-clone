@@ -1,25 +1,28 @@
-.background {
+/* .background {
   z-index: -1;
   background-image: url("../../Images/discord-signup-login.png");
   height: 942px;
   border: 1px solid springgreen;
   background-position: center;
-}
+} */
 
 .form-container {
-  z-index: -1;
-  background-image: url("../../Images/discord-signup-login.png");
-  height: 942px;
-  /* border: 1px solid springgreen; */
-  background-position: center;
-  /* object-fit: cover; */
-  height: 100vh;
-  /* border:  red solid 2px; */
   display: flex;
   justify-content: center;
   align-items: center;
+  background: url("../../Images/discord-signup-login.png");
+  /* border: 1px solid springgreen; */
+  background-position: center;
+  background-size: contain;
+  background-repeat: repeat;
+  /* object-fit: cover; */
+  height: 100vh;
+  /* border:  red solid 2px; */
+
 
 }
+
+
 
 .form-card {
   display: flex;
@@ -81,6 +84,10 @@
   background-color: #373f99;
 }
 
+.subButton:active {
+  transform: scale(0.95);
+}
+
 #to-signup {
   color: rgb(133, 133, 133);
   font-family: adelle-sans, sans-serif;
@@ -100,6 +107,8 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+  height: auto;
+  width: auto;
 }
 
 #welcome {

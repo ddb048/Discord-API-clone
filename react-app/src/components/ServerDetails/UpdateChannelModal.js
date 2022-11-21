@@ -14,8 +14,8 @@ const UpdateChannelModal = ({ serverId, setUpdateModal, channelId }) => {
 
 	const is_voice = false
 	const [description, setDescription] = useState('');
-	const [errors, setErrors] = useState([]);
-	const [frontEndErrors, setFrontEndErrors] = useState([]);
+	const [error, setError] = useState({});
+	// const [frontEndErrors, setFrontEndErrors] = useState([]);
 	const [changeColor, setChangeColor] = useState('dark-create-channel-btn');
 	const [showConfirmButton, setShowConfirmButton] = useState(false)
 
@@ -23,24 +23,23 @@ const UpdateChannelModal = ({ serverId, setUpdateModal, channelId }) => {
 		setShowConfirmButton(confirm)
 	}
 	useEffect(() => {
+		const errors = {};
 		if (name.length) {
 			setChangeColor('light-create-channel-btn');
 		} else {
 			setChangeColor('dark-create-channel-btn');
 		}
 
-		const errors = [];
-		if (name.length > 32)
-			errors.push('Please provide a channel name less than 32 characters.');
-		setFrontEndErrors(errors);
-	}, [name, changeColor]);
 
-	const submitUpdatedChannel = (e) => {
+		if (name.length > 10) {
+			errors.nameError = 'Please provide a channel name less than 10 characters';
+			setError(errors);
+		}
+	}, [name]);
+
+	const submitUpdatedChannel = async (e) => {
 		e.preventDefault();
-		setErrors([]);
-		if (name.length > 32)
-			errors.push('Please provide a channel name less than 32 characters.');
-		setErrors(errors);
+
 
 		const updateChannelForm = {
 			name,
@@ -48,12 +47,16 @@ const UpdateChannelModal = ({ serverId, setUpdateModal, channelId }) => {
 			description,
 		};
 
-		if (!frontEndErrors.length) {
-			dispatch(updateChannel(channelId, updateChannelForm));
-			setUpdateModal(false);
+		const data = await dispatch(updateChannel(channelId, updateChannelForm))
+
+		if (data.errors) {
+			setError(data.errors);
+
+		} else {
 			dispatch(getServerDetails(serverId))
-			console.log('setUpdateModal', setUpdateModal)
+			setUpdateModal(false);
 		}
+
 	};
 
 	const handleDeleteChannel = (e) => {
@@ -66,53 +69,73 @@ const UpdateChannelModal = ({ serverId, setUpdateModal, channelId }) => {
 	}
 
 	return (
-		<div className="modal">
+		<>
+			<div className="form-container">
+				<div className="form-card">
+					<form id='form' onSubmit={submitUpdatedChannel}>
 
-			<form className="new-channel-modal-form" onSubmit={submitUpdatedChannel}>
-				<div className="modal-title">Update Channel</div>
-				<div className="modal-input-form">
-					<label className="modal-input-label">CHANNEL NAME</label>
-					<div className='new-channel-hash-container'>
-						<div className='hashtag'>#</div>
-						<input
-							className="modal-input-textbox"
-							type="text"
-							placeholder="new-channel"
-							value={name}
-							onChange={(e) => setName(e.target.value)}
-
-						/>
-					</div>
-					<label id="modal-DESCRIPTION-label">DESCRIPTION</label>
-					<input
-						className="modal-input-textbox"
-						type="text"
-						placeholder="channel-description"
-						value={description}
-						onChange={(e) => setDescription(e.target.value)}
-					/>
-				</div>
-				<div id='grey-footer'>
-
-					<div className="create-channel-submit-btn-container">
-						{!showConfirmButton && <button className={changeColor + (showConfirmButton ? 'hide' : '')} type="submit">
-							Update Channel
-						</button>}
-						<div>
-							<div className={'delete-channel-bttn' + (showConfirmButton ? 'visible' : 'hide')} onClick={() => confirmDelete(true)}>Delete Channel</div>
+						<div className="text">
+							<h2>Update Channel</h2>
 						</div>
-						{showConfirmButton && (
-							<>
-								<button className={"confirm-channel-bttn"} onClick={() => confirmDelete(false)}>Cancel Delete</button>
-								<button className={"cancel-channel-bttn"} onClick={handleDeleteChannel}>Confirm Delete</button>
-							</>
-						)
-						}
 
-					</div>
-				</div>
-			</form>
-		</div>
+						<div className="errors-div">
+							{!!error.length && <div id="errors">{error[0]}</div>}
+						</div>
+
+						<div>
+							<label className="text noRenderError">Channel Name</label>
+
+
+							<input
+								className="inp"
+								type="text"
+								placeholder="new-channel"
+								value={name}
+								onChange={(e) => setName(e.target.value)}
+							/>
+
+						</div>
+						<div>
+							<label className="text noRenderError">Description</label>
+							<input
+								className="inp"
+								type="text"
+								placeholder="channel-description"
+								value={description}
+								onChange={(e) => setDescription(e.target.value)}
+							/>
+						</div>
+
+
+
+						<div className="create-channel-submit-btn-container">
+							{!showConfirmButton &&
+								<button className={changeColor + (showConfirmButton ? 'hide' : '')} type="submit">
+									Update Channel
+								</button>}
+							<div className='delete-div'>
+								<div className={'delete-channel-bttn' + (showConfirmButton ? 'visible' : 'hide')} onClick={() => confirmDelete(true)}>Delete Channel</div>
+							</div>
+							{showConfirmButton &&
+								<div className='delete-div'>
+									<div>
+										<button className={"confirm-channel-bttn"} onClick={() => confirmDelete(false)}>Cancel Delete</button>
+									</div>
+
+									<div>
+
+										<button className={"cancel-channel-bttn"} onClick={handleDeleteChannel}>Confirm Delete</button>
+									</div>
+								</div>
+
+							}
+
+						</div>
+
+					</form>
+				</div >
+			</div >
+		</>
 	);
 };
 export default UpdateChannelModal;

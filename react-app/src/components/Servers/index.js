@@ -12,11 +12,10 @@ import { getServerDetails } from '../../store/servers';
 import DM_button from '../../Images/q-cord-button.png';
 import './Servers.css';
 
-
-
-import { io } from 'socket.io-client'
+import { io } from 'socket.io-client';
 import { createMessage, getAllMessages } from '../../store/message';
 import UpdateServerForm from '../UpdateServerModal';
+import UsersList from '../UserList/UsersList';
 
 let socket;
 
@@ -24,20 +23,22 @@ const Servers = () => {
 	const [showModal, setShowModal] = useState(false);
 	const [showUpdateModal, setUpdateShowModal] = useState(false);
 	const [showMsg, setShowMsg] = useState(false);
-	const [messages, setMessages] = useState([])
-	const [chatInput, setChatInput] = useState('')
-	const [currentServer, setCurrentServer] = useState([])
+	const [messages, setMessages] = useState([]);
+	const [chatInput, setChatInput] = useState('');
+	const [currentServer, setCurrentServer] = useState([]);
+	const [toUpdate, setToUpdate] = useState({});
+	const [memberCard, setMemberCard] = useState({});
 
-	const dummy = useRef()
+	// console.log('member card data', memberCard);
 
 	const dispatch = useDispatch();
 	// const history = useHistory();
 	// const { channelId } = useParams();
 	// const member=useSelector(state =>Object.values(state.members.members))
-	const state = useSelector(state => state)
+	const state = useSelector((state) => state);
 	const dm = Object.values(state.messages.messages);
 	const servers = Object.values(state.servers.servers);
-	const currentUser = state.session.user
+	const currentUser = state.session.user;
 	// grabbing the state of servers in servers
 	// const servers = useSelector((state) => Object.values(state.servers.servers));
 	// console.log('THIS IS SERVES USESELECTOR IN ARRAY', servers)
@@ -46,119 +47,110 @@ const Servers = () => {
 	let isNotDm = servers.filter((dm) => dm.is_DM === false);
 	let dmServersArr = servers.filter((dm) => dm.is_DM === true);
 	// const userArr = userObj.find((dm) => dm.is_DM == true);
-	// console.log('USER ARRAY', dmServersArr)
-	let memberArr = []
-	dmServersArr.forEach(server => memberArr.push(...server.members))
+	// console.log('dm USER ARRAY', dmServersArr)
+	// console.log('not dm USER ARRAY', isNotDm)
+
+	let memberArr = [];
+	dmServersArr.forEach((server) => memberArr.push(...server.members));
 	// console.log("------>", memberArr)
-	let otherMember = memberArr.filter(member => member.user_id !== currentUser.id)
-	let dmMessageArr = []
-	dmServersArr.forEach(server => dmMessageArr.push(...server.messages))
-	// console.log("2222------>", dm)
-	let tes = []
-	dmServersArr.forEach(server => tes.push(...server.messages))
+	let otherMember = memberArr.filter(
+		(member) => member.user_id !== currentUser.id
+	);
+	let dmMessageArr = [];
+	dmServersArr.forEach((server) => dmMessageArr.push(...server.messages));
+	console.log('2222------>', dm);
+	let tes = [];
+	dmServersArr.forEach((server) => tes.push(...server.messages));
 	// console.log("testtt=====>", tes)
 
-
+	// console.log('this is other member', otherMember)
 
 	useEffect(() => {
 		dispatch(getAllCurrentUserServers());
 	}, [dispatch]);
+
+	// useEffect(() => {
+
+	// }, [currentServer])
 
 	useEffect(() => {
 		dispatch(getServerDetails(currentServer[0]));
 		dispatch(getChannelDetail(currentServer[1]));
 		dispatch(getAllMembers(currentServer[0]));
 		dispatch(getAllMessages(currentServer[1]));
-
 	}, [currentServer, dispatch, setUpdateShowModal]);
 
+	useEffect(() => {
+		setMessages([]);
+	}, [memberCard]);
 
 	useEffect(() => {
 		// open socket connection
 		// create websocket
 		socket = io();
-		socket.on("DM", (chat) => {
+		socket.on('DM', (chat) => {
 			// console.log('chat input>>>>>333', chat)
-			setMessages(messages => [...messages, chat])
+			setMessages((messages) => [...messages, chat]);
 			// console.log('data from DM=======>', messages)
-		})
+		});
 		// when component unmounts, disconnect
-		return (() => {
-			socket.disconnect()
-		})
-	}, [])
-
+		return () => {
+			socket.disconnect();
+		};
+	}, []);
 
 	// console.log('chat input>>>>>', chatInput)
 	const submit = async (e) => {
-		e.preventDefault()
+		e.preventDefault();
 		const payload = {
 			serverId: currentServer[0],
 			channelId: currentServer[1],
-			message_body: chatInput
-		}
-		dispatch(createMessage(payload))
+			message_body: chatInput,
+		};
+		dispatch(createMessage(payload));
 		if (socket) {
-			socket.emit("DM", { owner_name: currentUser.username, owner_pic: currentUser.profile_pic, message_body: chatInput });
+			socket.emit('DM', {
+				owner_name: currentUser.username,
+				owner_pic: currentUser.profile_pic,
+				message_body: chatInput,
+			});
 		}
-		setChatInput("")
-		dummy.current.scrollIntoView({ behavior: 'smooth' })
-	}
-
+		setChatInput('');
+	};
 
 	function userDm(id) {
-		setShowMsg(true)
-		const server = servers.find(server => server.id === id)
-		const chanId = server.channels[0].id
-		setCurrentServer([id, chanId])
+		setShowMsg(true);
+		const server = servers.find((server) => server.id === id);
+		const chanId = server.channels[0].id;
+		setCurrentServer([id, chanId]);
 	}
+	const dummy = useRef(null);
 
+	const scrollToBottom = () => {
+		dummy.current?.scrollIntoView({ behavior: 'smooth' });
+	};
+
+	useEffect(() => {
+		scrollToBottom();
+	}, [messages]);
 	return (
-		<div className="servers-page-container">
-			<div className="servers-column-container">
-				<div className="dm-button-container">
+		<div className='servers-page-container'>
+			<div className='servers-column-container'>
+				<div className='dm-button-container'>
 					<div>
-						<NavLink to="/servers/@me">
-							<img className="dm-button" src={DM_button} alt="" />
+						<NavLink to='/servers/@me'>
+							<img
+								onClick={showMsg}
+								className='dm-button'
+								src={DM_button}
+								alt=''
+							/>
 						</NavLink>
 					</div>
 				</div>
-				{isNotDm.map((server) => {
-					return (
-						<>
-							<div className="servers-button-map" key={server.name}>
-								<div className='server-cog-grouper'>
-									<NavLink to={`/servers/${server.id}`}>
-										<div className="servers-photo-container">
-											<div>
-												{" "}
-												{server.preview_image ? (
-													<img
-														className="servers-photo"
-														src={server.preview_image}
-														alt="server img"
-													/>
-												) : (
-													server.name.slice(0, 2).toUpperCase()
-												)}
-											</div>
-										</div>
-									</NavLink>
-									<div className='cog' onClick={() => setUpdateShowModal(true)}>
-										<i className="fa fa-cog" aria-hidden="true" />
-									</div>
-									{showUpdateModal && (
-										<Modal onClose={() => setUpdateShowModal(false)}>
-											<UpdateServerForm setUpdateShowModal={setUpdateShowModal} server={server} />
-										</Modal>)}
-								</div>
-							</div>
-						</>
-					);
-				})}
-				<div className="servers-photo-container">
-					<div className="servers-photo" onClick={() => setShowModal(true)}>
-						<i className="fa fa-plus" aria-hidden="true" />
+				<div className='servers-photo-container'>
+					<div className='servers-photo' onClick={() => setShowModal(true)}>
+						<i className='fa fa-plus' aria-hidden='true' />
 					</div>
 					{showModal && (
 						<Modal onClose={() => setShowModal(false)}>
@@ -166,54 +158,113 @@ const Servers = () => {
 						</Modal>
 					)}
 				</div>
-			</div>
-			<div className="servers-dms-container">
-				<div className="servers-title-container">
-					<div className="servers-title">DIRECT MESSAGES</div>
+				<div className='servers-layout'>
+					{isNotDm.map((server) => {
+						return (
+							<>
+								<div className='servers-button-map' key={server.name}>
+									<div className='server-cog-grouper'>
+										<NavLink to={`/servers/${server.id}`}>
+											<div className='servers-photo-container'>
+												<div>
+													{' '}
+													{server.preview_image ? (
+														<img
+															className='servers-photo'
+															src={server.preview_image}
+															alt='server img'
+														/>
+													) : (
+														server.name.slice(0, 2).toUpperCase()
+													)}
+												</div>
+											</div>
+										</NavLink>
+										<div
+											className='cog'
+											onClick={() => (
+												setUpdateShowModal(true), setToUpdate(server)
+											)}
+										>
+											<i className='fa fa-cog' aria-hidden='true' />
+										</div>
+										{showUpdateModal && (
+											<Modal onClose={() => setUpdateShowModal(false)}>
+												<UpdateServerForm
+													setUpdateShowModal={setUpdateShowModal}
+													server={toUpdate}
+												/>
+											</Modal>
+										)}
+									</div>
+								</div>
+							</>
+						);
+					})}
 				</div>
-				<div className="servers-dm-layout">
+			</div>
+			<div className='servers-dms-container'>
+				<div className='server-title-container'>
+					<div className='servers-title'>DIRECT MESSAGES</div>
+				</div>
+				<div className='servers-dm-layout'>
 					{otherMember.map(
 						(member) =>
 							member.user_info.profile_pic && (
-								<div>
-									<div onClick={() => userDm(member.server_id)}>
+								<div className='friend-msg-map' key={member.id}>
+									<div
+										className='friend-msg'
+										onClick={() => (
+											userDm(member.server_id), setMemberCard(member)
+										)}
+									>
 										<div>
 											<img
-												className="user-photo"
+												className='user-photo'
 												src={member.user_info.profile_pic}
-												alt=""
+												alt=''
 											/>
 										</div>
-										<div>{member.user_info.username} </div>
+										<div className='friend-msg-title'>
+											{member.user_info.username}{' '}
+										</div>
 									</div>
 								</div>
 							)
 					)}
 				</div>
-				<div className="servers-dm-footer">
-					<div className="user-photo-container">
-						<img className="user-photo" src={currentUser.profile_pic} alt="" />
+				<div className='servers-dm-footer'>
+					<div className='user-photo-container'>
+						<img className='user-photo' src={currentUser.profile_pic} alt='' />
 					</div>
-					<div className="servers-user test-name">{currentUser.username}</div>
+					<div className='servers-user test-name'>{currentUser.username}</div>
 					<LogoutButton />
 				</div>
 			</div>
-			<div className="servers-messages-container">
-				<div>
-					<h1 className="test-name">messages section</h1>
+			<div className='servers-messages-container'>
+				<div className='servers-title-container'>
+					<div className='servers-active-title'>MESSAGES</div>
+				</div>
+				{!showMsg && (
+					<div className='click-friend'>
+						Click on a friend to start chatting
+					</div>
+				)}
+
+				<div className='try1'>
 					{showMsg &&
 						dm.length > 0 &&
 						dm.map((message) => {
 							return (
-								<div className="mess-box" key={message.owner_name}>
+								<div className='mess-box' key={message.id}>
 									<img
-										className="user-photo"
+										className='user-photo'
 										src={message.owner_pic}
-										alt="userPhoto"
+										alt='userPhoto'
 									/>
-									<div className="mess">
+									<div className='mess'>
 										<div>
-											<h4>{message.owner_name}</h4>
+											<h4>{message.owner_name}: </h4>
 											{/* {message.created_at} */}
 										</div>
 										<div>{message.message_body}</div>
@@ -221,76 +272,89 @@ const Servers = () => {
 								</div>
 							);
 						})}
-				</div>
 
-				<div>
 					{showMsg &&
 						messages.length > 0 &&
 						messages.map((x) => {
 							return (
-								<div className="mess-box" key={x.owner_name}>
+								<div className='mess-box' key={x.id}>
 									<img
-										className="user-photo"
+										className='user-photo'
 										src={x.owner_pic}
-										alt="userPhoto"
+										alt='userPhoto'
 									/>
-									<div className="mess">
+									<div className='mess'>
 										<div>
-											<h4>{x.owner_name}</h4>
-											{/* {message.created_at} */}
+											<h4>{x.owner_name}: </h4>
 										</div>
 										<div>{x.message_body}</div>
 									</div>
 								</div>
 							);
-						})}
+						})
+
+						}
+						<div ref={dummy} />
 				</div>
+				<div className='channel-input-textbox-container'>
+
 				{showMsg && (
-					<form onSubmit={submit} className="message-form">
+					<form onSubmit={submit} className='channel-message-form'>
 						<input
 							value={chatInput}
+							maxLength={160}
+							minLength={2}
 							onChange={(e) => setChatInput(e.target.value)}
-							placeholder="Message"
+							placeholder='Message'
+							className='channel-message-input'
 						/>
-						<button onClick={submit} type="submit">
-							Send
+						<button class="channel-send-msg" type='submit'>
+							<i class='fa-regular fa-paper-plane'></i>
 						</button>
 					</form>
 				)}
+				</div>
+
 			</div>
-			<div className="servers-active-container">
+			<div className='servers-active-container'>
+				<div className='servers-active-title-container'>
+					{!showMsg && <div className='servers-active-title'>FRIENDS</div>}
+					{showMsg && <div className='servers-active-title'>FRIEND</div>}
+				</div>
 				{showMsg && (
 					<>
-						<div className="active-user-con">
-							<div className="user-img-header">
-								<div className="user-img-div">
+						<div className='active-user-con'>
+							<div className='user-img-header'>
+								<span className='test-ping'>
+									<span className='animate-ping'></span>
+									<span className='third'></span>
+								</span>
+								<div className='user-img-div'>
 									<img
-										className="user-img"
-										src={otherMember[0].user_info.profile_pic}
-										alt=""
+										className='user-img'
+										src={memberCard.user_info.profile_pic}
+										alt=''
 									/>
 								</div>
 							</div>
-							<div className="user-details">
-								<div className="user-name-id">
-
-									{otherMember[0].user_info.first_name}{" "}
-									{otherMember[0].user_info.last_name}#
-									{otherMember[0].user_info.id}
+							<div className='user-details'>
+								<div className='user-name-id'>
+									{memberCard.user_info.first_name} #{memberCard.user_info.id}
 								</div>
-
-								<div className="user-name-id-joined">
-									<div className='joined'>Q-core member since </div>
-									<div className='joind-date'>{otherMember[0].joined.slice(0,17)}</div>
+								<div className='user-name-id-joined'>
+									<div className='joined'>Q-Cord member since: </div>
+									<div className='joind-date'>
+										{memberCard.joined.slice(0, 17)}
+									</div>
 								</div>
 							</div>
 						</div>
 					</>
 				)}
+				<div className='users-list-container'>{!showMsg && <UsersList />}</div>
 			</div>
 		</div>
 	);
-};;
-
+};
 
 export default Servers;

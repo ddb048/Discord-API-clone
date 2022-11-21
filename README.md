@@ -1,144 +1,108 @@
-# Flask React Project
+# Q-CORD
 
-This is the starter for the Flask React project.
+Q-CORD is a clone of the site: DISCORD.  This was a project to display the work for the utilization of React, Redux, Flask, SQLAlchemy, WebSockets, Python, Javascript, and PostgreSQL.  This project simulated working within a group environment within time constraints.  Our group of four full-stack software engineers participated in daily stand-ups and worked under senior developers which set the parameters for the expectations of this project.
 
-## Getting started
-1. Clone this repository (only this branch)
+live site: https://q-cord.onrender.com/
 
-2. Install dependencies
+# Contact
 
-      ```bash
-      pipenv install -r requirements.txt
-      ```
+David Burch:
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
+ddb048@gmail.com
 
-4. Make sure the SQLite3 database connection URL is in the **.env** file
+Moran Even:
 
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention**.
+method.even@gmail.com
 
-6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
+Abel Brianvil:
 
-   ```bash
-   pipenv shell
-   ```
+abrianvil@gmail.com
 
-   ```bash
-   flask db upgrade
-   ```
+Cindy Guzman:
 
-   ```bash
-   flask seed all
-   ```
+## Tech Stack
 
-   ```bash
-   flask run
-   ```
-
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+[<img src="https://user-images.githubusercontent.com/105324675/190725431-5033a82c-51ff-4a9a-b9ff-48ad606a2a5e.svg" width="75" height="75">](https://www.javascript.com/) [<img src="https://user-images.githubusercontent.com/105324675/190726531-63e5fa0c-5e9a-4e12-a4df-ac578bdfefb3.svg" width="75" height="75">](https://whatwg.org/) [<img src="https://user-images.githubusercontent.com/105324675/190727242-21af03e1-b793-4257-bdc5-14996fb8da63.svg" width="75" height="75">](https://www.css3.com/) [<img src="https://user-images.githubusercontent.com/105324675/190727472-da7d5a51-ef2e-4f71-b90c-333debd2d147.svg" width="75" height="75">](https://reactjs.org/) [<img src="https://user-images.githubusercontent.com/105324675/190727697-f61e28b7-1597-4be0-9dc4-dbc443790f86.svg" width="75" height="75">](https://redux.js.org/) [<img src="https://user-images.githubusercontent.com/105324675/190729715-5aeed1a2-0914-413e-ac4b-de23aa7ed802.svg" width="75" height="75">](https://nodejs.org/en) [<img src="https://user-images.githubusercontent.com/105324675/190729918-773ddf18-90d3-4d52-aa81-c02731d413bf.svg" width="75" height="75">](https://www.npmjs.com/)
 
 
-## Deployment through Render.com
+## Database
+[<img src="https://user-images.githubusercontent.com/105324675/190727354-8f322958-5b34-4c96-b052-358d06d0d9ef.svg" width="75" height="75">](https://www.postgresql.org) [<img src="https://user-images.githubusercontent.com/105324675/190739700-864f937c-4e43-48ea-9216-00edb49d301d.svg" width="75" height="75">](https://sequelize.org/)
 
-First, refer to your Render.com deployment articles for more detailed
-instructions about getting started with [Render.com], creating a production
-database, and deployment debugging tips.
 
-From the [Dashboard], click on the "New +" button in the navigation bar, and
-click on "Web Service" to create the application that will be deployed.
+## Hosting
 
-Look for the name of the application you want to deploy, and click the "Connect"
-button to the right of the name.
 
-Now, fill out the form to configure the build and start commands, as well as add
-the environment variables to properly deploy the application.
 
-### Part A: Configure the Start and Build Commands
 
-Start by giving your application a name.
 
-Leave the root directory field blank. By default, Render will run commands from
-the root directory.
+# Getting Started
 
-Make sure the Environment field is set set to "Python 3", the Region is set to
-the location closest to you, and the Branch is set to "main".
+ 1. Download and unzip
+ 2. Use the command ```npm start``` in the react-app directory and ```pipenv flask run``` in the root directory to run both servers
+ 3. Browser should automatically open at localhost:3000 to the Splash page.
 
-Next, add your Build command. This is a script that should include everything
-that needs to happen _before_ starting the server.
 
-For your Flask project, enter the following command into the Build field, all in
-one line:
+# Features
 
-```shell
-# build command - enter all in one line
-npm install --prefix react-app &&
-npm run build --prefix react-app &&
-pip install -r requirements.txt &&
-pip install psycopg2 &&
-flask db upgrade &&
-flask seed all
-```
+## Landing Page
+![Q-Cord](https://user-images.githubusercontent.com/106298312/202962330-4931352d-114b-495c-97f8-d5c5561f3a44.png)
 
-This script will install dependencies for the frontend, and run the build
-command in the __package.json__ file for the frontend, which builds the React
-application. Then, it will install the dependencies needed for the Python
-backend, and run the migration and seed files.
+Users start here.
 
-Now, add your start command in the Start field:
 
-```shell
-# start script
-gunicorn app:app
-```
 
-### Part B: Add the Environment Variables
+## Login Modal
 
-Click on the "Advanced" button at the bottom of the form to configure the
-environment variables your application needs to access to run properly. In the
-development environment, you have been securing these variables in the __.env__
-file, which has been removed from source control. In this step, you will need to
-input the keys and values for the environment variables you need for production
-into the Render GUI.
+The login button greets users with a modal.
+![Q-Cord](https://user-images.githubusercontent.com/106298312/202962395-a4d90cb5-ed7e-4183-98b9-bfdf6d9a049e.png)
 
-Click on "Add Environment Variable" to start adding all of the variables you
-need for the production environment.
 
-Add the following keys and values in the Render GUI form:
+## Sign Up Modal
 
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-- REACT_APP_BASE_URL (use render.com url, located at top of page, similar to
-  https://this-application-name.onrender.com)
 
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
+If not already registered, users can sign up with a new account
+![Q-Cord](https://user-images.githubusercontent.com/106298312/202962458-abdf751c-a2c5-4513-a234-20eae4de08e5.png)
 
-Add the following keys and values:
 
-- DATABASE_URL (copy value from Internal Database URL field)
 
-_Note: Add any other keys and values that may be present in your local __.env__
-file. As you work to further develop your project, you may need to add more
-environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment._
+## View a Users Main Interface
+Once Users log-in, they may interact with their servers, channels, or message their friends!
 
-Next, choose "Yes" for the Auto-Deploy field. This will re-deploy your
-application every time you push to main.
+## Create A Server or Channel
 
-Now, you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your build and
-start commands being executed, and see any errors in the build process.
 
-When deployment is complete, open your deployed site and check to see if you
-successfully deployed your Flask application to Render! You can find the URL for
-your site just below the name of the Web Service at the top of the page.
+Users can create servers and channels!
+![Q-Cord](https://user-images.githubusercontent.com/106298312/202962586-e543d22d-46c2-4cdf-9735-dd42eaf0d2f3.png)
+![Q-Cord](https://user-images.githubusercontent.com/106298312/202962698-3c78c28d-54d4-4a0f-8c52-49c2c4366745.png)
 
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+
+
+## View All Servers
+
+Whether you are a User or Not, you can check out all public Servers!
+![Cursor_and_Q-Cord](https://user-images.githubusercontent.com/106298312/202962852-4ceefcb8-133d-46fc-aaff-be5178146740.png)
+
+
+Browse Public Server Details
+
+Select a Server and See if it is a good fit for you!
+![Q-Cord](https://user-images.githubusercontent.com/106298312/202963034-fb28ba26-0ea3-4704-9132-0fd306b76ccd.png)
+
+
+
+## Send Messages to Other Members
+
+
+## View a Users Main Interface
+Once Users log-in, they may interact with their servers, channels, or message their friends!
+
+
+## RoadMap of Future Features
+Our Backend has enabled Membership and roles within each server.  The next feature
+to add will allow the owner of a server to accept or delete "pending" members.
+
+Owners will then be able to delete "members" as well.
+
+We will add features to enable voice and video channels.
+
+We will add features to enable screensharing.

@@ -8,30 +8,35 @@ const ChannelModal = ({ serverId, setShowModal }) => {
 
 	const dispatch = useDispatch();
 	const [name, setName] = useState('');
-	const is_voice = false;
+	const [is_voice] = useState(false);
 	const [description, setDescription] = useState('');
-	const [errors, setErrors] = useState([]);
-	const [frontEndErrors, setFrontEndErrors] = useState([]);
+	const [error, setError] = useState({});
+	const [renderErr, setRenderErr] = useState(false)
+
+	// const [frontEndErrors, setFrontEndErrors] = useState([]);
 	const [changeColor, setChangeColor] = useState('dark-create-channel-btn');
+
 	useEffect(() => {
-		//console.log('use effect ')
-		if (name.length) {
+		let errors = {};
+		if (name) {
 			setChangeColor('light-create-channel-btn');
 		} else {
 			setChangeColor('dark-create-channel-btn');
 		}
 
-		// console.log('this is change color', changeColor);
-		const errors = [];
-		if (name.length > 32) {
-			errors.push('Please provide a channel name less than 32 characters.');
-			setFrontEndErrors(errors);
-		}
-	}, [name, errors]);
 
-	const submitNewChannel = (e) => {
+		if (!name) {
+			errors.nameError = 'Please provide a channel name less than 10 characters';
+			setError(errors);
+		} else if (name.length >10){
+			errors.nameError = 'Channel name must be at most 10 characters'
+			setError(errors);
+		}
+	}, [name]);
+// console.log('errrors', error)
+	const submitNewChannel = async (e) => {
 		e.preventDefault();
-		setErrors([]);
+    setRenderErr(true)
 
 		const newChannel = {
 			name,
@@ -39,49 +44,73 @@ const ChannelModal = ({ serverId, setShowModal }) => {
 			description,
 		};
 
-		if (!frontEndErrors.length) {
-			dispatch(createChannel(serverId, newChannel));
+		const data = await dispatch(createChannel(serverId, newChannel))
+
+		if (data.errors) {
+			setError(data.errors);
+
+		} else {
 			dispatch(getServerDetails(serverId))
 			setShowModal(false);
 		}
+
 	}
+
 	return (
-		<div className="modal">
-			<form className="new-channel-modal-form" onSubmit={submitNewChannel}>
-				<div className="modal-title">Create New Channel</div>
-				<div className="modal-input-form">
-					<label className="modal-input-label">CHANNEL NAME</label>
-					<div className="new-channel-hash-container">
-						<div className="hashtag">#</div>
+		<div className="form-container">
+			<div className='form-card'>
+				<form id="form" onSubmit={submitNewChannel}>
+
+					<div className="text">
+						<h2>Create New Channel</h2>
+					</div>
+
+					<div className="errors-div">
+						{!!error.length && <div id="errors">{error[0]}</div>}
+					</div>
+
+					<div>
+
+
+						<label className="text noRenderError" htmlFor="name">
+						Channel Name
+              </label>
+
 						<input
-							className="modal-input-textbox"
+							className="inp"
 							type="text"
-							placeholder="new-channel"
+							placeholder={"new-channel"}
 							value={name}
 							onChange={(e) => setName(e.target.value)}
-							required
 						/>
 
 					</div>
+					<div>
 
-					<label id="modal-DESCRIPTION-label">DESCRIPTION</label>
-					<input
-						className="modal-input-textbox"
-						type="text"
-						placeholder="channel-description"
-						value={description}
-						onChange={(e) => setDescription(e.target.value)}
-					/>
-				</div>
-				<div id="grey-footer">
+						<label className="text noRenderError" htmlFor="name">
+						Description
+              </label>
+							
+						<input
+							className="inp"
+							type="text"
+							placeholder="channel-description"
+							value={description}
+							onChange={(e) => setDescription(e.target.value)}
+						/>
+					</div>
+
 					<div className="create-channel-submit-btn-container">
-						<button className={changeColor} type="submit">
+						<button className={changeColor}
+						type="submit">
 							Create Channel
 						</button>
 					</div>
-				</div>
-			</form>
-		</div>
+
+				</form>
+			</div >
+
+		</div >
 	);
 };
 export default ChannelModal;

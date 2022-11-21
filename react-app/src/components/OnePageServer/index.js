@@ -16,7 +16,7 @@ import "./onePage.css";
 function OnePageServer() {
   // const servers = useSelector((state) => state.servers.servers);
   const oneServer = useSelector(state => state.servers.oneServer);
-  console.log("ONE PAGE SERVERS STATE", oneServer);
+  // console.log("ONE PAGE SERVERS STATE", oneServer);
   const dispatch = useDispatch();
   let { serverId } = useParams();
 
@@ -26,7 +26,7 @@ function OnePageServer() {
     dispatch(getServerDetails(+serverId))
   }, [dispatch, serverId]);
 
-  console.log('ONE SERVER', oneServer)
+  // console.log('ONE SERVER', oneServer)
 
   if (!oneServer) return null
   else
@@ -91,7 +91,7 @@ function OnePageServer() {
             </div>
           </div>
           <NavLink className="details-card-bttn" to="/sign-up">
-            <div>Join Q-Core</div>
+            <div>Join Q-Cord</div>
           </NavLink>
         </div>
       </>

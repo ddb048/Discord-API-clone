@@ -29,7 +29,7 @@ def get_all_member(id):
         return res, 200
     else:
         return {
-            "message": 'no members found',
+            "errors": 'no members found',
             'Status code': 404
         }, 404
 
@@ -40,8 +40,8 @@ def get_all_member(id):
 def add_a_member(user_id, server_id):
     member = Member(
         roles='Pending',
-        user_id=user_id,
-        server_id=server_id
+        user_id=int(user_id),
+        server_id=int(server_id)
     )
     db.session.add(member)
     db.session.commit()
@@ -85,7 +85,7 @@ def delete_user_from_server(server_id,user_id):
       },302
     else:
         return {
-            'message': 'User is not a member of this server',
+            'errors': 'User is not a member of this server',
             'Status code': 404
         }, 404
 
@@ -130,7 +130,7 @@ def server(id):
         return server.to_dict(), 200
     else:
         return {
-            'message': 'server not found',
+            'errors': 'server not found',
             'Status code': 404
         }, 404
 
@@ -189,7 +189,7 @@ def create_server():
 
 # SECTION - update a server
 # TODO - error handling needs to be added
-@servers_routes.route('/@me/<int:id>', methods=['PUT'])
+@servers_routes.route('/@me/<int:id>', methods=['POST'])
 @login_required
 def update_server(id):
     server = Server.query.get(int(id))
@@ -198,14 +198,13 @@ def update_server(id):
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
             form.populate_obj(server)
-
             db.session.commit()
             return server.to_dict(), 201
         return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
     else:
         return {
-            'message': 'server not found',
+            'errors': 'server not found',
             'code': 404
         }, 404
 
@@ -225,6 +224,6 @@ def delete_server(id):
         }, 302
     else:
         return {
-            'message': 'server not found',
+            'errors': 'server not found',
             'Status code': 404
         }, 404

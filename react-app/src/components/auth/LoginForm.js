@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../store/session';
 import './LoginForm.css';
+import { clearServer } from '../../store/servers';
 import qrCode from '../../Images/q-cord.png'
 const LoginForm = () => {
 	const [errors, setErrors] = useState([]);
@@ -31,8 +32,10 @@ const LoginForm = () => {
 			const data = await dispatch(login(email, password));
 			if (data) {
 				setErrors(data);
+			} else {
+				setTimeout(() => { dispatch(clearServer()).then(< Redirect to="/servers/@me" />) }, 1000)
 			}
-			<Redirect to="/servers/@me" />;
+
 		}
 	};
 
@@ -60,6 +63,20 @@ const LoginForm = () => {
 		const data = await dispatch(login('lazaro@aa.io', 'password'))
 		if (data) {
 			setErrors(data);
+		} else {
+			dispatch(clearServer());
+			setTimeout(() => { < Redirect to="/servers/@me" />; }, 1000)
+		}
+	}
+
+	const log2 = async (e) => {
+		e.preventDefault()
+		const data = await dispatch(login('demo@aa.io', 'password'))
+		if (data) {
+			setErrors(data);
+		} else {
+			dispatch(clearServer());
+			setTimeout(() => { < Redirect to="/servers/@me" />; }, 1000)
 		}
 	}
 
@@ -76,73 +93,92 @@ const LoginForm = () => {
 	}
 
 	return (
-		<>
-			<div className="form-container">
-				<div className="form-card">
-					<form id='form' onSubmit={onLogin}>
 
-						<div id='welcome'>
-							<div id='welcome-text'>
-								<div className='text'>
-									<h2>Welcome back!</h2>
-								</div>
-								<div className='text'>
-									<p>We're so excited to see you again!</p>
-								</div>
+		<div className="form-container">
+			<div className="form-card">
+				<form id='form' onSubmit={onLogin}>
+
+					<div id='welcome'>
+						<div id='welcome-text'>
+							<div className='text'>
+								<h2>Welcome back!</h2>
+							</div>
+							<div className='text'>
+								<p>We're so excited to see you again!</p>
 							</div>
 						</div>
-						<div className='errors-div'>
-							{errors.map((error, ind) => (
-								<div key={ind}>{error}</div>
-							))}
-						</div>
-						<div>
-							<div>{renderErr && emailErr ? <label className='text renderError' htmlFor="email">Email: {emailErr}</label> :
-								<label className='text noRenderError' htmlFor="email">Email</label>}
-							</div>
-							<input
-
-								name="email"
-								type="text"
-								// placeholder="Email"
-								value={email}
-								onChange={updateEmail}
-								className='inp'
-							/>
-						</div>
-						<div>
-							<div>{renderErr && passwordErr ? <label className='text renderError' htmlFor="password">Password: {passwordErr}</label> :
-								<label className='text noRenderError' htmlFor="password">Password</label>}
-							</div>
-							<input
-								name="password"
-								type="password"
-								// placeholder="Password"
-								value={password}
-								onChange={updatePassword}
-								className='inp'
-							/>
-						</div>
-						<div>
-							<button className='subButton' type="submit">Login</button>
-						</div>
-						<div id='to-signup'>
-							Need an account? <Link to={'/sign-up'}>Register</Link>
-						</div>
-						<div>
-							<button
-								onClick={log}
-								className='subButton'>Demo User</button>
-						</div>
-					</form>
-					<div className='qCode-container'>
-						<img className='qCode' src={qrCode} alt="" />
-						<h3 className='text'>Scan this QR Code to check out our GitHub</h3>
-
 					</div>
+
+					<div className='errors-div'>
+						{errors.map((error, ind) => (
+							<div key={ind}>{error}</div>
+						))}
+					</div>
+					<div>
+						<div>{renderErr && emailErr ?
+							<label className='text renderError' htmlFor="email">
+								Email: {emailErr}</label>
+							:
+							<label className='text noRenderError' htmlFor="email">
+								Email
+							</label>
+						}
+						</div>
+						<input
+
+							name="email"
+							type="text"
+							// placeholder="Email"
+							value={email}
+							onChange={updateEmail}
+							className='inp'
+						/>
+					</div>
+					<div>
+						<div>
+							{renderErr && passwordErr ?
+								<label className='text renderError' htmlFor="password">
+									Password: {passwordErr}</label>
+								:
+								<label className='text noRenderError' htmlFor="password">
+									Password
+								</label>
+							}
+						</div>
+						<input
+							name="password"
+							type="password"
+							// placeholder="Password"
+							value={password}
+							onChange={updatePassword}
+							className='inp'
+						/>
+					</div>
+					<div>
+						<button className='subButton' type="submit">Login</button>
+					</div>
+					<div id='to-signup'>
+						Need an account? <Link to={'/sign-up'}>Register</Link>
+					</div>
+					<div>
+						<button
+							onClick={log}
+							className='subButton'>Demo User 1</button>
+					</div>
+					<div>
+						<button
+							onClick={log2}
+							className='subButton'>Demo User 2</button>
+					</div>
+				</form>
+				<div className='qCode-container'>
+					<img className='qCode' src={qrCode} alt="" />
+					<h3 className='text'>Scan this QR Code to check out our GitHub</h3>
+
 				</div>
 			</div>
-		</>
+		</div>
+
 	);
 };
 

@@ -7,6 +7,7 @@ const LOAD_ONE_SERVER = 'servers/LOAD_ONE';
 const CREATE_SERVER = 'servers/ADD';
 const REMOVE_SERVER = 'servers/REMOVE';
 const EDIT_SERVER = 'servers/EDIT';
+const CLEAR_SERVER = 'servers/CLEAR'
 
 
 /*******************ACTION CREATORS*********** */
@@ -36,6 +37,9 @@ const editServer = (server) => ({
     server
 })
 
+export const clearServer = () => ({
+    type: CLEAR_SERVER
+})
 /*********************THUNKS********************** */
 
 //SECTION - GET /api/servers (READ)
@@ -53,7 +57,7 @@ export const getAllServers = () => async dispatch => {
 //SECTION - GET /api/servers/@me (READ)
 export const getAllCurrentUserServers = () => async dispatch => {
     const response = await fetch('/api/servers/@me')
-
+    console.log('i getAllCurrentUserServers got hit')
     if (response.ok) {
         const servers = await response.json();
         dispatch(loadServers(servers.servers));
@@ -65,7 +69,7 @@ export const getAllCurrentUserServers = () => async dispatch => {
 //SECTION - GET /api/servers/:serverId (READ)
 export const getServerDetails = serverId => async dispatch => {
     const response = await fetch(`/api/servers/${serverId}`);
-
+    console.log('i getServerDetails got hit')
     if (response.ok) {
         const server = await response.json();
         // console.log('get server details thunk >>>>>>', server)
@@ -86,13 +90,21 @@ export const createServer = newServer => async dispatch => {
         const newServer = await response.json();
         dispatch(addServer(newServer));
         return newServer;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data;
+        }
+
     }
+
+
 }
 
 //SECTION - PUT /api/servers/@me/:serverId (UPDATE)
 export const updateServer = server => async dispatch => {
     const response = await fetch(`/api/servers/@me/${server.id}`, {
-        method: 'PUT',
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(server)
     });
@@ -101,6 +113,11 @@ export const updateServer = server => async dispatch => {
         const server = await response.json();
         dispatch(editServer(server));
         return server;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data;
+        }
     }
 }
 
@@ -147,11 +164,11 @@ const serverReducer = (state = initialState, action) => {
 
         case CREATE_SERVER:
             console.log('new state in create server', newState)
-            newState.servers = {...state.servers, [action.newServer.id]:action.newServer}
+            newState.servers = { ...state.servers, [action.newServer.id]: action.newServer }
             // newState[action.newServer.id] = action.newServer;
             return newState;
 
-// add state.servers to edit and remove
+        // add state.servers to edit and remove
         case EDIT_SERVER:
             newState = { ...state, [action.server.id]: action.server };
             return newState
@@ -159,6 +176,11 @@ const serverReducer = (state = initialState, action) => {
         case REMOVE_SERVER:
             newState = { ...state };
             delete newState[action.serverId];
+            return newState;
+
+        case CLEAR_SERVER:
+            newState = { ...state };
+            newState.servers = {}
             return newState;
 
         default:
