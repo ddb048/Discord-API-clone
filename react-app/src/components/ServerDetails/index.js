@@ -319,9 +319,11 @@ const ServerDetail = () => {
 									value={chatInput}
 									onChange={(e) => setChatInput(e.target.value)}
 									placeholder='Message'
+									className='channel-message-input'
 								/>
-								<button onClick={submitChatMsg} type='submit'>
-									Send
+								<button className='channel-send-msg' onClick={submitChatMsg} type='submit'>
+
+								<i class="fa-regular fa-paper-plane"></i>
 								</button>
 							</form>
 						)}

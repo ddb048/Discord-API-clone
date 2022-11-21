@@ -134,7 +134,9 @@
   align-items: center;
   position: absolute;
   bottom: 0;
-  /* height: 50px; */
+  width: 180px;
+  background-color: #2f3136;
+  height: 50px;
 }
 
 .user-photo {
