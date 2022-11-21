@@ -30,6 +30,16 @@
     font-style: normal;
 }
 
+.errors-div-dm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+    font-size: large;
+}
 
 .user-img-div2 {
     max-width: 69px;
@@ -51,7 +61,7 @@
 }
 
 .buttons-div {
-    padding-top: 2rem;
+    padding-top: 5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;

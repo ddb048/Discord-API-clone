@@ -4,18 +4,19 @@ import { deleteServer, getAllCurrentUserServers } from "../../store/servers"
 
 const MessageConfirmation = ({ user, serverId, setShowConfirm, errors }) => {
     const dispatch = useDispatch()
-    console.log("server id in modal", serverId.id)
+    console.log("server id in modal", serverId)
+    console.log("errors from MessageConfirm", errors)
 
-
-    const confirm = (e) => {
+    const confirm = async (e) => {
         e.preventDefault()
-        dispatch(createMember({
-            serverId: serverId.id, userId: user.id
+        await dispatch(createMember({
+            serverId: serverId.id,
+            userId: user.id
         }))
-        dispatch(getAllCurrentUserServers())
+        await dispatch(getAllCurrentUserServers())
         setShowConfirm(false)
     }
-
+    //REVIEW - how to do error handling for this now?
     const cancel = (e) => {
         e.preventDefault()
         dispatch(deleteServer(serverId))
@@ -33,13 +34,16 @@ const MessageConfirmation = ({ user, serverId, setShowConfirm, errors }) => {
                     </div>
                     {!!errors ?
 
-                        <div className="errors-div">{errors}</div>
+                        <div className="errors-div-dm">{errors}</div>
 
                         :
                         <>
                             <div className="text">
-                                <p>Enjoy this moment.
-                                    When you're ready, choose to start a chat or leave:</p>
+                                <p>Enjoy this moment...</p>
+
+
+                                <p>When you're ready, choose to start a chat or leave.  Once you start
+                                    a chat, select them from your Direct Messages:</p>
                             </div>
 
                             <div className="buttons-div">
@@ -52,7 +56,7 @@ const MessageConfirmation = ({ user, serverId, setShowConfirm, errors }) => {
 
                 </form>
             </div>
-        </div>
+        </div >
     )
 }
 

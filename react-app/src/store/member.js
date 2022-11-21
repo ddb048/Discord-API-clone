@@ -113,7 +113,7 @@ const memberReducer = (state = initialState, action) => {
             return newState
 
         case CREATE_MEMBER:
-            newState.members[action.newMember.id] = action.newMember
+            newState = { ...state, [action.newMember.id]: action.newMember }
             return newState
 
         case EDIT_MEMBER:
