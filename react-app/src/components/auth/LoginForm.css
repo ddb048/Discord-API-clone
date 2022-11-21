@@ -22,6 +22,8 @@
 
 }
 
+
+
 .form-card {
   display: flex;
   flex-direction: row;
@@ -82,6 +84,10 @@
   background-color: #373f99;
 }
 
+.subButton:active {
+  transform: scale(0.95);
+}
+
 #to-signup {
   color: rgb(133, 133, 133);
   font-family: adelle-sans, sans-serif;
@@ -101,6 +107,8 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+  height: auto;
+  width: auto;
 }
 
 #welcome {

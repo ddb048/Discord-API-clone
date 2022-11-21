@@ -173,6 +173,7 @@ input {
     height: 45px;
     width: 400px;
     border: none;
+    gap: 1rem;
     border-radius: 2px;
     transition: background-color .2s ease;
     font-family: adelle-sans, sans-serif;
@@ -180,6 +181,9 @@ input {
     font-size: 18px;
 }
 
+.dark-create-channel-btn:active {
+    transform: scale(0.95);
+}
 
 /* .dark-create-channel-btnvisible{
     background-color: #434a94;
@@ -197,10 +201,15 @@ input {
     width: 400px;
     border: none;
     border-radius: 2px;
+    gap: 1rem;
     transition: background-color .2s ease;
     font-family: adelle-sans, sans-serif;
     font-style: bold;
     font-size: 18px;
+}
+
+.light-create-channel-btn:active {
+    transform: scale(0.95);
 }
 
 .light-create-channel-btn:hover {
@@ -303,6 +312,10 @@ input {
 
 #new-server-btn-dlt:hover {
     background-color: brown;
+}
+
+#new-server-btn-dlt:active {
+    transform: scale(0.95);
 }
 
 #update-text-area {

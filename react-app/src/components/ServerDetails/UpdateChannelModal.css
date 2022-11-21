@@ -1,57 +1,123 @@
-.delete-channel-bttnhide{
-  background-color: #434a94;
-  color: #888b98;
-  height: 50px;
-  width: 100px;
+.delete-channel-bttnhide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #5865f2;
+  color: white;
+  max-height: 45px;
+  height: 35px;
+  width: 400px;
   border: none;
   border-radius: 2px;
+  transition: background-color .2s ease;
   font-family: adelle-sans, sans-serif;
+  font-style: bold;
+  font-size: 18px;
 }
-.delete-channel-bttnvisible{
+
+.delete-channel-bttnhide:hover {
+  background-color: #434a94;
+}
+
+.delete-channel-bttnhide:active {
+  transform: scale(0.95);
+}
+
+.delete-div {
+  display: flex;
+  flex-direction: column;
+  /* padding-top: 15px; */
+  gap: 1rem;
+  justify-content: space-between;
+  margin-top: 1%;
+}
+
+.delete-channel-bttnvisible {
   display: none;
 }
-.delete-channel-bttn::hover{
+
+.delete-channel-bttn:hover {
   background-color: #5865f2;
   color: white;
-  height: 50px;
-  width: 100px;
+  max-height: 45px;
+  height: 35px;
+  width: 400px;
   border: none;
   border-radius: 2px;
+  transition: background-color .2s ease;
   font-family: adelle-sans, sans-serif;
+  font-style: bold;
+  font-size: 18px;
 }
-.confirm-channel-bttn{
+
+.delete-channel-bttn:active {
+  transform: scale(0.95);
+}
+
+.confirm-channel-bttn {
+  background-color: #5865f2;
+  color: white;
+  height: 35px;
+  width: 400px;
+  border: none;
+  border-radius: 2px;
+  transition: background-color .2s ease;
+  font-family: adelle-sans, sans-serif;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.confirm-channel-bttn:hover {
   background-color: #434a94;
-  color: #888b98;
-  height: 50px;
-  width: 100px;
+  color: white;
+  height: 35px;
+  width: 400px;
   border: none;
   border-radius: 2px;
+  transition: background-color .2s ease;
   font-family: adelle-sans, sans-serif;
+  font-style: bold;
+  font-size: 18px;
 }
-.confirm-channel-bttn::hover{
+
+.confirm-channel-bttn:active {
+  transform: scale(0.95);
+}
+
+.cancel-channel-bttn {
   background-color: #5865f2;
   color: white;
-  height: 50px;
-  width: 100px;
+  height: 35px;
+  width: 400px;
   border: none;
   border-radius: 2px;
+  transition: background-color .2s ease;
   font-family: adelle-sans, sans-serif;
+  font-style: bold;
+  font-size: 18px;
 }
-.cancel-channel-bttn{
+
+.cancel-channel-bttn:hover {
   background-color: #434a94;
-  color: #888b98;
-  height: 50px;
-  width: 100px;
-  border: none;
-  border-radius: 2px;
-  font-family: adelle-sans, sans-serif;
-}
-.cancel-channel-bttn::hover{
-  background-color: #5865f2;
   color: white;
-  height: 50px;
-  width: 100px;
+  height: 35px;
+  width: 400px;
   border: none;
   border-radius: 2px;
+  transition: background-color .2s ease;
   font-family: adelle-sans, sans-serif;
+  font-style: bold;
+  font-size: 18px;
+}
+
+.cancel-channel-bttn:active {
+  transform: scale(0.95);
+}
+
+.create-channel-submit-btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
 }
