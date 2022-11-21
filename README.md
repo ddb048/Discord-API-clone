@@ -91,10 +91,13 @@ Select a Server and See if it is a good fit for you!
 
 
 ## Send Messages to Other Members
+Users have the ability to Direct Message other Members of Q-Cord!
+![Cursor_and_Q-Cord](https://user-images.githubusercontent.com/106298312/203091787-de315c65-3f43-4790-9627-11559733fe2d.png)
 
 
 ## View a Users Main Interface
 Once Users log-in, they may interact with their servers, channels, or message their friends!
+![Cursor_and_Q-Cord](https://user-images.githubusercontent.com/106298312/203091575-3406fcd1-2662-490f-af12-5e2a81fdd61b.png)
 
 
 ## RoadMap of Future Features
