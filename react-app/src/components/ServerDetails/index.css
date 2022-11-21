@@ -196,15 +196,15 @@
 /* .update-channel-button{
   border: 1px solid green;
 } */
-.servers-dm-footer {
+/* .servers-dm-footer {
   display: flex;
-  /* border: 1px solid purple; */
+  border: 1px solid purple;
   justify-content: space-around;
   align-items: center;
-  /* position: absolute; */
+  position: absolute;
   top: 880px;
   background-color: #2f3136;
-}
+} */
 
 .user-photo {
   width: 38px;
@@ -253,23 +253,44 @@
 }
 
 .channel-input-textbox-container {
-  border: 1px solid pink;
+  /* border: 1px solid pink; */
   position: absolute;
   /* bottom: -100px; */
-  width: 925px;
-  bottom: 0px
+  /* width: 925px; */
+  width: 84vw;
+  padding: 0 5px;
+  bottom: 0px;
+  display: flex;
 }
 
 .channel-message-form {
-  border: 1px solid blue;
+  width: 100vw;
 }
-
+.channel-message-input{
+  /* border: 1px solid violet; */
+  /* width: 95%; */
+  width: 93.5%;
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+  color: #36393f;
+  position: relative;
+}
 .channel-message {
   font-family: adelle-sans, sans-serif;
   font-size: 12px;
   /* overflow: scroll; */
 }
 
+.channel-send-msg{
+  /* border: 1px solid blue; */
+  border: none;
+  height: 33px;
+  background-color: #202225;
+  color: white;
+  border-radius: 10px;
+  width: 40px;
+}
 /* ****************** ACTIVE SECTION COLUMN *************************  */
 .server-active-container {
   /* border: 1px solid black; */

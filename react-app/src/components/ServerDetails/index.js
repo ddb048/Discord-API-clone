@@ -73,6 +73,7 @@ const ServerDetail = () => {
 			await dispatch(getServerDetails(serverId));
 			setIsLoaded(true)
 			await dispatch(getAllChannel(serverId));
+			await dispatch(getChannelDetail(channelId));
 			await dispatch(getAllMembers(serverId));
 			await dispatch(getAllMessages(currentChannelId));
 		})();
@@ -170,7 +171,7 @@ const ServerDetail = () => {
 	// 		);
 	// 	})}
 	// console.log('CURRENT SERVER CHANNELS?',currentChannel)
-	return isLoaded && (
+	return (
 		<div className='servers-page-container'>
 			<div className='servers-column-container'>
 				<div className='dm-button-container'>

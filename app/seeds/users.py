@@ -135,7 +135,7 @@ def seed_users():
         first_name='Raphaelle',
         last_name='Jacobi',
         profile_pic='https://cdn1.iconfinder.com/data/icons/avatar-2-2/512/Programmer-512.png',
-        username='Raphaelle',
+        username='Raphaellee',
         email='raphaelle@aa.io',
         password='password'
     )

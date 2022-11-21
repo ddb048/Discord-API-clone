@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(32))
     last_name = db.Column(db.String(32))
     profile_pic = db.Column(db.String(255))
-    username = db.Column(db.String(40), nullable=False, unique=True)
+    username = db.Column(db.String(10), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime(), nullable=False,server_default=func.now())
