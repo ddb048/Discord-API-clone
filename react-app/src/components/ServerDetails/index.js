@@ -145,7 +145,7 @@ const ServerDetail = () => {
 			message_body: chatInput,
 		};
 		dispatch(createMessage(payload));
-		if (socket) {
+		if (socket && chatInput.length) {
 			socket.emit('channelMsgs', {
 				owner_name: currentUser.username,
 				owner_pic: currentUser.profile_pic,
@@ -170,17 +170,17 @@ const ServerDetail = () => {
 	// console.log('CURRENT SERVER CHANNELS?',currentChannel)
 	const dummy = useRef(null)
 
-    const scrollToBottom = () => {
-      dummy.current?.scrollIntoView({ behavior: "smooth" })
-    }
+	const scrollToBottom = () => {
+		dummy.current?.scrollIntoView({ behavior: "smooth" })
+	}
 
-    useEffect(() => {
-      scrollToBottom()
-    }, [messages]);
+	useEffect(() => {
+		scrollToBottom()
+	}, [messages]);
 
-		// if(!currentUser){
-		// 	return <Redirect to='/'/>
-		// }
+	// if(!currentUser){
+	// 	return <Redirect to='/'/>
+	// }
 	return (
 		<div className='servers-page-container'>
 			<div className='servers-column-container'>
@@ -342,7 +342,7 @@ const ServerDetail = () => {
 								</div>
 							);
 						})}
-						<div ref ={dummy} />
+					<div ref={dummy} />
 				</div>
 				<div className='channel-input-textbox-container'>
 					{showMsg && (
