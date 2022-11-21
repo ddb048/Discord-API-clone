@@ -29,7 +29,7 @@ Cindy Guzman:
 
 
 ## Hosting
-[<img src="https://user-images.githubusercontent.com/105324675/190728454-cada0d3c-3da2-4a21-a781-62d398a96538.svg" width="75" height="75">](https://www.heroku.com)
+
 
 
 
@@ -44,6 +44,7 @@ Cindy Guzman:
 # Features
 
 ## Landing Page
+![Q-Cord](https://user-images.githubusercontent.com/106298312/202962330-4931352d-114b-495c-97f8-d5c5561f3a44.png)
 
 Users start here.
 
@@ -52,13 +53,14 @@ Users start here.
 ## Login Modal
 
 The login button greets users with a modal.
+![Q-Cord](https://user-images.githubusercontent.com/106298312/202962395-a4d90cb5-ed7e-4183-98b9-bfdf6d9a049e.png)
 
 
 ## Sign Up Modal
 
 
 If not already registered, users can sign up with a new account
-[BeatUp-3](https://user-images.githubusercontent.com/106298312/197461068-7a567cce-371b-4d85-b424-d8dd1b59504a.png)
+![Q-Cord](https://user-images.githubusercontent.com/106298312/202962458-abdf751c-a2c5-4513-a234-20eae4de08e5.png)
 
 
 
@@ -68,23 +70,22 @@ Once Users log-in, they may interact with their servers, channels, or message th
 ## Create A Server or Channel
 
 
-Users can create groups and events!
-![BeatUp](https://user-images.githubusercontent.com/106298312/197461334-fd9161ab-fed4-4b5d-ac3d-9ffc7254606d.png)
+Users can create servers and channels!
+![Q-Cord](https://user-images.githubusercontent.com/106298312/202962586-e543d22d-46c2-4cdf-9735-dd42eaf0d2f3.png)
+![Q-Cord](https://user-images.githubusercontent.com/106298312/202962698-3c78c28d-54d4-4a0f-8c52-49c2c4366745.png)
+
 
 
 ## View All Servers
 
-
-Browse Groups and Events
-![BeatUp-4](https://user-images.githubusercontent.com/106298312/197461388-f5c06900-b4cb-425d-bb9d-0cdf8efc5954.png)
-
+Whether you are a User or Not, you can check out all public Servers!
+![Cursor_and_Q-Cord](https://user-images.githubusercontent.com/106298312/202962852-4ceefcb8-133d-46fc-aaff-be5178146740.png)
 
 
+Browse Public Server Details
 
-## View Server Details
-
-Check the details of a group or event in the details page.
-![BeatUp-5](https://user-images.githubusercontent.com/106298312/197461411-38c60b35-5b53-4bcf-8a29-554148d07f87.png)
+Select a Server and See if it is a good fit for you!
+![Q-Cord](https://user-images.githubusercontent.com/106298312/202963034-fb28ba26-0ea3-4704-9132-0fd306b76ccd.png)
 
 
 

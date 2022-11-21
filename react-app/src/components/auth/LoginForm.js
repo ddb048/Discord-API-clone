@@ -69,6 +69,17 @@ const LoginForm = () => {
 		}
 	}
 
+	const log2 = async (e) => {
+		e.preventDefault()
+		const data = await dispatch(login('demo@aa.io', 'password'))
+		if (data) {
+			setErrors(data);
+		} else {
+			dispatch(clearServer());
+			setTimeout(() => { < Redirect to="/servers/@me" />; }, 1000)
+		}
+	}
+
 	const updateEmail = (e) => {
 		setEmail(e.target.value);
 	};
@@ -152,7 +163,12 @@ const LoginForm = () => {
 					<div>
 						<button
 							onClick={log}
-							className='subButton'>Demo User</button>
+							className='subButton'>Demo User 1</button>
+					</div>
+					<div>
+						<button
+							onClick={log2}
+							className='subButton'>Demo User 2</button>
 					</div>
 				</form>
 				<div className='qCode-container'>

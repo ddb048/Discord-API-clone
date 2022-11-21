@@ -56,7 +56,9 @@ const ServerDetail = () => {
 	
 	
 	// array of object that holds the current channels of the server
-	const channelsArray = currentServerChannels.channels;
+	// i added ? to stop it from erroring out 
+	const channelsArray = currentServerChannels?.channels;
+	// console.log('CHANNEL ARRAY', channelsArray)
 	// console.log('all channels', allChannels);
 	const currentUser = useSelector((state) => state.session.user);
 
@@ -162,6 +164,7 @@ const ServerDetail = () => {
 	// 			</div>
 	// 		);
 	// 	})}
+	// console.log('CURRENT SERVER CHANNELS?',currentChannel)
 	return (
 		<div className='servers-page-container'>
 			<div className='servers-column-container'>
@@ -176,7 +179,8 @@ const ServerDetail = () => {
 					channelsServersArr.map((server) => {
 						return (
 							<>
-								<div className='servers-button-column' key={server.name}>
+							<div className='servers-button-map' key={server.name}>
+								<div className='server-cog-grouper'>
 									<NavLink to={`/servers/${server.id}`}>
 										<div className='servers-photo-container'>
 											<div>
@@ -193,7 +197,6 @@ const ServerDetail = () => {
 											</div>
 										</div>
 									</NavLink>
-								</div>
 								<div className='cog' onClick={() => (setUpdateShowModal(true), setToUpdate(server))}>
 										<i className="fa fa-cog" aria-hidden="true" />
 									</div>
@@ -201,6 +204,8 @@ const ServerDetail = () => {
 										<Modal onClose={() => setUpdateShowModal(false)}>
 											<UpdateServerForm setUpdateShowModal={setUpdateShowModal} server={toUpdate} />
 										</Modal>)}
+								</div>
+							</div>
 							</>
 						);
 					})}
@@ -221,13 +226,10 @@ const ServerDetail = () => {
 					<div
 						className='add-channel-container'
 						onClick={() => setShowModal(true)}
-					>
-						{' '}
-						<i className='fa fa-plus' aria-hidden='true' />
+					><i className='fa fa-plus' aria-hidden='true' />
 					</div>
 				</div>
 				<div className='server-channel-layout'>
-					<div className='channel-items'>
 						{channelsArray.map((channel) => {
 							return (
 								<div id='some-name'>
@@ -254,7 +256,6 @@ const ServerDetail = () => {
 								</div>
 							);
 						})}
-					</div>
 				</div>
 				<div className='servers-dm-footer'>
 					<div className='user-photo-container'>
@@ -265,8 +266,9 @@ const ServerDetail = () => {
 				</div>
 			</div>
 			<div className='channel-messages-container'>
-				<div></div>
-					messages section
+			<div className='servers-title-container'>
+					<div className='servers-title'>MESSAGES FOR CHANNEL {currentChannel? ": "+currentChannel.name: null}</div>
+				</div>
 				<div className='test-name'>
 					{showMsg &&
 						currentChannel &&
