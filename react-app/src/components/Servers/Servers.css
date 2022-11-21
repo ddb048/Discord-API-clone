@@ -344,3 +344,59 @@
 .users-list-container::-webkit-scrollbar {
   display: none;
 }
+.test-ping{
+  display: flex;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  /* left: 82px; */
+  left: 72px;
+    bottom: -37px;
+  /* top: 50%; /
+  bottom: -48px;
+  transform: translate(-50%, -50%);
+  / background-color: pink; /
+  border-radius: 9999px;
+  / background-color: green; / */
+}
+
+.animate-ping{
+  /* / flex h-3 w-3 / */
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+  position: absolute;
+  display: inline-flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 9999px;
+  opacity: .75;
+  background-color: rgb(22 163 74);
+  /* background-color: rgb(34 197 94); */
+  /* / color: #5865f2; /
+  / background-color: #006400; /
+  background-color: rgb(74 222 128);
+  / background-color: rgb(34 197 94); /
+  / animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75 / */
+
+}
+
+.third{
+  position: relative;
+  display: flex;
+  border-radius: 100%;
+  height: 18px;
+  width: 18px;
+  /* background-color: rgb(22 163 74); */
+  background-color: rgb(34 197 94);
+  /* / border: 1px solid green; /
+  / background-color: rgb(34 197 94); /
+  / background-color: rgb(22 163 74); /
+
+  / relative inline-flex rounded-full h-3 w-3 bg-sky-500 */
+}
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+
+}

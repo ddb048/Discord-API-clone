@@ -34,19 +34,17 @@ const CreateServerForm = ({ setShowModal }) => {
     } else if (compName) {
       errors.nameError = 'Server with this name already exists'
     }
-
-    else errors.nameError = ''
-    if (!preview_image.length) errors.preview_imageError = 'You must provide image url'
-    else if (!preview_image.length && urlValidation)
+    if (!preview_image.length) {
+      errors.preview_imageError = 'You must provide image url'
+    } else if (!preview_image.length && urlValidation) {
       errors.preview_imageError = 'You must provide a valid url link to an image'
-    else errors.preview_imageError = ''
+    }
 
     setError(errors);
-  }, [name, preview_image, description]);
+  }, [name, preview_image]);
 
 
   const handleSubmit = async (e) => {
-    // let errors = [];
     e.preventDefault();
     setRenderErr(true)
     const newServer = {
@@ -64,101 +62,99 @@ const CreateServerForm = ({ setShowModal }) => {
 
 
   return (
-    <>
+    <div className="form-container">
+      <div className="form-card">
+        <form id="form" onSubmit={handleSubmit}>
 
-      <div className="form-container">
-        <div className="form-card">
-          <form id="form" onSubmit={handleSubmit}>
+          <div className="text">
+            <h2>Your New Server</h2>
+          </div>
 
-            <div className="text">
-              <h2>Your New Server</h2>
-            </div>
-
+          <div>
+            {renderErr && error.nameError ?
+              <label className="text renderError" htmlFor="name">
+                Server Name: {error.nameError}
+              </label>
+              :
+              <label className="text noRenderError" htmlFor="name">
+                Server Name
+              </label>
+            }
+            <input
+              type="text"
+              className="inp"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+              placeholder={"Server name"}
+              name="name"
+            />
+          </div>
+          <div>
             <div>
-              {renderErr && error.nameError ?
-                <label className="text renderError" htmlFor="name">
-                  Server Name: {error.nameError}
+              {renderErr && error.preview_imageError ?
+                <label className="text renderError" htmlFor="img">
+                  Server Image: {error.preview_imageError}
                 </label>
                 :
-                <label className="text noRenderError" htmlFor="name">
-                  Server Name
+                <label className="text noRenderError" htmlFor="img">
+                  Server Image
                 </label>
               }
-              <input
-                type="text"
-                className="inp"
-                onChange={(e) => setName(e.target.value)}
-                value={name}
-                placeholder={"Server name"}
-                name="name"
-              />
             </div>
-            <div>
-              <div>
-                {renderErr && error.preview_imageError ?
-                  <label className="text renderError" htmlFor="img">
-                    Server Image: {error.preview_imageError}
-                  </label>
-                  :
-                  <label className="text noRenderError" htmlFor="img">
-                    Server Image
-                  </label>
-                }
-              </div>
-              <input
-                type="text"
-                className="inp"
-                onChange={(e) => setPreview_image(e.target.value)}
-                value={preview_image}
-                placeholder="Choose your server image url"
-                name="image"
-              />
-            </div>
-            <div>
-              <label className="text noRenderError" htmlFor="text">
-                Server Topics
-              </label>
-              <input
-                className="inp"
-                type="text"
-                onChange={(e) => setDescription(e.target.value)}
-                value={description}
-                placeholder="Please describe your server topics"
-                name="description"
-              ></input>
-            </div>
-            <div className='private-container'>
+            <input
+              type="text"
+              className="inp"
+              onChange={(e) => setPreview_image(e.target.value)}
+              value={preview_image}
+              placeholder="Choose your server image url"
+              name="image"
+            />
+          </div>
+          <div>
+            <label className="text noRenderError" htmlFor="text">
+              Server Topics
+            </label>
+            <input
+              className="inp"
+              type="text"
+              onChange={(e) => setDescription(e.target.value)}
+              value={description}
+              placeholder="Please describe your server topics"
+              name="description"
+            ></input>
+          </div>
+          <div className='private-container'>
 
-              <input
-                id="inp"
-                type="checkbox"
-                onChange={(e) => setPrivateServer(e.target.value)}
-                value={privateServer}
-                checked={privateServer || null}
-              />
-              <label className='text noRenderError'>Check If Private</label>
-            </div>
+            <input
+              id="inp"
+              type="checkbox"
+              onChange={(e) => setPrivateServer(e.target.value)}
+              value={privateServer}
+              checked={privateServer || null}
+            />
+            <label className='text noRenderError'>Check If Private</label>
+          </div>
 
-            <div className="errors-div">
-              {!!error.length && <div id="errors">{error[0]}</div>}
-            </div>
-            <div >
-              <button
-                className='subButton'
-                // id="create-channel-channel-btn"
-                disabled={
-                  !!error.nameError && !!error.preview_image && !!error[0]
-                }
-                type="submit"
-              >
-                Submit
-              </button>
-            </div>
+          <div className="errors-div">
+            {!!error.length && <div id="errors">{error[0]}</div>}
+          </div>
+          <div >
+            <button
+              className='subButton'
+              // id="create-channel-channel-btn"
+              disabled={
+                !!error.nameError && !!error.preview_image && !!error[0]
+              }
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
 
-          </form>
-        </div >
+        </form>
       </div >
-    </>
+    </div >
+
   );
 };
 
