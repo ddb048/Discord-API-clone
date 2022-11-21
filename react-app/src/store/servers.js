@@ -7,6 +7,7 @@ const LOAD_ONE_SERVER = 'servers/LOAD_ONE';
 const CREATE_SERVER = 'servers/ADD';
 const REMOVE_SERVER = 'servers/REMOVE';
 const EDIT_SERVER = 'servers/EDIT';
+const CLEAR_SERVER = 'servers/CLEAR'
 
 
 /*******************ACTION CREATORS*********** */
@@ -36,6 +37,9 @@ const editServer = (server) => ({
     server
 })
 
+export const clearServer = () => ({
+    type: CLEAR_SERVER
+})
 /*********************THUNKS********************** */
 
 //SECTION - GET /api/servers (READ)
@@ -172,6 +176,11 @@ const serverReducer = (state = initialState, action) => {
         case REMOVE_SERVER:
             newState = { ...state };
             delete newState[action.serverId];
+            return newState;
+
+        case CLEAR_SERVER:
+            newState = { ...state };
+            newState.servers = {}
             return newState;
 
         default:

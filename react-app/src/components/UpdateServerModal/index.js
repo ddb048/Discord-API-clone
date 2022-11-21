@@ -73,6 +73,9 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
             <h2>Update Server</h2>
           </div>
 
+          <div className="errors-div">
+            {!!error.length && <div id="errors">{error[0]}</div>}
+          </div>
           <div>
             {renderErr && error.nameError ?
               <label className="text renderError" htmlFor="name">
@@ -140,9 +143,7 @@ const UpdateServerForm = ({ setUpdateShowModal, server }) => {
             </label>
           </div>
 
-          <div className="errors-div">
-            {!!error.length && <div id="errors">{error[0]}</div>}
-          </div>
+
           <button
             className='subButton'
             type="submit"
