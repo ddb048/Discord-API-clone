@@ -138,7 +138,7 @@ function Splash() {
 						</div>
 						<div className='contact-card' id='abel'>
 							<div className='contact-text'>Abel Brianvil</div>
-							<div className='buttons-div'>
+							<div className='contact-buttons-div'>
 								<Link
 									className='contact-button'
 									to={{ pathname: 'https://github.com/abrianvil' }}
@@ -161,7 +161,7 @@ function Splash() {
 
 						<div className='contact-card' id='cindy'>
 							<div className='contact-text'>Cindy Guzman</div>
-							<div className='buttons-div'>
+							<div className='contact-buttons-div'>
 								<Link
 									className='contact-button'
 									to={{ pathname: 'https://github.com/c-rose-g' }}
@@ -182,7 +182,7 @@ function Splash() {
 						</div>
 						<div className='contact-card' id='david'>
 							<div className='contact-text'>David Burch</div>
-							<div className='buttons-div'>
+							<div className='contact-buttons-div'>
 								<Link
 									className='contact-button'
 									to={{ pathname: 'https://github.com/ddb048' }}
@@ -204,7 +204,7 @@ function Splash() {
 						</div>
 						<div className='contact-card' id='moran'>
 							<div className='contact-text'>Moran Even</div>
-							<div className='buttons-div'>
+							<div className='contact-buttons-div'>
 								<Link
 									className='contact-button'
 									to={{ pathname: 'https://github.com/MEven44' }}

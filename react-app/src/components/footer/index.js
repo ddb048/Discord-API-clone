@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom'
 import {useSelector} from 'react-redux'
-
+import '../Splash/index.css'
 function Footer () {
 let sessionUser = useSelector(state => state.session.user)
 
@@ -52,7 +52,7 @@ else
               </div>
               <div className="contact-card" id="abel">
                 <div className="contact-text">Abel Brianvil</div>
-                <div className="buttons-div">
+                <div className="contact-buttons-div">
                   <Link
                     className="contact-button"
                     to={{ pathname: "https://github.com/abrianvil" }}
@@ -75,7 +75,7 @@ else
 
               <div className="contact-card" id="cindy">
                 <div className="contact-text">Cindy Guzman</div>
-                <div className="buttons-div">
+                <div className="contact-buttons-div">
                   <Link
                     className="contact-button"
                     to={{ pathname: "https://github.com/c-rose-g" }}
@@ -96,7 +96,7 @@ else
               </div>
               <div className="contact-card" id="david">
                 <div className="contact-text">David Burch</div>
-                <div className="buttons-div">
+                <div className="contact-buttons-div">
                   <Link
                     className="contact-button"
                     to={{ pathname: "https://github.com/ddb048" }}
@@ -118,7 +118,7 @@ else
               </div>
               <div className="contact-card" id="moran">
                 <div className="contact-text">Moran Even</div>
-                <div className="buttons-div">
+                <div className="contact-buttons-div">
                   <Link
                     className="contact-button"
                     to={{ pathname: "https://github.com/MEven44" }}
