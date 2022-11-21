@@ -239,10 +239,7 @@ const Servers = () => {
 				</div>
 
 				{!showMsg && (
-					<div className='click-friend'>
-						{' '}
-						Click on a friend to start chatting
-					</div>
+					<div className='click-friend'>Click on a friend to start chatting</div>
 				)}
 				{showMsg &&
 					dm.length > 0 &&
@@ -323,12 +320,10 @@ const Servers = () => {
 							</div>
 							<div className='user-details'>
 								<div className='user-name-id'>
-									{memberCard.user_info.first_name}{' '}
-									{memberCard.user_info.last_name}#{memberCard.user_info.id}
+									{memberCard.user_info.first_name} #{memberCard.user_info.id}
 								</div>
-
 								<div className='user-name-id-joined'>
-									<div className='joined'>Q-Cord member since </div>
+									<div className='joined'>Q-Cord member since: </div>
 									<div className='joind-date'>
 										{memberCard.joined.slice(0, 17)}
 									</div>
