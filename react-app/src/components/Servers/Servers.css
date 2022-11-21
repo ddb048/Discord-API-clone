@@ -120,9 +120,11 @@
 
 .servers-dm-footer {
   display: flex;
-  border: 1px solid purple;
+  /* border: 1px solid purple; */
   justify-content: space-around;
   align-items: center;
+  position: absolute;
+  bottom: 0;
   /* height: 50px; */
 }
 
@@ -165,12 +167,14 @@
 /* styles div for active container  NOTE idk why its not hitting this*/
 .servers-active-container {
   /* border: 1px solid black; */
-  background-color: #36393f;
-  width: 420px;
+  /* background-color: #36393f; */
+  background-color: #202225;
+  width: 25.7vw;
   display: flex;
   justify-content: center;
   flex-direction: column;
   overflow-y: scroll;
+  align-items: center;
 }
 
 .servers-active-container::-webkit-scrollbar {
@@ -180,6 +184,7 @@
 /* styles div containing direct messages title */
 .servers-title-container {
   border-bottom: 1px solid white;
+  padding-bottom: 20px;
 }
 
 /* styles direct message title */
@@ -200,7 +205,17 @@
   /* border-bottom: 1px solid white; */
   font-size: 12px;
 }
-
+.click-friend{
+  color: white;
+  display: flex;
+  justify-content: center;
+  font-size: 50px;
+  font-family: adelle-sans, sans-serif;
+  font-style: normal;
+  height: 50%;
+  /* border: 1px solid blueviolet; */
+  align-items: center;
+}
 
 .mess {
   display: flex;
@@ -249,12 +264,35 @@
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    background-color: #202225;
+    background-color: #2f3136;
+    /* background-color: #202225; */
     width: 345px;
     height: 327px;
     align-items: center;
 }
+.servers-active-title-container{
+  /* border-bottom: 1px solid white; */
+  background-color: #2f3136;
+  /* padding-bottom: 10px; */
+  padding-bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 
+}
+.servers-active-title{
+  height: 50px;
+  color: white;
+  font-size: 22px;
+  height: 50px;
+  color: white;
+  font-size: 18px;
+  font-family: adelle-sans, sans-serif;
+  font-style: normal;
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
 
 .user-img-header {
   background-color: blueviolet;
@@ -290,7 +328,7 @@
 
 .user-details {
     color: white;
-    width: 250px;
+    width: 276px;
     height: 150px;
     border-radius: 20px;
     padding: 10%;
