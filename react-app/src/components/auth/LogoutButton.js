@@ -14,7 +14,7 @@ const LogoutButton = () => {
 
   };
 
-  return <button className='splash-logout-button' onClick={onLogout}>Logout</button>;
+  return <button className='splash-logout-button' onClick={onLogout}><i class="fa-solid fa-arrow-right-from-bracket"></i></button>;
 };
 
 export default LogoutButton;

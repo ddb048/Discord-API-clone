@@ -134,7 +134,9 @@
   align-items: center;
   position: absolute;
   bottom: 0;
-  /* height: 50px; */
+  width: 180px;
+  background-color: #2f3136;
+  height: 50px;
 }
 
 .user-photo {
@@ -194,11 +196,6 @@
 .servers-title-container {
   border-bottom: 1px solid white;
   padding-bottom: 20px;
-  width:100%;
-  display: flex;
-  justify-content: center;
-  background-color: #202225;
-
 }
 
 /* styles direct message title */
@@ -293,7 +290,7 @@
   background-color: #2f3136;
   /* padding-bottom: 10px; */
   padding-bottom: 20px;
-  width: 1fr;
+  width: 100%;
   display: flex;
   justify-content: center;
 
