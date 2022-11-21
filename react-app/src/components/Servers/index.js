@@ -229,8 +229,11 @@ const Servers = () => {
 				</div>
 			</div>
 			<div className='servers-messages-container'>
-				<div>
-					<h1 className='test-name'>messages section</h1>
+				<div className='servers-title-container'>
+					<div className='servers-active-title'>MESSAGES</div>
+				</div>
+
+				{!showMsg && <div className='click-friend'> Click on a friend to start chatting</div>}
 					{showMsg &&
 						dm.length > 0 &&
 						dm.map((message) => {
@@ -251,7 +254,6 @@ const Servers = () => {
 								</div>
 							);
 						})}
-				</div>
 
 				<div>
 					{showMsg &&
@@ -286,6 +288,9 @@ const Servers = () => {
 				)}
 			</div>
 			<div className='servers-active-container'>
+			<div className='servers-title-container'>
+			{!showMsg && <div className='servers-active-title'>FRIENDS</div>}
+			</div>
 				{showMsg && (
 					<>
 						<div className='active-user-con'>

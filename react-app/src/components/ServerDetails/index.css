@@ -1,23 +1,21 @@
 /* ****************** SERVERS COLUMN ************************* */
 /* styles user landing page layout */
-.servers-page-container {
+/* .servers-page-container {
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: row;
-}
-
+} */
 /* styles div for all servers container */
-.servers-column-container {
+/* .servers-column-container {
   display: flex;
   flex-direction: column;
   width: 75px;
   padding: 15px 0;
   background-color: #202225;
-}
-
+} */
 /* styles container for dm button */
-.dm-button-container {
+/* .dm-button-container {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -30,8 +28,7 @@
   right: 0;
   margin: 0 auto;
   width: 0;
-}
-
+} */
 /* styles dm button */
 .dm-button {
   width: 40px;
@@ -86,17 +83,17 @@
   justify-content: flex-start;
   flex-direction: column;
   /* border: 1px solid green; */
-  width: 135px;
   background-color: #2f3136;
 
 }
 
 /* div styling the layout of all channel names and edit channel buttons */
 .server-channel-layout {
+  width: 190px;
   display: flex;
   /* border: 1px solid pink; */
   flex-direction: column;
-  max-height: 85%;
+  /* max-height: 85%; */
   overflow: scroll;
   /* overflow-x: hidden; */
 }
@@ -145,8 +142,8 @@
 }
 
 /* trying this div to figure out channel names and button layout */
-#some-name {
-  border: 1px solid blue;
+#some-name{
+  /* border: 1px solid blue; */
   display: flex;
   flex-direction: row;
 }
@@ -179,16 +176,15 @@
 /* styles container for each channel button */
 .update-channel-container {
   width: 17px;
-  border: 1px solid pink;
+  /* border: 1px solid pink; */
   display: flex;
   align-items: center;
 }
 
 /* styles each update channel button */
-.update-channel-button {
+/* .update-channel-button{
   border: 1px solid green;
-}
-
+} */
 .servers-dm-footer {
   display: flex;
   /* border: 1px solid purple; */
@@ -222,7 +218,8 @@
 
 .channel-messages-container {
   /* border: 1px solid blue; */
-  width: 1172px;
+  width: 100vw;
+  /* width: 1fr; */
   background-color: #36393f;
   border-right: 1px solid white;
   overflow: scroll;
